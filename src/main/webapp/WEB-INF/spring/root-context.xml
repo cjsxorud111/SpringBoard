@@ -23,8 +23,9 @@
 		<property name="password" value="111111"></property>
 	</bean>
  -->
- 
- 	<bean id="dataSource"
+   
+   
+ 	<bean id="dataSource"   
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="url"
