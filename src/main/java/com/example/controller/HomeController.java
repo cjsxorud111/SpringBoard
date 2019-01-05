@@ -1,5 +1,6 @@
 package com.example.controller;
 
+
 import java.util.List;
 import java.util.Locale;
 
@@ -21,7 +22,7 @@ import com.example.service.MemberService;
  */
 @Controller
 public class HomeController {
-	
+	//git pull test
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@Inject
