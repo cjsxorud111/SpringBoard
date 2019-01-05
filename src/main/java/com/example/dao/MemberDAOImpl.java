@@ -12,7 +12,8 @@ import com.example.dto.MemberVO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
-
+ 
+	
 	@Inject
 	private SqlSession sqlSession;
 	
