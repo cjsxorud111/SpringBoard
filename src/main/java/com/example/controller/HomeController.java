@@ -23,6 +23,7 @@ import com.example.service.MemberService;
 @Controller
 public class HomeController {
 	//git pull test
+	//branch test
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@Inject
