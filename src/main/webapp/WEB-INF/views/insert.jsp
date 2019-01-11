@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body>  
 insert.jsp <br />
    
 <table width="500" cellpadding="0" cellspacing="0" border="1">
