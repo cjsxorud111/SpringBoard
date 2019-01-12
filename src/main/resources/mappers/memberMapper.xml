@@ -19,8 +19,20 @@
 		SELECT ID, PW ,NAME FROM TEST
 	</select>
 	
+	<select id="selectpw" resultType="String" parameterType="String">
+		SELECT pw FROM MEMBER WHERE id = #{a}
+	</select>
+	
 	<insert id="insertingMember" parameterType="com.example.dto.MemberVO" >
 		INSERT INTO TEST (ID, PW, NAME) VALUES (#{id}, #{pw}, #{name})
+	</insert>
+	
+	<insert id="memberjoining" parameterType="com.example.dto.MemberjoinVO" >
+		INSERT INTO MEMBER (id, pw, user_name, email) VALUES (#{id}, #{pw}, #{name}, #{email})
+	</insert>
+	
+	<insert id="writing" parameterType="com.example.dto.ContentsVO" >
+		INSERT INTO CONTENTS (id, title, contents) VALUES (#{id}, #{title}, #{contents})
 	</insert>
 	
 	<update id="updatingMember" parameterType="com.example.dto.MemberVO" >

@@ -5,32 +5,52 @@
 <head>
 <title>Home</title>
 </head>
-<body>
-	<h1>Hello world!</h1>
-
-	<table>
-		<thead>
-			<tr>
-				<th>아이디</th>
-				<th>비밀번호</th>
-				<th>이름</th>
-				<th>수정</th>
-				<th>삭제</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${memberList}" var="member">
+	<body>
+		<% 
+			String id = (String)session.getAttribute("ID");
+			System.out.println(id+"님 환영합니다."); 
+		%>
+		<h1><%= id %>님 환영합니다!</h1>
+		글목록
+		<br/>
+		<table>
+			<thead>
 				<tr>
-					<td>${member.id}</td>
-					<td>${member.pw}</td>
-					<td>${member.name}</td>
-					<td><a href="update?ID=${member.id}&PW=${member.pw}&NAME=${member.name}">수정</a></td>
-					<td><a href="delete?ID=${member.id}">X</a></td>
+					<th>글번호&nbsp&nbsp&nbsp</th>
+					<th>글제목&nbsp&nbsp&nbsp </th>
+					<th>아이디&nbsp&nbsp&nbsp </th>
+					<th>수정 &nbsp&nbsp&nbsp</th>
+					<th>삭제&nbsp&nbsp&nbsp </th>
+					<th> </th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-
-
-</body>
+			</thead>
+			
+			<tbody>
+				<tr>
+					<td>f</td>
+					<td>f</td>
+				</tr>
+				
+				<tr>
+					<td>d</td>
+					<td>d</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><a href="write">글쓰기</a></td>
+				</tr>
+				
+			</tbody>
+			
+			
+		</table>
+	
+	
+	</body>
 </html>

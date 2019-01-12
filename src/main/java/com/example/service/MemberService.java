@@ -10,7 +10,11 @@ public interface MemberService {
 	
 	public List<MemberVO> selectMember() throws Exception;
 	public void inserting(HttpServletRequest request) throws Exception;
+	public void writing(HttpServletRequest request) throws Exception;
+	public void memberjoining(HttpServletRequest request) throws Exception;
 	public void updating(HttpServletRequest request) throws Exception;
 	public void deleting(HttpServletRequest request) throws Exception;
+	public boolean logining(HttpServletRequest request) throws Exception;
+	
 
 }

@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.example.dto.ContentsVO;
 import com.example.dto.MemberVO;
+import com.example.dto.MemberjoinVO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
@@ -35,20 +37,49 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	@Override
+	public void writing(ContentsVO vo) throws Exception {
+		System.out.println("Memberinserting");
+		System.out.println(vo.getId());
+		System.out.println("Memberinserting1");
+		
+		sqlSession.insert(Namespace+".writing", vo);
+		System.out.println("Memberinserting2");
+		
+	}
+	@Override
+	public void memberjoining(MemberjoinVO vo) throws Exception {
+		System.out.println("??");
+		System.out.println(vo.getId());
+		System.out.println(vo.getPw());
+		System.out.println(vo.getName());
+		System.out.println(vo.getEmail());
+		sqlSession.insert(Namespace+".memberjoining", vo);
+		System.out.println("???");
+		
+	}
+
+	@Override
 	public void updating(MemberVO vo) throws Exception {
 		System.out.println("Memberupdating");
 		System.out.println(vo.getId());
 		System.out.println("Memberupdating1");
 		System.out.println(vo.getName());
-		sqlSession.insert(Namespace+".updatingMember", vo);
+		sqlSession.update(Namespace+".updatingMember", vo);
 		System.out.println("Membeting2");
 	}
 	
 	@Override
 	public void deleting(MemberVO vo) throws Exception {
 		
-		sqlSession.insert(Namespace+".deletingMember", vo);
+		sqlSession.delete(Namespace+".deletingMember", vo);
 		System.out.println("Membeting2");
 	}
-
+	@Override
+	public String selectpw(String a) throws Exception {
+		System.out.println("M?2");
+		return sqlSession.selectOne(Namespace+".selectpw", a);
+		
+	}
+	
+	
 }
