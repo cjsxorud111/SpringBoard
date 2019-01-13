@@ -12,6 +12,8 @@
 		%>
 		<h1><%= id %>님 환영합니다!</h1>
 		글목록
+		
+		
 		<br/>
 		<table>
 			<thead>
@@ -26,18 +28,18 @@
 			</thead>
 			
 			<tbody>
+				<c:forEach items="${HomeCList}" var="a">
+	                <tr>
+	                    <td>&nbsp&nbsp${a.num}</td>
+	                    <td><a href="content?num=${a.num}">${a.title}</a></td>
+	                    <td>${a.id}</td>
+	                    <td><a href="update">수정하기</a></td>
+						<td><a href="delete">X</a></td>
+						<td></td>
+	                </tr>
+            	</c:forEach>
+
 				<tr>
-					<td>f</td>
-					<td>f</td>
-				</tr>
-				
-				<tr>
-					<td>d</td>
-					<td>d</td>
-				</tr>
-				
-				<tr>
-					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -45,6 +47,8 @@
 					<td></td>
 					<td><a href="write">글쓰기</a></td>
 				</tr>
+				
+				
 				
 			</tbody>
 			

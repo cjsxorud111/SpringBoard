@@ -15,12 +15,16 @@
 		이렇게 해야 한다.
 	-->
 	
-	<select id="selectMember" resultType="com.example.dto.MemberVO" >
-		SELECT ID, PW ,NAME FROM TEST
+	<select id="selectContent" resultType="com.example.dto.HomeContentVO" >
+		SELECT num, id ,title FROM CONTENTS
 	</select>
 	
 	<select id="selectpw" resultType="String" parameterType="String">
 		SELECT pw FROM MEMBER WHERE id = #{a}
+	</select>
+	
+	<select id="getcontent" resultType="com.example.dto.GetContentVO" parameterType="String">
+		SELECT title, contents FROM CONTENTS WHERE num = #{num}
 	</select>
 	
 	<insert id="insertingMember" parameterType="com.example.dto.MemberVO" >

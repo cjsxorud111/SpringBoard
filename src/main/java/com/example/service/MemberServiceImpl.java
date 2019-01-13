@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.example.dao.MemberDAO;
 import com.example.dto.MemberVO;
 import com.example.dto.ContentsVO;
+import com.example.dto.GetContentVO;
+import com.example.dto.HomeContentVO;
 import com.example.dto.MemberjoinVO;
 
 @Service
@@ -21,9 +23,9 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDAO dao;
 	
 	@Override
-	public List<MemberVO> selectMember() throws Exception {
+	public List<HomeContentVO> selectContent() throws Exception {
 		System.out.println("MemberService");
-		return dao.selectMember();
+		return dao.selectContent();
 	}
 	
 	@Override
@@ -91,6 +93,12 @@ public class MemberServiceImpl implements MemberService {
 			return false;
 		}
 		
+	}
+
+	@Override
+	public List<GetContentVO> getcontent(String num) throws Exception {
+		
+		return dao.getcontent(num);
 	}
 
 	

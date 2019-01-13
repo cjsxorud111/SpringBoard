@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.example.dto.ContentsVO;
+import com.example.dto.GetContentVO;
+import com.example.dto.HomeContentVO;
 import com.example.dto.MemberVO;
 import com.example.dto.MemberjoinVO;
 
@@ -22,9 +24,9 @@ public class MemberDAOImpl implements MemberDAO {
 	private static final String Namespace = "com.example.mapper.memberMapper";
 	
 	@Override
-	public List<MemberVO> selectMember() throws Exception {
+	public List<HomeContentVO> selectContent() throws Exception {
 		System.out.println("MemberDAOImpl");
-		return sqlSession.selectList(Namespace+".selectMember");
+		return sqlSession.selectList(Namespace+".selectContent");
 	}
 	@Override
 	public void inserting(MemberVO vo) throws Exception {
@@ -80,6 +82,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne(Namespace+".selectpw", a);
 		
 	}
-	
+	@Override
+	public List<GetContentVO> getcontent(String num) throws Exception {
+		
+		return sqlSession.selectList(Namespace+".getcontent", num);
+	}
 	
 }

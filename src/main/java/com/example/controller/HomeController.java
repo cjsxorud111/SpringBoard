@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.example.dto.GetContentVO;
+import com.example.dto.HomeContentVO;
 import com.example.dto.MemberVO;
 import com.example.service.MemberService;
 
@@ -39,12 +41,37 @@ public class HomeController {
 		System.out.println("HomeController1");
 		logger.info("home");
 		System.out.println("HomeController2");
-		List<MemberVO> memberList = service.selectMember();
+		List<HomeContentVO> HomeCList = service.selectContent();
+		
 		System.out.println("HomeController3");
-		model.addAttribute("memberList", memberList);
-		System.out.println("HomeController4");
+		model.addAttribute("HomeCList", HomeCList);
+		System.out.println("HomeController4");		
+		
+		System.out.println(HomeCList.get(1));
+		
+		
 		return "home";
 	}
+	
+	@RequestMapping(value = "/content", method = RequestMethod.GET)
+	public String content(HttpServletRequest request, Locale locale, Model model) throws Exception{
+		
+		String num = request.getParameter("num");
+		
+		List<GetContentVO> GetContentList = service.getcontent(num);		
+		System.out.println("HomeController3");
+		model.addAttribute("GetContentList", GetContentList);
+		System.out.println("HomeController4");		
+		
+		System.out.println(GetContentList.get(0));
+		System.out.println("??");
+		
+		// 서비스에서 스트링형 배열로 sql실행결과 받은담에 홈컨트롤러에서 모델에 넣어서 전달
+		
+		return "content";
+	}
+	
+	
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) throws Exception{
