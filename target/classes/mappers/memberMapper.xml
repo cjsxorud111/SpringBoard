@@ -24,7 +24,7 @@
 	</select>
 	
 	<select id="getcontent" resultType="com.example.dto.GetContentVO" parameterType="String">
-		SELECT title, contents FROM CONTENTS WHERE num = #{num}
+		SELECT  title, content FROM CONTENTS WHERE num = #{num}
 	</select>
 	
 	<insert id="insertingMember" parameterType="com.example.dto.MemberVO" >
