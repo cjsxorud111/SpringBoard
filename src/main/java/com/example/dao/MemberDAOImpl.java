@@ -26,8 +26,21 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public List<HomeContentVO> selectContent() throws Exception {
 		System.out.println("MemberDAOImpl");
-		return sqlSession.selectList(Namespace+".selectContent");
+		List<HomeContentVO> ccc = sqlSession.selectList(Namespace+".selectContent");
+		HomeContentVO vvv = ccc.get(0);
+		System.out.println(vvv.getId() +" ??  " +vvv.getTitle() +" ?? " + vvv.getNum());
+		
+		return ccc;
 	}
+	
+	@Override
+	public List<GetContentVO> getcontent(String num) throws Exception {
+		List<GetContentVO> aaa = sqlSession.selectList(Namespace+".getcontent", num);
+		GetContentVO ccc = aaa.get(0);
+		System.out.println("????  "+ccc.getContent());
+		return aaa;
+	}
+	
 	@Override
 	public void inserting(MemberVO vo) throws Exception {
 		System.out.println("Memberinserting");
@@ -76,16 +89,12 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.delete(Namespace+".deletingMember", vo);
 		System.out.println("Membeting2");
 	}
+	
 	@Override
 	public String selectpw(String a) throws Exception {
 		System.out.println("M?2");
 		return sqlSession.selectOne(Namespace+".selectpw", a);
 		
-	}
-	@Override
-	public List<GetContentVO> getcontent(String num) throws Exception {
-		
-		return sqlSession.selectList(Namespace+".getcontent", num);
 	}
 	
 }

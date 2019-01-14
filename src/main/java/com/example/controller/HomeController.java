@@ -62,10 +62,10 @@ public class HomeController {
 		System.out.println("HomeController3");
 		model.addAttribute("GetContentList", GetContentList);
 		System.out.println("HomeController4");		
-		
+		GetContentVO a = GetContentList.get(0);
 		System.out.println(GetContentList.get(0));
-		System.out.println("??");
-		
+		System.out.println(a.getTitle());
+		System.out.println(a.getContent());
 		// 서비스에서 스트링형 배열로 sql실행결과 받은담에 홈컨트롤러에서 모델에 넣어서 전달
 		
 		return "content";
