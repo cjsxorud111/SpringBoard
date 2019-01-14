@@ -36,7 +36,7 @@
 	</insert>
 	
 	<insert id="writing" parameterType="com.example.dto.ContentsVO" >
-		INSERT INTO CONTENTS (id, title, contents) VALUES (#{id}, #{title}, #{contents})
+		INSERT INTO CONTENTS (id, title, content) VALUES (#{id}, #{title}, #{contents})
 	</insert>
 	
 	<update id="updatingMember" parameterType="com.example.dto.MemberVO" >
