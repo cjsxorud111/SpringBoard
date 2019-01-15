@@ -22,7 +22,7 @@
 		%>
 		<h2><%= id %>님 환영합니다!</h2>   
 <table>
-		<form action="writing" method="get">
+		<form action="writing" method="get" accept-charset="utf-8">
 			<tr>
 				<td >아이디 </td>
 				<td> <input type="text" name="ID" size = "20" value = "<%= id %>"> </td>
