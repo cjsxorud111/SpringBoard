@@ -108,7 +108,9 @@ public class MemberServiceImpl implements MemberService {
 		NVO.setNum(request.getParameter("NUM"));
 		NVO.setTitle(request.getParameter("TITLE"));
 		NVO.setContent(request.getParameter("CONTENT"));
-		
+		System.out.println("??????  "+NVO.getNum());
+		System.out.println(NVO.getTitle());
+		System.out.println(NVO.getContent());
 		dao.newupdating(NVO);
 		
 	}

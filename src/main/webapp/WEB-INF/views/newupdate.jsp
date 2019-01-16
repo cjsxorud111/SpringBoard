@@ -39,10 +39,12 @@
 				<td><input type="text" name="CONTENT" size="45"
 					value="${a.content}"></td>
 			</tr>
-			<input type="submit" value="수정하기"></input>
-			</form>
+			
+			
 		</c:forEach>
+		
 	</table>
-
+			<input type="submit" value="수정하기"></input>
+		</form>
 </body>
 </html>

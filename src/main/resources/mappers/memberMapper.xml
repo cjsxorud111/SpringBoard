@@ -46,16 +46,12 @@
 	</update> 
 	
 	<update id="newupdating" parameterType="com.example.dto.NewupdatingVO" >
-		UPDATE CONTENTS SET title = #{TITLE}, content = #{CONTENT} WHERE num = #{NUM}
+		update CONTENTS set title = #{TITLE}, content = #{CONTENT} WHERE num = #{NUM}
 	</update>  
 	
 	<delete id="deletingMember" parameterType="com.example.dto.MemberVO"> 
 		DELETE FROM TEST WHERE ID = #{id}
-		
 	</delete> 
 	
-	<!-- <select id="selectMember" resultType="memberVO">
-		SELECT ID, PW ,NAME FROM TEST
-	</select> -->
 	
 </mapper>
