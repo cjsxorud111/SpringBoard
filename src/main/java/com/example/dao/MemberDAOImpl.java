@@ -13,6 +13,7 @@ import com.example.dto.GetContentVO;
 import com.example.dto.HomeContentVO;
 import com.example.dto.MemberVO;
 import com.example.dto.MemberjoinVO;
+import com.example.dto.NewupdatingVO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
@@ -96,5 +97,10 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne(Namespace+".selectpw", a);
 		
 	}
-	
+
+	@Override
+	public void newupdating(NewupdatingVO NVO) throws Exception {
+		 sqlSession.update(Namespace+".newupdating", NVO);
+		
+	}
 }

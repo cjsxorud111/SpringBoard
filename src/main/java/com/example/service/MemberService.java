@@ -18,6 +18,7 @@ public interface MemberService {
 	public void deleting(HttpServletRequest request) throws Exception;
 	public boolean logining(HttpServletRequest request) throws Exception;
 	public List<GetContentVO> getcontent(String num) throws Exception;
+	public void newupdating(HttpServletRequest request) throws Exception;
 	
 
 }

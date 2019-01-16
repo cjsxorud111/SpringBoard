@@ -14,6 +14,7 @@ import com.example.dto.ContentsVO;
 import com.example.dto.GetContentVO;
 import com.example.dto.HomeContentVO;
 import com.example.dto.MemberjoinVO;
+import com.example.dto.NewupdatingVO;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -99,6 +100,17 @@ public class MemberServiceImpl implements MemberService {
 	public List<GetContentVO> getcontent(String num) throws Exception {
 		
 		return dao.getcontent(num);
+	}
+
+	@Override
+	public void newupdating(HttpServletRequest request) throws Exception {
+		NewupdatingVO NVO = new NewupdatingVO();
+		NVO.setNum(request.getParameter("NUM"));
+		NVO.setTitle(request.getParameter("TITLE"));
+		NVO.setContent(request.getParameter("CONTENT"));
+		
+		dao.newupdating(NVO);
+		
 	}
 
 	

@@ -9,6 +9,7 @@ import com.example.dto.GetContentVO;
 import com.example.dto.HomeContentVO;
 import com.example.dto.MemberVO;
 import com.example.dto.MemberjoinVO;
+import com.example.dto.NewupdatingVO;
 
 public interface MemberDAO {
 	
@@ -21,5 +22,6 @@ public interface MemberDAO {
 	public String selectpw(String a) throws Exception;
 	public void writing(ContentsVO vo) throws Exception;
 	public List<GetContentVO> getcontent(String num) throws Exception;
+	public void newupdating(NewupdatingVO NVO) throws Exception;
 	
 }

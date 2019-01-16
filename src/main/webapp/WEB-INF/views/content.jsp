@@ -11,18 +11,20 @@
 		<% 
 			String id = (String)session.getAttribute("ID");
 			System.out.println(id+"님 환영합니다."); 
-			
+			String num = request.getParameter("num");
 		%>
 		<h1><%= id %>님 환영합니다!</h1>
 		글목록
-		
-		
+				
 		<br/>
-		<table>  
-		
-		
+		    <table>  	
 				<c:forEach items="${GetContentList}" var="a">
 	                <tr>
+						<td>글번호</td>
+						<td><%=num%></td>
+					</tr>
+	                
+					<tr>
 						<td>제목</td>
 						<td>${a.title}</td>
 					</tr>
@@ -32,11 +34,9 @@
 						<td>${a.content}</td>
 					</tr>
             	</c:forEach>
-			
-			
-			
-		</table>
-	
-	
+		    </table>
+		<a href="newupdate?num=<%=num%>">수정하기</a>
+		<a href="delete">X</a>
+
 	</body>
 </html>

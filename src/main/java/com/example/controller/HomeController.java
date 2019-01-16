@@ -53,6 +53,8 @@ public class HomeController {
 		return "home";
 	}
 	
+	
+	
 	@RequestMapping(value = "/content", method = RequestMethod.GET)
 	public String content(HttpServletRequest request, Locale locale, Model model) throws Exception{
 		
@@ -70,6 +72,26 @@ public class HomeController {
 		
 		return "content";
 	}
+	
+
+	@RequestMapping(value = "/newupdate", method = RequestMethod.GET)
+	public String newupdate(HttpServletRequest request, Locale locale, Model model) throws Exception{
+
+		logger.info("newupdate");
+		String num = request.getParameter("num");
+					
+		List<GetContentVO> GetContentList = service.getcontent(num);		
+		System.out.println("HomeController3");
+		model.addAttribute("GetContentList", GetContentList);
+		System.out.println("HomeController4");		
+		GetContentVO a = GetContentList.get(0);
+		System.out.println(GetContentList.get(0));
+		System.out.println(a.getTitle());
+		System.out.println(a.getContent());
+		
+		return "newupdate";
+	}
+	
 	
 	
 	
@@ -142,7 +164,7 @@ public class HomeController {
 		return "redirect:home";
 	}
 	
-	@RequestMapping(value = "/writing", method = RequestMethod.GET)
+	@RequestMapping(value = "/writing", method = RequestMethod.POST)
 	public String writing(HttpServletRequest request, Model model) throws Exception{
 		System.out.println("ritin11");
 		logger.info("iritin");
@@ -150,6 +172,18 @@ public class HomeController {
 		System.out.println("inserting12");
 		return "redirect:home";
 	}
+	
+	@RequestMapping(value = "/newupdating", method = RequestMethod.POST)
+	public String newupdating(HttpServletRequest request, Locale locale, Model model) throws Exception{
+
+		logger.info("newupdateing");
+		
+					
+		service.newupdating(request);
+		
+		return "home";
+	}
+	
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String update(HttpServletRequest request, Locale locale, Model model) throws Exception{
@@ -172,6 +206,8 @@ public class HomeController {
 		
 		return "update";
 	}
+	
+	
 	
 	@RequestMapping(value = "/updating", method = RequestMethod.GET)
 	public String updating(HttpServletRequest request, Model model) throws Exception{
