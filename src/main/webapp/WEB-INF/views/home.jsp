@@ -21,8 +21,8 @@
 					<th>글번호&nbsp&nbsp&nbsp</th>
 					<th>글제목&nbsp&nbsp&nbsp </th>
 					<th>아이디&nbsp&nbsp&nbsp </th>
-					<th>수정 &nbsp&nbsp&nbsp</th>
-					<th>삭제&nbsp&nbsp&nbsp </th>
+					
+					
 					<th> </th>
 				</tr>
 			</thead>
@@ -33,8 +33,8 @@
 	                    <td>&nbsp&nbsp${a.num}</td>
 	                    <td><a href="content?num=${a.num}">${a.title}</a></td>
 	                    <td>${a.id}</td>
-	                    <td><a href="update">수정하기</a></td>
-						<td><a href="delete">X</a></td>
+	                    
+						
 						<td></td>
 	                </tr>
             	</c:forEach>
@@ -43,8 +43,7 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td></td>
-					<td></td>
+					
 					<td><a href="write">글쓰기</a></td>
 				</tr>
 				

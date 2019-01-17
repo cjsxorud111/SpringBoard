@@ -18,7 +18,7 @@ public interface MemberDAO {
 	public void inserting(MemberVO vo) throws Exception;
 	public void memberjoining(MemberjoinVO vo) throws Exception;
 	public void updating(MemberVO vo) throws Exception;
-	public void deleting(MemberVO vo) throws Exception;
+	public void deleting(NewupdatingVO vo) throws Exception;
 	public String selectpw(String a) throws Exception;
 	public void writing(ContentsVO vo) throws Exception;
 	public List<GetContentVO> getcontent(String num) throws Exception;

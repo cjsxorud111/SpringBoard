@@ -75,8 +75,8 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void deleting(HttpServletRequest request) throws Exception {
 		System.out.println("MembeSERVICE updaTING");
-		MemberVO vo= new MemberVO();
-		vo.setId(request.getParameter("ID"));
+		NewupdatingVO vo= new NewupdatingVO();
+		vo.setNum(request.getParameter("num"));
 		
 		dao.deleting(vo);
 	}

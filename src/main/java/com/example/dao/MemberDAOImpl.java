@@ -56,7 +56,8 @@ public class MemberDAOImpl implements MemberDAO {
 	public void writing(ContentsVO vo) throws Exception {
 		System.out.println("Memberinserting");
 		System.out.println(vo.getId());
-		System.out.println("Memberinserting1");
+		System.out.println(vo.getTitle());
+		System.out.println(vo.getContents());
 		
 		sqlSession.insert(Namespace+".writing", vo);
 		System.out.println("Memberinserting2");
@@ -85,7 +86,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	@Override
-	public void deleting(MemberVO vo) throws Exception {
+	public void deleting(NewupdatingVO vo) throws Exception {
 		
 		sqlSession.delete(Namespace+".deletingMember", vo);
 		System.out.println("Membeting2");

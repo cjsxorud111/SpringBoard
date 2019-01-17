@@ -36,7 +36,7 @@
             	</c:forEach>
 		    </table>
 		<a href="newupdate?num=<%=num%>">수정하기</a>
-		<a href="delete">X</a>
+		<a href="delete?num=<%=num%>">삭제하기</a>
 
 	</body>
 </html>

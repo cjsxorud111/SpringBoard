@@ -39,18 +39,16 @@
 		INSERT INTO CONTENTS (id, title, content) VALUES (#{id}, #{title}, #{contents})
 	</insert>
 	
-	
-	
 	<update id="updatingMember" parameterType="com.example.dto.MemberVO" >
 		UPDATE TEST SET ID = #{id}, PW = #{pw}, NAME = #{name} WHERE ID = #{id}
 	</update> 
 	
 	<update id="newupdating" parameterType="com.example.dto.NewupdatingVO" >
-		update CONTENTS set title = #{TITLE}, content = #{CONTENT} WHERE num = #{NUM}
+		update CONTENTS set title = #{title}, content = #{content} WHERE num = #{num}
 	</update>  
 	
-	<delete id="deletingMember" parameterType="com.example.dto.MemberVO"> 
-		DELETE FROM TEST WHERE ID = #{id}
+	<delete id="deletingMember" parameterType="com.example.dto.NewupdatingVO"> 
+		DELETE FROM CONTENTS WHERE num = #{num}
 	</delete> 
 	
 	

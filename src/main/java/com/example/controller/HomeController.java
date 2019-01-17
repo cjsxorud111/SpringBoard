@@ -181,7 +181,7 @@ public class HomeController {
 					
 		service.newupdating(request);
 		
-		return "home";
+		return "redirect:home";
 	}
 	
 	
