@@ -42,13 +42,13 @@ public class HomeController {
 		logger.info("home");
 		System.out.println("HomeController2");
 		List<HomeContentVO> HomeCList = service.selectContent();
-		
+		int Cnum = service.Cnum();
 		System.out.println("HomeController3");
 		model.addAttribute("HomeCList", HomeCList);
 		System.out.println("HomeController4");		
-		
+		System.out.println("Cnum ==" + Cnum);
 		System.out.println(HomeCList.get(1));
-		
+		model.addAttribute("Cnum", Cnum);
 		
 		return "home";
 	}

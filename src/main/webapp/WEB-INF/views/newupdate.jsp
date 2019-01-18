@@ -12,6 +12,7 @@
 		String id = (String) session.getAttribute("ID");
 		System.out.println(id + "님 환영합니다.");
 		String num = request.getParameter("num");
+		
 	%>
 	<h1><%=id%>님 환영합니다!
 	</h1>

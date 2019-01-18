@@ -26,7 +26,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<HomeContentVO> selectContent() throws Exception {
 		System.out.println("MemberService");
-		return dao.selectContent();
+		List<HomeContentVO> selcon = dao.selectContent();
+		
+		System.out.println();
+		
+		return selcon;
 	}
 	
 	@Override
@@ -113,6 +117,12 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println(NVO.getContent());
 		dao.newupdating(NVO);
 		
+	}
+
+	@Override
+	public int Cnum() throws Exception {
+		
+		return dao.Cnum();
 	}
 
 	

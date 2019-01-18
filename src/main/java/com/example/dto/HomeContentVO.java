@@ -5,7 +5,6 @@ public class HomeContentVO {
 	private String title;
 	private String id;
 	
-	
 	public String getNum() {
 		return num;
 	}

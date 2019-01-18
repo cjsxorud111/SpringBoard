@@ -60,6 +60,7 @@ public class MemberDAOImpl implements MemberDAO {
 		System.out.println(vo.getContents());
 		
 		sqlSession.insert(Namespace+".writing", vo);
+		sqlSession.update(Namespace+".plus_homenum");
 		System.out.println("Memberinserting2");
 		
 	}
@@ -89,6 +90,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public void deleting(NewupdatingVO vo) throws Exception {
 		
 		sqlSession.delete(Namespace+".deletingMember", vo);
+		sqlSession.update(Namespace+".minus_homenum");
 		System.out.println("Membeting2");
 	}
 	
@@ -102,6 +104,14 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public void newupdating(NewupdatingVO NVO) throws Exception {
 		 sqlSession.update(Namespace+".newupdating", NVO);
+		
+	}
+	@Override
+	public int Cnum() throws Exception {
+		
+
+
+		return Integer.parseInt((String) sqlSession.selectOne(Namespace+".Cnum"));
 		
 	}
 }

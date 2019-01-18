@@ -23,5 +23,6 @@ public interface MemberDAO {
 	public void writing(ContentsVO vo) throws Exception;
 	public List<GetContentVO> getcontent(String num) throws Exception;
 	public void newupdating(NewupdatingVO NVO) throws Exception;
+	public int Cnum() throws Exception;
 	
 }
