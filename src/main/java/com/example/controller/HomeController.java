@@ -48,8 +48,7 @@ public class HomeController {
 		System.out.println("HomeController4");		
 		System.out.println("Cnum ==" + Cnum);
 		System.out.println(HomeCList.get(1));
-		model.addAttribute("Cnum", Cnum);
-		
+		model.addAttribute("Cnum",Cnum);
 		return "home";
 	}
 	
