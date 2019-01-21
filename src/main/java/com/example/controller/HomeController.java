@@ -49,6 +49,8 @@ public class HomeController {
 		System.out.println("Cnum ==" + Cnum);
 		System.out.println(HomeCList.get(1));
 		model.addAttribute("Cnum",Cnum);
+		
+		
 		return "home";
 	}
 	
@@ -224,6 +226,16 @@ public class HomeController {
 		service.deleting(request);
 		System.out.println("deletting12");
 		return "redirect:home";
+	}
+	@RequestMapping(value = "/photo", method = RequestMethod.GET)
+	public String photo(HttpServletRequest request, Model model) throws Exception{
+		
+		return "photo";
+	}
+	@RequestMapping(value = "/file", method = RequestMethod.GET)
+	public String file(HttpServletRequest request, Model model) throws Exception{
+		
+		return "file";
 	}
 	
 	
