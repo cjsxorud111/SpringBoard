@@ -1,8 +1,11 @@
 package com.example.controller;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.dto.GetContentVO;
 import com.example.dto.HomeContentVO;
@@ -140,6 +144,13 @@ public class HomeController {
 		return "write";
 	}
 	
+	@RequestMapping(value = "/file_write", method = RequestMethod.GET)
+	public String file_write(Locale locale, Model model) throws Exception{
+		System.out.println("write1");
+		logger.info("write");
+		return "file_write";
+	}
+	
 	@RequestMapping(value = "/memberjoin", method = RequestMethod.GET)
 	public String memberjoin(Locale locale, Model model) throws Exception{
 		System.out.println("i1");
@@ -237,6 +248,49 @@ public class HomeController {
 		
 		return "file";
 	}
-	
+	@RequestMapping(value = "/fileupload", method = RequestMethod.POST)
+	public String upload(MultipartFile uploadfile, HttpServletRequest request, Model model){
+	    logger.info("upload() POST 호출");
+	    logger.info("파일 이름: {}", uploadfile.getOriginalFilename());
+	    logger.info("파일 크기: {}", uploadfile.getSize());
+
+	    
+	    
+	    String result = saveFile(uploadfile);
+	    
+	    
+	    String save_file_name = result; // 저장하고 받은 결과 
+	    request.setAttribute("sjsj", save_file_name);
+	    // 이하로 db에 저장할 거 다 request 담아서 db에 저장후 게시판에 사진출력 만들기
+	    
+	    System.out.println("dididiid"+result);
+	    if(result !=null){ // 파일 저장 성공
+	        model.addAttribute("result", result);
+	    } else { // 파일 저장 실패
+	        model.addAttribute("result","fail");
+	    }
+	    
+	    return "file";
+	}
+
+	private String saveFile(MultipartFile file){
+	    // 파일 이름 변경
+	    UUID uuid = UUID.randomUUID();
+	    String saveName = uuid + "_" + file.getOriginalFilename();
+
+	    logger.info("saveName: {}",saveName);
+
+	    // 저장할 File 객체를 생성(껍데기 파일)ㄴ
+	    File saveFile = new File("C:\\Study\\fileupload",saveName); // 저장할 폴더 이름, 저장할 파일 이름
+
+	    try {
+	        file.transferTo(saveFile); // 업로드 파일에 saveFile이라는 껍데기 입힘
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+
+	    return saveName;
+	} // end saveFile(
 	
 }

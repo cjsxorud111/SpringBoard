@@ -95,7 +95,7 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td><a href="write">글쓰기</a></td>
+				<td><a href="photo_write">글쓰기</a></td>
 			</tr>
 
 		</tbody>
