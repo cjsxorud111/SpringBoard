@@ -19,6 +19,10 @@
 		SELECT num, id ,title FROM CONTENTS
 	</select>
 	
+	<select id="selectFile" resultType="com.example.dto.FileContentVO" >
+		SELECT num, id ,title, content save_file_name FROM FILECONTENTS
+	</select>
+	
 	<select id="selectpw" resultType="String" parameterType="String">
 		SELECT pw FROM MEMBER WHERE id = #{a}
 	</select>
@@ -27,8 +31,16 @@
 		SELECT  title, content FROM CONTENTS WHERE num = #{num}
 	</select>
 	
+	<select id="getfile" resultType="com.example.dto.FileContentVO" parameterType="String">
+		SELECT  title, content, save_file_name FROM FILECONTENTS WHERE num = #{num}
+	</select>
+	
 	<select id="Cnum" resultType="String">
 		SELECT  page_num FROM page_number WHERE page_name = "home"
+	</select>
+	
+	<select id="Fnum" resultType="String">
+		SELECT  page_num FROM page_number WHERE page_name = "file"
 	</select>
 	
 	<insert id="insertingMember" parameterType="com.example.dto.MemberVO" >
@@ -41,6 +53,10 @@
 	
 	<insert id="writing" parameterType="com.example.dto.ContentsVO" >
 		INSERT INTO CONTENTS (id, title, content) VALUES (#{id}, #{title}, #{contents})
+	</insert>
+	
+    <insert id="filewriting" parameterType="com.example.dto.FileContentVO" >
+		INSERT INTO FILECONTENTS (id, title, content, save_file_name) VALUES (#{id}, #{title}, #{contents}, #{save_file_name})
 	</insert>
 	
 	<update id="updatingMember" parameterType="com.example.dto.MemberVO" >
@@ -61,8 +77,6 @@
 	
 	<delete id="deletingMember" parameterType="com.example.dto.NewupdatingVO"> 
 		DELETE FROM CONTENTS WHERE num = #{num}
-	</delete> 
-	
-	
+	</delete> 	
 	
 </mapper>

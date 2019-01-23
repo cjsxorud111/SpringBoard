@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.dto.FileContentVO;
 import com.example.dto.GetContentVO;
 import com.example.dto.HomeContentVO;
 import com.example.dto.MemberVO;
@@ -76,6 +77,23 @@ public class HomeController {
 		// 서비스에서 스트링형 배열로 sql실행결과 받은담에 홈컨트롤러에서 모델에 넣어서 전달
 		
 		return "content";
+	}
+	
+	@RequestMapping(value = "/file_content", method = RequestMethod.GET)
+	public String file_content(HttpServletRequest request, Locale locale, Model model) throws Exception{
+		
+		String num = request.getParameter("num");
+		
+		List<FileContentVO> GetContentList = service.getfile(num);		
+		model.addAttribute("GetContentList", GetContentList);
+		System.out.println("HomeController4");		
+		FileContentVO a = GetContentList.get(0);
+		System.out.println(GetContentList.get(0));
+		System.out.println(a.getTitle());
+		System.out.println(a.getContents());
+		// 서비스에서 스트링형 배열로 sql실행결과 받은담에 홈컨트롤러에서 모델에 넣어서 전달
+		
+		return "file_content";
 	}
 	
 
@@ -245,11 +263,19 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/file", method = RequestMethod.GET)
 	public String file(HttpServletRequest request, Model model) throws Exception{
+		System.out.println("11111?????????????");
+		List<FileContentVO> FileCList = service.selectFile();
+		System.out.println("2222?????????????");
+		int Fnum = service.Fnum();
+		System.out.println("33333?????????????");
+		model.addAttribute("FileCList", FileCList);
+		model.addAttribute("Fnum",Fnum);
+		System.out.println("44444444?????????????");
 		
 		return "file";
 	}
 	@RequestMapping(value = "/fileupload", method = RequestMethod.POST)
-	public String upload(MultipartFile uploadfile, HttpServletRequest request, Model model){
+	public String upload(MultipartFile uploadfile, HttpServletRequest request, Model model) throws Exception{
 	    logger.info("upload() POST 호출");
 	    logger.info("파일 이름: {}", uploadfile.getOriginalFilename());
 	    logger.info("파일 크기: {}", uploadfile.getSize());
@@ -260,17 +286,25 @@ public class HomeController {
 	    
 	    
 	    String save_file_name = result; // 저장하고 받은 결과 
-	    request.setAttribute("sjsj", save_file_name);
+	    
+	    request.setAttribute("save_file_name", save_file_name);
+	    
 	    // 이하로 db에 저장할 거 다 request 담아서 db에 저장후 게시판에 사진출력 만들기
+	    System.out.println("??111111");
+	    
+	    service.filewriting(request);
+	    
+	    System.out.println("??666666");
 	    
 	    System.out.println("dididiid"+result);
+	   
 	    if(result !=null){ // 파일 저장 성공
 	        model.addAttribute("result", result);
 	    } else { // 파일 저장 실패
 	        model.addAttribute("result","fail");
 	    }
 	    
-	    return "file";
+	    return "redirect:file";
 	}
 
 	private String saveFile(MultipartFile file){

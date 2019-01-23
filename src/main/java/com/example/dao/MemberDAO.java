@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.example.dto.ContentsVO;
+import com.example.dto.FileContentVO;
 import com.example.dto.GetContentVO;
 import com.example.dto.HomeContentVO;
 import com.example.dto.MemberVO;
@@ -22,7 +23,13 @@ public interface MemberDAO {
 	public String selectpw(String a) throws Exception;
 	public void writing(ContentsVO vo) throws Exception;
 	public List<GetContentVO> getcontent(String num) throws Exception;
+	public List<FileContentVO> getfile(String num) throws Exception; 
+
+	
 	public void newupdating(NewupdatingVO NVO) throws Exception;
 	public int Cnum() throws Exception;
+	public void filewriting(FileContentVO vo) throws Exception;
+	public List<FileContentVO> selectFile() throws Exception;
+	public int Fnum() throws Exception;
 	
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.example.dao.MemberDAO;
 import com.example.dto.MemberVO;
 import com.example.dto.ContentsVO;
+import com.example.dto.FileContentVO;
 import com.example.dto.GetContentVO;
 import com.example.dto.HomeContentVO;
 import com.example.dto.MemberjoinVO;
@@ -27,6 +28,15 @@ public class MemberServiceImpl implements MemberService {
 	public List<HomeContentVO> selectContent() throws Exception {
 		System.out.println("MemberService");
 		List<HomeContentVO> selcon = dao.selectContent();
+		
+		System.out.println();
+		
+		return selcon;
+	}
+	
+	@Override
+	public List<FileContentVO> selectFile() throws Exception {
+		List<FileContentVO> selcon = dao.selectFile();
 		
 		System.out.println();
 		
@@ -105,6 +115,12 @@ public class MemberServiceImpl implements MemberService {
 		
 		return dao.getcontent(num);
 	}
+	
+	@Override
+	public List<FileContentVO> getfile(String num) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.getfile(num);
+	}
 
 	@Override
 	public void newupdating(HttpServletRequest request) throws Exception {
@@ -124,7 +140,36 @@ public class MemberServiceImpl implements MemberService {
 		
 		return dao.Cnum();
 	}
+	
+	@Override
+	public int Fnum() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.Fnum();
+	}
 
+	
+	@Override
+	public void filewriting(HttpServletRequest request) throws Exception {
+		FileContentVO vo = new FileContentVO();
+		System.out.println(request.getAttribute("save_file_name"));
+		String save_file_name = (String)request.getAttribute("save_file_name");
+		
+		vo.setId(request.getParameter("ID"));
+		vo.setTitle(request.getParameter("TITLE"));
+		vo.setContents(request.getParameter("CONTENTS"));
+		vo.setSave_file_name(save_file_name);
+		
+		System.out.println("??444444");
+		dao.filewriting(vo);
+		
+		
+	}
+
+	
+
+	
+
+	
 	
 
 }

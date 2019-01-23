@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.example.dto.ContentsVO;
+import com.example.dto.FileContentVO;
 import com.example.dto.GetContentVO;
 import com.example.dto.HomeContentVO;
 import com.example.dto.MemberVO;
@@ -35,10 +36,29 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	@Override
+	public List<FileContentVO> selectFile() throws Exception {
+		List<FileContentVO> ccc = sqlSession.selectList(Namespace+".selectFile");
+		FileContentVO vvv = ccc.get(0);
+		System.out.println(vvv.getId() +" ??  " +vvv.getTitle() +" ?? ");
+		
+		return ccc;
+	}
+	
+	
+	@Override
 	public List<GetContentVO> getcontent(String num) throws Exception {
 		List<GetContentVO> aaa = sqlSession.selectList(Namespace+".getcontent", num);
 		GetContentVO ccc = aaa.get(0);
 		System.out.println("????  "+ccc.getContent());
+		return aaa;
+	}
+	
+	@Override
+	public List<FileContentVO> getfile(String num) throws Exception {
+		List<FileContentVO> aaa = sqlSession.selectList(Namespace+".getfile", num);
+		FileContentVO ccc = aaa.get(0);
+		System.out.println("????  "+ccc.getContents());
+		System.out.println("????  "+ccc.getSave_file_name());
 		return aaa;
 	}
 	
@@ -108,10 +128,26 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	@Override
 	public int Cnum() throws Exception {
-		
-
-
 		return Integer.parseInt((String) sqlSession.selectOne(Namespace+".Cnum"));
+	}
+
+	@Override
+	public int Fnum() throws Exception {
+		return Integer.parseInt((String) sqlSession.selectOne(Namespace+".Fnum"));
+	}
+	
+	@Override
+	public void filewriting(FileContentVO vo) throws Exception {
+		
+		System.out.println(vo.getSave_file_name());
+		
+		sqlSession.insert(Namespace+".filewriting", vo);
 		
 	}
+
+	
+
+	
+
+
 }
