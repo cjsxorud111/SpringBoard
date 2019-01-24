@@ -31,12 +31,12 @@
 					
 					<tr>
 						<td>글내용</td>
-						<td>${a.contents}</td>
+						<td>${a.content}<br><img src="img/${a.save_file_name}"></img></td>
 					</tr>
 					
 					<tr>
 						<td>첨부파일</td>
-						<td>${a.save_file_name}</td>
+						<td><a href="download?filename=${a.save_file_name}">${a.save_file_name}</a></td>
 					</tr>
             	</c:forEach>
 		    </table>

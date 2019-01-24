@@ -3,14 +3,17 @@ package com.example.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.dto.FileContentVO;
+import com.example.dto.FileContentVO2;
 import com.example.dto.GetContentVO;
 import com.example.dto.HomeContentVO;
 import com.example.dto.MemberVO;
@@ -84,13 +88,13 @@ public class HomeController {
 		
 		String num = request.getParameter("num");
 		
-		List<FileContentVO> GetContentList = service.getfile(num);		
+		List<FileContentVO2> GetContentList = service.getfile(num);		
 		model.addAttribute("GetContentList", GetContentList);
 		System.out.println("HomeController4");		
-		FileContentVO a = GetContentList.get(0);
+		FileContentVO2 a = GetContentList.get(0);
 		System.out.println(GetContentList.get(0));
 		System.out.println(a.getTitle());
-		System.out.println(a.getContents());
+		System.out.println(a.getContent());
 		// 서비스에서 스트링형 배열로 sql실행결과 받은담에 홈컨트롤러에서 모델에 넣어서 전달
 		
 		return "file_content";
@@ -326,5 +330,24 @@ public class HomeController {
 
 	    return saveName;
 	} // end saveFile(
+	
+	@RequestMapping(value="/download")
+	public void download(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	    String filename = request.getParameter("filename"); 
+	     
+	    byte fileByte[] = FileUtils.readFileToByteArray(new File("C:\\Study\\fileupload\\"+filename));
+	     
+	    response.setContentType("application/octet-stream");
+	    response.setContentLength(fileByte.length);
+	    response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(filename,"UTF-8")+"\";");
+	    response.setHeader("Content-Transfer-Encoding", "binary");
+	    response.getOutputStream().write(fileByte);
+	     
+	    response.getOutputStream().flush();
+	    response.getOutputStream().close();
+	}
+
+
+	
 	
 }

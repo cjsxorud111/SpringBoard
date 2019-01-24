@@ -6,10 +6,12 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.example.dto.ContentsVO;
 import com.example.dto.FileContentVO;
+import com.example.dto.FileContentVO2;
 import com.example.dto.GetContentVO;
 import com.example.dto.HomeContentVO;
 import com.example.dto.MemberVO;
@@ -20,9 +22,8 @@ import com.example.dto.NewupdatingVO;
 public class MemberDAOImpl implements MemberDAO {
  
 	
-	@Inject
+	@Autowired
 	private SqlSession sqlSession;
-	
 	private static final String Namespace = "com.example.mapper.memberMapper";
 	
 	@Override
@@ -54,10 +55,10 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	@Override
-	public List<FileContentVO> getfile(String num) throws Exception {
-		List<FileContentVO> aaa = sqlSession.selectList(Namespace+".getfile", num);
-		FileContentVO ccc = aaa.get(0);
-		System.out.println("????  "+ccc.getContents());
+	public List<FileContentVO2> getfile(String num) throws Exception {
+		List<FileContentVO2> aaa = sqlSession.selectList(Namespace+".getfile", num);
+		FileContentVO2 ccc = aaa.get(0);
+		System.out.println("????  "+ccc.getContent());
 		System.out.println("????  "+ccc.getSave_file_name());
 		return aaa;
 	}
@@ -142,7 +143,7 @@ public class MemberDAOImpl implements MemberDAO {
 		System.out.println(vo.getSave_file_name());
 		
 		sqlSession.insert(Namespace+".filewriting", vo);
-		
+		sqlSession.update(Namespace+".plus_filenum");
 	}
 
 	

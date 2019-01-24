@@ -12,6 +12,7 @@ import com.example.dao.MemberDAO;
 import com.example.dto.MemberVO;
 import com.example.dto.ContentsVO;
 import com.example.dto.FileContentVO;
+import com.example.dto.FileContentVO2;
 import com.example.dto.GetContentVO;
 import com.example.dto.HomeContentVO;
 import com.example.dto.MemberjoinVO;
@@ -21,7 +22,8 @@ import com.example.dto.NewupdatingVO;
 public class MemberServiceImpl implements MemberService {
 	
 	
-	@Inject
+	/*여기 왜 오토와이어드 쓰는지 공부*/
+	@Autowired
 	private MemberDAO dao;
 	
 	@Override
@@ -117,7 +119,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public List<FileContentVO> getfile(String num) throws Exception {
+	public List<FileContentVO2> getfile(String num) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.getfile(num);
 	}

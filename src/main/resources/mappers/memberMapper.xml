@@ -20,7 +20,7 @@
 	</select>
 	
 	<select id="selectFile" resultType="com.example.dto.FileContentVO" >
-		SELECT num, id ,title, content save_file_name FROM FILECONTENTS
+		SELECT num, id ,title, content, save_file_name FROM FILECONTENTS
 	</select>
 	
 	<select id="selectpw" resultType="String" parameterType="String">
@@ -31,7 +31,7 @@
 		SELECT  title, content FROM CONTENTS WHERE num = #{num}
 	</select>
 	
-	<select id="getfile" resultType="com.example.dto.FileContentVO" parameterType="String">
+	<select id="getfile" resultType="com.example.dto.FileContentVO2" parameterType="String">
 		SELECT  title, content, save_file_name FROM FILECONTENTS WHERE num = #{num}
 	</select>
 	
@@ -68,12 +68,21 @@
 	</update>  
 	
 	<update id="minus_homenum"> 
-		UPDATE page_number SET page_num = page_num - 1 
+		UPDATE page_number SET page_num = page_num - 1 WHERE page_name = 'home'
 	</update>
 	
 	<update id="plus_homenum">
-		UPDATE page_number SET page_num = page_num + 1 
+		UPDATE page_number SET page_num = page_num + 1 WHERE page_name = 'home'
 	</update>  
+	
+	<update id="minus_filenum"> 
+		UPDATE page_number SET page_num = page_num - 1 WHERE page_name = 'file'
+	</update>
+	
+	<update id="plus_filenum">
+		UPDATE page_number SET page_num = page_num + 1 WHERE page_name = 'file'
+	</update>
+	
 	
 	<delete id="deletingMember" parameterType="com.example.dto.NewupdatingVO"> 
 		DELETE FROM CONTENTS WHERE num = #{num}
