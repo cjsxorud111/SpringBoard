@@ -260,10 +260,11 @@ public class HomeController {
 		System.out.println("deletting12");
 		return "redirect:home";
 	}
-	@RequestMapping(value = "/photo", method = RequestMethod.GET)
-	public String photo(HttpServletRequest request, Model model) throws Exception{
+	
+	@RequestMapping(value = "/photo_write")
+	public String photo_write() throws Exception{
 		
-		return "photo";
+		return "photo_write";
 	}
 	@RequestMapping(value = "/file", method = RequestMethod.GET)
 	public String file(HttpServletRequest request, Model model) throws Exception{
@@ -278,6 +279,20 @@ public class HomeController {
 		
 		return "file";
 	}
+	@RequestMapping(value = "/photo", method = RequestMethod.GET)
+	public String photo(HttpServletRequest request, Model model) throws Exception{
+		System.out.println("11111?????????????");
+		List<FileContentVO> PhotoCList = service.selectPhoto();
+		System.out.println("2222?????????????");
+		int Pnum = service.Pnum();
+		System.out.println("33333?????????????");
+		model.addAttribute("PhotoCList", PhotoCList);
+		model.addAttribute("Pnum",Pnum);
+		System.out.println("44444444?????????????");
+		
+		return "photo";
+	}
+	
 	@RequestMapping(value = "/fileupload", method = RequestMethod.POST)
 	public String upload(MultipartFile uploadfile, HttpServletRequest request, Model model) throws Exception{
 	    logger.info("upload() POST 호출");
@@ -310,7 +325,40 @@ public class HomeController {
 	    
 	    return "redirect:file";
 	}
+	
+	@RequestMapping(value = "/photoupload", method = RequestMethod.POST)
+	public String photoupload(MultipartFile uploadfile, HttpServletRequest request, Model model) throws Exception{
+	    logger.info("upload() POST 호출");
+	    logger.info("파일 이름: {}", uploadfile.getOriginalFilename());
+	    logger.info("파일 크기: {}", uploadfile.getSize());
 
+	    
+	    
+	    String result = saveFile(uploadfile);
+	    
+	    
+	    String save_file_name = result; // 저장하고 받은 결과 
+	    
+	    request.setAttribute("save_file_name", save_file_name);
+	    
+	    // 이하로 db에 저장할 거 다 request 담아서 db에 저장후 게시판에 사진출력 만들기
+	    System.out.println("??111111");
+	    
+	    service.photowriting(request);
+	    
+	    System.out.println("??666666");
+	    
+	    System.out.println("dididiid"+result);
+	   
+	    if(result !=null){ // 파일 저장 성공
+	        model.addAttribute("result", result);
+	    } else { // 파일 저장 실패
+	        model.addAttribute("result","fail");
+	    }
+	    
+	    return "redirect:photo";
+	}
+	
 	private String saveFile(MultipartFile file){
 	    // 파일 이름 변경
 	    UUID uuid = UUID.randomUUID();
@@ -319,7 +367,7 @@ public class HomeController {
 	    logger.info("saveName: {}",saveName);
 
 	    // 저장할 File 객체를 생성(껍데기 파일)ㄴ
-	    File saveFile = new File("C:\\Study\\fileupload",saveName); // 저장할 폴더 이름, 저장할 파일 이름
+	    File saveFile = new File("C:\\Users\\천태경\\eclipse-workspace05\\Portfolio\\src\\main\\webapp\\resources\\img",saveName); // 저장할 폴더 이름, 저장할 파일 이름
 
 	    try {
 	        file.transferTo(saveFile); // 업로드 파일에 saveFile이라는 껍데기 입힘

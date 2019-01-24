@@ -25,12 +25,15 @@ public interface MemberDAO {
 	public void writing(ContentsVO vo) throws Exception;
 	public List<GetContentVO> getcontent(String num) throws Exception;
 	public List<FileContentVO2> getfile(String num) throws Exception; 
-
+    
 	
 	public void newupdating(NewupdatingVO NVO) throws Exception;
 	public int Cnum() throws Exception;
 	public void filewriting(FileContentVO vo) throws Exception;
 	public List<FileContentVO> selectFile() throws Exception;
 	public int Fnum() throws Exception;
+	public void photowriting(FileContentVO vo) throws Exception;
+	public int Pnum()throws Exception;
+	public List<FileContentVO> selectPhoto()throws Exception;
 	
 }

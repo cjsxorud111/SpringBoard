@@ -23,6 +23,10 @@
 		SELECT num, id ,title, content, save_file_name FROM FILECONTENTS
 	</select>
 	
+	<select id="selectPhoto" resultType="com.example.dto.FileContentVO" >
+		SELECT num, id ,title, content, save_file_name FROM PHOTOCONTENTS
+	</select>
+	
 	<select id="selectpw" resultType="String" parameterType="String">
 		SELECT pw FROM MEMBER WHERE id = #{a}
 	</select>
@@ -43,6 +47,10 @@
 		SELECT  page_num FROM page_number WHERE page_name = "file"
 	</select>
 	
+	<select id="Pnum" resultType="String">
+		SELECT  page_num FROM page_number WHERE page_name = "photo"
+	</select>
+	
 	<insert id="insertingMember" parameterType="com.example.dto.MemberVO" >
 		INSERT INTO TEST (ID, PW, NAME) VALUES (#{id}, #{pw}, #{name})
 	</insert>
@@ -57,6 +65,10 @@
 	
     <insert id="filewriting" parameterType="com.example.dto.FileContentVO" >
 		INSERT INTO FILECONTENTS (id, title, content, save_file_name) VALUES (#{id}, #{title}, #{contents}, #{save_file_name})
+	</insert>
+	
+	<insert id="photowriting" parameterType="com.example.dto.FileContentVO" >
+		INSERT INTO PHOTOCONTENTS (id, title, content, save_file_name) VALUES (#{id}, #{title}, #{contents}, #{save_file_name})
 	</insert>
 	
 	<update id="updatingMember" parameterType="com.example.dto.MemberVO" >
@@ -81,6 +93,14 @@
 	
 	<update id="plus_filenum">
 		UPDATE page_number SET page_num = page_num + 1 WHERE page_name = 'file'
+	</update>
+	
+	<update id="minus_photonum"> 
+		UPDATE page_number SET page_num = page_num - 1 WHERE page_name = 'photo'
+	</update>
+	
+	<update id="plus_photonum">
+		UPDATE page_number SET page_num = page_num + 1 WHERE page_name = 'photo'
 	</update>
 	
 	

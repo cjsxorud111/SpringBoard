@@ -71,7 +71,7 @@
 
 	<br />
 	<Cnum>총 글수: </Cnum>
-	<c:out value="${Cnum}"></c:out>
+	<c:out value="${Fnum}"></c:out>
 	
 	<%
 		

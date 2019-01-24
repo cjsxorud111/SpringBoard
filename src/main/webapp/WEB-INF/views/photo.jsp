@@ -20,16 +20,16 @@
 </script>
 </head>
 <body>
-
-	<%-- <%
+ 
+	<%
 		String id = (String) session.getAttribute("ID");
 		System.out.println(id + "님 환영합니다.");
-		Object name = request.getAttribute("Cnum");
+		Object name = request.getAttribute("Pnum");
 
 		int number = Integer.parseInt(name.toString());
 		System.out.println(number + "님 환영합니다.");
 
-		double pagenum = (double) number / 10;
+		double pagenum = (double) number / 9;
 		double aa = pagenum - (int) pagenum;
 		int pagenum2;
 		if (aa == 0) {
@@ -49,9 +49,9 @@
 			aaaa = Integer.parseInt(aaaaa);
 		}
 
-		begin = aaaa * 10 - 10;
-		end = aaaa * 10 - 1;
-	%> --%>
+		begin = aaaa * 9 - 9;
+		end = aaaa * 9 - 1;
+	%>  
 	<nav>
 		<ul>
 			<li><a href="home">답글형 게시판</a></li>
@@ -59,13 +59,13 @@
 			<li><a href="file">파일 업로드게시판</a></li>
 		</ul>
 	</nav>
-	<%-- <h1><%=id%>님 환영합니다! --%>
-	</h1>
+ <h1><%=id%>님 환영합니다! 
+	</h1> 
 
 
 	<br />
-	<%-- <Cnum>총 글수: </Cnum>
-	<c:out value="${Cnum}"></c:out> --%>
+	<Cnum>총 글수: </Cnum>
+	<c:out value="${Pnum}"></c:out> 
 	
 	<%
 		
@@ -81,7 +81,7 @@
 		</thead>
 
 		<tbody>
-			<%-- <c:forEach items="${HomeCList}" var="a" begin="<%=begin%>"
+			 <c:forEach items="${PhotoCList}" var="a" begin="<%=begin%>"
 				end="<%=end%>">
 				<tr>
 					<td>&nbsp&nbsp${a.num}</td>
@@ -89,7 +89,7 @@
 					<td>${a.id}</td>
 					<td></td>
 				</tr>
-			</c:forEach> --%>
+			</c:forEach> 
 
 			<tr>
 				<td></td>
@@ -101,7 +101,7 @@
 		</tbody>
 	</table>
 
-	<%-- <div id="ss" style="display: none">안녕</div>
+	<div id="ss" style="display: none">안녕</div>
 
 	<a href="home?page=1">[처음]</a>
 	<%
@@ -111,7 +111,7 @@
 	<%
 		}
 	%>
-	<a href="home?page=<%=pagenum2%>">[끝]</a> --%>
+	<a href="home?page=<%=pagenum2%>">[끝]</a> 
 
 </body>
 </html>

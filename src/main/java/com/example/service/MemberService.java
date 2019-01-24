@@ -26,6 +26,9 @@ public interface MemberService {
 	public void filewriting(HttpServletRequest request) throws Exception;
 	public List<FileContentVO> selectFile() throws Exception;
 	public int Fnum() throws Exception;
+	public void photowriting(HttpServletRequest request) throws Exception;
+	public List<FileContentVO> selectPhoto()throws Exception;
+	public int Pnum()throws Exception;
 	
 	
 
