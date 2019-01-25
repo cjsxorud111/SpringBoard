@@ -15,9 +15,7 @@
 
 <meta http-equiv="Cache-Control" content="no-cache">
 <title>Home</title>
-<script>
 
-</script>
 </head>
 <body>
 
@@ -37,7 +35,7 @@
 		} else {
 			pagenum2 = (int) pagenum + 1;
 		}
-		out.println(pagenum2);
+		
 		/* 페이지 블록 계산 */
 		int aaaa = 0;
 		int begin = 0;
