@@ -27,6 +27,7 @@ import com.example.dto.FileContentVO2;
 import com.example.dto.GetContentVO;
 import com.example.dto.HomeContentVO;
 import com.example.dto.MemberVO;
+import com.example.dto.SubVO;
 import com.example.service.MemberService;
 
 /**
@@ -71,13 +72,14 @@ public class HomeController {
 		String num = request.getParameter("num");
 		
 		List<GetContentVO> GetContentList = service.getcontent(num);		
+		List<SubVO> GetSubList = service.getsub(num);
 		System.out.println("HomeController3");
 		model.addAttribute("GetContentList", GetContentList);
-		System.out.println("HomeController4");		
+		System.out.println("HomeController4");
+		
+		model.addAttribute("GetSubList", GetSubList);
 		GetContentVO a = GetContentList.get(0);
-		System.out.println(GetContentList.get(0));
-		System.out.println(a.getTitle());
-		System.out.println(a.getContent());
+
 		// 서비스에서 스트링형 배열로 sql실행결과 받은담에 홈컨트롤러에서 모델에 넣어서 전달
 		
 		return "content";
@@ -205,6 +207,17 @@ public class HomeController {
 		service.writing(request);
 		System.out.println("inserting12");
 		return "redirect:home";
+	}
+	
+	@RequestMapping(value = "/writesub", method = RequestMethod.POST)
+	public String writesub(HttpServletRequest request, Model model) throws Exception{
+		String num = (String) request.getParameter("num");		
+		String url = "redirect:content?num="+num;		
+		logger.info("iritin");
+		service.writesub(request);
+		
+		
+		return url;
 	}
 	
 	@RequestMapping(value = "/newupdating", method = RequestMethod.POST)

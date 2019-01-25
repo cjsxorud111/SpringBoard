@@ -16,6 +16,7 @@ import com.example.dto.HomeContentVO;
 import com.example.dto.MemberVO;
 import com.example.dto.MemberjoinVO;
 import com.example.dto.NewupdatingVO;
+import com.example.dto.SubVO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
@@ -26,7 +27,7 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public List<HomeContentVO> selectContent() throws Exception {
-		System.out.println("MemberDAOImpl");
+System.out.println("MemberDAOImp????????l");
 		List<HomeContentVO> ccc = sqlSession.selectList(Namespace + ".selectContent");
 		HomeContentVO vvv = ccc.get(0);
 		System.out.println(vvv.getId() + " ??  " + vvv.getTitle() + " ?? " + vvv.getNum());
@@ -59,7 +60,21 @@ public class MemberDAOImpl implements MemberDAO {
 		System.out.println("????  " + ccc.getContent());
 		return aaa;
 	}
+	
+	@Override
+	public List<SubVO> getsub(String num) throws Exception {
+		
+		System.out.println("Memb????????????erDAOImpl");
+		List<SubVO> ccc = sqlSession.selectList(Namespace + ".getsub", num);
+		System.out.println("Memb????????????erDAOImpl");
+		SubVO vvv = ccc.get(0);
+		System.out.println("Memb????????????erDAOImpl");
+		System.out.println(vvv.getNum());
 
+		System.out.println("Memb????????????erDAOImpl");
+		return ccc;
+	}
+	
 	@Override
 	public List<FileContentVO2> getfile(String num) throws Exception {
 		List<FileContentVO2> aaa = sqlSession.selectList(Namespace + ".getfile", num);
@@ -90,6 +105,12 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.update(Namespace + ".plus_homenum");
 		System.out.println("Memberinserting2");
 
+	}
+	
+	@Override
+	public void writesub(SubVO vo) throws Exception {
+		sqlSession.insert(Namespace + ".writesub", vo);
+		
 	}
 
 	@Override
@@ -170,6 +191,4 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	
-	
-
 }

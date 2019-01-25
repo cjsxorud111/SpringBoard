@@ -17,6 +17,7 @@ import com.example.dto.GetContentVO;
 import com.example.dto.HomeContentVO;
 import com.example.dto.MemberjoinVO;
 import com.example.dto.NewupdatingVO;
+import com.example.dto.SubVO;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -73,6 +74,17 @@ public class MemberServiceImpl implements MemberService {
 		dao.writing(vo);
 
 	}
+	
+	@Override
+	public void writesub(HttpServletRequest request) throws Exception {
+		System.out.println("MembeING");
+		SubVO vo = new SubVO();
+		vo.setContent(request.getParameter("subcon"));
+		vo.setConnum(request.getParameter("num"));
+		dao.writesub(vo);
+
+		
+	}
 
 	@Override
 	public void memberjoining(HttpServletRequest request) throws Exception {
@@ -125,6 +137,13 @@ public class MemberServiceImpl implements MemberService {
 
 		return dao.getcontent(num);
 	}
+	
+	@Override
+	public List<SubVO> getsub(String num) throws Exception {
+		
+		return dao.getsub(num);
+	}
+
 
 	@Override
 	public List<FileContentVO2> getfile(String num) throws Exception {
@@ -191,6 +210,9 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("??444444");
 		dao.photowriting(vo);
 	}
+
+	
+	
 
 	
 }

@@ -12,6 +12,7 @@ import com.example.dto.HomeContentVO;
 import com.example.dto.MemberVO;
 import com.example.dto.MemberjoinVO;
 import com.example.dto.NewupdatingVO;
+import com.example.dto.SubVO;
 
 public interface MemberDAO {
 	
@@ -35,5 +36,7 @@ public interface MemberDAO {
 	public void photowriting(FileContentVO vo) throws Exception;
 	public int Pnum()throws Exception;
 	public List<FileContentVO> selectPhoto()throws Exception;
+	public void writesub(SubVO vo)throws Exception;
+	public List<SubVO> getsub(String num)throws Exception;
 	
 }

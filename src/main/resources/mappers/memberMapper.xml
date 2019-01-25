@@ -35,6 +35,10 @@
 		SELECT  title, content FROM CONTENTS WHERE num = #{num}
 	</select>
 	
+	<select id="getsub" resultType="com.example.dto.SubVO" parameterType="String">
+		SELECT  num, subnum, space, content FROM SUB WHERE connum = #{num}
+	</select>
+	
 	<select id="getfile" resultType="com.example.dto.FileContentVO2" parameterType="String">
 		SELECT  title, content, save_file_name FROM FILECONTENTS WHERE num = #{num}
 	</select>
@@ -61,6 +65,10 @@
 	
 	<insert id="writing" parameterType="com.example.dto.ContentsVO" >
 		INSERT INTO CONTENTS (id, title, content) VALUES (#{id}, #{title}, #{contents})
+	</insert>
+	
+	<insert id="writesub" parameterType="com.example.dto.SubVO" >
+		INSERT INTO SUB (connum, subnum, space, content) VALUES (#{connum}, #{subnum}, #{space}, #{content})
 	</insert>
 	
     <insert id="filewriting" parameterType="com.example.dto.FileContentVO" >

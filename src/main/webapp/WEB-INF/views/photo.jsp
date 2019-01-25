@@ -155,7 +155,10 @@
 	</table> --%>
 
 	<div id="ss" style="display: none">안녕</div>
-
+	<br>
+	<a href="photo_write">글쓰기</a>
+	<br>
+	
 	<a href="photo?page=1">[처음]</a>
 	<%
 		for (int i = 1; i <= pagenum2; i++) {
