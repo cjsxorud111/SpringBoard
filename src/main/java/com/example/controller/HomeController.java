@@ -72,13 +72,15 @@ public class HomeController {
 		String num = request.getParameter("num");
 		
 		List<GetContentVO> GetContentList = service.getcontent(num);		
-		List<SubVO> GetSubList = service.getsub(num);
-		System.out.println("HomeController3");
+		
 		model.addAttribute("GetContentList", GetContentList);
+		/**/List<SubVO> GetSubList = service.getsub(num);
+		System.out.println("HomeController3");
+		
 		System.out.println("HomeController4");
 		
 		model.addAttribute("GetSubList", GetSubList);
-		GetContentVO a = GetContentList.get(0);
+		
 
 		// 서비스에서 스트링형 배열로 sql실행결과 받은담에 홈컨트롤러에서 모델에 넣어서 전달
 		

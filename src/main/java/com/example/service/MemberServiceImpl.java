@@ -81,6 +81,8 @@ public class MemberServiceImpl implements MemberService {
 		SubVO vo = new SubVO();
 		vo.setContent(request.getParameter("subcon"));
 		vo.setConnum(request.getParameter("num"));
+		vo.setSubnum(request.getParameter("subnum"));
+		vo.setSpace(request.getParameter("space"));
 		dao.writesub(vo);
 
 		

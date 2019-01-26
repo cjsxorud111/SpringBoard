@@ -36,7 +36,11 @@
 	</select>
 	
 	<select id="getsub" resultType="com.example.dto.SubVO" parameterType="String">
-		SELECT  num, subnum, space, content FROM SUB WHERE connum = #{num}
+		SELECT  num, subnum, space, content FROM SUB WHERE connum = #{num} ORDER BY subnum
+	</select>
+	
+	<select id="getsub2" resultType="com.example.dto.SubVO">
+		SELECT num FROM SUB WHERE num=(SELECT MAX(num) FROM SUB)
 	</select>
 	
 	<select id="getfile" resultType="com.example.dto.FileContentVO2" parameterType="String">
@@ -71,6 +75,8 @@
 		INSERT INTO SUB (connum, subnum, space, content) VALUES (#{connum}, #{subnum}, #{space}, #{content})
 	</insert>
 	
+	
+	
     <insert id="filewriting" parameterType="com.example.dto.FileContentVO" >
 		INSERT INTO FILECONTENTS (id, title, content, save_file_name) VALUES (#{id}, #{title}, #{contents}, #{save_file_name})
 	</insert>
@@ -86,6 +92,11 @@
 	<update id="newupdating" parameterType="com.example.dto.NewupdatingVO" >
 		update CONTENTS set title = #{title}, content = #{content} WHERE num = #{num}
 	</update>  
+	
+	<update id="writesub2" parameterType="com.example.dto.SubVO" >
+		update SUB set subnum = #{num} where num = #{num}
+	</update>
+	
 	
 	<update id="minus_homenum"> 
 		UPDATE page_number SET page_num = page_num - 1 WHERE page_name = 'home'
