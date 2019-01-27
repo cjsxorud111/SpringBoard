@@ -36,7 +36,7 @@
 	</select>
 	
 	<select id="getsub" resultType="com.example.dto.SubVO" parameterType="String">
-		SELECT  num, subnum, space, content FROM SUB WHERE connum = #{num} ORDER BY subnum
+		SELECT  num, subnum, space, content, uid, uuid FROM SUB WHERE connum = #{num} 
 	</select>
 	
 	<select id="getsub2" resultType="com.example.dto.SubVO">
@@ -72,7 +72,7 @@
 	</insert>
 	
 	<insert id="writesub" parameterType="com.example.dto.SubVO" >
-		INSERT INTO SUB (connum, subnum, space, content) VALUES (#{connum}, #{subnum}, #{space}, #{content})
+		INSERT INTO SUB (connum, subnum, space, content, uid, uuid) VALUES (#{connum}, #{subnum}, #{space}, #{content}, #{uid}, #{uuid})
 	</insert>
 	
 	

@@ -1,6 +1,7 @@
 package com.example.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -79,14 +80,23 @@ public class MemberServiceImpl implements MemberService {
 	public void writesub(HttpServletRequest request) throws Exception {
 		System.out.println("MembeING");
 		SubVO vo = new SubVO();
+		String uid = null;
+		for (int i=0;i<10;i++){
+            uid = UUID.randomUUID().toString();
+		}
+		
 		vo.setContent(request.getParameter("subcon"));
 		vo.setConnum(request.getParameter("num"));
-		vo.setSubnum(request.getParameter("subnum"));
 		vo.setSpace(request.getParameter("space"));
+		vo.setUid(uid);
+		vo.setUuid(request.getParameter("uuid"));
+		System.out.println(request.getParameter("uuid")+"시발돚ㅁ자ㅣㄷ기");
+		
 		dao.writesub(vo);
 
 		
 	}
+	
 
 	@Override
 	public void memberjoining(HttpServletRequest request) throws Exception {

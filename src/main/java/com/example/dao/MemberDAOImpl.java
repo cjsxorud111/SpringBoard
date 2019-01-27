@@ -111,11 +111,11 @@ System.out.println("MemberDAOImp????????l");
 	public void writesub(SubVO vo) throws Exception {
 		sqlSession.insert(Namespace + ".writesub", vo);
 		String cccc = vo.getSubnum();
-		if(cccc == null) {
+		/*if(cccc == null) {
 			List<SubVO> ccc = sqlSession.selectList(Namespace + ".getsub2");
 			SubVO vvv = ccc.get(0);
 			sqlSession.update(Namespace + ".writesub2", vvv);
-		}
+		}*/
 	}
 
 	@Override

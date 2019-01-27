@@ -88,12 +88,13 @@ function sub_del(a) {
 		</tr>
 	</table>
 	<table>
-		<c:forEach items="${GetSubList}" var="a">
+		<c:forEach items="${NewSubList}" var="a">
 			<tr>
 
 				<td>${a.num}</td>
 				<td><c:forEach begin="0" end="${a.space}">ㅡ</c:forEach>${a.content}</td>
-				<td>${a.space}</td>
+				<td>${a.space}${a.uid}</td>
+					
 				<td><input type="button" id="button"
 					onclick="button1_click(${a.num});" value="대댓글" /></td>
 
@@ -101,9 +102,13 @@ function sub_del(a) {
 					<td id="button${a.num}" class="ttt">
 					<textarea name="subcon" rows="5" cols="140"></textarea> 
 					<input type="hidden" name="num" value="<%=num%>" /> 
-					<input type="hidden" name="subnum" value="${a.subnum+1}" /> 
+					<input type="hidden" name="subnum" value="${a.num}" /> 
 					<input type="hidden" name="space" value="${a.space+1}" /> 
-					<input type="submit" value="댓글달기"> 
+					<input type="hidden" name="uuid" value="${a.uid}" /> 
+					
+					<input type="hidden" name="ssuborno" value="ssub" /> 
+					
+					<input type="submit" value="댓글달기" /> 
 					<input type="button" id="sub${a.num}" onclick="sub_del(${a.num});" value="대댓글취소"/></td>
 				</form>
 			</tr>
