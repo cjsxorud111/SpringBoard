@@ -88,7 +88,7 @@ function sub_del(a) {
 		</tr>
 	</table>
 	<table>
-		<c:forEach items="${NewSubList}" var="a">
+		<c:forEach items="${GetSubList}" var="a">
 			<tr>
 
 				<td>${a.num}</td>
@@ -105,7 +105,7 @@ function sub_del(a) {
 					<input type="hidden" name="subnum" value="${a.num}" /> 
 					<input type="hidden" name="space" value="${a.space+1}" /> 
 					<input type="hidden" name="uuid" value="${a.uid}" /> 
-					
+					<input type="hidden" name="num" value="<%=num%>" /> 
 					<input type="hidden" name="ssuborno" value="ssub" /> 
 					
 					<input type="submit" value="댓글달기" /> 

@@ -1,5 +1,6 @@
 package com.example.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -27,7 +28,7 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public List<HomeContentVO> selectContent() throws Exception {
-System.out.println("MemberDAOImp????????l");
+		System.out.println("MemberDAOImp????????l");
 		List<HomeContentVO> ccc = sqlSession.selectList(Namespace + ".selectContent");
 		HomeContentVO vvv = ccc.get(0);
 		System.out.println(vvv.getId() + " ??  " + vvv.getTitle() + " ?? " + vvv.getNum());
@@ -43,7 +44,7 @@ System.out.println("MemberDAOImp????????l");
 
 		return ccc;
 	}
-	
+
 	@Override
 	public List<FileContentVO> selectPhoto() throws Exception {
 		List<FileContentVO> ccc = sqlSession.selectList(Namespace + ".selectPhoto");
@@ -60,10 +61,10 @@ System.out.println("MemberDAOImp????????l");
 		System.out.println("????  " + ccc.getContent());
 		return aaa;
 	}
-	
+
 	@Override
 	public List<SubVO> getsub(String num) throws Exception {
-		
+
 		System.out.println("Memb????????????erDAOImpl");
 		List<SubVO> ccc = sqlSession.selectList(Namespace + ".getsub", num);
 		System.out.println("Memb????????????erDAOImpl");
@@ -74,7 +75,7 @@ System.out.println("MemberDAOImp????????l");
 		System.out.println("Memb????????????erDAOImpl");
 		return ccc;
 	}
-	
+
 	@Override
 	public List<FileContentVO2> getfile(String num) throws Exception {
 		List<FileContentVO2> aaa = sqlSession.selectList(Namespace + ".getfile", num);
@@ -106,16 +107,57 @@ System.out.println("MemberDAOImp????????l");
 		System.out.println("Memberinserting2");
 
 	}
-	
+
 	@Override
 	public void writesub(SubVO vo) throws Exception {
-		sqlSession.insert(Namespace + ".writesub", vo);
-		String cccc = vo.getSubnum();
-		/*if(cccc == null) {
-			List<SubVO> ccc = sqlSession.selectList(Namespace + ".getsub2");
-			SubVO vvv = ccc.get(0);
-			sqlSession.update(Namespace + ".writesub2", vvv);
-		}*/
+		if (vo.getUuid() != null) {
+			String uuid = vo.getUuid();
+			
+			String num = vo.getConnum();
+			List<SubVO> soso = sqlSession.selectList(Namespace + ".getsub3", vo);
+			System.out.println(soso.size()+"태ㅡ스-트----------------중요11123123123123111");
+			List<SubVO> test = new ArrayList<SubVO>(); 
+			SubVO[] vvvo = new SubVO[soso.size()];
+			for (int i = 0; i < soso.size(); i++) {
+				vvvo[i] = soso.get(i);
+				System.out.println(vvvo[i].getConnum()+"d,왜안돼 ㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜ");
+				System.out.println(vvvo[i].getContent()+"d,왜안돼 ㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜ");
+			
+			}
+			
+			
+			
+			
+			sqlSession.delete(Namespace + ".deletsub", vo);
+			System.out.println(soso.size()+"태ㅡ스-트----------------중요1111");
+			
+			for (int i = 0; i < soso.size(); i++) {
+				System.out.println("태ㅡ스-트----------------중요2222444");
+				sqlSession.insert(Namespace + ".writesub", vvvo[i]);
+				System.out.println(vvvo[i].getUuid()+"태ㅡ스-트----------------중요222222"+uuid);
+				
+				if(vvvo[i].getUid().equals(uuid)) {
+					sqlSession.insert(Namespace + ".writesub", vo);
+					
+					System.out.println("태ㅡ스-트----------------중요333333");
+					
+				}
+			}
+			
+			
+		}else {
+			sqlSession.insert(Namespace + ".writesub", vo);
+			//String cccc = vo.getSubnum();
+			/*if(cccc == null) {
+				List<SubVO> ccc = sqlSession.selectList(Namespace + ".getsub2");
+				SubVO vvv = ccc.get(0);
+				sqlSession.update(Namespace + ".writesub2", vvv);
+			}*/
+		}
+		
+		
+		
+		
 	}
 
 	@Override
@@ -195,5 +237,4 @@ System.out.println("MemberDAOImp????????l");
 
 	}
 
-	
 }

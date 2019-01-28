@@ -36,12 +36,18 @@
 	</select>
 	
 	<select id="getsub" resultType="com.example.dto.SubVO" parameterType="String">
-		SELECT  num, subnum, space, content, uid, uuid FROM SUB WHERE connum = #{num} 
+		SELECT  num, subnum, connum, space, content, uid, uuid FROM SUB WHERE connum = #{num} 
+	</select>
+	
+	<select id="getsub3" resultType="com.example.dto.SubVO" parameterType="com.example.dto.SubVO">
+		SELECT  num, subnum, connum, space, content, uid, uuid FROM SUB WHERE connum = #{connum} 
 	</select>
 	
 	<select id="getsub2" resultType="com.example.dto.SubVO">
 		SELECT num FROM SUB WHERE num=(SELECT MAX(num) FROM SUB)
 	</select>
+	
+	
 	
 	<select id="getfile" resultType="com.example.dto.FileContentVO2" parameterType="String">
 		SELECT  title, content, save_file_name FROM FILECONTENTS WHERE num = #{num}
@@ -125,6 +131,10 @@
 	
 	<delete id="deletingMember" parameterType="com.example.dto.NewupdatingVO"> 
 		DELETE FROM CONTENTS WHERE num = #{num}
+	</delete> 	
+	
+	<delete id="deletsub" parameterType="com.example.dto.NewupdatingVO"> 
+		DELETE FROM SUB WHERE connum = #{connum}
 	</delete> 	
 	
 </mapper>

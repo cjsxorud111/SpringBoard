@@ -72,7 +72,7 @@ public class HomeController {
 		System.out.println("ㅣ넫11111");
 		model.addAttribute("GetContentList", GetContentList);
 		List<SubVO> GetSubList = service.getsub(num);
-		List<SubVO> TestSubList = GetSubList;
+		/*List<SubVO> TestSubList = GetSubList;
 		List<SubVO> NewSubList = new ArrayList<SubVO>();
 		List<String> Data1 = new ArrayList<String>();
 		List<String> Data2 = new ArrayList<String>();
@@ -103,32 +103,53 @@ public class HomeController {
 		
 		
 		for (int i = 0; i < Data1.size(); i++) {
+			String ssub = Data1.get(i);
+		
 			
 			NewSubList.add(vvvo[i]);
-			
+			System.out.println(ssub+"tl시ㄹㄹ라ㅏ라라라라ㅏ라");
             for (int j = 0; j < Data2.size(); j++) {
-            String sub = Data2.get(j);
-            String test = null;
-                if (vvvo[i].getUid().equals(sub)){
+	            String sub = Data2.get(j);
+	            
+	            
+	            System.out.println(sub+"tl시ㄹㅇㄴㄴㄴㅇ라라라ㅏ라");
+	            
+	            String test = null;
+                if (ssub.equals(sub)) {
                 	System.out.println(vvvo[j].getUuid()+"하");
                 	NewSubList.add(vvvo[j]);
                 	test = Data2.get(j);
                 	System.out.println(test+"여기야익");
+                	
+                	
                 	Data2.remove(j);
-                	/*test = Data2.get(j);*/
+                	Data1.remove(j);
+                	
+                	
+                	for (int k = 0; k < Data2.size(); k++) {
+						System.out.println(Data2.get(k)+"여기야여기");
+						
+					}
+                	
+                	
+                	
+                	//리무브 왜 안되는지 해결!!!
+                	
+                	
+                	test = Data2.get(j);
                 	System.out.println(test+"역이익");
                 	
                 } 
             }
             
-            /*Data1.remove(i);*/
+            Data1.remove(i);
         }
 		
 		System.out.println("12222222333333");
-		System.out.println(vvo.getNum());
+		System.out.println(vvo.getNum());*/
 
 		model.addAttribute("GetSubList", GetSubList);
-		model.addAttribute("NewSubList", NewSubList);
+		//model.addAttribute("NewSubList", NewSubList);
 
 		// 서비스에서 스트링형 배열로 sql실행결과 받은담에 홈컨트롤러에서 모델에 넣어서 전달
 		System.out.println("112222222333333");
