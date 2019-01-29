@@ -114,7 +114,7 @@
 		</table>
 
 		<div id="ss" style="display: none">안녕</div>
-     
+       
 		<a href="home?page=1">[처음]</a>
 		<%
 			for (int i = 1; i <= pagenum2; i++) {
