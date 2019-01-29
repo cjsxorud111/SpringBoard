@@ -420,7 +420,7 @@ public class HomeController {
 
 		return "redirect:photo";
 	}
-
+   
 	private String saveFile(MultipartFile file) {
 		// 파일 이름 변경
 		UUID uuid = UUID.randomUUID();
