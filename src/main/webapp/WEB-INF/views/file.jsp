@@ -5,6 +5,7 @@
 
 <html>
 <head>
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT">
@@ -14,9 +15,10 @@
 <meta http-equiv="Pragma" content="no-cache">
 
 <meta http-equiv="Cache-Control" content="no-cache">
-<title>Home</title>
+<title>File</title>
  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
  <script>
+
     $(document).ready(function () {
         if(${not empty result}){
             alert('${result} 파일 저장 성공');
@@ -27,6 +29,33 @@
 </script>
 </head>
 <body>
+<div class="container">
+	<br><br><br>
+<%@ include file="nav.jsp" %>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="home">포트폴리오</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link" href="home">답글형
+							게시판 </a></li>
+					<li class="nav-item"><a class="nav-link" href="photo">사진
+							게시판</a></li>
+					<li class="nav-item active"><a class="nav-link" href="file">파일
+							업로드게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="login">로그인</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="memberjoin">회원가입</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
 	<%
 		String id = (String) session.getAttribute("ID");
@@ -59,13 +88,7 @@
 		begin = aaaa * 10 - 10;
 		end = aaaa * 10 - 1;
 	%> 
-	<nav>
-		<ul>
-			<li><a href="home">답글형 게시판</a></li>
-			<li><a href="photo">사진 게시판</a></li>
-			<li><a href="file">파일 업로드게시판</a></li>
-		</ul>
-	</nav>
+
 	<h1><%=id%>님 환영합니다!</h1> 
 
 
@@ -76,7 +99,7 @@
 	<%
 		
 	%>
-	<table>
+	<table class="table">
 		<thead>
 			<tr>
 				<th>글번호&nbsp&nbsp&nbsp</th>
@@ -118,6 +141,6 @@
 		}
 	%>
 	<a href="file?page=<%=pagenum2%>">[끝]</a> 
-
+</div>
 </body>
 </html>

@@ -34,7 +34,34 @@ function sub_del(a) {
 </script>
 </head>
 <body>
-
+<div class="container">
+	<br><br><br>
+	<%@ include file="nav.jsp" %>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="home">포트폴리오</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active"><a class="nav-link" href="home">답글형
+							게시판 </a></li>
+					<li class="nav-item"><a class="nav-link" href="photo">사진
+							게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="file">파일
+							업로드게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="login">로그인</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="memberjoin">회원가입</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
 	<h1><%=id%>님 환영합니다!
 	</h1>
 	글목록
@@ -72,7 +99,7 @@ function sub_del(a) {
 	<br>
 	<br>
 	<br>
-	<table>
+	<table class="table">
 		<tr>
 
 			<td>댓글달기<%=num%></td>
@@ -87,7 +114,7 @@ function sub_del(a) {
 			</form>
 		</tr>
 	</table>
-	<table>
+	<table class="table">
 		<c:forEach items="${GetSubList}" var="a">
 			<tr>
 
@@ -114,4 +141,6 @@ function sub_del(a) {
 			</tr>
 		</c:forEach>
 	</table> 
+	</div>
+	</body>
 </html>

@@ -57,8 +57,8 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public List<GetContentVO> getcontent(String num) throws Exception {
 		List<GetContentVO> aaa = sqlSession.selectList(Namespace + ".getcontent", num);
-		GetContentVO ccc = aaa.get(0);
-		System.out.println("????  " + ccc.getContent());
+		/*GetContentVO ccc = aaa.get(0);
+		System.out.println("????  " + ccc.getContent());*/
 		return aaa;
 	}
 
@@ -68,11 +68,11 @@ public class MemberDAOImpl implements MemberDAO {
 		System.out.println("Memb????????????erDAOImpl");
 		List<SubVO> ccc = sqlSession.selectList(Namespace + ".getsub", num);
 		System.out.println("Memb????????????erDAOImpl");
-		SubVO vvv = ccc.get(0);
+		/*SubVO vvv = ccc.get(0);
 		System.out.println("Memb????????????erDAOImpl");
 		System.out.println(vvv.getNum());
 
-		System.out.println("Memb????????????erDAOImpl");
+		System.out.println("Memb????????????erDAOImpl");*/
 		return ccc;
 	}
 
@@ -115,13 +115,10 @@ public class MemberDAOImpl implements MemberDAO {
 			
 			String num = vo.getConnum();
 			List<SubVO> soso = sqlSession.selectList(Namespace + ".getsub3", vo);
-			System.out.println(soso.size()+"殿ぱ什-闘----------------掻推11123123123123111");
 			List<SubVO> test = new ArrayList<SubVO>(); 
 			SubVO[] vvvo = new SubVO[soso.size()];
 			for (int i = 0; i < soso.size(); i++) {
 				vvvo[i] = soso.get(i);
-				System.out.println(vvvo[i].getConnum()+"d,訊照掬 ぬぬぬぬぬぬぬぬぬぬぬ");
-				System.out.println(vvvo[i].getContent()+"d,訊照掬 ぬぬぬぬぬぬぬぬぬぬぬ");
 			
 			}
 			

@@ -35,10 +35,7 @@ import com.example.service.MemberService;
  */
 @Controller
 public class HomeController {
-	// git pull test
-	// branch test1
-	// branch test2
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	public static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@Inject
 	private MemberService service;
@@ -48,16 +45,11 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) throws Exception {
-		System.out.println("HomeController1");
+		
 		logger.info("home");
-		System.out.println("HomeController2");
 		List<HomeContentVO> HomeCList = service.selectContent();
 		int Cnum = service.Cnum();
-		System.out.println("HomeController3");
 		model.addAttribute("HomeCList", HomeCList);
-		System.out.println("HomeController4");
-		System.out.println("Cnum ==" + Cnum);
-		System.out.println(HomeCList.get(1));
 		model.addAttribute("Cnum", Cnum);
 
 		return "home";
@@ -466,5 +458,11 @@ public class HomeController {
 		response.getOutputStream().flush();
 		response.getOutputStream().close();
 	}
+	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String test(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return "test";
+	}
+
 
 }
