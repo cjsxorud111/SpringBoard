@@ -109,7 +109,7 @@
 					<td></td>
 					<td><a href="write">글쓰기</a></td>
 				</tr>
-
+  
 			</tbody>
 		</table>
 
