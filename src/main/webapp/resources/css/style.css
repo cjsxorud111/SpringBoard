@@ -1,0 +1,35 @@
+@charset "EUC-KR";
+
+#content {
+	/* border: 1px solid red;  */
+	width: 18rem;
+	margin-left: 21rem;
+	margin-top: 4rem;
+}
+/* .box{
+	width:18rem;
+	
+} */
+.row {
+	margin: 10px;
+}
+
+#login {
+	width: 22rem;
+}
+
+#pw {
+	width: 22rem;
+}
+
+#naverIdLogin {
+	width: 22rem;
+	heigh: 1rem;
+}
+
+#join {
+	/* border: 1px solid red; */
+	width: 28rem;
+	margin-left: 5rem;
+	margin-top: 2rem;
+}

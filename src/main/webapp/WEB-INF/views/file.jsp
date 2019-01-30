@@ -73,7 +73,7 @@
 		} else {
 			pagenum2 = (int) pagenum + 1;
 		}
-		out.println(pagenum2);
+		
 		/* 페이지 블록 계산 */
 		int aaaa = 0;
 		int begin = 0;
@@ -89,16 +89,10 @@
 		end = aaaa * 10 - 1;
 	%> 
 
-	<h1><%=id%>님 환영합니다!</h1> 
+	<h2><%=id%>님 환영합니다!</h2> 
 
-
-	<br />
-	<Cnum>총 글수: </Cnum>
-	<c:out value="${Fnum}"></c:out>
-	
-	<%
-		
-	%>
+	<br>
+	<Cnum>총 글수: </Cnum><c:out value="${Fnum}"></c:out><br>
 	<table class="table">
 		<thead>
 			<tr>
@@ -124,7 +118,7 @@
 				<td></td>
 				<td></td>
 				<td></td>
-				<td><a href="file_write">글쓰기</a></td>
+				<td><a href="file_write" class="btn btn-primary">글쓰기</a></td>
 			</tr>
 
 		</tbody>
