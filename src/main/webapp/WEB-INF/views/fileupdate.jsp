@@ -46,36 +46,47 @@
 		</h1>
 		<br>
 		<table cellpadding="5px">
+			<tr>
+				<td>글번호</td>
+				<td><%=num%></td>
+			</tr>
 			<c:forEach items="${GetContentList}" var="a">
-				<tr>
-					<td>글번호</td>
-					<td><%=num%></td>
-				</tr>
 
-				<tr>
-					<td>제목</td>
-					<td>${a.title}</td>
-				</tr>
+				<form action="fileupdating" method="post"
+					enctype="multipart/form-data">
 
-				<tr>
-					<td>글내용</td>
-					<td>${a.content}<br> <img src="img/${a.save_file_name}"></img></td>
-				</tr>
+					<input type="hidden" name="num" value="<%=num%>" />
+					<tr>
+						<td>제목</td>
+						<td><input type="text" class="form-control" name="title"
+							size="45" value="${a.title}"></td>
+					</tr>
 
-				<tr>
-					<td>첨부파일</td>
-					<td><a href="download?filename=${a.save_file_name}">${a.save_file_name}</a></td>
-				</tr>
+					<tr>
+						<td>글내용</td>
+						<td><input type="text" class="form-control" name="content"
+							size="45" value="${a.content}"></td>
+					</tr>
+
+					<tr>
+						<td>첨부파일</td>
+						<td>${a.save_file_name}</td>
+					</tr>
 			</c:forEach>
 			<tr>
-				<td>	</td>	
-				<td>	</td>	
-				<td><a href="fileupdate?num=<%=num%>" class="btn btn-primary">수정하기</a>&nbsp<a href="filedelete?num=<%=num%>" class="btn btn-primary">삭제하기</a>
-				</td>
+				<td>수정할파일</td>
+				<td><input type="file" name="uploadfile" placeholder="파일 선택" /></td>
 			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td><input type="submit" value="수정하기" class="btn btn-primary"
+					id="in"></input></td>
+			</tr>
+			</form>
 		</table>
-		<br>
-		
+
+
 	</div>
 </body>
 </html>

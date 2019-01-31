@@ -81,8 +81,6 @@
 		INSERT INTO SUB (connum, subnum, space, content, uid, uuid) VALUES (#{connum}, #{subnum}, #{space}, #{content}, #{uid}, #{uuid})
 	</insert>
 	
-	
-	
     <insert id="filewriting" parameterType="com.example.dto.FileContentVO" >
 		INSERT INTO FILECONTENTS (id, title, content, save_file_name) VALUES (#{id}, #{title}, #{contents}, #{save_file_name})
 	</insert>
@@ -91,18 +89,18 @@
 		INSERT INTO PHOTOCONTENTS (id, title, content, save_file_name) VALUES (#{id}, #{title}, #{contents}, #{save_file_name})
 	</insert>
 	
+	
 	<update id="updatingMember" parameterType="com.example.dto.MemberVO" >
 		UPDATE TEST SET ID = #{id}, PW = #{pw}, NAME = #{name} WHERE ID = #{id}
 	</update> 
 	
 	<update id="newupdating" parameterType="com.example.dto.NewupdatingVO" >
 		update CONTENTS set title = #{title}, content = #{content} WHERE num = #{num}
-	</update>  
-	
-	<update id="writesub2" parameterType="com.example.dto.SubVO" >
-		update SUB set subnum = #{num} where num = #{num}
 	</update>
 	
+	<update id="fileupdating" parameterType="com.example.dto.FileContentVO" >
+		UPDATE FILECONTENTS SET title=#{title}, content=#{contents}, save_file_name=#{save_file_name} WHERE num = #{num}
+	</update>
 	
 	<update id="minus_homenum"> 
 		UPDATE page_number SET page_num = page_num - 1 WHERE page_name = 'home'
@@ -129,8 +127,14 @@
 	</update>
 	
 	
+	
+	
 	<delete id="deletingMember" parameterType="com.example.dto.NewupdatingVO"> 
 		DELETE FROM CONTENTS WHERE num = #{num}
+	</delete> 	
+	
+	<delete id="filedeleting" parameterType="com.example.dto.FileContentVO"> 
+		DELETE FROM FILECONTENTS WHERE num = #{num}
 	</delete> 	
 	
 	<delete id="deletsub" parameterType="com.example.dto.NewupdatingVO"> 

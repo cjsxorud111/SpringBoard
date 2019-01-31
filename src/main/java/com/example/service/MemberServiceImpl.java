@@ -118,6 +118,15 @@ public class MemberServiceImpl implements MemberService {
 
 		dao.deleting(vo);
 	}
+	@Override
+	public void filedeleting(HttpServletRequest request) throws Exception {
+		FileContentVO vo = new FileContentVO();
+		vo.setNum(request.getParameter("num"));
+
+		dao.filedeleting(vo);
+		
+	}
+
 
 	@Override
 	public boolean logining(HttpServletRequest request) throws Exception {
@@ -187,7 +196,22 @@ public class MemberServiceImpl implements MemberService {
 
 		dao.filewriting(vo);
 	}
-
+	
+	@Override
+	public void fileupdating(HttpServletRequest request) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("?여기임ㅇㅇㅇㅇ16");
+		FileContentVO vo = new FileContentVO();
+		String save_file_name = (String) request.getAttribute("save_file_name");
+		vo.setNum(request.getParameter("num"));
+		
+		vo.setTitle(request.getParameter("title"));
+		vo.setContents(request.getParameter("content"));
+		vo.setSave_file_name(save_file_name);
+		System.out.println("?여기임ㅇㅇㅇㅇ111112222226");
+		dao.fileupdating(vo);
+	}
+	
 	@Override
 	public void photowriting(HttpServletRequest request) throws Exception {
 		FileContentVO vo = new FileContentVO();
@@ -200,6 +224,9 @@ public class MemberServiceImpl implements MemberService {
 
 		dao.photowriting(vo);
 	}
+
+	
+	
 
 	
 	

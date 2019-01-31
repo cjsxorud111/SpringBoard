@@ -38,5 +38,7 @@ public interface MemberDAO {
 	public List<FileContentVO> selectPhoto()throws Exception;
 	public void writesub(SubVO vo)throws Exception;
 	public List<SubVO> getsub(String num)throws Exception;
+	public void fileupdating(FileContentVO vo)throws Exception;
+	public void filedeleting(FileContentVO vo)throws Exception;
 	
 }

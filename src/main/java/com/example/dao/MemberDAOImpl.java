@@ -186,7 +186,14 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.update(Namespace + ".minus_homenum");
 		System.out.println("Membeting2");
 	}
-
+	
+	@Override
+	public void filedeleting(FileContentVO vo) throws Exception {
+		sqlSession.delete(Namespace + ".filedeleting", vo);
+		sqlSession.update(Namespace + ".minus_filenum");
+		System.out.println("Membeting2");		
+	}
+	
 	@Override
 	public String selectpw(String a) throws Exception {
 		System.out.println("M?2");
@@ -233,5 +240,16 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.update(Namespace + ".plus_photonum");
 
 	}
+
+	@Override
+	public void fileupdating(FileContentVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		
+		System.out.println(vo.getNum()+"?食奄績ししし33333333し16");
+		sqlSession.update(Namespace + ".fileupdating", vo);
+		
+	}
+
+	
 
 }
