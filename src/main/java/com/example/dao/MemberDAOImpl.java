@@ -250,6 +250,12 @@ public class MemberDAOImpl implements MemberDAO {
 		
 	}
 
+	@Override
+	public List<FileContentVO> page_photo(String num) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(Namespace + ".page_photo", num);
+	}
+
 	
 
 }

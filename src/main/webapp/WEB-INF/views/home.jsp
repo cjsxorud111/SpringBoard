@@ -104,7 +104,15 @@
 				</c:forEach>
  
 				<tr>
-					<td></td>
+					<td><a href="home?page=1">[처음]</a>
+		<%
+			for (int i = 1; i <= pagenum2; i++) {
+		%>
+		<a href="home?page=<%=i%>"><%=i%></a>&nbsp
+		<%
+			}
+		%>
+		<a href="home?page=<%=pagenum2%>">[끝]</a></td>
 					<td></td>
 					<td></td>
 					<td><a href="write">글쓰기</a></td>
@@ -115,15 +123,7 @@
 
 		<div id="ss" style="display: none">안녕</div>
        
-		<a href="home?page=1">[처음]</a>
-		<%
-			for (int i = 1; i <= pagenum2; i++) {
-		%>
-		<a href="home?page=<%=i%>"><%=i%></a>&nbsp
-		<%
-			}
-		%>
-		<a href="home?page=<%=pagenum2%>">[끝]</a>
+		
 	</div>
 </body>
 </html>

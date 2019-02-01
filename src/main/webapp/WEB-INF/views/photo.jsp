@@ -20,171 +20,140 @@
 </script>
 </head>
 <body>
-<div class="container">
-	<br><br><br>
-<%@ include file="nav.jsp" %>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-		<div class="container">
-			<a class="navbar-brand" href="home">포트폴리오</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="home">답글형
-							게시판 </a></li>
-					<li class="nav-item active"><a class="nav-link" href="photo">사진
-							게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="file">파일
-							업로드게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="login">로그인</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="memberjoin">회원가입</a>
-					</li>
-				</ul>
+	<div class="container">
+		<br>
+		<br>
+		<br>
+		<%@ include file="nav.jsp"%>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+			<div class="container">
+				<a class="navbar-brand" href="home">포트폴리오</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarResponsive" aria-controls="navbarResponsive"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a class="nav-link" href="home">답글형
+								게시판 </a></li>
+						<li class="nav-item active"><a class="nav-link" href="photo">사진
+								게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="file">파일
+								업로드게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="login">로그인</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="memberjoin">회원가입</a>
+						</li>
+					</ul>
+				</div>
 			</div>
-		</div>
-	</nav>
-	<%
-		String id = (String) session.getAttribute("ID");
-		System.out.println(id + "님 환영합니다.");
-		Object name = request.getAttribute("Pnum");
+		</nav>
+		<%
+			String id = (String) session.getAttribute("ID");
+			System.out.println(id + "님 환영합니다.");
+			Object name = request.getAttribute("Pnum");
 
-		int number = Integer.parseInt(name.toString());
-		System.out.println(number + "님 환영합니다.");
+			int number = Integer.parseInt(name.toString());
+			System.out.println(number + "님 환영합니다.");
 
-		double pagenum = (double) number / 9;
-		double aa = pagenum - (int) pagenum;
-		int pagenum2;
-		if (aa == 0) {
-			pagenum2 = (int) pagenum;
-		} else {
-			pagenum2 = (int) pagenum + 1;
-		}
-		out.println(pagenum2);
-		/* 페이지 블록 계산 */
-		int aaaa = 0;
-		int begin = 0;
-		int end = 0;
-		String aaaaa = request.getParameter("page");
-		if (aaaaa == null) {
-			aaaa = 1;
-		} else {
-			aaaa = Integer.parseInt(aaaaa);
-		}
+			double pagenum = (double) number / 9;
+			double aa = pagenum - (int) pagenum;
+			int pagenum2;
+			if (aa == 0) {
+				pagenum2 = (int) pagenum;
+			} else {
+				pagenum2 = (int) pagenum + 1;
+			}
+			out.println(pagenum2);
+			/* 페이지 블록 계산 */
+			int aaaa = 0;
+			int begin = 0;
+			int end = 0;
+			String aaaaa = request.getParameter("page");
+			if (aaaaa == null) {
+				aaaa = 1;
+			} else {
+				aaaa = Integer.parseInt(aaaaa);
+			}
 
-		begin = aaaa * 9 - 9;
-		end = aaaa * 9 - 7;
-		int begin2 = begin + 3;
-		int end2 = end + 3;
-		int begin3 = begin2 + 3;
-		int end3 = end2 + 3;
-	%>
-	
-	<h1><%=id%>님 환영합니다!
-	</h1>
+			begin = aaaa * 9 - 9;
+			end = aaaa * 9 - 7;
+			int begin2 = begin + 3;
+			int end2 = end + 3;
+			int begin3 = begin2 + 3;
+			int end3 = end2 + 3;
+		%>
 
-
-	<br />
-	<Cnum>총 글수: </Cnum>
-	<c:out value="${Pnum}"></c:out>
-
-	<%
-		
-	%>
-
-	<table class="table">
-		<tr>
-			<c:forEach items="${PhotoCList}" var="a" begin="<%=begin%>"
-				end="<%=end%>">
-
-				<td>&nbsp&nbsp${a.num}<br> <img
-					src="img/${a.save_file_name}" width="300" heigth="200"></img> <br>${a.title}
-				</td>
+		<h1><%=id%>님 환영합니다!
+		</h1>
 
 
-			</c:forEach>
-		</tr>
-		<tr>
-			<c:forEach items="${PhotoCList}" var="a" begin="<%=begin2%>"
-				end="<%=end2%>">
+		<br />
+		<Cnum>총 글수: </Cnum>
+		<c:out value="${Pnum}"></c:out>
 
+		<%
+			
+		%>
 
-				<td>&nbsp&nbsp${a.num}<br> <img
-					src="img/${a.save_file_name}" width="300" heigth="200"></img> <br>${a.title}
-				</td>
-
-
-			</c:forEach>
-		</tr>
-		<tr>
-			<c:forEach items="${PhotoCList}" var="a" begin="<%=begin3%>"
-				end="<%=end3%>">
-
-
-				<td>&nbsp&nbsp${a.num}<br> <img
-					src="img/${a.save_file_name}" width="300" heigth="200"></img> <br>${a.title}</td>
-
-
-			</c:forEach>
-		</tr>
-	</table>
-
-
-	<%-- <table>
-		<thead>
+		<table class="table">
 			<tr>
-				<th>글번호&nbsp&nbsp&nbsp</th>
-				<th>글제목&nbsp&nbsp&nbsp</th>
-				<th>사진&nbsp&nbsp&nbsp</th>
-				<th>아이디&nbsp&nbsp&nbsp</th>
-				<th></th>
+				<c:forEach items="${PhotoCList}" var="a" begin="<%=begin%>"
+					end="<%=end%>">
+
+					<td>&nbsp&nbsp${a.num}<br> <a
+						href="photopage?num=${a.num}"><img
+							src="img/${a.save_file_name}" width="300" heigth="200"></img></a> <br>${a.title}
+					</td>
+
+
+				</c:forEach>
 			</tr>
-		</thead>
-
-		<tbody>
-			<c:forEach items="${PhotoCList}" var="a" begin="<%=begin%>"
-				end="<%=end%>">
-				<tr>
-					<td>&nbsp&nbsp${a.num}</td>
-					<td><a href="content?num=${a.num}">${a.title}</a></td>
-					<td>${a.save_file_name}<img src="img/${a.save_file_name}"
-						width="200" heigth="200"></img></td>
-
-
-
-					<td>${a.id}<img src="img/KakaoTalk_20181218_181601333.jpg" width="200" heigth="200"/></td>
-					<td></td>
-				</tr>
-			</c:forEach>
-
 			<tr>
-				<td></td>
-				<td></td>
+				<c:forEach items="${PhotoCList}" var="a" begin="<%=begin2%>"
+					end="<%=end2%>">
+
+
+					<td>&nbsp&nbsp${a.num}<br> <a
+						href="photopage?num=${a.num}"><img
+							src="img/${a.save_file_name}" width="300" heigth="200"></img></a> <br>${a.title}
+					</td>
+
+
+				</c:forEach>
+			</tr>
+			<tr>
+				<c:forEach items="${PhotoCList}" var="a" begin="<%=begin3%>"
+					end="<%=end3%>">
+
+
+					<td>&nbsp&nbsp${a.num}<br>
+					<a href="photopage?num=${a.num}"> <img
+							src="img/${a.save_file_name}" width="300" heigth="200"></img></a> </br>${a.title}</td>
+
+
+				</c:forEach>
+			</tr>
+			<tr>
+				<td><a
+			href="photo?page=1">[처음]</a>
+		<%
+			for (int i = 1; i <= pagenum2; i++) {
+		%>
+		<a href="photo?page=<%=i%>"><%=i%></a>&nbsp
+		<%
+			}
+		%>
+		<a href="photo?page=<%=pagenum2%>">[끝]</a></td>
 				<td></td>
 				<td></td>
 				<td><a href="photo_write">글쓰기</a></td>
 			</tr>
+		</table>
 
-		</tbody>
-	</table> --%>
-
-	<div id="ss" style="display: none">안녕</div>
-	<br>
-	<a href="photo_write">글쓰기</a>
-	<br>
-
-	<a href="photo?page=1">[처음]</a>
-	<%
-		for (int i = 1; i <= pagenum2; i++) {
-	%>
-	<a href="photo?page=<%=i%>"><%=i%></a>&nbsp
-	<%
-		}
-	%>
-	<a href="photo?page=<%=pagenum2%>">[끝]</a>
-</div>
+		
+		<br>  <br> 
+	</div>
 </body>
 </html>

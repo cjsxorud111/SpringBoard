@@ -158,6 +158,13 @@ public class MemberServiceImpl implements MemberService {
 	public List<FileContentVO2> getfile(String num) throws Exception {
 		return dao.getfile(num);
 	}
+	
+	@Override
+	public List<FileContentVO> page_photo(String num) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.page_photo(num);
+	}
+
 
 	@Override
 	public void newupdating(HttpServletRequest request) throws Exception {
@@ -225,6 +232,7 @@ public class MemberServiceImpl implements MemberService {
 		dao.photowriting(vo);
 	}
 
+	
 	
 	
 

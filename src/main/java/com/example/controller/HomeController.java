@@ -165,6 +165,8 @@ public class HomeController {
 		return "file_content";
 	}
 	
+	
+	
 	@RequestMapping(value = "/fileupdate", method = RequestMethod.GET)
 	public String fileupdate(HttpServletRequest request, Locale locale, Model model) throws Exception {
 
@@ -360,6 +362,8 @@ public class HomeController {
 
 		return "photo_write";
 	}
+	
+	
 
 	@RequestMapping(value = "/file", method = RequestMethod.GET)
 	public String file(HttpServletRequest request, Model model) throws Exception {
@@ -387,6 +391,23 @@ public class HomeController {
 		System.out.println("44444444?????????????");
 
 		return "photo";
+	}
+	
+	@RequestMapping(value = "/photopage")
+	public String photopage(HttpServletRequest request, Locale locale, Model model) throws Exception {
+
+		String num = request.getParameter("num");
+
+		List<FileContentVO> GetContentList = service.page_photo(num);
+		model.addAttribute("GetContentList", GetContentList);
+		System.out.println("HomeController4");
+		FileContentVO a = GetContentList.get(0);
+		System.out.println(GetContentList.get(0));
+		System.out.println(a.getTitle());
+		System.out.println(a.getContents());
+		// 서비스에서 스트링형 배열로 sql실행결과 받은담에 홈컨트롤러에서 모델에 넣어서 전달
+		
+		return "photopage";
 	}
 
 	@RequestMapping(value = "/fileupload", method = RequestMethod.POST)

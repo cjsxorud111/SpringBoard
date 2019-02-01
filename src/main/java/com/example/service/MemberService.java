@@ -34,6 +34,7 @@ public interface MemberService {
 	public List<SubVO> getsub(String num)throws Exception;
 	public void fileupdating(HttpServletRequest request)throws Exception;
 	public void filedeleting(HttpServletRequest request)throws Exception;
+	public List<FileContentVO> page_photo(String num)throws Exception;
 	
 
 }

@@ -27,6 +27,10 @@
 		SELECT num, id ,title, content, save_file_name FROM PHOTOCONTENTS
 	</select>
 	
+	<select id="page_photo" resultType="com.example.dto.FileContentVO" parameterType="String">
+		SELECT num, id ,title, content, save_file_name FROM PHOTOCONTENTS WHERE num = #{num}
+	</select>
+	
 	<select id="selectpw" resultType="String" parameterType="String">
 		SELECT pw FROM MEMBER WHERE id = #{a}
 	</select>
