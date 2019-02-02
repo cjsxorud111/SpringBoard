@@ -32,6 +32,7 @@ function sub_del(a) {
 } 
 
 </script>
+<link href="resources/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="container">
@@ -83,7 +84,11 @@ function sub_del(a) {
 
 				<tr>
 					<td>글내용</td>
-					<td>${a.content}</td>
+					<td>
+					<div class="container" id="cont">
+					${a.content}
+					</div>
+					</td>
 				</tr>
 			</c:forEach>
 
