@@ -65,7 +65,7 @@
 			} else {
 				pagenum2 = (int) pagenum + 1;
 			}
-			out.println(pagenum2);
+			
 			/* 페이지 블록 계산 */
 			int aaaa = 0;
 			int begin = 0;
@@ -104,7 +104,7 @@
 
 					<td>&nbsp&nbsp${a.num}<br> <a
 						href="photopage?num=${a.num}"><img
-							src="img/${a.save_file_name}" width="300" heigth="200"></img></a> <br>${a.title}
+							src="img/${a.save_file_name}" width="300" heigth="200"></img></a>
 					</td>
 
 
@@ -117,7 +117,7 @@
 
 					<td>&nbsp&nbsp${a.num}<br> <a
 						href="photopage?num=${a.num}"><img
-							src="img/${a.save_file_name}" width="300" heigth="200"></img></a> <br>${a.title}
+							src="img/${a.save_file_name}" width="300" heigth="200"></img></a>
 					</td>
 
 
@@ -130,13 +130,14 @@
 
 					<td>&nbsp&nbsp${a.num}<br>
 					<a href="photopage?num=${a.num}"> <img
-							src="img/${a.save_file_name}" width="300" heigth="200"></img></a> </br>${a.title}</td>
+							src="img/${a.save_file_name}" width="300" heigth="200"></img></a>
+							</td>
 
 
 				</c:forEach>
 			</tr>
 			<tr>
-				<td><a
+				<td>총페이지수: <%=pagenum2%>&nbsp<a
 			href="photo?page=1">[처음]</a>
 		<%
 			for (int i = 1; i <= pagenum2; i++) {

@@ -104,7 +104,7 @@
 				</c:forEach>
  
 				<tr>
-					<td><a href="home?page=1">[처음]</a>
+					<td>총페이지수: <%=pagenum2%>&nbsp&nbsp<a href="home?page=1">[처음]</a>
 		<%
 			for (int i = 1; i <= pagenum2; i++) {
 		%>
