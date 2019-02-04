@@ -36,7 +36,7 @@
 		</div>
 		</nav>
 		<div id="join">
-			<table class="table">
+			<!-- <table class="table">
 				<form action="memberjoining" method="get">
 					<tr>
 
@@ -59,10 +59,54 @@
 					</tr>
 					<tr>
 						<td colspan="2"><input type="submit" class="btn btn-primary"
-							value="회원가입"> &nbsp;&nbsp;</td>
+							value="회원가입"> &nbsp;&nbsp;
+						</td>	
+						
+					
+						
+										
 					</tr>
-				</form>
-			</table>
+					
+
+						<input type="text" class="form-control" name="ID"
+							size="30" placeholder="ID">
+					
+
+						<input type="text" class="form-control" name="PW"
+							size="30" placeholder="PASSWORD">
+					
+
+						<input type="text" class="form-control" name="NAME"
+							size="30" placeholder="이름">
+					
+						<input type="text" class="form-control" name="EMAIL"
+							size="30" placeholder="E-MAIL">
+					
+						<input type="submit" class="btn btn-primary"
+							value="회원가입"> &nbsp;&nbsp;
+						
+						
+					
+						
+										
+					
+				
+				</form>		
+			</table> -->
+
+			<form action="memberjoining" method="get">
+				<input type="text" class="form-control" name="ID" size="30"
+					placeholder="ID"> <br> <input type="text"
+					class="form-control" name="PW" size="30" placeholder="PASSWORD">
+
+				<br> <input type="text" class="form-control" name="NAME"
+					size="30" placeholder="이름"> <br> <input type="text"
+					class="form-control" name="EMAIL" size="30" placeholder="E-MAIL">
+				<br> <input type="submit" class="btn btn-primary" value="회원가입">
+				&nbsp;&nbsp;<a href="home" class="btn btn-primary">취소</a>
+				
+			</form>
+			
 		</div>
 	</div>
 </body>
