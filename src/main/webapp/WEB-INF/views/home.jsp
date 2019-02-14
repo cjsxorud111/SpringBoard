@@ -8,27 +8,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<script>
-	window.onload = function() {
-		var section2 = document.getElementById("LoginCheck");
-		
-		var sessionValue= $("#LoginCheck").data('value');
-		
-		if(sessionValue == "null"){
-			section2.style.display = "none";	
-		}else{
-			section2.style.display = "block";	
-		}
-		
-		
-
-	}
-
-	/* function button1_click(a) {
-		var aa = 'button' + a;
-		document.getElementById(aa).style.display = "block";
-	} */
-</script>
 
 
 
@@ -63,11 +42,9 @@
 	</nav>
 	<%
 		String id = (String) session.getAttribute("ID");
-		System.out.println(id + "님 환영합니다.");
 		Object name = request.getAttribute("Cnum");
 
 		int number = Integer.parseInt(name.toString());
-		System.out.println(number + "님 환영합니다.");
 
 		double pagenum = (double) number / 10;
 		double aa = pagenum - (int) pagenum;
@@ -99,12 +76,12 @@
 		<br>
 		<br>
 		<br>
-		<div id="LoginCheck"><%=id%>님 환영합니다!
-		</div>
+		<div id="LoginCheck"><%=id%>님 환영합니다!</div>	
+		
 
 
 
-		<br />
+		<br>
 		<Cnum>총 글수: </Cnum>
 		<c:out value="${Cnum}"></c:out>
 		<script>

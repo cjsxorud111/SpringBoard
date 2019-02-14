@@ -1,7 +1,7 @@
 @charset "EUC-KR";
 
 #content {
-	/* border: 1px solid red;  */
+	/* border: 1px solid red; */  
 	width: 18rem;
 	margin-left: 21rem;
 	margin-top: 4rem;
@@ -35,4 +35,8 @@
 }
 #cont {
 	width: 23rem;
+}
+#LoginCheck {
+	/* border: 1px solid red; */
+	float: right;
 }

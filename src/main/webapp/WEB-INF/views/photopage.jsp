@@ -57,8 +57,7 @@
 		
 	%>
 	
-	<h1><%=id%>님 환영합니다!
-	</h1>
+	<div id="LoginCheck"><%=id%>님 환영합니다!</div>
 
 
 	<table class="table">

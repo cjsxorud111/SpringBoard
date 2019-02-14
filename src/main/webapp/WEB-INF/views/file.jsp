@@ -27,6 +27,8 @@
         }
     })
 </script>
+
+
 </head>
 <body>
 	<div class="container">
@@ -91,8 +93,7 @@
 			end = aaaa * 10 - 1;
 		%>
 
-		<h2><%=id%>님 환영합니다!
-		</h2>
+		<div id="LoginCheck"><%=id%>님 환영합니다!</div>	
 
 		<br>
 		<Cnum>총 글수: </Cnum>

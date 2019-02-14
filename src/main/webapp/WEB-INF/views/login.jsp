@@ -11,7 +11,7 @@
 <title>Login</title>
 
 <!-- 네이버아디디로로그인 초기화 Script -->
-<link href="resources/css/style.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 	<div class="container">

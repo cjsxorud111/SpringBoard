@@ -65,8 +65,7 @@ function sub_del(a) {
 			</div>
 		</nav>
 
-		<h1><%=id%>님 환영합니다!
-		</h1>
+		<div id="LoginCheck"><%=id%>님 환영합니다!</div>	
 		글목록 <br />
 
 

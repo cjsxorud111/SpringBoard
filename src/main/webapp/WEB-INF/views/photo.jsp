@@ -18,6 +18,8 @@
 <script>
 	
 </script>
+
+
 </head>
 <body>
 	<div class="container">
@@ -85,11 +87,10 @@
 			int end3 = end2 + 3;
 		%>
 
-		<h1><%=id%>님 환영합니다!
-		</h1>
+		<div id="LoginCheck"><%=id%>님 환영합니다!</div>	
 
 
-		<br />
+		<br>
 		<Cnum>총 글수: </Cnum>
 		<c:out value="${Pnum}"></c:out>
 

@@ -5,6 +5,9 @@
 
 <html>
 <head>
+
+<link href="resources/css/style.css?after" rel="stylesheet" type="text/css">
+
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
 
@@ -25,10 +28,24 @@
 
 <meta http-equiv="Cache-Control" content="no-cache">
 
+<script>
+	window.onload = function() {
+		var section2 = document.getElementById("LoginCheck");
+		
+		var sessionValue= $("#LoginCheck").html();
+		
+		if(sessionValue=='null님 환영합니다!'){
+			section2.style.display = "none";	
+		}else{
+			section2.style.display = "block";	
+		}
+
+	}
+</script>
+
+
 </head>
 <body>
-
-
 
 <!-- <nav>
 		<ul>

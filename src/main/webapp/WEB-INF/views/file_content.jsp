@@ -42,8 +42,7 @@
 			System.out.println(id + "님 환영합니다.");
 			String num = request.getParameter("num");
 		%>
-		<h1><%=id%>님 환영합니다!
-		</h1>
+		<div id="LoginCheck"><%=id%>님 환영합니다!</div>
 		<br>
 		<table cellpadding="5px">
 			<c:forEach items="${GetContentList}" var="a">
