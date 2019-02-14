@@ -5,7 +5,32 @@
 
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script>
+	window.onload = function() {
+		var section2 = document.getElementById("LoginCheck");
+		
+		var sessionValue= $("#LoginCheck").data('value');
+		
+		if(sessionValue == "null"){
+			section2.style.display = "none";	
+		}else{
+			section2.style.display = "block";	
+		}
+		
+		
+
+	}
+
+	/* function button1_click(a) {
+		var aa = 'button' + a;
+		document.getElementById(aa).style.display = "block";
+	} */
+</script>
+
+
 
 <title>Home</title>
 
@@ -71,9 +96,12 @@
 
 
 	<div class="container">
-	<br><br><br>
-		<h1><%=id%>님 환영합니다!
-		</h1>
+		<br>
+		<br>
+		<br>
+		<div id="LoginCheck"><%=id%>님 환영합니다!
+		</div>
+
 
 
 		<br />
@@ -102,28 +130,25 @@
 						<td></td>
 					</tr>
 				</c:forEach>
- 
+
 				<tr>
 					<td>총페이지수: <%=pagenum2%>&nbsp&nbsp<a href="home?page=1">[처음]</a>
-		<%
-			for (int i = 1; i <= pagenum2; i++) {
-		%>
-		<a href="home?page=<%=i%>"><%=i%></a>&nbsp
-		<%
-			}
-		%>
-		<a href="home?page=<%=pagenum2%>">[끝]</a></td>
+						<%
+							for (int i = 1; i <= pagenum2; i++) {
+						%> <a href="home?page=<%=i%>"><%=i%></a>&nbsp <%
+ 	}
+ %> <a href="home?page=<%=pagenum2%>">[끝]</a></td>
 					<td></td>
 					<td></td>
 					<td><a href="write">글쓰기</a></td>
 				</tr>
-  
+
 			</tbody>
 		</table>
 
 		<div id="ss" style="display: none">안녕</div>
-       
-		
+
+
 	</div>
 </body>
 </html>
