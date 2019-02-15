@@ -442,28 +442,14 @@ public class HomeController {
 	
 	@RequestMapping(value = "/fileupdating", method = RequestMethod.POST)
 	public String fileupdating(MultipartFile uploadfile, HttpServletRequest request, Model model) throws Exception {
-		System.out.println(uploadfile);
-		
-
-		System.out.println("??1111666666");
 		
 		String result = saveFile(uploadfile);
 
-		System.out.println("??1111666666");
-		
 		String save_file_name = result; // 저장하고 받은 결과
 
-		System.out.println("??222222666666");
-		
 		request.setAttribute("save_file_name", save_file_name);
 
-		System.out.println("??33333666666");
-		
 		service.fileupdating(request);
-
-		System.out.println("??444444666666");
-
-		System.out.println("dididiid" + result);
 
 		if (result != null) { // 파일 저장 성공
 			model.addAttribute("result", result);
@@ -481,19 +467,9 @@ public class HomeController {
 		logger.info("파일 크기: {}", uploadfile.getSize());
 		
 		String result = saveFile(uploadfile);
-
 		String save_file_name = result; // 저장하고 받은 결과
-
 		request.setAttribute("save_file_name", save_file_name);
-
-		// 이하로 db에 저장할 거 다 request 담아서 db에 저장후 게시판에 사진출력 만들기
-		System.out.println("??111111");
-
 		service.photowriting(request);
-
-		System.out.println("??666666");
-
-		System.out.println("dididiid" + result);
 
 		if (result != null) { // 파일 저장 성공
 			model.addAttribute("result", result);
@@ -506,24 +482,20 @@ public class HomeController {
    
 	private String saveFile(MultipartFile file) {
 		// 파일 이름 변경
-		System.out.println(file);
 		UUID uuid = UUID.randomUUID();
-		System.out.println("how????????");
 		String saveName = uuid + "_" + file.getOriginalFilename();
-		System.out.println("h2222222ow????????");
 		logger.info("saveName: {}", saveName);
-		System.out.println("h333333ow????????");
-		// 저장할 File 객체를 생성(껍데기 파일)ㄴ
-		File saveFile = new File("C:\\Users\\천태경\\eclipse-workspace05\\Portfolio\\src\\main\\webapp\\resources\\img",
-				saveName); // 저장할 폴더 이름, 저장할 파일 이름
-		System.out.println("h44444444333333ow????????");
+		/*File saveFile = new File("C:\\Users\\천태경\\eclipse-workspace05\\Portfolio\\src\\main\\webapp\\resources\\img",
+				saveName);*/ // 저장할 폴더 이름, 저장할 파일 이름
+		File saveFile = new File("/tomcat/webapps/Portfolio/resources/img",
+				saveName); 
+		
 		try {
 			file.transferTo(saveFile); // 업로드 파일에 saveFile이라는 껍데기 입힘
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
 		}
-		System.out.println("how555555????????");
 		return saveName;
 	} // end saveFile(
 
