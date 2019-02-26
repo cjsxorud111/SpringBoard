@@ -149,7 +149,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public List<SubVO> getsub(String num) throws Exception {
-		
+		int a =1;
 		return dao.getsub(num);
 	}
 

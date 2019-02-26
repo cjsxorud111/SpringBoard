@@ -262,7 +262,15 @@ public class HomeController {
 
 	@RequestMapping(value = "/memberjoining", method = RequestMethod.GET)
 	public String memberjoining(HttpServletRequest request, Model model) throws Exception {
-		System.out.println("memberjoining");
+		String str = request.getParameter("ID");
+		
+		 for(int i=0;i<str.length();i++){
+		     if(Character.getType(str.charAt(i)) == 5) {
+		    	 System.out.print("이건한글이넹 :: ");
+		    	 System.out.println(str.charAt(i));
+			     return "redirect:memberjoin?han=true";
+		     }     
+		}
 		logger.info("memberjoining");
 		service.memberjoining(request);
 		System.out.println("memberjoining2");

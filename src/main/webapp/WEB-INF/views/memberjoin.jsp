@@ -6,6 +6,13 @@
 <link href="resources/css/style.css" rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>memberjoin</title>
+
+<script>
+var a = '영문으로입력해주세요';
+document.getElementById('engg').innerHTML=a;
+alert("helo");
+</script>
+
 </head>
 <body>
 	<div class="container">
@@ -13,7 +20,7 @@
 		<%@ include file="nav.jsp"%>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-
+			
 			<a class="navbar-brand" href="home">포트폴리오</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -36,6 +43,7 @@
 		</div>
 		</nav>
 		<div id="join">
+			
 			<!-- <table class="table">
 				<form action="memberjoining" method="get">
 					<tr>
@@ -61,10 +69,6 @@
 						<td colspan="2"><input type="submit" class="btn btn-primary"
 							value="회원가입"> &nbsp;&nbsp;
 						</td>	
-						
-					
-						
-										
 					</tr>
 					
 
@@ -84,13 +88,6 @@
 					
 						<input type="submit" class="btn btn-primary"
 							value="회원가입"> &nbsp;&nbsp;
-						
-						
-					
-						
-										
-					
-				
 				</form>		
 			</table> -->
 
@@ -109,5 +106,6 @@
 			
 		</div>
 	</div>
+	<div id="engg"></div>
 </body>
 </html>
