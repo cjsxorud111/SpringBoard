@@ -362,7 +362,7 @@ public class HomeController {
 		logger.info("deleting");
 		service.filedeleting(request);
 		System.out.println("deletting12");
-		return "redirect:home";
+		return "redirect:file";
 	}
 
 	@RequestMapping(value = "/photo_write")

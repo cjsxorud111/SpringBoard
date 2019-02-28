@@ -58,7 +58,7 @@
 
 				<tr>
 					<td>글내용</td>
-					<td>${a.content}<br> <img src="img/${a.save_file_name}"></img></td>
+					<td>${a.content}<br> <%-- <img src="img/${a.save_file_name}"></img> --%></td>
 				</tr>
 
 				<tr>
