@@ -6,18 +6,61 @@
 <link href="resources/css/style.css" rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>memberjoin</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<link href="resources/css/style.css?after" rel="stylesheet" type="text/css">
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.css">
+<!-- Bootstrap core JavaScript -->	
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+	window.onload = function() {
+		var section2 = document.getElementById("LoginCheck");
+		$("#engg").html("eeeee");
+		var sessionValue= $("#LoginCheck").html();
+		
+		if(sessionValue=='null님 환영합니다!'){
+			section2.style.display = "none";	
+		}else{
+			section2.style.display = "block";	
+		}
+
+	}
+</script>
 
 <script>
-var a = '영문으로입력해주세요';
-document.getElementById('engg').innerHTML=a;
-alert("helo");
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    return results[2];
+}
+
+window.onload = function() {
+	var a = getParameterByName('han');
+	
+	if(a == 'true'){
+		$("#engg").html("아이디와 이름은 영문으로 입력해주세요");
+	}
+
+}
+	
 </script>
 
 </head>
 <body>
 	<div class="container">
 		<br> <br> <br>
-		<%@ include file="nav.jsp"%>
+		<%-- <%@ include file="nav.jsp"%> --%>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
 			
@@ -90,7 +133,7 @@ alert("helo");
 							value="회원가입"> &nbsp;&nbsp;
 				</form>		
 			</table> -->
-
+			<div id="engg"></div>
 			<form action="memberjoining" method="get">
 				<input type="text" class="form-control" name="ID" size="30"
 					placeholder="ID"> <br> <input type="text"
@@ -106,6 +149,7 @@ alert("helo");
 			
 		</div>
 	</div>
-	<div id="engg"></div>
+	
+	
 </body>
 </html>

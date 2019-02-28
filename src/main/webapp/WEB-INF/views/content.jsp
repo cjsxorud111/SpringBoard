@@ -10,14 +10,46 @@
 <html>
 <head>
 <title>Home</title>
+<link href="resources/css/style.css?after" rel="stylesheet" type="text/css">
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.css">
+<!-- Bootstrap core JavaScript -->	
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 <script>
+	window.onload = function() {
+		var section2 = document.getElementById("LoginCheck");
+		
+		var sessionValue= $("#LoginCheck").html();
+		
+		if(sessionValue=='null님 환영합니다!'){
+			section2.style.display = "none";	
+		}else{
+			section2.style.display = "block";	
+		}
+
+	}
+</script>
+
+
+<script>
+
 window.onload=function(){ 
 	/* document.getElementByClassName('ttt').style.display="none"; */
 	var section2s = document.getElementsByClassName("ttt");
-
+	
 	for( var i = 0; i < section2s.length; i++ ){
-	    var section2 = section2s.item(i);
-	    section2.style.display="none";
+	   /*  var section2 = section2s.item(i);
+	    section2.style.display="none"; */
+	    section2s.item(i).style.display="none";
 	}
 }
 
@@ -39,7 +71,7 @@ function sub_del(a) {
 		<br>
 		<br>
 		<br>
-		<%@ include file="nav.jsp"%>
+		<%-- <%@ include file="nav.jsp"%> --%>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 			<div class="container">
 				<a class="navbar-brand" href="home">포트폴리오</a>
@@ -94,8 +126,9 @@ function sub_del(a) {
 
 		</table>
 		<br> <br> <a href="newupdate?num=<%=num%>">수정하기</a> <a
-			href="delete?num=<%=num%>">삭제하기</a> <br> <br> <br> <br>
+			href="delete?num=<%=num%>">삭제하기</a> <br> <br>댓글달기</div>
 		<table class="table">
+		
 			<tr>
 				
 				<form action="writesub" method="post">
@@ -115,7 +148,9 @@ function sub_del(a) {
 					<input type="button" id="button"
 						onclick="button1_click(${a.num});" value="댓글" /></td>
 				</tr>
+				
 				<tr>
+				
 					<form action="writesub" method="post">
 						
 						<td id="button${a.num}" class="ttt">

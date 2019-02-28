@@ -106,7 +106,7 @@
 		</div>
 	</div>
 	<!-- 네이버아디디로로그인 초기화 Script -->
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		var naverLogin = new naver.LoginWithNaverId({
 			clientId : "uvuGSXSNJnTZI3FdmGwO",
 			callbackUrl : "http://192.168.210.69:8090/controller/home",
@@ -121,7 +121,7 @@
 
 		/* 설정정보를 초기화하고 연동을 준비 */
 		naverLogin.init();
-	</script>
+	</script> -->
 	<!-- // 네이버아이디로로그인 초기화 Script -->
 
 </body>
