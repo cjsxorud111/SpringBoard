@@ -475,6 +475,7 @@ public class HomeController {
 		logger.info("파일 크기: {}", uploadfile.getSize());
 		
 		String result = saveFile(uploadfile);
+		System.out.println(result+"여기!!!!!!!");
 		String save_file_name = result; // 저장하고 받은 결과
 		request.setAttribute("save_file_name", save_file_name);
 		service.photowriting(request);
@@ -493,10 +494,10 @@ public class HomeController {
 		UUID uuid = UUID.randomUUID();
 		String saveName = uuid + "_" + file.getOriginalFilename();
 		logger.info("saveName: {}", saveName);
-		/*File saveFile = new File("C:\\Users\\천태경\\eclipse-workspace05\\Portfolio\\src\\main\\webapp\\resources\\img",
-				saveName);*/ // 저장할 폴더 이름, 저장할 파일 이름
-		File saveFile = new File("/tomcat/webapps/Portfolio/resources/img",
-				saveName); 
+		File saveFile = new File("C:\\Users\\천태경\\eclipse-workspace05\\Portfolio\\src\\main\\webapp\\resources\\img",
+				saveName);// 저장할 폴더 이름, 저장할 파일 이름
+		/*File saveFile = new File("/tomcat/webapps/Portfolio/resources/img",
+				saveName); */
 		
 		try {
 			file.transferTo(saveFile); // 업로드 파일에 saveFile이라는 껍데기 입힘

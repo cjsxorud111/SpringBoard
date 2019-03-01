@@ -138,16 +138,16 @@
 				</c:forEach>
 			</tr>
 			<tr>
-				<td>총페이지수: <%=pagenum2-1%>&nbsp<a
+				<td>총페이지수: <%=pagenum2%>&nbsp<a
 			href="photo?page=1">[처음]</a>
 		<%
-			for (int i = 1; i <= pagenum2-1; i++) {
+			for (int i = 1; i <= pagenum2; i++) {
 		%>
 		<a href="photo?page=<%=i%>"><%=i%></a>&nbsp
 		<%
 			}
 		%>
-		<a href="photo?page=<%=pagenum2-1%>">[끝]</a></td>
+		<a href="photo?page=<%=pagenum2%>">[끝]</a></td>
 				<td></td>
 				<td></td>
 				<td><a href="photo_write">글쓰기</a></td>
