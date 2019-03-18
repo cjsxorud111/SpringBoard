@@ -11,9 +11,11 @@ import com.example.dto.HomeContentVO;
 import com.example.dto.MemberVO;
 import com.example.dto.SubVO;
 
-public interface MemberService {
+public interface PhotoService {
 	
-	public void memberjoining(HttpServletRequest request) throws Exception;
-	public boolean logining(HttpServletRequest request) throws Exception;
+	public void photowriting(HttpServletRequest request) throws Exception;
+	public List<FileContentVO> selectPhoto()throws Exception;
+	public int Pnum()throws Exception;
+	public List<FileContentVO> page_photo(String num)throws Exception;
 
 }

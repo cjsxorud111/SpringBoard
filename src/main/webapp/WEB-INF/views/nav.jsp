@@ -42,20 +42,6 @@
 
 	}
 </script>
-
-
 </head>
-<body>
-
-<!-- <nav>
-		<ul>
-			<li><a href="home">답글형 게시판</a></li><br>
-			<li><a href="photo">사진 게시판</a></li><br>
-			<li><a href="file">파일 업로드게시판</a></li><br>
-			<li><a href="login">로그인</a></li><br>
-			<li><a href="memberjoin">회원가입</a></li><br>
-		</ul>
-	</nav> -->
-
 </body>
 </html>

@@ -14,9 +14,13 @@ import com.example.dto.MemberjoinVO;
 import com.example.dto.NewupdatingVO;
 import com.example.dto.SubVO;
 
-public interface MemberDAO {
+public interface FileDAO {
+	public List<FileContentVO2> getfile(String num) throws Exception; 
+	public void filewriting(FileContentVO vo) throws Exception;
+	public List<FileContentVO> selectFile() throws Exception;
+	public int Fnum() throws Exception;
 	
-	public void memberjoining(MemberjoinVO vo) throws Exception;
-	public String selectpw(String a) throws Exception;
+	public void fileupdating(FileContentVO vo)throws Exception;
+	public void filedeleting(FileContentVO vo)throws Exception;
 	
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.photoMapper">
+
+	<select id="selectPhoto" resultType="com.example.dto.FileContentVO" >
+		SELECT num, id ,title, content, save_file_name FROM PHOTOCONTENTS
+	</select>
+	
+	<select id="Pnum" resultType="String">
+		SELECT  page_num FROM page_number WHERE page_name = "photo"
+	</select>
+	
+	<insert id="photowriting" parameterType="com.example.dto.FileContentVO" >
+		INSERT INTO PHOTOCONTENTS (id, title, content, save_file_name) VALUES (#{id}, #{title}, #{contents}, #{save_file_name})
+	</insert>
+		
+	<update id="plus_photonum">
+		UPDATE page_number SET page_num = page_num + 1 WHERE page_name = 'photo'
+	</update>
+	
+	<select id="page_photo" resultType="com.example.dto.FileContentVO" parameterType="String">
+		SELECT num, id ,title, content, save_file_name FROM PHOTOCONTENTS WHERE num = #{num}
+	</select>
+	
+</mapper>

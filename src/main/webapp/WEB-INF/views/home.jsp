@@ -8,9 +8,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-
-
-
 <title>Home</title>
 
 </head>
@@ -70,17 +67,12 @@
 		end = aaaa * 10 - 1;
 	%>
 
-
-
 	<div class="container">
 		<br>
 		<br>
 		<br>
 		<div id="LoginCheck"><%=id%>님 환영합니다!</div>	
 		
-
-
-
 		<br>
 		<Cnum>총 글수: </Cnum>
 		<c:out value="${Cnum}"></c:out>
@@ -119,12 +111,10 @@
 					<td></td>
 					<td><a href="write">글쓰기</a></td>
 				</tr>
-
 			</tbody>
 		</table>
 
 		<div id="ss" style="display: none">안녕</div>
-
 
 	</div>
 </body>

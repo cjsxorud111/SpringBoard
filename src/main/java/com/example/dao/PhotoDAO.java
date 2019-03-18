@@ -14,9 +14,9 @@ import com.example.dto.MemberjoinVO;
 import com.example.dto.NewupdatingVO;
 import com.example.dto.SubVO;
 
-public interface MemberDAO {
-	
-	public void memberjoining(MemberjoinVO vo) throws Exception;
-	public String selectpw(String a) throws Exception;
-	
+public interface PhotoDAO {
+	public void photowriting(FileContentVO vo) throws Exception;
+	public List<FileContentVO> selectPhoto()throws Exception;
+	public int Pnum()throws Exception;
+	public List<FileContentVO> page_photo(String num)throws Exception;
 }
