@@ -37,7 +37,7 @@ public class MemberjoinController {
 	private MemberService service;
 
 	@RequestMapping(value = "/memberjoin", method = RequestMethod.GET)
-	public String memberjoin(Locale locale, Model model) throws Exception {
+	public String memberjoin(Model model) throws Exception {
 		return "memberjoin";
 	}
 

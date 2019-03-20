@@ -22,7 +22,6 @@ import com.example.dto.SubVO;
 @Service
 public class MemberServiceImpl implements MemberService {
 
-	/* 여기 왜 오토와이어드 쓰는지 공부 */
 	@Autowired
 	private MemberDAO dao;
 	

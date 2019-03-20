@@ -37,7 +37,7 @@ public class LoginController {
 	private MemberService service;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(Locale locale, Model model) throws Exception {
+	public String login(Model model) throws Exception {
 		return "login";
 	}
 

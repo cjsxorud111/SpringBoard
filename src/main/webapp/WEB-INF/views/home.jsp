@@ -9,7 +9,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <title>Home</title>
-
+<%String id = (String) session.getAttribute("ID");%>
 </head>
 <body>
 	<%@ include file="nav.jsp"%>
@@ -37,34 +37,41 @@
 			</div>
 		</div>
 	</nav>
+	
 	<%
-		String id = (String) session.getAttribute("ID");
-		Object name = request.getAttribute("Cnum");
-
-		int number = Integer.parseInt(name.toString());
-
-		double pagenum = (double) number / 10;
-		double aa = pagenum - (int) pagenum;
-		int pagenum2;
-		if (aa == 0) {
-			pagenum2 = (int) pagenum;
+		//HomeController에서 model.addAttribute 로 보낸걸 request로 받음
+		Object contentNum = request.getAttribute("Cnum");
+				
+		int number = Integer.parseInt(contentNum.toString());
+		
+		//총 몇 페이지인지 계산
+		double num = (double) number / 10;
+		double temp = num - (int) num; 
+		//총 페이지수
+		int pagenum;
+	
+		if (temp == 0) {
+			pagenum = (int) num;
 		} else {
-			pagenum2 = (int) pagenum + 1;
-		}
-
-		/* 페이지 블록 계산 */
-		int aaaa = 0;
+			pagenum = (int) num + 1;
+		} 
+		
+		//페이지 블록 계산 
+		int herePage = 0;
 		int begin = 0;
 		int end = 0;
-		String aaaaa = request.getParameter("page");
-		if (aaaaa == null) {
-			aaaa = 1;
+		
+		String pages = request.getParameter("page");
+		
+		if (pages == null) {
+			herePage = 1;
 		} else {
-			aaaa = Integer.parseInt(aaaaa);
+			herePage = Integer.parseInt(pages);
 		}
 
-		begin = aaaa * 10 - 10;
-		end = aaaa * 10 - 1;
+		begin = herePage * 10 - 10;
+		end = herePage * 10 - 1;
+		
 	%>
 
 	<div class="container">
@@ -99,22 +106,22 @@
 						<td></td>
 					</tr>
 				</c:forEach>
-
+				
+				<!--페이지 출력-->
 				<tr>
-					<td>총페이지수: <%=pagenum2%>&nbsp&nbsp<a href="home?page=1">[처음]</a>
+					<td>총페이지수: <%=pagenum%>&nbsp&nbsp<a href="home?page=1">[처음]</a>
 						<%
-							for (int i = 1; i <= pagenum2; i++) {
+							for (int i = 1; i <= pagenum; i++) {
 						%> <a href="home?page=<%=i%>"><%=i%></a>&nbsp <%
  	}
- %> <a href="home?page=<%=pagenum2%>">[끝]</a></td>
+ %> <a href="home?page=<%=pagenum%>">[끝]</a></td>
+ 
 					<td></td>
 					<td></td>
 					<td><a href="write">글쓰기</a></td>
 				</tr>
 			</tbody>
 		</table>
-
-		<div id="ss" style="display: none">안녕</div>
 
 	</div>
 </body>

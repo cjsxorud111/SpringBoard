@@ -28,37 +28,30 @@ public class HomeDAOImpl implements HomeDAO {
 
 	@Override
 	public List<HomeContentVO> selectContent() throws Exception {
-		List<HomeContentVO> ccc = sqlSession.selectList(Namespace + ".selectContent");
-		HomeContentVO vvv = ccc.get(0);
-		return ccc;
+		List<HomeContentVO> homeContentList = sqlSession.selectList(Namespace + ".selectContent");
+		return homeContentList;
 	}
 
 	@Override
 	public List<GetContentVO> getcontent(String num) throws Exception {
-		List<GetContentVO> aaa = sqlSession.selectList(Namespace + ".getcontent", num);
-		return aaa;
+		List<GetContentVO> getContentList = sqlSession.selectList(Namespace + ".getcontent", num);
+		return getContentList;
 	}
 
 	@Override
 	public List<SubVO> getsub(String num) throws Exception {
-		List<SubVO> ccc = sqlSession.selectList(Namespace + ".getsub", num);
-		return ccc;
+		List<SubVO> subList = sqlSession.selectList(Namespace + ".getsub", num);
+		return subList;
 	}
 
 
 	@Override
 	public void inserting(MemberVO vo) throws Exception {
-		System.out.println(vo.getId());
-
 		sqlSession.insert(Namespace + ".insertingMember", vo);
 	}
 
 	@Override
 	public void writing(ContentsVO vo) throws Exception {
-		System.out.println(vo.getId());
-		System.out.println(vo.getTitle());
-		System.out.println(vo.getContents());
-
 		sqlSession.insert(Namespace + ".writing", vo);
 		sqlSession.update(Namespace + ".plus_homenum");
 	}
@@ -92,8 +85,6 @@ public class HomeDAOImpl implements HomeDAO {
 
 	@Override
 	public void updating(MemberVO vo) throws Exception {
-		System.out.println(vo.getId());
-		System.out.println(vo.getName());
 		sqlSession.update(Namespace + ".updatingMember", vo);
 	}
 
@@ -103,7 +94,6 @@ public class HomeDAOImpl implements HomeDAO {
 		sqlSession.delete(Namespace + ".deletingMember", vo);
 		sqlSession.update(Namespace + ".minus_homenum");
 	}
-	
 	
 	@Override
 	public void newupdating(NewupdatingVO NVO) throws Exception {

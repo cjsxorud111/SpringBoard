@@ -39,7 +39,7 @@ public class PhotoController {
 	}
 	
 	@RequestMapping(value = "/photopage")
-	public String photopage(HttpServletRequest request, Locale locale, Model model) throws Exception {
+	public String photopage(HttpServletRequest request, Model model) throws Exception {
 		String num = request.getParameter("num");
 
 		List<FileContentVO> GetContentList = service.page_photo(num);

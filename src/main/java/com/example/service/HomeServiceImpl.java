@@ -19,13 +19,12 @@ import com.example.dto.SubVO;
 @Service
 public class HomeServiceImpl implements HomeService {
 
-	/* 여기 왜 오토와이어드 쓰는지 공부 */
+	
 	@Autowired
 	private HomeDAO dao;
 
 	@Override
 	public List<HomeContentVO> selectContent() throws Exception {
-		System.out.println("MemberService");
 		List<HomeContentVO> selcon = dao.selectContent();
 
 		return selcon;

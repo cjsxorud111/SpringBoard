@@ -30,7 +30,7 @@ public class FileController {
 	private FileService service;
 	
 	@RequestMapping(value = "/file_content", method = RequestMethod.GET)
-	public String file_content(HttpServletRequest request, Locale locale, Model model) throws Exception {
+	public String file_content(HttpServletRequest request, Model model) throws Exception {
 
 		String num = request.getParameter("num");
 
@@ -43,7 +43,7 @@ public class FileController {
 	}
 	
 	@RequestMapping(value = "/fileupdate", method = RequestMethod.GET)
-	public String fileupdate(HttpServletRequest request, Locale locale, Model model) throws Exception {
+	public String fileupdate(HttpServletRequest request, Model model) throws Exception {
 		String num = request.getParameter("num");
 
 		List<FileContentVO2> GetContentList = service.getfile(num);
@@ -54,7 +54,7 @@ public class FileController {
 	}
 
 	@RequestMapping(value = "/file_write", method = RequestMethod.GET)
-	public String file_write(Locale locale, Model model) throws Exception {
+	public String file_write(Model model) throws Exception {
 		return "file_write";
 	}
 	
@@ -119,7 +119,9 @@ public class FileController {
 	private String saveFile(MultipartFile file) {
 		// 파일 이름 변경
 		UUID uuid = UUID.randomUUID();
+		
 		String saveName = uuid + "_" + file.getOriginalFilename();
+		
 		File saveFile = new File("C:\\Users\\천태경\\eclipse-workspace05\\Portfolio\\src\\main\\webapp\\resources\\img",
 				saveName);// 저장할 폴더 이름, 저장할 파일 이름
 		/*File saveFile = new File("/tomcat/webapps/Portfolio/resources/img",
