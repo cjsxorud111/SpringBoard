@@ -38,6 +38,9 @@ public class PhotoController {
 		return "photo";
 	}
 	
+
+	
+	
 	@RequestMapping(value = "/photopage")
 	public String photopage(HttpServletRequest request, Model model) throws Exception {
 		String num = request.getParameter("num");
@@ -45,38 +48,58 @@ public class PhotoController {
 		List<FileContentVO> GetContentList = service.page_photo(num);
 		model.addAttribute("GetContentList", GetContentList);
 		FileContentVO a = GetContentList.get(0);
-		// ¼­ºñ½º¿¡¼­ ½ºÆ®¸µÇü ¹è¿­·Î sql½ÇÇà°á°ú ¹ŞÀº´ã¿¡ È¨ÄÁÆ®·Ñ·¯¿¡¼­ ¸ğµ¨¿¡ ³Ö¾î¼­ Àü´Ş
+		// ï¿½ï¿½ï¿½ñ½º¿ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ sqlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ã¿¡ È¨ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ğµ¨¿ï¿½ ï¿½Ö¾î¼­ ï¿½ï¿½ï¿½ï¿½
 		
 		return "photopage";
 	}
+	
+	
+	@RequestMapping(value = "img")
+	public void ckeditorImageUpload(MultipartFile upload, HttpServletRequest request, Model model) throws Exception {
 
+		System.out.println("1");
+		
+		String result = saveFile(upload);System.out.println("ì—¬ê¸°ë˜ë‚˜0");
+		String save_file_name = result; 
+		request.setAttribute("save_file_name", save_file_name);System.out.println("ì—¬ê¸°ë˜ë‚˜1");
+		System.out.println("ì—¬ê¸°ë˜ë‚˜2");
+		
+
+		
+		
+	}
+	
 	@RequestMapping(value = "/photoupload", method = RequestMethod.POST)
 	public String photoupload(MultipartFile uploadfile, HttpServletRequest request, Model model) throws Exception {
-		
 		String result = saveFile(uploadfile);
-		String save_file_name = result; // ÀúÀåÇÏ°í ¹ŞÀº °á°ú
+		String save_file_name = result; // ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		request.setAttribute("save_file_name", save_file_name);
 		service.photowriting(request);
 
-		if (result != null) { // ÆÄÀÏ ÀúÀå ¼º°ø
+		if (result != null) { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			model.addAttribute("result", result);
-		} else { // ÆÄÀÏ ÀúÀå ½ÇÆĞ
+		} else { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			model.addAttribute("result", "fail");
 		}
-
+ 
 		return "redirect:photo";
 	}
-   
+    
 	private String saveFile(MultipartFile file) {
-		// ÆÄÀÏ ÀÌ¸§ º¯°æ
+		System.out.println("ì—¬ê¸´?1");
 		UUID uuid = UUID.randomUUID();
+		System.out.println(file.getOriginalFilename());
 		String saveName = uuid + "_" + file.getOriginalFilename();
-		File saveFile = new File("C:\\Users\\ÃµÅÂ°æ\\eclipse-workspace05\\Portfolio\\src\\main\\webapp\\resources\\img",
-				saveName);// ÀúÀåÇÒ Æú´õ ÀÌ¸§, ÀúÀåÇÒ ÆÄÀÏ ÀÌ¸§
+		System.out.println("ì—¬ê¸´?2");
+		
+//		Macintosh HDâ© â–¸ â¨ì‚¬ìš©ìâ© â–¸ â¨taekyâ© â–¸ â¨eclipse-workspaceâ© â–¸ â¨SpringBoardâ© â–¸ â¨srcâ© â–¸ â¨mainâ© â–¸ â¨webappâ© â–¸ â¨resourcesâ©
+		File saveFile = new File("/Users/taeky/eclipse-workspace/SpringBoard/src/main/webapp/resources/img",
+				saveName);System.out.println("ì—¬ê¸´?3");// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
 		/*File saveFile = new File("/tomcat/webapps/Portfolio/resources/img",
-				saveName); */
+				saveName); Users/taeky/eclipse-workspace/SpringBoard/src/main/webapp*/
+				System.out.println("ì—¬ê¸´?4");
 		try {
-			file.transferTo(saveFile); // ¾÷·Îµå ÆÄÀÏ¿¡ saveFileÀÌ¶ó´Â ²®µ¥±â ÀÔÈû
+			file.transferTo(saveFile); // ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ saveFileï¿½Ì¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;

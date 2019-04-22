@@ -11,6 +11,8 @@
 	margin-left: 22rem;
 }
 </style>
+<script src="//cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
+
 
 
 </head>
@@ -43,7 +45,10 @@
 			
 			<tr>
 				<td> 글내용 </td>
-				<td> <textarea name="CONTENTS" rows="20" cols="50"></textarea></td>
+				<!-- <td> <textarea name="CONTENTS" rows="20" cols="50"></textarea></td> -->
+				<td><textarea name="editor1" id="editor1" rows="10" cols="80">
+	                This is my textarea to be replaced with CKEditor.
+	            	</textarea></td>
 			</tr>
 			
 			<tr>
@@ -51,5 +56,13 @@
 			</tr>
 		</form>
 	</table>
+	<script>
+		// Replace the <textarea id="editor1"> with a CKEditor
+		// instance, using default configuration.
+		// Macintosh HD⁩/Users/taeky/eclipse-workspace/SpringBoard/src/main/webapp/⁨resources⁩/
+		CKEDITOR.replace('editor1', {
+			filebrowserImageUploadUrl : 'img'
+		});
+	</script>
 </body>
 </html>

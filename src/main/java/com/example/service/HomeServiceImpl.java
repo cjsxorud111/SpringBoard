@@ -38,15 +38,15 @@ public class HomeServiceImpl implements HomeService {
 		vo.setName(request.getParameter("ID"));
 		dao.inserting(vo);
 	}
-
+                   
 	@Override
 	public void writing(HttpServletRequest request) throws Exception {
 		ContentsVO vo = new ContentsVO();
 		vo.setId(request.getParameter("ID"));
 		vo.setTitle(request.getParameter("TITLE"));
-		vo.setContents(request.getParameter("CONTENTS"));
+		vo.setContents(request.getParameter("editor1"));
+		System.out.println("1"+request.getParameter("editor1")+request.getParameter("TITLE"));
 		dao.writing(vo);
-
 	}
 	
 	@Override

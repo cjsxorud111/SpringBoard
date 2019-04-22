@@ -23,7 +23,7 @@ import com.example.dto.SubVO;
 public class HomeDAOImpl implements HomeDAO {
 
 	@Inject
-	private SqlSession sqlSession;
+	private SqlSession sqlSession;             
 	private static final String Namespace = "com.example.mapper.homeMapper";
 
 	@Override
@@ -35,6 +35,7 @@ public class HomeDAOImpl implements HomeDAO {
 	@Override
 	public List<GetContentVO> getcontent(String num) throws Exception {
 		List<GetContentVO> getContentList = sqlSession.selectList(Namespace + ".getcontent", num);
+		System.out.println(getContentList.get(0).getContent());
 		return getContentList;
 	}
 

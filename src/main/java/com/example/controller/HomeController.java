@@ -1,16 +1,23 @@
 package com.example.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.dto.GetContentVO;
 import com.example.dto.HomeContentVO;
@@ -20,13 +27,13 @@ import com.example.service.HomeService;
 @Controller
 public class HomeController {
 	
-	//ÀÇÁ¸°ü°è ÀÚµ¿¿¬°á
+	//ì˜ì¡´ê´€ê³„ ìë™ì—°ê²°
 	@Inject
 	private HomeService service;
 	
-	//¿äÃ» URL¸ÅÇÎ method¼Ó¼º°ª ÁöÁ¤
+	//ìš”ì²­ URLë§¤í•‘ methodì†ì„±ê°’ ì§€ì •
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	//Model °´Ã¼¸¦ ÆÄ¶ó¹ÌÅÍ·Î ¹Ş¾Æ¼­ µ¥ÀÌÅÍ¸¦ ºä·Î ³Ñ±è ÄÁÆ®·Ñ·¯¿¡¼­ ºä¿¡ µ¥ÀÌÅÍ¸¦ Àü´ŞÇÏ±â À§ÇØ »ç¿ëÇÏ´Â °´Ã¼
+	//Model ê°ì²´ë¥¼ íŒŒë¼ë¯¸í„°ë¡œ ë°›ì•„ì„œ ë°ì´í„°ë¥¼ ë·°ë¡œ ë„˜ê¹€ ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ë·°ì— ë°ì´í„°ë¥¼ ì „ë‹¬í•˜ê¸° ìœ„í•´ ì‚¬ìš©í•˜ëŠ” ê°ì²´
 	public String home(Model model) throws Exception {
 		
 		List<HomeContentVO> HomeCList = service.selectContent();
@@ -36,6 +43,8 @@ public class HomeController {
 		
 		return "home";
 	}
+	
+	
 	
 	@RequestMapping(value = "/content", method = RequestMethod.GET)
 	public String content(HttpServletRequest request, Model model) throws Exception {
@@ -48,7 +57,7 @@ public class HomeController {
 		
 		model.addAttribute("GetSubList", GetSubList);
 
-		// ¼­ºñ½º¿¡¼­ ½ºÆ®¸µÇü ¹è¿­·Î sql½ÇÇà°á°ú ¹ŞÀº´ÙÀ½ È¨ÄÁÆ®·Ñ·¯¿¡¼­ ¸ğµ¨¿¡ ³Ö¾î¼­ Àü´Ş
+		// ì„œë¹„ìŠ¤ì—ì„œ ìŠ¤íŠ¸ë§í˜• ë°°ì—´ë¡œ sqlì‹¤í–‰ê²°ê³¼ ë°›ì€ë‹¤ìŒ í™ˆì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ëª¨ë¸ì— ë„£ì–´ì„œ ì „ë‹¬
 		return "content";
 	}
 	

@@ -49,16 +49,10 @@
 	</nav>
 	<%
 		String id = (String) session.getAttribute("ID");
-		System.out.println(id + "님 환영합니다.");
-		
-
-
-
-		
+		System.out.println(id + "님 환영합니다.");		
 	%>
 	
 	<div id="LoginCheck"><%=id%>님 환영합니다!</div>
-
 
 	<table class="table">
 		<tr>
@@ -73,7 +67,6 @@
 		</tr>
 		
 	</table>
-
 
 	
 </div>
