@@ -11,7 +11,9 @@
 	margin-left: 22rem;
 }
 </style>
-<script src="//cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
+<script src="//code.jquery.com/jquery.min.js"></script>
+
+<script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
 
 
 
@@ -56,13 +58,39 @@
 			</tr>
 		</form>
 	</table>
-	<script>
+	<!-- <script>
 		// Replace the <textarea id="editor1"> with a CKEditor
 		// instance, using default configuration.
 		// Macintosh HD⁩/Users/taeky/eclipse-workspace/SpringBoard/src/main/webapp/⁨resources⁩/
 		CKEDITOR.replace('editor1', {
 			filebrowserImageUploadUrl : 'img'
 		});
-	</script>
+	</script> -->
+	<script>
+    $(function(){
+         
+        CKEDITOR.replace( 'editor1', {//해당 이름으로 된 textarea에 에디터를 적용
+            width:'100%',
+            height:'400px',
+            filebrowserImageUploadUrl: 'img' //여기 경로로 파일을 전달하여 업로드 시킨다.
+        });
+         
+         
+        CKEDITOR.on('dialogDefinition', function( ev ){
+            var dialogName = ev.data.name;
+            var dialogDefinition = ev.data.definition;
+          
+            switch (dialogName) {
+                case 'image': //Image Properties dialog
+                    //dialogDefinition.removeContents('info');
+                    dialogDefinition.removeContents('Link');
+                    dialogDefinition.removeContents('advanced');
+                    break;
+            }
+        });
+         
+    });
+</script>
+	
 </body>
 </html>
