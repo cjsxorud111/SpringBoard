@@ -5,6 +5,7 @@ public class FileContentVO {
 	private String id;
 	private String title;
 	private String contents;
+	private String content;
 	private String save_file_name;
 	public String getNum() {
 		return num;
@@ -29,6 +30,12 @@ public class FileContentVO {
 	}
 	public void setContents(String contents) {
 		this.contents = contents;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public String getSave_file_name() {
 		return save_file_name;

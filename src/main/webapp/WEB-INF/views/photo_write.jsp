@@ -16,7 +16,6 @@
 <script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
 
 
-
 </head>
 <body>
 	<h1>글쓰기!</h1>

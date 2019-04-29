@@ -12,7 +12,7 @@
 	<select id="Pnum" resultType="String">
 		SELECT  page_num FROM page_number WHERE page_name = "photo"
 	</select>
-	
+	  
 	<insert id="photowriting" parameterType="com.example.dto.FileContentVO" >
 		INSERT INTO PHOTOCONTENTS (id, title, content, save_file_name) VALUES (#{id}, #{title}, #{contents}, #{save_file_name})
 	</insert>

@@ -53,6 +53,8 @@ public class PhotoController {
 		List<FileContentVO> GetContentList = service.page_photo(num);
 		model.addAttribute("GetContentList", GetContentList);
 		FileContentVO a = GetContentList.get(0);
+		System.out.println(a.getContent());
+		System.out.println(a.getSave_file_name());
 		// ���񽺿��� ��Ʈ���� �迭�� sql������ �����㿡 Ȩ��Ʈ�ѷ����� �𵨿� �־ ����
 		
 		return "photopage";
@@ -99,12 +101,14 @@ public class PhotoController {
             byte[] bytes = upload.getBytes();
             String uploadPath = "/Users/taeky/eclipse-workspace/SpringBoard/src/main/webapp/resources/img/" + fileName;//저장경로
 //            String uploadPath = "http://192.168.0.28:8090/Users/taeky/eclipse-workspace/SpringBoard/src/main/webapp/resources/img/" + fileName;
+            ///Users/taeky/eclipse-workspace/SpringBoard/src/main/webapp/resources/img/" + fileName;
+            
             out = new FileOutputStream(new File(uploadPath));
             out.write(bytes);
             String callback = request.getParameter("CKEditorFuncNum");
             System.out.println(callback);
             printWriter = response.getWriter();
-            String fileUrl = "/Users/taeky/eclipse-workspace/SpringBoard/src/main/webapp/resources/img/" + fileName; //url경로
+            String fileUrl = "img/" + fileName; //url경로
             System.out.println("3");
 //            JsonObject json = new JsonObject();
 //

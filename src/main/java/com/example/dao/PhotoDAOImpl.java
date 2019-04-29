@@ -25,11 +25,12 @@ public class PhotoDAOImpl implements PhotoDAO  {
 	@Inject
 	private SqlSession sqlSession;
 	private static final String Namespace = "com.example.mapper.photoMapper";
-
-
+    
+    
 	@Override
 	public List<FileContentVO> selectPhoto() throws Exception {
 		List<FileContentVO> ccc = sqlSession.selectList(Namespace + ".selectPhoto");
+		System.out.println(ccc.get(0)+"dㅕ기임:");
 		FileContentVO vvv = ccc.get(0);
 		return ccc;
 	}
@@ -42,8 +43,8 @@ public class PhotoDAOImpl implements PhotoDAO  {
 
 	@Override
 	public void photowriting(FileContentVO vo) throws Exception {
-		System.out.println(vo.getSave_file_name());
-
+		System.out.println(vo.getContents());
+		
 		sqlSession.insert(Namespace + ".photowriting", vo);
 		sqlSession.update(Namespace + ".plus_photonum");
 

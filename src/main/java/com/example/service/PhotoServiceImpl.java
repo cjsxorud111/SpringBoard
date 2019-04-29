@@ -13,7 +13,7 @@ import com.example.dto.FileContentVO;
 @Service
 public class PhotoServiceImpl implements PhotoService {
 
-	/* ¿©±â ¿Ö ¿ÀÅä¿ÍÀÌ¾îµå ¾²´ÂÁö °øºÎ */
+	/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 	@Autowired
 	private PhotoDAO dao;
 
@@ -24,7 +24,7 @@ public class PhotoServiceImpl implements PhotoService {
 
 		vo.setId(request.getParameter("ID"));
 		vo.setTitle(request.getParameter("TITLE"));
-		vo.setContents(request.getParameter("CONTENTS"));
+		vo.setContents(request.getParameter("editor1"));
 		vo.setSave_file_name(save_file_name);
 
 		dao.photowriting(vo);
