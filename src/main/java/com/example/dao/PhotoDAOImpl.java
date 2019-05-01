@@ -26,7 +26,6 @@ public class PhotoDAOImpl implements PhotoDAO  {
 	private SqlSession sqlSession;
 	private static final String Namespace = "com.example.mapper.photoMapper";
     
-    
 	@Override
 	public List<FileContentVO> selectPhoto() throws Exception {
 		List<FileContentVO> ccc = sqlSession.selectList(Namespace + ".selectPhoto");

@@ -7,15 +7,20 @@
 <head>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script> -->
 <title>Home</title>
-<%String id = (String) session.getAttribute("ID");%>
+<%
+	String id = (String) session.getAttribute("ID");
+%>
 </head>
 <body>
 	<%@ include file="nav.jsp"%>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="home">포트폴리오</a>
+			<a class="navbar-brand" href="home">신조어사</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
 				aria-expanded="false" aria-label="Toggle navigation">
@@ -37,32 +42,51 @@
 			</div>
 		</div>
 	</nav>
-	
+	<!-- <nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">제타위키</a>
+			</div>
+			<div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">홈</a></li>
+					<li><a href="#">메뉴1</a></li>
+					<li><a href="#">메뉴2</a></li>
+					<li><a href="#">메뉴3</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">회원가입</a></li>
+					<li><a href="#">로그인</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav> -->
+
 	<%
 		//HomeController에서 model.addAttribute 로 보낸걸 request로 받음
 		Object contentNum = request.getAttribute("Cnum");
-				
+
 		int number = Integer.parseInt(contentNum.toString());
-		
+
 		//총 몇 페이지인지 계산
 		double num = (double) number / 10;
-		double temp = num - (int) num; 
+		double temp = num - (int) num;
 		//총 페이지수
 		int pagenum;
-	
+
 		if (temp == 0) {
 			pagenum = (int) num;
 		} else {
 			pagenum = (int) num + 1;
-		} 
-		
+		}
+
 		//페이지 블록 계산 
 		int herePage = 0;
 		int begin = 0;
 		int end = 0;
-		
+
 		String pages = request.getParameter("page");
-		
+
 		if (pages == null) {
 			herePage = 1;
 		} else {
@@ -71,15 +95,13 @@
 
 		begin = herePage * 10 - 10;
 		end = herePage * 10 - 1;
-		
 	%>
 
 	<div class="container">
-		<br>
-		<br>
-		<br>
-		<div id="LoginCheck"><%=id%>님 환영합니다!</div>	
-		
+		<br> <br> <br>
+		<div id="LoginCheck"><%=id%>님 환영합니다!
+		</div>
+
 		<br>
 		<Cnum>총 글수: </Cnum>
 		<c:out value="${Cnum}"></c:out>
@@ -100,13 +122,13 @@
 				<c:forEach items="${HomeCList}" var="a" begin="<%=begin%>"
 					end="<%=end%>">
 					<tr>
-						<td>&nbsp&nbsp${a.num}</td>
+						<td>&nbsp&nbsp${a.num}</td> 
 						<td><a href="content?num=${a.num}">${a.title}</a></td>
 						<td>${a.id}</td>
 						<td></td>
 					</tr>
 				</c:forEach>
-				
+
 				<!--페이지 출력-->
 				<tr>
 					<td>총페이지수: <%=pagenum%>&nbsp&nbsp<a href="home?page=1">[처음]</a>
@@ -115,7 +137,7 @@
 						%> <a href="home?page=<%=i%>"><%=i%></a>&nbsp <%
  	}
  %> <a href="home?page=<%=pagenum%>">[끝]</a></td>
- 
+
 					<td></td>
 					<td></td>
 					<td><a href="write">글쓰기</a></td>

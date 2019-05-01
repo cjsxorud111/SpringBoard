@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.defineMapper">
+	  
+	<insert id="newword_writing" parameterType="com.example.dto.NewwordVO" >
+		INSERT INTO DEFINE (WORD, ID, PW, INFO) VALUES (#{word}, #{id}, #{pw}, #{editor1})
+	</insert>
+	
+	<select id="mainDefineList" resultType="com.example.dto.MainDefineContentVO" >
+		SELECT NUM, ID, PW, WORD, INFO, UP, DOWN FROM DEFINE
+	</select>
+</mapper>
+
