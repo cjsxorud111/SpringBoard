@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.example.dao.DefineDAO;
 import com.example.dao.FileDAO;
 import com.example.dao.PhotoDAO;
+import com.example.dto.DefineSubVO;
 import com.example.dto.FileContentVO;
 import com.example.dto.FileContentVO2;
 import com.example.dto.HomeContentVO;
@@ -51,20 +52,20 @@ public class DefineServiceImpl implements DefineService {
 
 	@Override
 	public void define_sub(HttpServletRequest request) throws Exception {
-		SubVO vo = new SubVO();
-		String uid = null;
-		for (int i=0;i<10;i++){
-            uid = UUID.randomUUID().toString();
-		}
+		DefineSubVO vo = new DefineSubVO();
 		
 		vo.setContent(request.getParameter("subcon"));
 		vo.setConnum(request.getParameter("num"));
 		vo.setSpace(request.getParameter("space"));
-		vo.setUid(uid);
-		vo.setUuid(request.getParameter("uuid"));
-		
+
 		dao.define_sub(vo);
 		
+	}
+
+	@Override
+	public List<DefineSubVO> getDefinSubList() throws Exception {
+		
+		return dao.getDefinSubList();
 	}
 
 	

@@ -9,8 +9,16 @@
 		INSERT INTO DEFINE (WORD, ID, PW, INFO) VALUES (#{word}, #{id}, #{pw}, #{editor1})
 	</insert>
 	
+	<insert id="define_sub" parameterType="com.example.dto.DefineSubVO" >
+		INSERT INTO DEFINESUB (connum, space, content) VALUES (#{connum}, #{space}, #{content})
+	</insert>
+	
 	<select id="mainDefineList" resultType="com.example.dto.MainDefineContentVO" >
 		SELECT NUM, ID, PW, WORD, INFO, UP, DOWN FROM DEFINE
+	</select>
+	
+	<select id="getDefinSubList" resultType="com.example.dto.DefineSubVO" >
+		SELECT NUM, CONNUM, SPACE, CONTENT FROM DEFINESUB 
 	</select>
 </mapper>
 

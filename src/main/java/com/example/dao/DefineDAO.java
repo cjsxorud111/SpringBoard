@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.example.dto.ContentsVO;
+import com.example.dto.DefineSubVO;
 import com.example.dto.FileContentVO;
 import com.example.dto.FileContentVO2;
 import com.example.dto.GetContentVO;
@@ -21,5 +22,7 @@ public interface DefineDAO {
 
 	public List<MainDefineContentVO> selectMainDefCon() throws Exception;
 
-	public void define_sub(SubVO vo) throws Exception;
+	public void define_sub(DefineSubVO vo) throws Exception;
+
+	public List<DefineSubVO> getDefinSubList()throws Exception;
 }

@@ -77,10 +77,25 @@
 					</form>
 				</tr>
 			</table>
+			<!-- 댓글표시 -->
+
+			<c:set var="num" value="${a.num}" />
+
+			<table class="table">
+				<c:forEach items="${getDefinSubList}" var="b">
+
+					<c:set var="connum" value="${b.connum}" />
+
+					<c:if test="${num eq connum}">
+						<tr>
+							<%-- <td>${a.num}</td> --%>
+							<td><c:forEach begin="0" end="${b.space}">ㅡ</c:forEach>${b.content}
+						</tr>
+					</c:if>
+
+				</c:forEach>
+			</table>
 	</div>
-
-
-
 	<br>
 	<br>
 	</c:forEach>

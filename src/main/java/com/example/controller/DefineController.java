@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.dto.DefineSubVO;
 import com.example.dto.GetContentVO;
 import com.example.dto.HomeContentVO;
 import com.example.dto.MainDefineContentVO;
@@ -33,34 +34,25 @@ public class DefineController {
 	//의존관계 자동연결
 	@Inject
 	private DefineService service;
-//	
-//	//요청 URL매핑 method속성값 지정
-//	@RequestMapping(value = "/home", method = RequestMethod.GET)
-//	//Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
-//	public String home(Model model) throws Exception {
-//		
-//		List<HomeContentVO> HomeCList = service.selectContent();
-//		int Cnum = service.Cnum();
-//		model.addAttribute("HomeCList", HomeCList);
-//		model.addAttribute("Cnum", Cnum);
-//		
-//		return "home";
-//	}
-	
+
 	@RequestMapping(value = "/define_sub", method = RequestMethod.POST)
-	public String writesub(HttpServletRequest request, Model model) throws Exception {
+	public String define_sub(HttpServletRequest request, Model model) throws Exception {
 		
 		service.define_sub(request);
-		return "define";
+		return "redirect:define";
 	}
 	
 	@RequestMapping(value = "/define", method = RequestMethod.GET)
 	//Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
 	public String define(Model model) throws Exception {
 		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
-		
 		model.addAttribute("MainDefineList", MainDefineList);
 	
+		List<DefineSubVO> getDefinSubList = service.getDefinSubList();
+		model.addAttribute("getDefinSubList", getDefinSubList);
+		
+		System.out.println(getDefinSubList.get(0).getContent()+"여기되나?");
+		
 		
 		return "define";
 	}

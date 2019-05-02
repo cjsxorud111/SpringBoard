@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.example.dto.DefineSubVO;
 import com.example.dto.FileContentVO;
 import com.example.dto.FileContentVO2;
 import com.example.dto.MainDefineContentVO;
@@ -35,29 +36,15 @@ public class DefineDAOImpl implements DefineDAO {
 	}
 
 	@Override
-	public void define_sub(SubVO vo) throws Exception {
-		if (vo.getUuid() != null) {
-			String uuid = vo.getUuid();
-			String num = vo.getConnum();
-			List<SubVO> soso = sqlSession.selectList(Namespace + ".getsub3", vo);
-			List<SubVO> test = new ArrayList<SubVO>();
-			SubVO[] vvvo = new SubVO[soso.size()];
-			for (int i = 0; i < soso.size(); i++) {
-				vvvo[i] = soso.get(i);
-
-			}
-			sqlSession.delete(Namespace + ".deletsub", vo);
-			for (int i = 0; i < soso.size(); i++) {
-				sqlSession.insert(Namespace + ".writesub", vvvo[i]);
-
-				if (vvvo[i].getUid().equals(uuid)) {
-					sqlSession.insert(Namespace + ".writesub", vo);
-				}
-			}
-
-		} else {
-			sqlSession.insert(Namespace + ".writesub", vo);
-		}
+	public void define_sub(DefineSubVO vo) throws Exception {
+		
+		sqlSession.insert(Namespace + ".define_sub", vo);
 	}
 
+	@Override
+	public List<DefineSubVO> getDefinSubList() throws Exception {
+		List<DefineSubVO> getDefinSubList = sqlSession.selectList(Namespace + ".getDefinSubList");
+		return getDefinSubList;
+		
+	}
 }
