@@ -20,5 +20,9 @@
 	<select id="getDefinSubList" resultType="com.example.dto.DefineSubVO" >
 		SELECT NUM, CONNUM, SPACE, CONTENT FROM DEFINESUB 
 	</select>
+	
+	<delete id="deleteAllSub" > 
+		Truncate DEFINESUB
+	</delete> 	
 </mapper>
 

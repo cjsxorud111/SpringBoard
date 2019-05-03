@@ -23,4 +23,6 @@ public interface DefineService {
 
 	public List<DefineSubVO> getDefinSubList()throws Exception;
 
+	public void defineSecondSub(HttpServletRequest request)throws Exception;
+
 }

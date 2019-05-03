@@ -42,6 +42,13 @@ public class DefineController {
 		return "redirect:define";
 	}
 	
+	@RequestMapping(value = "/defineSecondSub", method = RequestMethod.POST)
+	public String defineSecondSub(HttpServletRequest request, Model model) throws Exception {
+		
+		service.defineSecondSub(request);
+		return "redirect:define";
+	}
+	
 	@RequestMapping(value = "/define", method = RequestMethod.GET)
 	//Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
 	public String define(Model model) throws Exception {

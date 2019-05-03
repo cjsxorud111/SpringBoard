@@ -25,4 +25,6 @@ public interface DefineDAO {
 	public void define_sub(DefineSubVO vo) throws Exception;
 
 	public List<DefineSubVO> getDefinSubList()throws Exception;
+
+	public void DeleteAllSub()throws Exception;
 }

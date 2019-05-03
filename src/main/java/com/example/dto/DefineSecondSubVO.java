@@ -1,6 +1,6 @@
 package com.example.dto;
 
-public class DefineSubVO {
+public class DefineSecondSubVO {
 
 	private String num;
 	private String connum;

@@ -47,4 +47,9 @@ public class DefineDAOImpl implements DefineDAO {
 		return getDefinSubList;
 		
 	}
+
+	@Override
+	public void DeleteAllSub() throws Exception {
+		sqlSession.delete(Namespace + ".deleteAllSub");
+	}
 }
