@@ -5,16 +5,67 @@
 	border: 1px solid red; 
 	margin-left: 7rem;
 }
+
 .container01 {
 	border: 1px solid red; 
 	margin-left: 7rem;
+	margin-right: 33rem;
+	background-color: #FFFFFF;
 }
 #newword {
 	border: 1px solid blue; 
 	margin-left: 7rem;
 }
+#test {
+	border: 1px solid blue; 
+	length: 5rem;
+}
 
 
+
+/* 댓글표시화살표 */
+#diagram{
+	width:3px;height:8px; background-color:#FF9900;
+}
+.cont-box-pseudo{width:7px;height:3px; background-color:#FF9900;}
+.cont-box-pseudo:before{
+content:"";display:block; 
+border-right:6.5px solid #FF9900;border-bottom:6.5px solid transparent;
+position: relative;
+left: 10px;
+bottom: 10px;
+transform:rotate(22deg) translateY(14px);
+-ms-transform:rotate(25deg) translateY(14px);
+-webkit-transform:rotate(44deg) translateY(11px);
+-moz-transform:rotate(25deg) translateY(14px);
+-o-transform:rotate(22deg) translateY(14px);
+} 
+/* 전배경회색 */
+.backGround{
+	background-color: #BBBBBB;
+}
+/* 댓글표시창 */
+.subViewSection{
+	float: left; 
+}
+
+/* 댓글기록표시창 */
+.textSection{
+	float: left; 
+}
+#deleteTag{
+	float: right;
+	
+}
+#subPw{
+	width:4.5rem;
+}
+#deleteButton{
+	width:4.5rem;
+}
+#subView{
+	padding-right: 10rem;
+}
 #content {
 	/* border: 1px solid red; */  
 	width: 18rem;

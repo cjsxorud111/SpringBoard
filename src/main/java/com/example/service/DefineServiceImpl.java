@@ -88,11 +88,11 @@ public class DefineServiceImpl implements DefineService {
 			
 			temp = allSubList.get(i);
 			newSubList.add(temp);
-			System.out.println(temp.getNum()+"여기"+ vo.getNum());
+			System.out.println(temp.getNum()+"여기"+ request.getParameter("subnum"));
 			int a = 1;
 			int b =1;
 //			int b =1 ;temp.getNum() == vo.getNum()
-			if(a == b) {
+			if(temp.getNum().equals(request.getParameter("subnum"))) {
 				System.out.println("kokokoko");
 				newSubList.add(vo);
 			}
