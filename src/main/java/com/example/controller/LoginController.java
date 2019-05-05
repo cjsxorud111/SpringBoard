@@ -45,11 +45,12 @@ public class LoginController {
 	public String logining(HttpServletRequest request, Model model) throws Exception {
 		boolean aa = service.logining(request);
 
-		// 반환값 트루면 로그인 ok 아니면 false로
 		if (aa == true) {
 			String a = request.getParameter("ID");
+			String pw = request.getParameter("PW");
 			HttpSession session = request.getSession();
 			session.setAttribute("ID", a);
+			session.setAttribute("PW", pw);
 			return "redirect:home";
 
 		} else {

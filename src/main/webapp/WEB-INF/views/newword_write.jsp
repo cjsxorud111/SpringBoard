@@ -56,7 +56,7 @@
 				System.out.println(id + "님 환영합니다.");
 			%>
 			<table>
-				<form action="newword_writing" method="post"
+				<form action="newwordWriting" method="post"
 					enctype="multipart/form-data">
 					
 					<tr>

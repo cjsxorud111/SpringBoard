@@ -18,13 +18,17 @@ import com.example.dto.NewwordVO;
 import com.example.dto.SubVO;
 
 public interface DefineDAO {
-	public void newword_writing(NewwordVO vo) throws Exception;
+	public void newwordWriting(NewwordVO vo) throws Exception;
 
 	public List<MainDefineContentVO> selectMainDefCon() throws Exception;
 
-	public void define_sub(DefineSubVO vo) throws Exception;
+	public void defineWriteSub(DefineSubVO vo) throws Exception;
 
 	public List<DefineSubVO> getDefinSubList()throws Exception;
 
-	public void DeleteAllSub()throws Exception;
+	public void DeleteAllSub() throws Exception;
+
+	public DefineSubVO getDefinSub(String num) throws Exception;
+
+	public void deleteDefineSub(String num)throws Exception;
 }

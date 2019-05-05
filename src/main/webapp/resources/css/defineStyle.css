@@ -1,22 +1,13 @@
 @charset "EUC-KR";
 
-
-#write {
-	margin-left: 7rem;
-}
-
 .container01 {
 	margin-left: 33rem;
 	margin-right: 33rem;
 	background-color: #FFFFFF;
 }
-#newword {
+#newWord {
 	border: 1px solid blue; 
 	margin-left: 7rem;
-}
-#test {
-	border: 1px solid blue; 
-	length: 5rem;
 }
 
 /* 댓글표시화살표 */
@@ -69,41 +60,4 @@ transform:rotate(22deg) translateY(14px);
 }
 #subView{
 	padding-right: 10rem;
-}
-#content {
-	/* border: 1px solid red; */  
-	width: 18rem;
-	margin-left: 21rem;
-	margin-top: 4rem;
-}
-
-.row {
-	margin: 10px;
-}
-
-#login {
-	width: 22rem;
-}
-
-#pw {
-	width: 22rem;
-}
-
-#naverIdLogin {
-	width: 22rem;
-	heigh: 1rem;
-}
-
-#join {
-	/* border: 1px solid red; */
-	width: 28rem;
-	margin-left: 5rem;
-	margin-top: 2rem;
-}
-#cont {
-	width: 23rem;
-}
-#LoginCheck {
-	/* border: 1px solid red; */
-	float: right;
 }

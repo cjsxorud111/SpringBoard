@@ -4,6 +4,7 @@
 <%@ page import="java.io.*, java.util.*"%>
 <%
 	String sessionId = (String) session.getAttribute("ID");
+	String sessionPw = (String) session.getAttribute("PW");
 %>
 <html>
 <head>
@@ -15,15 +16,17 @@
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script> -->
 <title>새롭게추가된 단어</title>
-<link href="resources/css/style.css?after" rel="stylesheet"
+<link href="resources/css/defineStyle.css?after" rel="stylesheet"
 	type="text/css">
-
+<c:set var="isPwTrue" value="${b.connum}" />
 <script>
 	window.onload = function() {
 		var aboveCommentSection = document
 				.getElementsByClassName("aboveCommentSection");
 		var belowCommentSection = document
 				.getElementsByClassName("belowCommentSection");
+		var deleteTag = document
+		.getElementsByClassName("deleteTag");
 
 		for (var i = 0; i < aboveCommentSection.length; i++) {
 			aboveCommentSection.item(i).style.display = "none";
@@ -31,6 +34,25 @@
 		for (var i = 0; i < belowCommentSection.length; i++) {
 			belowCommentSection.item(i).style.display = "none";
 		}
+		for (var i = 0; i < deleteTag.length; i++) {
+			deleteTag.item(i).style.display = "none";
+		}
+		
+		var isPwTrue = new Array();
+		
+		<c:forEach items="${isPwTrue}" var="isPwTrue">
+			var json = new Object();
+			json.isPwTrue = "${isPwTrue.isPwTrue}"
+			result.push(json);
+		</c:forEach>
+		
+		if (isPwTrue == true){
+			alert("비밀번호가 다릅니다.");
+		}
+		if (isPwTrue ==	false){
+			alert("비밀번호가 다릅니다.");
+		}
+		
 	}
 
 	var session =
@@ -70,11 +92,24 @@
 			}
 		}
 	}
+	
+	function deleteClick(num) {
+		var deleteSection = 'deleteSection'
+				+ num;
+		var con = document
+				.getElementById(deleteSection);
 
-	function sub_del(a) {
-		var aa = 'button' + a;
-		document.getElementById(aa).style.display = "none";
+		if (isSession == false) {
+			alert("먼저로그인을 해주세요");
+		} else {
+			if (con.style.display == "none") {
+				con.style.display = 'block';
+			} else {
+				con.style.display = 'none';
+			}
+		}
 	}
+
 </script>
 </head>
 <body class="backGround">
@@ -101,23 +136,13 @@
 			</div>
 		</div>
 	</nav>
-
-
-
-
-	<div class="container">
-		<br> <br> <br>
-
-	</div>
-
-
-
-
-
-
+	<!-- 네브바에 가려서 위쪽안보이기때문에br태그 -->
+	<br>
+	<br>
+	<br>
 	<br>
 	<div class="container01">
-		<div id="newword">
+		<div id="newWord">
 			<a href="newword_write">새로운단어 정의 추가</a>
 		</div>
 
@@ -140,11 +165,12 @@
 
 			<table class="table">
 				<tr>
-					<form action="define_sub" method="post">
+					<form action="defineWriteSub" method="post">
 						<td id="button${a.num}" class="aboveCommentSection"><textarea
 								name="subcon" rows="2" cols="30"></textarea> <input
 							type="hidden" name="num" value="${a.num}" /> <input
-							type="hidden" name="space" value="0" /> <input type="submit"
+							type="hidden" name="space" value="0" /> <input
+							type="hidden" name="pw" value="<%=sessionPw%>" /> <input type="submit"
 							value="댓글달기"></td>
 					</form>
 				</tr>
@@ -169,7 +195,8 @@
 									<c:set var="space" value="${b.space}" />
 									<div class="subViewSection">
 										<c:if test="${space > 0}">
-											<!-- 댓글표시 화살표 -->
+										
+											<!-- 댓글표시 화살표 도형 -->
 											<div id="diagram"></div>
 											<div class="cont-box-pseudo"></div>
 										</c:if>
@@ -180,17 +207,30 @@
 											<div id="subView">&nbsp;&nbsp;${b.content}</div>
 										</a>
 									</div>
-									<div id="deleteTag">
-										<form action="deleteSecondSub" method="post">
+									
+									<!-- 공백 -->
+									<div class="temp">
+									&nbsp;&nbsp;
+								 	</div>
+
+									<!-- 댓글삭제 입력창과 삭제버튼 -->
+									<div class="deleteTag" id="deleteSection${b.num}">
+										<form action="deleteDefineSub" method="post">
 											<div>
-											<input type="text" id="subPw" name="PW"
-												placeholder="비밀번호">
+												<input type="text" id="subPw" name="PW" placeholder="비밀번호">
+												<input type="hidden" name="NUM" value="${b.num}">
 											</div>
 											<div>
-											<input
-											type="submit" id="deleteButton" value="댓글삭제" />
+												<input type="submit" id="deleteButton" value="댓글삭제" />
 											</div>
 										</form>
+									</div>
+									
+									<!-- 댓글버튼 -->
+									<div class="deleteShowTag">
+									<a href="javascript:deleteClick(${b.num});">
+										<input type="submit" id="deleteShowButton" value="댓글삭제" />
+									</a>
 									</div>
 								</div>
 							</td>
@@ -203,9 +243,8 @@
 								<td id="commentClickButton${b.num}" class="belowCommentSection">
 									<div class="textSection">
 										<c:forEach begin="0" end="${b.space}">
-									&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;
-									</c:forEach>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										</c:forEach>
 									</div>
 									<div class="textSection">
 
@@ -219,6 +258,7 @@
 										<input type="hidden" name="subnum" value="${b.num}" /> <input
 											type="hidden" name="space" value="${b.space+1}" /> <input
 											type="hidden" name="connum" value="${a.num}" /> <input
+											type="hidden" name="pw" value="<%=sessionPw%>" /> <input
 											type="submit" value="댓글달기" />
 									</div>
 								</td>

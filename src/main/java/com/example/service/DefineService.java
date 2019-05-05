@@ -15,14 +15,16 @@ import com.example.dto.SubVO;
 
 public interface DefineService {
 	
-	public void newword_writing(HttpServletRequest request) throws Exception;
+	public void newwordWriting(HttpServletRequest request) throws Exception;
 
 	public List<MainDefineContentVO> selectMainDefCon()throws Exception;
 
-	public void define_sub(HttpServletRequest request)throws Exception;
+	public void defineWriteSub(HttpServletRequest request)throws Exception;
 
 	public List<DefineSubVO> getDefinSubList()throws Exception;
 
 	public void defineSecondSub(HttpServletRequest request)throws Exception;
+
+	public boolean deleteDefineSub(HttpServletRequest request)throws Exception;
 
 }

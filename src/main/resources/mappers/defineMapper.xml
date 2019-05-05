@@ -5,12 +5,12 @@
 
 <mapper namespace="com.example.mapper.defineMapper">
 	  
-	<insert id="newword_writing" parameterType="com.example.dto.NewwordVO" >
+	<insert id="newwordWriting" parameterType="com.example.dto.NewwordVO" >
 		INSERT INTO DEFINE (WORD, ID, PW, INFO) VALUES (#{word}, #{id}, #{pw}, #{editor1})
 	</insert>
 	
-	<insert id="define_sub" parameterType="com.example.dto.DefineSubVO" >
-		INSERT INTO DEFINESUB (connum, space, content) VALUES (#{connum}, #{space}, #{content})
+	<insert id="defineWriteSub" parameterType="com.example.dto.DefineSubVO" >
+		INSERT INTO DEFINESUB (CONNUM, SPACE, CONTENT, PW) VALUES (#{connum}, #{space}, #{content}, #{pw})
 	</insert>
 	
 	<select id="mainDefineList" resultType="com.example.dto.MainDefineContentVO" >
@@ -21,8 +21,17 @@
 		SELECT NUM, CONNUM, SPACE, CONTENT FROM DEFINESUB 
 	</select>
 	
+	<select id="getDefineSub" parameterType="String" resultType="com.example.dto.DefineSubVO" >
+		SELECT NUM, CONNUM, SPACE, CONTENT, PW FROM DEFINESUB WHERE NUM = #{num};
+	</select>
+	
 	<delete id="deleteAllSub" > 
 		Truncate DEFINESUB
-	</delete> 	
+	</delete> 
+		
+	<delete id="deleteDefineSub" parameterType="String"> 
+		DELETE FROM DEFINESUB WHERE NUM = #{num};
+	</delete> 
+	 
 </mapper>
 

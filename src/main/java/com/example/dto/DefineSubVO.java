@@ -6,8 +6,14 @@ public class DefineSubVO {
 	private String connum;
 	private String space;
 	private String content;
+	private String pw;
 	
-	
+	public String getPw() {
+		return pw;
+	}
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
 	public String getNum() {
 		return num;
 	}
@@ -39,6 +45,5 @@ public class DefineSubVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
 	
 }

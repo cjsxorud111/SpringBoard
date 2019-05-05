@@ -23,9 +23,9 @@ public class DefineDAOImpl implements DefineDAO {
 	private static final String Namespace = "com.example.mapper.defineMapper";
 
 	@Override
-	public void newword_writing(NewwordVO vo) throws Exception {
+	public void newwordWriting(NewwordVO vo) throws Exception {
 		System.out.println("2222");
-		sqlSession.insert(Namespace + ".newword_writing", vo);
+		sqlSession.insert(Namespace + ".newwordWriting", vo);
 		System.out.println("3333----");
 	}
 
@@ -36,9 +36,9 @@ public class DefineDAOImpl implements DefineDAO {
 	}
 
 	@Override
-	public void define_sub(DefineSubVO vo) throws Exception {
+	public void defineWriteSub(DefineSubVO vo) throws Exception {
 		
-		sqlSession.insert(Namespace + ".define_sub", vo);
+		sqlSession.insert(Namespace + ".defineWriteSub", vo);
 	}
 
 	@Override
@@ -51,5 +51,17 @@ public class DefineDAOImpl implements DefineDAO {
 	@Override
 	public void DeleteAllSub() throws Exception {
 		sqlSession.delete(Namespace + ".deleteAllSub");
+	}
+
+	//댓글삭제를 위한 셀렉트
+	@Override
+	public DefineSubVO getDefinSub(String num) throws Exception {
+		return sqlSession.selectOne(Namespace + ".getDefineSub", num);
+	}
+	
+	// 댓글삭제
+	@Override
+	public void deleteDefineSub(String num) throws Exception {
+		sqlSession.delete(Namespace + ".deleteDefineSub", num);
 	}
 }
