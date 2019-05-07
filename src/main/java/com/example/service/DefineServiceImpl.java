@@ -80,9 +80,7 @@ public class DefineServiceImpl implements DefineService {
 		vo.setNum(request.getParameter("subnum"));
 		vo.setPw(request.getParameter("pw"));
 		List<DefineSubVO> allSubList = dao.getDefinSubList(); //전체테이블 가져옴
-		System.out.println("테스트1");
 		dao.DeleteAllSub(); //테이블내용 전체삭제
-		System.out.println("테스트2");
 		List<DefineSubVO> newSubList = new ArrayList<DefineSubVO>(); //중간에댓글 새로 삽입할 리스트
 		System.out.println();
 		for (int i = 0; i < allSubList.size(); i++) {
@@ -93,27 +91,25 @@ public class DefineServiceImpl implements DefineService {
 			int a = 1;
 			int b =1;
 			if(temp.getNum().equals(request.getParameter("subnum"))) {
-				System.out.println("kokokoko");
 				newSubList.add(vo);
 			}
 		}
-		System.out.println("테스트3");
 		for (int i = 0; i < newSubList.size(); i++) {
 			dao.defineWriteSub(newSubList.get(i));
 		}
-		System.out.println("테스트4");
 	}
     
 	// 댓글삭제
 	@Override
-	public boolean deleteDefineSub(HttpServletRequest request) throws Exception {
-		String pw = request.getParameter("PW");
-		String num = request.getParameter("NUM");
-		DefineSubVO subVo = dao.getDefinSub(num);
-		if(subVo.getPw().equals(pw)) {
-			dao.deleteDefineSub(num);
-			return true;
+	public String deleteDefineSub(String pw, String num) throws Exception {
+		int numb = Integer.parseInt(num);
+		DefineSubVO defineSub = dao.getDefinSub(numb);
+		String isDelete = "no";
+		
+		if(defineSub.getPw() != null && defineSub.getPw().equals(pw)) {
+			dao.deleteDefineSub(numb);
+			isDelete = "yes";
 		}
-		return false;
+		return isDelete;
 	}
 }

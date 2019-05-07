@@ -25,6 +25,6 @@ public interface DefineService {
 
 	public void defineSecondSub(HttpServletRequest request)throws Exception;
 
-	public boolean deleteDefineSub(HttpServletRequest request)throws Exception;
+	public String deleteDefineSub(String pw, String num)throws Exception;
 
 }

@@ -28,7 +28,7 @@ public interface DefineDAO {
 
 	public void DeleteAllSub() throws Exception;
 
-	public DefineSubVO getDefinSub(String num) throws Exception;
+	public DefineSubVO getDefinSub(int numb) throws Exception;
 
-	public void deleteDefineSub(String num)throws Exception;
+	public void deleteDefineSub(int numb)throws Exception;
 }

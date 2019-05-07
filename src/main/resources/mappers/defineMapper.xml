@@ -21,15 +21,15 @@
 		SELECT NUM, CONNUM, SPACE, CONTENT FROM DEFINESUB 
 	</select>
 	
-	<select id="getDefineSub" parameterType="String" resultType="com.example.dto.DefineSubVO" >
-		SELECT NUM, CONNUM, SPACE, CONTENT, PW FROM DEFINESUB WHERE NUM = #{num};
+	<select id="getDefineSub" parameterType="Integer" resultType="com.example.dto.DefineSubVO" >
+		SELECT NUM, CONNUM, SPACE, CONTENT, PW FROM DEFINESUB WHERE NUM = #{numb};
 	</select>
 	
 	<delete id="deleteAllSub" > 
 		Truncate DEFINESUB
 	</delete> 
 		
-	<delete id="deleteDefineSub" parameterType="String"> 
+	<delete id="deleteDefineSub" parameterType="Integer"> 
 		DELETE FROM DEFINESUB WHERE NUM = #{num};
 	</delete> 
 	 

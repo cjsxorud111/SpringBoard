@@ -24,9 +24,7 @@ public class DefineDAOImpl implements DefineDAO {
 
 	@Override
 	public void newwordWriting(NewwordVO vo) throws Exception {
-		System.out.println("2222");
 		sqlSession.insert(Namespace + ".newwordWriting", vo);
-		System.out.println("3333----");
 	}
 
 	@Override
@@ -55,13 +53,15 @@ public class DefineDAOImpl implements DefineDAO {
 
 	//댓글삭제를 위한 셀렉트
 	@Override
-	public DefineSubVO getDefinSub(String num) throws Exception {
+	public DefineSubVO getDefinSub(int num) throws Exception {
+		System.out.println("여기외1234");
 		return sqlSession.selectOne(Namespace + ".getDefineSub", num);
 	}
 	
 	// 댓글삭제
 	@Override
-	public void deleteDefineSub(String num) throws Exception {
+	public void deleteDefineSub(int num) throws Exception {
+		System.out.println("여22기외");
 		sqlSession.delete(Namespace + ".deleteDefineSub", num);
 	}
 }

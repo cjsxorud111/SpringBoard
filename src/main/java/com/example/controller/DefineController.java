@@ -12,12 +12,14 @@ import java.util.UUID;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.dto.DefineSubVO;
@@ -30,16 +32,18 @@ import com.example.service.HomeService;
 
 @Controller
 public class DefineController {
-	
+	int refreshNum = 0;
 	//의존관계 자동연결
 	@Inject
 	private DefineService service;
-
+	
 	@RequestMapping(value = "/deleteDefineSub", method = RequestMethod.POST)
+	@ResponseBody
 	public String deleteDefineSub(HttpServletRequest request, Model model) throws Exception {
-		boolean isPwTrue = service.deleteDefineSub(request);
-		model.addAttribute("isPwTrue", isPwTrue);
-		return "redirect:define";
+		String pw = request.getParameter("pw");
+		String num = request.getParameter("num");
+		System.out.println("여기0외");
+		return service.deleteDefineSub(pw, num);
 	}
 	
 	@RequestMapping(value = "/defineWriteSub", method = RequestMethod.POST)
@@ -58,16 +62,16 @@ public class DefineController {
 	
 	@RequestMapping(value = "/define", method = RequestMethod.GET)
 	//Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
-	public String define(Model model) throws Exception {
+	public String define(HttpServletRequest request, Model model) throws Exception {
 		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
 		model.addAttribute("MainDefineList", MainDefineList);
-	
+		 
 		List<DefineSubVO> getDefinSubList = service.getDefinSubList();
 		model.addAttribute("getDefinSubList", getDefinSubList);
 		
-		System.out.println(getDefinSubList.get(0).getContent()+"여기되나?");
-		
-		
+		refreshNum++;
+		HttpSession session = request.getSession();
+		session.setAttribute("refreshNum", refreshNum);
 		return "define";
 	}
 	
