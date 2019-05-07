@@ -8,17 +8,10 @@
 %>
 <html>
 <head>
-
-
-<script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script> -->
 <title>새롭게추가된 단어</title>
 <link href="resources/css/defineStyle.css?after" rel="stylesheet"
 	type="text/css">
-
+<script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
 <script>
 	window.onload = function() {
 		var aboveCommentSection = document
@@ -36,14 +29,9 @@
 		for (var i = 0; i < deleteTag.length; i++) {
 			deleteTag.item(i).style.display = "none";
 		}
-
 	}
-	var session =
-<%=sessionId%>
-	;
-	
-	
-	
+	var session = <%=sessionId%>;
+
 	var isSession = false;
 	if (session != null) {
 		isSession = true;
@@ -80,18 +68,28 @@
 	}
 
 	function deleteClick(num) {
-		var deleteSection = 'deleteSection' + num;
-		var con = document.getElementById(deleteSection);
-
-		if (isSession == false) {
-			alert("먼저로그인을 해주세요");
-		} else {
-			if (con.style.display == "none") {
-				con.style.display = 'block';
-			} else {
-				con.style.display = 'none';
+		var userInput = prompt("비밀번호를 입력해주세요"+"");
+		deleteSub(num, userInput);
+	}
+	
+	function deleteSub(num, userInput){
+		$.ajax({
+			type : "POST", //전송방식을 지정한다 (POST,GET)
+			url : "deleteDefineSub",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+			data: { pw : userInput, num : num },
+			error : function() {
+				alert("error");
+			},
+			success : function(Parse_data) {
+				
+				if(Parse_data == 'yes'){
+					location.reload();
+				} else {
+					alert("비밀번호가 다릅니다.");
+				}
 			}
-		}
+		});
 	}
 </script>
 </head>
@@ -99,16 +97,29 @@
 	<%@ include file="nav.jsp"%>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
-			<a class="navbar-brand" href="home">신조어사전</a>
+			<div>
+				<a href="define" id="title" style="color: white; font-weight: 30px;">신조어사전</a>
+			</div>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a class="nav-link" href="home">답글형
-							게시판 </a></li>
+					<li class="nav-item">
+
+						<form class="form-inline" action="defineSecondSub" method="post">
+							<span class='green_window'> <input type='text'
+								class='input_text' />
+							</span>
+							<button type='submit' class='sch_smit'>검색</button>
+						</form>
+
+					</li>
+					<li class="nav-item">&nbsp;&nbsp;</li>
+					<li class="nav-item active"><a class="nav-link" href="define">새롭게정의된단어</a></li>
 					<li class="nav-item"><a class="nav-link" href="newword_write">새로운단어정의하기</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="login">로그인</a>
@@ -124,164 +135,123 @@
 	<br>
 	<br>
 	<br>
-	<div class="container01">
-		<div id="newWord">
-			<a href="newword_write">새로운단어 정의 추가</a>
-		</div>
 
-		<c:forEach items="${MainDefineList}" var="a">
-			<div>
-				<h1>${a.word}</h1>
-			</div>
-			<div>
-				<h2>단어정의</h2>
-			</div>
-			<div>${a.info}</div>
-			<div>글번호 ${a.num}</div>
-			<div>아이디 ${a.id}</div>
-			<div>추천수 ${a.up}</div>
-			<div>비추천수 ${a.down}</div>
-			<a href="define_write?num=${a.num}">이 단어의 새로운 정의 추가</a>
-			<br>
+	<c:forEach items="${MainDefineList}" var="a">
+		<div id="container01">
+			<div id="container02">
+				<div>
+					<h1>${a.word}</h1>
+				</div>
+				<div>
+					<h2>단어정의</h2>
+				</div>
+				<div>${a.info}</div>
+				<div>글번호: ${a.num}</div>
+				<div>글쓴이: ${a.id}</div>
+				<div id="delete">
+					&nbsp;&nbsp;<a href="deleteDefineContent?num=${a.num}">글삭제</a>
+				</div>
 
-			<a href="javascript:commentClick(${a.num});">comment</a>
+				<div id="rate">추천수: ${a.up} 비추천수: ${a.down}</div>
+				<a href="define_write?num=${a.num}">이 단어의 새로운 정의 추가</a> <br> <a
+					href="javascript:commentClick(${a.num});">댓글+</a>
 
-			<table class="table">
-				<tr>
-					<form action="defineWriteSub" method="post">
-					<td id="button${a.num}" class="aboveCommentSection"><textarea
-							name="subcon" rows="2" cols="30"></textarea> <input type="hidden"
-						name="num" value="${a.num}" /> <input type="hidden" name="space"
-						value="0" /> <input type="hidden" name="pw"
-						value="<%=sessionPw%>" /> <input type="submit" value="댓글달기"></td>
-					</form>
-				</tr>
-			</table>
+				<table class="table">
+					<tr>
+						<form action="defineWriteSub" method="post">
+							<td id="button${a.num}" class="aboveCommentSection"><textarea
+									name="subcon" rows="2" cols="30"></textarea> <input
+								type="hidden" name="num" value="${a.num}" /> <input
+								type="hidden" name="space" value="0" /> <input type="hidden"
+								name="pw" value="<%=sessionPw%>" /> <input type="submit"
+								value="댓글달기"></td>
+						</form>
+					</tr>
+				</table>
 
-			<!-- 댓글표시 -->
+				<!-- 댓글표시 -->
 
-			<c:set var="num" value="${a.num}" />
+				<c:set var="num" value="${a.num}" />
 
-			<table class="table">
-				<c:forEach items="${getDefinSubList}" var="b">
+				<table class="table">
+					<c:forEach items="${getDefinSubList}" var="b">
 
-					<c:set var="connum" value="${b.connum}" />
+						<c:set var="connum" value="${b.connum}" />
 
-					<c:if test="${num eq connum}">
-						<tr>
-							<td>
-								<div>
-									<div class="subViewSection">
-										<c:forEach begin="0" end="${b.space}">&nbsp;&nbsp;&nbsp;&nbsp;</c:forEach>
-									</div>
-									<c:set var="space" value="${b.space}" />
-									<div class="subViewSection">
-										<c:if test="${space > 0}">
-
-											<!-- 댓글표시 화살표 도형 -->
-											<div id="diagram"></div>
-											<div class="cont-box-pseudo"></div>
-										</c:if>
-									</div>
-									<div class="subViewSection">
-										<a href="javascript:belowCommentClick(${b.num});"
-											style="color: black;">
-											<div id="subView">&nbsp;&nbsp;${b.content}</div>
-										</a>
-									</div>
-
-									<!-- 공백 -->
-									<div class="temp">&nbsp;&nbsp;</div>
-
-
-									<script>
-									function deleteSub(num){
-										
-										var textId = 'subPw' + num;
-										var pw = document.getElementById(textId).value; 
-										
-										$.ajax({
-											type : "POST", //전송방식을 지정한다 (POST,GET)
-											url : "deleteDefineSub",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-											dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
-											data: { pw : pw, num : num },
-											error : function() {
-												alert("error");
-											},
-											success : function(Parse_data) {
-												
-												if(Parse_data == 'yes'){
-													location.reload();
-												} else {
-													alert("비밀번호가 다릅니다.");
-												}
-											}
-										});
-									}
-									</script>
-
-
-									<!-- 댓글삭제 입력창과 삭제버튼 -->
-									<div class="deleteTag" id="deleteSection${b.num}">
-										<div>
-											<input type="text" id="subPw${b.num}" name="PW"
-												placeholder="비밀번호">
+						<c:if test="${num eq connum}">
+							<tr>
+								<td>
+									<div>
+										<div class="subViewSection">
+											<c:forEach begin="0" end="${b.space}">&nbsp;&nbsp;&nbsp;&nbsp;</c:forEach>
 										</div>
-										<div>
-											<input type="submit" id="deleteButton"
-												onclick="deleteSub(${b.num});" value="댓글삭제" />
+										<c:set var="space" value="${b.space}" />
+										<div class="subViewSection">
+											<c:if test="${space > 0}">
+
+												<!-- 댓글표시 화살표 도형 -->
+												<div id="diagram"></div>
+												<div class="cont-box-pseudo"></div>
+											</c:if>
+										</div>
+										<div class="subViewSection">
+											<a href="javascript:belowCommentClick(${b.num});"
+												style="color: black;">
+												<div id="subView">&nbsp;&nbsp;${b.content}</div>
+											</a>
 										</div>
 
-									</div>
+										<!-- 공백 -->
+										<div class="temp">&nbsp;&nbsp;</div>
+										<!-- 댓글버튼 -->
+										<div class="deleteShowTag">
+											<a href="javascript:deleteClick(${b.num});"> <input
+												type="submit" id="deleteShowButton" value="삭제" />
+											</a>
+										</div>
 
-									<!-- 댓글버튼 -->
-									<div class="deleteShowTag">
-										<a href="javascript:deleteClick(${b.num});"> <input
-											type="submit" id="deleteShowButton" value="Comment삭제" />
-										</a>
-									</div>
-								</div>
-							</td>
-						</tr>
-
-						<tr>
-							<!-- 댓글의댓글 -->
-							<form action="defineSecondSub" method="post">
-
-								<td id="commentClickButton${b.num}" class="belowCommentSection">
-									<div class="textSection">
-										<c:forEach begin="0" end="${b.space}">
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										</c:forEach>
-									</div>
-									<div class="textSection">
-
-										<!-- 댓글표시 화살표 -->
-										<div id="diagram"></div>
-										<div class="cont-box-pseudo"></div>
-									</div>
-									<div class="textSection">&nbsp;&nbsp;</div>
-									<div class="textSection">
-										<textarea name="subcon" rows="2" cols="40"></textarea>
-										<input type="hidden" name="subnum" value="${b.num}" /> <input
-											type="hidden" name="space" value="${b.space+1}" /> <input
-											type="hidden" name="connum" value="${a.num}" /> <input
-											type="hidden" name="pw" value="<%=sessionPw%>" /> <input
-											type="submit" value="댓글달기" />
 									</div>
 								</td>
-							</form>
-						</tr>
-					</c:if>
+							</tr>
 
-				</c:forEach>
+							<tr>
+								<!-- 댓글의댓글 -->
+								<form action="defineSecondSub" method="post">
 
-			</table>
+									<td id="commentClickButton${b.num}" class="belowCommentSection">
+										<div class="textSection">
+											<c:forEach begin="0" end="${b.space}">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										</c:forEach>
+										</div>
+										<div class="textSection">
 
-			<br>
-			<br>
-		</c:forEach>
-	</div>
+											<!-- 댓글표시 화살표 -->
+											<div id="diagram"></div>
+											<div class="cont-box-pseudo"></div>
+										</div>
+										<div class="textSection">&nbsp;&nbsp;</div>
+										<div class="textSection">
+											<textarea name="subcon" rows="2" cols="40"></textarea>
+											<input type="hidden" name="subnum" value="${b.num}" /> <input
+												type="hidden" name="space" value="${b.space+1}" /> <input
+												type="hidden" name="connum" value="${a.num}" /> <input
+												type="hidden" name="pw" value="<%=sessionPw%>" /> <input
+												type="submit" value="댓글달기" />
+										</div>
+									</td>
+								</form>
+							</tr>
+						</c:if>
+
+					</c:forEach>
+
+				</table>
+
+				<br> <br>
+			</div>
+		</div>
+	</c:forEach>
 
 </body>
 </html>

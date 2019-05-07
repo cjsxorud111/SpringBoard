@@ -34,20 +34,12 @@ public class DefineServiceImpl implements DefineService {
 		vo.setId(request.getParameter("ID"));
 		vo.setPw(request.getParameter("PW"));
 		vo.setEditor1(request.getParameter("editor1"));	
-		System.out.println("1111");
 		dao.newwordWriting(vo);
 	}
 
 	@Override
 	public List<MainDefineContentVO> selectMainDefCon() throws Exception {
 		List<MainDefineContentVO> MainDefineList = dao.selectMainDefCon();
-		//		for (int i = 0; i < MainDefineList.size(); i++) {
-//			if(MainDefineList.get(i).getUp() == null ) {
-//				
-//			}
-//			
-//		}
-		System.out.println("ㅅㅅㄷ");
 		return MainDefineList;
 	}
 
@@ -59,9 +51,7 @@ public class DefineServiceImpl implements DefineService {
 		vo.setPw(request.getParameter("pw"));
 		vo.setConnum(request.getParameter("num"));
 		vo.setSpace(request.getParameter("space"));
-
 		dao.defineWriteSub(vo);
-		
 	}
 
 	@Override
@@ -82,7 +72,6 @@ public class DefineServiceImpl implements DefineService {
 		List<DefineSubVO> allSubList = dao.getDefinSubList(); //전체테이블 가져옴
 		dao.DeleteAllSub(); //테이블내용 전체삭제
 		List<DefineSubVO> newSubList = new ArrayList<DefineSubVO>(); //중간에댓글 새로 삽입할 리스트
-		System.out.println();
 		for (int i = 0; i < allSubList.size(); i++) {
 			DefineSubVO temp = new DefineSubVO();
 			

@@ -42,7 +42,6 @@ public class DefineController {
 	public String deleteDefineSub(HttpServletRequest request, Model model) throws Exception {
 		String pw = request.getParameter("pw");
 		String num = request.getParameter("num");
-		System.out.println("여기0외");
 		return service.deleteDefineSub(pw, num);
 	}
 	
@@ -103,7 +102,6 @@ public class DefineController {
         response.setContentType("text/html;charset=utf-8");
  
         try{
-        	System.out.println("1");
         	UUID uuid = UUID.randomUUID();
     		String fileName = uuid + "_" + upload.getOriginalFilename();
     		System.out.println(fileName);
@@ -116,7 +114,6 @@ public class DefineController {
             System.out.println(callback);
             printWriter = response.getWriter();
             String fileUrl = "img/" + fileName; //url경로
-            System.out.println("3");
     		
             printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("
                     + callback
@@ -140,7 +137,6 @@ public class DefineController {
                 e.printStackTrace();
             }
         }
-        System.out.println("4");
         return;
     }	
 }
