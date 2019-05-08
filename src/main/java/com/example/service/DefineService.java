@@ -27,4 +27,8 @@ public interface DefineService {
 
 	public String deleteDefineSub(String pw, String num)throws Exception;
 
+	public void recommendUp(String upNumber, String conNum)throws Exception;
+
+	public void recommendDown(String downNumber, String conNum)throws Exception;
+
 }

@@ -31,4 +31,8 @@ public interface DefineDAO {
 	public DefineSubVO getDefinSub(int numb) throws Exception;
 
 	public void deleteDefineSub(int numb)throws Exception;
+
+	public void recommendUp(String upNumber, String conNum);
+
+	public void recommendDown(String downNumber, String conNum);
 }

@@ -32,6 +32,15 @@
 	<delete id="deleteDefineSub" parameterType="Integer"> 
 		DELETE FROM DEFINESUB WHERE NUM = #{num};
 	</delete> 
+	
+	<update id="recommendUp" parameterType="String">
+		UPDATE DEFINE SET UP = UP + 1 WHERE NUM = #{conNum}
+		 
+	</update>  
+	
+	<update id="recommendDown" parameterType="String">
+		UPDATE DEFINE SET DOWN = DOWN + 1 WHERE NUM = #{conNum}
+	</update>  
 	 
 </mapper>
 

@@ -30,7 +30,9 @@
 			deleteTag.item(i).style.display = "none";
 		}
 	}
-	var session = <%=sessionId%>;
+	var session =
+<%=sessionId%>
+	;
 
 	var isSession = false;
 	if (session != null) {
@@ -68,22 +70,25 @@
 	}
 
 	function deleteClick(num) {
-		var userInput = prompt("비밀번호를 입력해주세요"+"");
+		var userInput = prompt("비밀번호를 입력해주세요" + "");
 		deleteSub(num, userInput);
 	}
-	
-	function deleteSub(num, userInput){
+
+	function deleteSub(num, userInput) {
 		$.ajax({
 			type : "POST", //전송방식을 지정한다 (POST,GET)
 			url : "deleteDefineSub",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
 			dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
-			data: { pw : userInput, num : num },
+			data : {
+				pw : userInput,
+				num : num
+			},
 			error : function() {
 				alert("error");
 			},
 			success : function(Parse_data) {
-				
-				if(Parse_data == 'yes'){
+
+				if (Parse_data == 'yes') {
 					location.reload();
 				} else {
 					alert("비밀번호가 다릅니다.");
@@ -91,6 +96,8 @@
 			}
 		});
 	}
+	
+	
 </script>
 </head>
 <body class="backGround">
@@ -108,24 +115,20 @@
 
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item">
 
-						<form class="form-inline" action="defineSecondSub" method="post">
-							<span class='green_window'> <input type='text'
-								class='input_text' />
-							</span>
-							<button type='submit' class='sch_smit'>검색</button>
-						</form>
 
-					</li>
-					<li class="nav-item">&nbsp;&nbsp;</li>
-					<li class="nav-item active"><a class="nav-link" href="define">새롭게정의된단어</a></li>
-					<li class="nav-item"><a class="nav-link" href="newword_write">새로운단어정의하기</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="login">로그인</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="memberjoin">회원가입</a>
-					</li>
+					<form class="form-inline" action="defineSecondSub" method="post">
+						<span class='green_window'> <input type='text'
+							class='input_text' />
+						</span>
+						<button type='submit' class='sch_smit'>검색</button>
+					</form>
+					<div id="navLink">
+						&nbsp;&nbsp;&nbsp; <a href="define" style="color: white;">새롭게정의된단어</a>&nbsp;&nbsp;&nbsp;
+						<a href="newword_write" style="color: white;">새로운단어정의하기</a>&nbsp;&nbsp;&nbsp;
+						<a href="login" style="color: white;">로그인</a>&nbsp;&nbsp;&nbsp; <a
+							href="memberjoin" style="color: white;">회원가입</a>&nbsp;&nbsp;&nbsp;
+					</div>
 				</ul>
 			</div>
 		</div>
@@ -152,7 +155,64 @@
 					&nbsp;&nbsp;<a href="deleteDefineContent?num=${a.num}">글삭제</a>
 				</div>
 
-				<div id="rate">추천수: ${a.up} 비추천수: ${a.down}</div>
+				<div id="rate">
+					<button onclick="recommendUp(${a.up}, ${a.num});" id="recommendUp${a.num}">추천: ${a.up}</button>
+					<button onclick="recommendDown(${a.down}, ${a.num});" id="recommendDown${a.num}">비추천: ${a.down}</button>
+				</div>
+				<script>
+				
+				function recommendUp(upNumber, conNum){
+					$("#te").text("test");
+					
+					if (isSession == false) {
+						alert("먼저로그인을 해주세요");
+					} else{
+						$.ajax({
+							type : "POST", //전송방식을 지정한다 (POST,GET)
+							url : "recommendUp",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+							dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+							data : {
+								upNumber : upNumber,
+								conNum : conNum
+							},
+							error : function() {
+								alert("error");
+							},
+							success : function() {
+								var id = 'recommendUp'+conNum;
+								var num = upNumber + 1;
+								document.getElementById(id).innerHTML="추천: " + num;
+							}
+						});
+					}
+					
+				}
+				function recommendDown(downNumber, conNum){
+					if (isSession == false) {
+						alert("먼저로그인을 해주세요");
+					} else{
+						$.ajax({
+							type : "POST", //전송방식을 지정한다 (POST,GET)
+							url : "recommendDown",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+							dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+							data : {
+								downNumber : downNumber,
+								conNum : conNum
+							},
+							error : function() {
+								alert("error");
+							},
+							success : function() {
+								var id = 'recommendDown'+conNum;
+								var num = downNumber + 1;
+								document.getElementById(id).innerHTML="추천: " + num;
+							}
+						});
+					}
+				}
+				
+				</script>
+				
 				<a href="define_write?num=${a.num}">이 단어의 새로운 정의 추가</a> <br> <a
 					href="javascript:commentClick(${a.num});">댓글+</a>
 

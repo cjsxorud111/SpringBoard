@@ -54,14 +54,22 @@ public class DefineDAOImpl implements DefineDAO {
 	//댓글삭제를 위한 셀렉트
 	@Override
 	public DefineSubVO getDefinSub(int num) throws Exception {
-		System.out.println("여기외1234");
 		return sqlSession.selectOne(Namespace + ".getDefineSub", num);
 	}
 	
-	// 댓글삭제
+	//댓글삭제
 	@Override
 	public void deleteDefineSub(int num) throws Exception {
-		System.out.println("여22기외");
 		sqlSession.delete(Namespace + ".deleteDefineSub", num);
+	}
+	//추천+1
+	@Override
+	public void recommendUp(String upNumber, String conNum) {
+		sqlSession.update(Namespace + ".recommendUp", conNum);
+	}
+	//추천-1
+	@Override
+	public void recommendDown(String downNumber, String conNum) {
+		sqlSession.update(Namespace + ".recommendDown", conNum);
 	}
 }

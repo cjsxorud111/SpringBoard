@@ -37,6 +37,23 @@ public class DefineController {
 	@Inject
 	private DefineService service;
 	
+	//추천수증가
+	@RequestMapping(value = "/recommendUp", method = RequestMethod.POST)
+	@ResponseBody
+	public void recommendUp(HttpServletRequest request, Model model) throws Exception {
+		String upNumber = request.getParameter("upNumber");
+		String conNum = request.getParameter("conNum");
+		service.recommendUp(upNumber, conNum);
+	}
+	//추천수감소
+	@RequestMapping(value = "/recommendDown", method = RequestMethod.POST)
+	@ResponseBody
+	public void recommendDown(HttpServletRequest request, Model model) throws Exception {
+		String downNumber = request.getParameter("downNumber");
+		String conNum = request.getParameter("conNum");
+		service.recommendDown(downNumber, conNum);
+	}
+	
 	@RequestMapping(value = "/deleteDefineSub", method = RequestMethod.POST)
 	@ResponseBody
 	public String deleteDefineSub(HttpServletRequest request, Model model) throws Exception {

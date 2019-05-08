@@ -101,4 +101,15 @@ public class DefineServiceImpl implements DefineService {
 		}
 		return isDelete;
 	}
+
+	@Override
+	public void recommendUp(String upNumber, String conNum) throws Exception {
+		dao.recommendUp(upNumber, conNum);
+		
+	}
+
+	@Override
+	public void recommendDown(String downNumber, String conNum) throws Exception {
+		dao.recommendDown(downNumber, conNum);
+	}
 }
