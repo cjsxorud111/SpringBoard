@@ -15,6 +15,7 @@ import com.example.dto.MemberVO;
 import com.example.dto.MemberjoinVO;
 import com.example.dto.NewupdatingVO;
 import com.example.dto.NewwordVO;
+import com.example.dto.RecommendVO;
 import com.example.dto.SubVO;
 
 public interface DefineDAO {
@@ -30,9 +31,14 @@ public interface DefineDAO {
 
 	public DefineSubVO getDefinSub(int numb) throws Exception;
 
-	public void deleteDefineSub(int numb)throws Exception;
+	public void deleteDefineSub(int numb) throws Exception;
 
-	public void recommendUp(String upNumber, String conNum);
+	public void recommendUp(String upNumber, String conNum) throws Exception;
 
-	public void recommendDown(String downNumber, String conNum);
+	public void recommendDown(String downNumber, String conNum) throws Exception;
+
+	public void recommendWrite(RecommendVO recommendVO) throws Exception;
+
+	public List<RecommendVO> recommendSelect(String conNum) throws Exception;
+
 }

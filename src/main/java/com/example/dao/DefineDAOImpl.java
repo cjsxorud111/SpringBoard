@@ -13,6 +13,7 @@ import com.example.dto.FileContentVO;
 import com.example.dto.FileContentVO2;
 import com.example.dto.MainDefineContentVO;
 import com.example.dto.NewwordVO;
+import com.example.dto.RecommendVO;
 import com.example.dto.SubVO;
 
 @Repository
@@ -32,7 +33,13 @@ public class DefineDAOImpl implements DefineDAO {
 		List<MainDefineContentVO> MainDefineList = sqlSession.selectList(Namespace + ".mainDefineList");
 		return MainDefineList;
 	}
-
+	//기존 추천,비추천 여부를 확인하기위한 셀렉트
+	@Override
+	public List<RecommendVO> recommendSelect(String conNum) throws Exception {
+		List<RecommendVO> recommendSelect = sqlSession.selectList(Namespace + ".recommendSelect", conNum);
+		return recommendSelect;
+	}
+	
 	@Override
 	public void defineWriteSub(DefineSubVO vo) throws Exception {
 		
@@ -43,7 +50,6 @@ public class DefineDAOImpl implements DefineDAO {
 	public List<DefineSubVO> getDefinSubList() throws Exception {
 		List<DefineSubVO> getDefinSubList = sqlSession.selectList(Namespace + ".getDefinSubList");
 		return getDefinSubList;
-		
 	}
 
 	@Override
@@ -64,12 +70,17 @@ public class DefineDAOImpl implements DefineDAO {
 	}
 	//추천+1
 	@Override
-	public void recommendUp(String upNumber, String conNum) {
+	public void recommendUp(String upNumber, String conNum) throws Exception {
 		sqlSession.update(Namespace + ".recommendUp", conNum);
 	}
 	//추천-1
 	@Override
-	public void recommendDown(String downNumber, String conNum) {
+	public void recommendDown(String downNumber, String conNum) throws Exception {
 		sqlSession.update(Namespace + ".recommendDown", conNum);
+	}
+
+	@Override
+	public void recommendWrite(RecommendVO recommendVO) throws Exception {
+		sqlSession.insert(Namespace + ".recommendWriting", recommendVO);
 	}
 }

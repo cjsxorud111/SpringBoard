@@ -13,8 +13,16 @@
 		INSERT INTO DEFINESUB (CONNUM, SPACE, CONTENT, PW) VALUES (#{connum}, #{space}, #{content}, #{pw})
 	</insert>
 	
+	<insert id="recommendWriting" parameterType="com.example.dto.RecommendVO" >
+		INSERT INTO RECOMMENDATION (NUM, ID) VALUES (#{conNum}, #{sessionId})
+	</insert>
+	
 	<select id="mainDefineList" resultType="com.example.dto.MainDefineContentVO" >
 		SELECT NUM, ID, PW, WORD, INFO, UP, DOWN FROM DEFINE
+	</select>
+	
+	<select id="recommendSelect" parameterType="String" resultType="com.example.dto.RecommendVO" >
+		SELECT NUM, ID FROM RECOMMENDATION WHERE NUM = #{conNum};
 	</select>
 	
 	<select id="getDefinSubList" resultType="com.example.dto.DefineSubVO" >

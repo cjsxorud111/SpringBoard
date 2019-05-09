@@ -13,7 +13,9 @@
 	type="text/css">
 <script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
 <script>
+		
 	window.onload = function() {
+		
 		var aboveCommentSection = document
 				.getElementsByClassName("aboveCommentSection");
 		var belowCommentSection = document
@@ -30,10 +32,11 @@
 			deleteTag.item(i).style.display = "none";
 		}
 	}
+	
 	var session =
-<%=sessionId%>
-	;
-
+		<%=sessionId%>
+			;
+	
 	var isSession = false;
 	if (session != null) {
 		isSession = true;
@@ -178,7 +181,14 @@
 							error : function() {
 								alert("error");
 							},
-							success : function() {
+							success : function(Parse_data) {
+								
+								if (Parse_data == 'yes') {
+									alert("추천은 한번만 가능합니다.");
+								} else {
+									alert("추천 되었습니다.");
+								}
+								
 								var id = 'recommendUp'+conNum;
 								var num = upNumber + 1;
 								document.getElementById(id).innerHTML="추천: " + num;
@@ -202,11 +212,18 @@
 							error : function() {
 								alert("error");
 							},
-							success : function() {
+							success : function(Parse_data) {
+								if (Parse_data == 'yes') {
+									alert("비추천은 한번만 가능합니다.");
+								} else {
+									alert("비추천 되었습니다.");
+								}
+								
 								var id = 'recommendDown'+conNum;
 								var num = downNumber + 1;
 								document.getElementById(id).innerHTML="추천: " + num;
 							}
+							
 						});
 					}
 				}
