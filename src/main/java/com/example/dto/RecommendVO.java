@@ -1,8 +1,8 @@
 package com.example.dto;
 
 public class RecommendVO {
-	String sessionId;
 	int conNum;
+	String sessionId;
 	public String getSessionId() {
 		return sessionId;
 	}

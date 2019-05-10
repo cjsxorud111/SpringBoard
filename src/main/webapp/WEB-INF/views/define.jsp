@@ -184,14 +184,13 @@
 							success : function(Parse_data) {
 								
 								if (Parse_data == 'yes') {
-									alert("추천은 한번만 가능합니다.");
+									alert("추,비추천은 한번만 가능합니다.");
 								} else {
 									alert("추천 되었습니다.");
+									var id = 'recommendUp'+conNum;
+									var num = upNumber + 1;
+									document.getElementById(id).innerHTML="추천: " + num;
 								}
-								
-								var id = 'recommendUp'+conNum;
-								var num = upNumber + 1;
-								document.getElementById(id).innerHTML="추천: " + num;
 							}
 						});
 					}
@@ -214,14 +213,13 @@
 							},
 							success : function(Parse_data) {
 								if (Parse_data == 'yes') {
-									alert("비추천은 한번만 가능합니다.");
+									alert("추,비추천은 한번만 가능합니다.");
 								} else {
 									alert("비추천 되었습니다.");
+									var id = 'recommendDown'+conNum;
+									var num = downNumber + 1;
+									document.getElementById(id).innerHTML="추천: " + num;
 								}
-								
-								var id = 'recommendDown'+conNum;
-								var num = downNumber + 1;
-								document.getElementById(id).innerHTML="추천: " + num;
 							}
 							
 						});

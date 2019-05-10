@@ -14,6 +14,7 @@ import com.example.dto.FileContentVO2;
 import com.example.dto.MainDefineContentVO;
 import com.example.dto.NewwordVO;
 import com.example.dto.RecommendVO;
+import com.example.dto.ReturnRecommendVO;
 import com.example.dto.SubVO;
 
 @Repository
@@ -35,8 +36,8 @@ public class DefineDAOImpl implements DefineDAO {
 	}
 	//기존 추천,비추천 여부를 확인하기위한 셀렉트
 	@Override
-	public List<RecommendVO> recommendSelect(String conNum) throws Exception {
-		List<RecommendVO> recommendSelect = sqlSession.selectList(Namespace + ".recommendSelect", conNum);
+	public List<ReturnRecommendVO> recommendSelect(String conNum) throws Exception {
+		List<ReturnRecommendVO> recommendSelect = sqlSession.selectList(Namespace + ".recommendSelect", conNum);
 		return recommendSelect;
 	}
 	

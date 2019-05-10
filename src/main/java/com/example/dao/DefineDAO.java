@@ -16,6 +16,7 @@ import com.example.dto.MemberjoinVO;
 import com.example.dto.NewupdatingVO;
 import com.example.dto.NewwordVO;
 import com.example.dto.RecommendVO;
+import com.example.dto.ReturnRecommendVO;
 import com.example.dto.SubVO;
 
 public interface DefineDAO {
@@ -39,6 +40,6 @@ public interface DefineDAO {
 
 	public void recommendWrite(RecommendVO recommendVO) throws Exception;
 
-	public List<RecommendVO> recommendSelect(String conNum) throws Exception;
+	public List<ReturnRecommendVO> recommendSelect(String conNum) throws Exception;
 
 }

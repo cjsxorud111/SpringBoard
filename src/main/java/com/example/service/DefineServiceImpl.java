@@ -21,6 +21,7 @@ import com.example.dto.MainDefineContentVO;
 import com.example.dto.NewupdatingVO;
 import com.example.dto.NewwordVO;
 import com.example.dto.RecommendVO;
+import com.example.dto.ReturnRecommendVO;
 import com.example.dto.SubVO;
 
 @Service
@@ -42,6 +43,7 @@ public class DefineServiceImpl implements DefineService {
 	@Override
 	public List<MainDefineContentVO> selectMainDefCon() throws Exception {
 		List<MainDefineContentVO> MainDefineList = dao.selectMainDefCon();
+		System.out.println(MainDefineList.get(0).getId());
 		return MainDefineList;
 	}
 
@@ -108,23 +110,21 @@ public class DefineServiceImpl implements DefineService {
 	public String recommendUp(HttpServletRequest request, String upNumber, String conNum) throws Exception {
 		HttpSession session = request.getSession();
 		String sessionId = (String) session.getAttribute("ID");
-		List<RecommendVO> recommendList = dao.recommendSelect(conNum);
-		
+		List<ReturnRecommendVO> recommendList = dao.recommendSelect(conNum);
 		String isId = "no";
 		for (int i = 0; i < recommendList.size(); i++) {
-			if (recommendList.get(i).getSessionId().equals(sessionId)) {
+			System.out.println("4-0");
+			ReturnRecommendVO recom = recommendList.get(i);
+			if (recommendList.get(i).getId().equals(sessionId)) {
+				 
 				isId = "yes";
 			}
 		}
-		
 		if (isId.equals("no")) {
 			dao.recommendUp(upNumber, conNum);
-			
 			RecommendVO recommendVO = new RecommendVO();
-
 			recommendVO.setConNum(Integer.parseInt(conNum));
 			recommendVO.setSessionId((String) session.getAttribute("ID"));
-
 			dao.recommendWrite(recommendVO);
 		}
 		return isId;
@@ -134,15 +134,13 @@ public class DefineServiceImpl implements DefineService {
 	public String recommendDown(HttpServletRequest request, String downNumber, String conNum) throws Exception {
 		HttpSession session = request.getSession();
 		String sessionId = (String) session.getAttribute("ID");
-		List<RecommendVO> recommendList = dao.recommendSelect(conNum);
-
+		List<ReturnRecommendVO> recommendList = dao.recommendSelect(conNum);
 		String isId = "no";
 		for (int i = 0; i < recommendList.size(); i++) {
-			if (recommendList.get(i).getSessionId().equals(sessionId)) {
+			if (recommendList.get(i).getId().equals(sessionId)) {
 				isId = "yes";
 			}
 		}
-
 		if (isId.equals("no")) {
 
 			dao.recommendDown(downNumber, conNum);

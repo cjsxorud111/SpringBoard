@@ -21,7 +21,7 @@
 		SELECT NUM, ID, PW, WORD, INFO, UP, DOWN FROM DEFINE
 	</select>
 	
-	<select id="recommendSelect" parameterType="String" resultType="com.example.dto.RecommendVO" >
+	<select id="recommendSelect" parameterType="String" resultType="com.example.dto.ReturnRecommendVO" >
 		SELECT NUM, ID FROM RECOMMENDATION WHERE NUM = #{conNum};
 	</select>
 	
