@@ -37,8 +37,16 @@
 		Truncate DEFINESUB
 	</delete> 
 		
-	<delete id="deleteDefineSub" parameterType="Integer"> 
-		DELETE FROM DEFINESUB WHERE NUM = #{num};
+	<delete id="deleteDefineContent" parameterType="String"> 
+		DELETE FROM DEFINE WHERE NUM = #{conNum};
+	</delete> 
+	
+	<delete id="deleteDefineAllConSub" parameterType="String"> 
+		DELETE FROM DEFINESUB WHERE CONNUM = #{conNum};
+	</delete> 
+	
+	<delete id="deleteDefineRecommend" parameterType="String"> 
+		DELETE FROM RECOMMENDATION WHERE NUM = #{conNum};
 	</delete> 
 	
 	<update id="recommendUp" parameterType="String">

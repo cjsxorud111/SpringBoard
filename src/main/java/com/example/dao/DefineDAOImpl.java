@@ -83,5 +83,15 @@ public class DefineDAOImpl implements DefineDAO {
 	@Override
 	public void recommendWrite(RecommendVO recommendVO) throws Exception {
 		sqlSession.insert(Namespace + ".recommendWriting", recommendVO);
+	} 
+
+
+	@Override
+	public void deleteDefineContent(String conNum) throws Exception {
+		//글,글에연관된댓글,추천삭제
+		sqlSession.delete(Namespace + ".deleteDefineContent", conNum);
+		sqlSession.delete(Namespace + ".deleteDefineAllConSub", conNum);
+		sqlSession.delete(Namespace + ".deleteDefineRecommend", conNum);
+		
 	}
 }

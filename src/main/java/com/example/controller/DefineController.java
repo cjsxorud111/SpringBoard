@@ -36,6 +36,13 @@ public class DefineController {
 	//의존관계 자동연결
 	@Inject
 	private DefineService service;
+
+	@RequestMapping(value = "/deleteDefineContent", method = RequestMethod.POST)
+	@ResponseBody
+	public String deleteDefineContent(HttpServletRequest request, Model model) throws Exception {
+		service.deleteDefineContent(request);
+		return "redirect:define";
+	}
 	
 	//추천수증가
 	@RequestMapping(value = "/recommendUp", method = RequestMethod.POST)
@@ -80,6 +87,10 @@ public class DefineController {
 	//Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
 	public String define(HttpServletRequest request, Model model) throws Exception {
 		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
+		for(int i=0; i<MainDefineList.size(); i++) {
+			System.out.println(MainDefineList.get(i).getUp());
+		}
+		
 		model.addAttribute("MainDefineList", MainDefineList);
 		 
 		List<DefineSubVO> getDefinSubList = service.getDefinSubList();

@@ -29,7 +29,7 @@ public class DefineServiceImpl implements DefineService {
 
 	@Autowired
 	private DefineDAO dao;
-
+	
 	@Override
 	public void newwordWriting(HttpServletRequest request) throws Exception {
 		NewwordVO vo = new NewwordVO();
@@ -112,14 +112,15 @@ public class DefineServiceImpl implements DefineService {
 		String sessionId = (String) session.getAttribute("ID");
 		List<ReturnRecommendVO> recommendList = dao.recommendSelect(conNum);
 		String isId = "no";
+		//db에서이미추천한적있는지검사
 		for (int i = 0; i < recommendList.size(); i++) {
-			System.out.println("4-0");
 			ReturnRecommendVO recom = recommendList.get(i);
 			if (recommendList.get(i).getId().equals(sessionId)) {
 				 
 				isId = "yes";
 			}
 		}
+		//db에추천이저장된적없다면추천+1
 		if (isId.equals("no")) {
 			dao.recommendUp(upNumber, conNum);
 			RecommendVO recommendVO = new RecommendVO();
@@ -154,4 +155,11 @@ public class DefineServiceImpl implements DefineService {
 		}
 		return isId;
 	}
+	
+	@Override
+	public void deleteDefineContent(HttpServletRequest request) throws Exception {
+		String conNum = request.getParameter("conNum");
+		dao.deleteDefineContent(conNum);
+	}
+
 }

@@ -31,4 +31,6 @@ public interface DefineService {
 
 	public String recommendDown(HttpServletRequest request, String downNumber, String conNum)throws Exception;
 
+	public void deleteDefineContent(HttpServletRequest request)throws Exception;
+
 }

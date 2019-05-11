@@ -33,9 +33,7 @@
 		}
 	}
 	
-	var session =
-		<%=sessionId%>
-			;
+	var session = '<%=sessionId%>';
 	
 	var isSession = false;
 	if (session != null) {
@@ -100,6 +98,22 @@
 		});
 	}
 	
+	function deleteCheck(conNum, id){ 
+		if (isSession == false) {
+			alert("먼저로그인을 해주세요");
+		} else{
+			/* 세션id와 글id대조하여 일치시삭제 */
+			if(session == id){
+				var really = confirm("삭제하시겠습니까?");
+				if(really){
+					defineContentDelete(conNum);
+					location.reload();
+				}
+			}else{
+				alert("작성하신글만 삭제할수있습니다.")
+			}
+		}
+	}
 	
 </script>
 </head>
@@ -155,7 +169,7 @@
 				<div>글번호: ${a.num}</div>
 				<div>글쓴이: ${a.id}</div>
 				<div id="delete">
-					&nbsp;&nbsp;<a href="deleteDefineContent?num=${a.num}">글삭제</a>
+					&nbsp;&nbsp;<button onclick="deleteCheck(${a.num}, '${a.id}');">글삭제</button>
 				</div>
 
 				<div id="rate">
@@ -163,6 +177,24 @@
 					<button onclick="recommendDown(${a.down}, ${a.num});" id="recommendDown${a.num}">비추천: ${a.down}</button>
 				</div>
 				<script>
+				
+				
+				function defineContentDelete(conNum){
+					$.ajax({
+						type : "POST", //전송방식을 지정한다 (POST,GET)
+						url : "deleteDefineContent",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+						dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+						data : {
+							conNum : conNum
+						},
+						error : function() {
+							alert("error");
+						},
+						success : function(Parse_data) {
+								alert("삭제되었습니다.");
+						}
+					});
+				}
 				
 				function recommendUp(upNumber, conNum){
 					$("#te").text("test");

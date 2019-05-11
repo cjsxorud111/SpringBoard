@@ -42,4 +42,6 @@ public interface DefineDAO {
 
 	public List<ReturnRecommendVO> recommendSelect(String conNum) throws Exception;
 
+	public void deleteDefineContent(String conNum) throws Exception;
+
 }
