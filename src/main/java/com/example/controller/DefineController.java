@@ -37,6 +37,14 @@ public class DefineController {
 	@Inject
 	private DefineService service;
 
+	@RequestMapping(value = "/selectSearchDefineList", method = RequestMethod.POST)
+	@ResponseBody
+	public String selectSearchDefineList(HttpServletRequest request, Model model) throws Exception {
+		System.out.println("test1");
+		return "redirect:define";
+	}
+	
+	//글삭제하기
 	@RequestMapping(value = "/deleteDefineContent", method = RequestMethod.POST)
 	@ResponseBody
 	public String deleteDefineContent(HttpServletRequest request, Model model) throws Exception {

@@ -21,7 +21,7 @@
 		var belowCommentSection = document
 				.getElementsByClassName("belowCommentSection");
 		var deleteTag = document.getElementsByClassName("deleteTag");
-
+		
 		for (var i = 0; i < aboveCommentSection.length; i++) {
 			aboveCommentSection.item(i).style.display = "none";
 		}
@@ -117,9 +117,10 @@
 	
 </script>
 </head>
-<body class="backGround">
+<body class="backGround" style="position: relative;">
 	<%@ include file="nav.jsp"%>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+		style="position: relative;">
 		<div class="container">
 			<div>
 				<a href="define" id="title" style="color: white; font-weight: 30px;">신조어사전</a>
@@ -136,10 +137,40 @@
 
 					<form class="form-inline" action="defineSecondSub" method="post">
 						<span class='green_window'> <input type='text'
-							class='input_text' />
+							class='input_text' onfocusin='clickSearchBar()' onfocusout="loseFocus()"/>
+							<div id="searchRecommendSection"></div>
 						</span>
+						<script type="text/javascript">
+							function clickSearchBar(field){
+								var searchRecommendSection = document.getElementById("searchRecommendSection");
+								$.ajax({
+									type : "POST", //전송방식을 지정한다 (POST,GET)
+									url : "selectSearchDefineList",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+									dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+									data : {
+									},
+									error : function() {
+										var text1 = $('.input_text');
+										text1.focus(function(){
+										     text1.val('실패');
+										});
+									},
+									success : function(Parse_data) {
+										
+										searchRecommendSection.innerHTML="추천: ";
+										searchRecommendSection.style.display = "block";
+										
+									}
+								}); 
+							}
+							
+							function loseFocus(){
+								searchRecommendSection.style.display = "none";
+							} 
+						</script>
 						<button type='submit' class='sch_smit'>검색</button>
 					</form>
+
 					<div id="navLink">
 						&nbsp;&nbsp;&nbsp; <a href="define" style="color: white;">새롭게정의된단어</a>&nbsp;&nbsp;&nbsp;
 						<a href="newword_write" style="color: white;">새로운단어정의하기</a>&nbsp;&nbsp;&nbsp;
@@ -156,8 +187,11 @@
 	<br>
 	<br>
 
+
+
+
 	<c:forEach items="${MainDefineList}" var="a">
-		<div id="container01">
+		<div id="container01" style="position: relative;">
 			<div id="container02">
 				<div>
 					<h1>${a.word}</h1>
@@ -169,12 +203,15 @@
 				<div>글번호: ${a.num}</div>
 				<div>글쓴이: ${a.id}</div>
 				<div id="delete">
-					&nbsp;&nbsp;<button onclick="deleteCheck(${a.num}, '${a.id}');">글삭제</button>
+					&nbsp;&nbsp;
+					<button onclick="deleteCheck(${a.num}, '${a.id}');">글삭제</button>
 				</div>
 
 				<div id="rate">
-					<button onclick="recommendUp(${a.up}, ${a.num});" id="recommendUp${a.num}">추천: ${a.up}</button>
-					<button onclick="recommendDown(${a.down}, ${a.num});" id="recommendDown${a.num}">비추천: ${a.down}</button>
+					<button onclick="recommendUp(${a.up}, ${a.num});"
+						id="recommendUp${a.num}">추천: ${a.up}</button>
+					<button onclick="recommendDown(${a.down}, ${a.num});"
+						id="recommendDown${a.num}">비추천: ${a.down}</button>
 				</div>
 				<script>
 				
@@ -226,7 +263,6 @@
 							}
 						});
 					}
-					
 				}
 				function recommendDown(downNumber, conNum){
 					if (isSession == false) {
@@ -259,7 +295,7 @@
 				}
 				
 				</script>
-				
+
 				<a href="define_write?num=${a.num}">이 단어의 새로운 정의 추가</a> <br> <a
 					href="javascript:commentClick(${a.num});">댓글+</a>
 

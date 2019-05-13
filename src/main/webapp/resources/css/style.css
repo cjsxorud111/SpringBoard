@@ -36,6 +36,14 @@ transform:rotate(22deg) translateY(14px);
 -moz-transform:rotate(25deg) translateY(14px);
 -o-transform:rotate(22deg) translateY(14px);
 } 
+/* 검색어추천창 */
+#searchRecommendSection{
+	position: relative; 
+	top: 2px; 
+	width: 22rem; 
+	z-index: 5; 
+	background-color: white;
+}
 /* 전배경회색 */
 .backGround{
 	background-color: #BBBBBB;
