@@ -13,9 +13,9 @@
 	type="text/css">
 <script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
 <script>
-		
+	
 	window.onload = function() {
-		
+		//document.getElementById("searchRecommendSection").style.display = "none";
 		var aboveCommentSection = document
 				.getElementsByClassName("aboveCommentSection");
 		var belowCommentSection = document
@@ -134,39 +134,53 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 
-
 					<form class="form-inline" action="defineSecondSub" method="post">
-						<span class='green_window'> <input type='text'
+						<span class='green_window'> 
+							<input type='text' autocomplete="off" id='inputText'
 							class='input_text' onfocusin='clickSearchBar()' onfocusout="loseFocus()"/>
-							<div id="searchRecommendSection"></div>
+							<div id="searchRecommendSection">
+							</div>
 						</span>
 						<script type="text/javascript">
-							function clickSearchBar(field){
+			
+							$('#inputText').keyup(function(event){
+								
+								if(event.keyCode == 38){
+									$("#inputText").val("ㅁㄴㅇ");
+							    } else if(event.keyCode == 40){
+							    	// salert('입력!');
+							    }
+							   
+								
+								var inputText = $("#inputText").val();
+								var show = "<c:forEach items='${MainDefineList}' var='a'><div><a href='define'>";
+								show += inputText;
+								show += "</a></div></c:forEach>";
+								$("#searchRecommendSection").html(show);
+							});
+							
+							
+							function clickSearchBar(){
 								var searchRecommendSection = document.getElementById("searchRecommendSection");
-								$.ajax({
-									type : "POST", //전송방식을 지정한다 (POST,GET)
-									url : "selectSearchDefineList",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-									dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
-									data : {
-									},
-									error : function() {
-										var text1 = $('.input_text');
-										text1.focus(function(){
-										     text1.val('실패');
-										});
-									},
-									success : function(Parse_data) {
-										
-										searchRecommendSection.innerHTML="추천: ";
-										searchRecommendSection.style.display = "block";
-										
-									}
-								}); 
+								
+								searchRecommendSection.innerHTML=
+									"<c:forEach items='${MainDefineList}' var='a'><div><a href='define'>${a.word}</a></div></c:forEach>";
+								//searchRecommendSection.style.display = "block";
 							}
 							
 							function loseFocus(){
-								searchRecommendSection.style.display = "none";
+								//searchRecommendSection.style.display = "none";
+								setTimeout(function() {
+									textOut();
+								}, 150);
 							} 
+							//포커스잃었을때추천창끔
+							function textOut(){
+								var searchRecommendSection = document.getElementById("searchRecommendSection");
+								searchRecommendSection.innerHTML="";
+							}
+							
+							
 						</script>
 						<button type='submit' class='sch_smit'>검색</button>
 					</form>
@@ -181,15 +195,7 @@
 			</div>
 		</div>
 	</nav>
-	<!-- 네브바에 가려서 위쪽안보이기때문에br태그 -->
 	<br>
-	<br>
-	<br>
-	<br>
-
-
-
-
 	<c:forEach items="${MainDefineList}" var="a">
 		<div id="container01" style="position: relative;">
 			<div id="container02">

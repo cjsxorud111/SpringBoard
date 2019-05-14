@@ -43,7 +43,7 @@ public class DefineServiceImpl implements DefineService {
 	@Override
 	public List<MainDefineContentVO> selectMainDefCon() throws Exception {
 		List<MainDefineContentVO> MainDefineList = dao.selectMainDefCon();
-		System.out.println(MainDefineList.get(0).getId());
+		
 		return MainDefineList;
 	}
 
