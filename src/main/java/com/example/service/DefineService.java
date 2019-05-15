@@ -33,4 +33,6 @@ public interface DefineService {
 
 	public void deleteDefineContent(HttpServletRequest request)throws Exception;
 
+	public String searchWord(HttpServletRequest request)throws Exception;
+
 }

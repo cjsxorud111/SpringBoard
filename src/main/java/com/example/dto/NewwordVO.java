@@ -5,6 +5,13 @@ public class NewwordVO {
 	private String pw;
 	private String word;
 	private String editor1;
+	private String splitWord;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getPw() {
 		return pw;
 	}
@@ -23,11 +30,10 @@ public class NewwordVO {
 	public void setEditor1(String editor1) {
 		this.editor1 = editor1;
 	}
-	public String getId() {
-		return id;
+	public String getSplitWord() {
+		return splitWord;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setSplitWord(String splitWord) {
+		this.splitWord = splitWord;
 	}
-	
 }

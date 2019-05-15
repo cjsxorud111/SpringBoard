@@ -8,6 +8,13 @@ public class MainDefineContentVO {
 	private String info;
 	private int up;
 	private int down;
+	private String splitWord;
+	public String getSplitWord() {
+		return splitWord;
+	}
+	public void setSplitWord(String splitWord) {
+		this.splitWord = splitWord;
+	}
 	public int getNum() {
 		return num;
 	}

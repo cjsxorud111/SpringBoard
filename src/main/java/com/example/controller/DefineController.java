@@ -36,12 +36,11 @@ public class DefineController {
 	//의존관계 자동연결
 	@Inject
 	private DefineService service;
-
-	@RequestMapping(value = "/selectSearchDefineList", method = RequestMethod.POST)
+	
+	@RequestMapping(value = "/searchWord", produces = "application/text; charset=utf8", method = RequestMethod.POST)
 	@ResponseBody
-	public String selectSearchDefineList(HttpServletRequest request, Model model) throws Exception {
-		System.out.println("test1");
-		return "redirect:define";
+	public String searchWord(HttpServletRequest request, Model model) throws Exception {
+		return service.searchWord(request);
 	}
 	
 	//글삭제하기

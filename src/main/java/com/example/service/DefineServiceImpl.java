@@ -23,6 +23,7 @@ import com.example.dto.NewwordVO;
 import com.example.dto.RecommendVO;
 import com.example.dto.ReturnRecommendVO;
 import com.example.dto.SubVO;
+import com.example.otherclass.HangulDivide;
 
 @Service
 public class DefineServiceImpl implements DefineService {
@@ -33,10 +34,13 @@ public class DefineServiceImpl implements DefineService {
 	@Override
 	public void newwordWriting(HttpServletRequest request) throws Exception {
 		NewwordVO vo = new NewwordVO();
+		HangulDivide hanguldivide = new HangulDivide();
 		vo.setWord(request.getParameter("WORD"));
 		vo.setId(request.getParameter("ID"));
 		vo.setPw(request.getParameter("PW"));
 		vo.setEditor1(request.getParameter("editor1"));
+		String divideCharacter = hanguldivide.toKoJasoAtom(request.getParameter("WORD"));
+		vo.setSplitWord(divideCharacter);
 		dao.newwordWriting(vo);
 	}
 
@@ -160,6 +164,28 @@ public class DefineServiceImpl implements DefineService {
 	public void deleteDefineContent(HttpServletRequest request) throws Exception {
 		String conNum = request.getParameter("conNum");
 		dao.deleteDefineContent(conNum);
+	}
+
+	@Override
+	public String searchWord(HttpServletRequest request) throws Exception {
+		HangulDivide handiv = new HangulDivide();
+		List<MainDefineContentVO> MainDefineList = dao.selectMainDefCon();
+		String inputText = request.getParameter("inputText");
+		String inputTextDiv = handiv.toKoJasoAtom(inputText);
+		List<MainDefineContentVO> newSearchRecommendList = new ArrayList<MainDefineContentVO>();
+		String show = "";
+		inputTextDiv.charAt(inputTextDiv.length()-1);
+		System.out.println(inputTextDiv.charAt(inputTextDiv.length()-1));
+		for (int i = 0; i < MainDefineList.size(); i++) {
+			if(MainDefineList.get(i).getSplitWord() != null) {
+				if(MainDefineList.get(i).getSplitWord().length() >= inputTextDiv.length()&& inputTextDiv.charAt(inputTextDiv.length()-1) == MainDefineList.get(i).getSplitWord().charAt(inputTextDiv.length()-1)) {
+					newSearchRecommendList.add(MainDefineList.get(i));
+					show += "<div><a>"+ MainDefineList.get(i).getWord() +"</a></div>";
+				}
+			}
+		}
+		System.out.println(show);
+		return show;
 	}
 
 }

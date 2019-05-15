@@ -141,22 +141,47 @@
 							<div id="searchRecommendSection">
 							</div>
 						</span>
+						
+						
 						<script type="text/javascript">
 			
 							$('#inputText').keyup(function(event){
-								
+								var keySet = "ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㄲㄸㅃㅆㅏㅑㅓㅕㅗㅛㅜㅠㅡㅣㅐㅒㅔㅖ1234567890,.?/<>:;";
 								if(event.keyCode == 38){
 									$("#inputText").val("ㅁㄴㅇ");
 							    } else if(event.keyCode == 40){
 							    	// salert('입력!');
 							    }
-							   
 								
-								var inputText = $("#inputText").val();
-								var show = "<c:forEach items='${MainDefineList}' var='a'><div><a href='define'>";
+								if(keySet.indexOf(event.key)!= -1){
+									
+									var inputText = $("#inputText").val();
+									
+									$.ajax({
+										type : "POST", //전송방식을 지정한다 (POST,GET)
+										url : "searchWord",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+										dataType : "text",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+										data : {
+											inputText : inputText
+										},
+										error : function() {
+											alert("error");
+										},
+										success : function(Parse_data) {
+											$("#searchRecommendSection").html(Parse_data);
+										}
+									});
+								}
+								
+							/* 	var show = "<c:forEach items='${MainDefineList}' var='a'><div><a href='define'>";
+								show += "<c:set var='typeWord' value='"+inputText+"' />";
+								show += "<c:set var='splitWord' value='${a.splitWord}' />";
+								show += "<c:if test='${typeWord eq splitWord}'>";
+								show += "${a.word}";
 								show += inputText;
+								show += "</c:if>";
 								show += "</a></div></c:forEach>";
-								$("#searchRecommendSection").html(show);
+								$("#searchRecommendSection").html(show); */
 							});
 							
 							
@@ -164,7 +189,7 @@
 								var searchRecommendSection = document.getElementById("searchRecommendSection");
 								
 								searchRecommendSection.innerHTML=
-									"<c:forEach items='${MainDefineList}' var='a'><div><a href='define'>${a.word}</a></div></c:forEach>";
+									"<c:forEach items='${MainDefineList}' var='a'><div><a href='define'>${a.word}${a.splitWord}</a></div></c:forEach>";
 								//searchRecommendSection.style.display = "block";
 							}
 							
