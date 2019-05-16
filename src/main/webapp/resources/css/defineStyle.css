@@ -16,7 +16,24 @@
 #rate{
 	float: right;
 }
-
+/* 추천검색어창 */
+#searchRecommendSection{
+	margin-top:10px;
+}
+.recommendSection{
+	color: blue;
+	width: 359px;
+	background-color: white;
+	height: 2.7rem;
+	font-size: 20px;
+}
+.recommendSection:hover { 
+	background-color: yellow; 
+	color: blue;
+	width: 359px;
+	height: 2.7rem;
+	font-size: 20px;
+}
 #container02 {
 	margin-left: 4rem;
 	margin-right: 24rem; 

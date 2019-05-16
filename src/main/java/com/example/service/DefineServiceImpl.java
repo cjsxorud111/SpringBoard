@@ -25,6 +25,10 @@ import com.example.dto.ReturnRecommendVO;
 import com.example.dto.SubVO;
 import com.example.otherclass.HangulDivide;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 @Service
 public class DefineServiceImpl implements DefineService {
 
@@ -169,23 +173,38 @@ public class DefineServiceImpl implements DefineService {
 	@Override
 	public String searchWord(HttpServletRequest request) throws Exception {
 		HangulDivide handiv = new HangulDivide();
+		
 		List<MainDefineContentVO> MainDefineList = dao.selectMainDefCon();
 		String inputText = request.getParameter("inputText");
 		String inputTextDiv = handiv.toKoJasoAtom(inputText);
 		List<MainDefineContentVO> newSearchRecommendList = new ArrayList<MainDefineContentVO>();
 		String show = "";
 		inputTextDiv.charAt(inputTextDiv.length()-1);
-		System.out.println(inputTextDiv.charAt(inputTextDiv.length()-1));
+		int num = 0;
 		for (int i = 0; i < MainDefineList.size(); i++) {
 			if(MainDefineList.get(i).getSplitWord() != null) {
 				if(MainDefineList.get(i).getSplitWord().length() >= inputTextDiv.length()&& inputTextDiv.charAt(inputTextDiv.length()-1) == MainDefineList.get(i).getSplitWord().charAt(inputTextDiv.length()-1)) {
 					newSearchRecommendList.add(MainDefineList.get(i));
-					show += "<div><a>"+ MainDefineList.get(i).getWord() +"</a></div>";
+					num++;
+					show += "<div id='num";
+					show += num;
+					show += "' class='recommendSection'>";
+					show += "<a onclick='wordClick(";
+					show += MainDefineList.get(i).getWord();
+					show += ");'>";
+					show += num + MainDefineList.get(i).getWord();
+					show += "</a></div>";
 				}
 			}
 		}
-		System.out.println(show);
-		return show;
+		JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("show", show);
+        jsonObject.put("num", num);
+       
+        String jsonStr = jsonObject.toString();
+        
+		return jsonStr;
 	}
 
 }
