@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -34,26 +35,26 @@ import com.example.service.HomeService;
 @Controller
 public class DefineController {
 	int refreshNum = 0;
-	//의존관계 자동연결
+	// 의존관계 자동연결
 	@Inject
 	private DefineService service;
-	
+
 	@RequestMapping(value = "/searchWord", produces = "application/text; charset=utf8", method = RequestMethod.POST)
 	@ResponseBody
 	public String searchWord(HttpServletRequest request, Model model) throws Exception {
-		
+
 		return service.searchWord(request);
 	}
-	
-	//글삭제하기
+
+	// 글삭제하기
 	@RequestMapping(value = "/deleteDefineContent", method = RequestMethod.POST)
 	@ResponseBody
 	public String deleteDefineContent(HttpServletRequest request, Model model) throws Exception {
 		service.deleteDefineContent(request);
 		return "redirect:define";
 	}
-	
-	//추천수증가
+
+	// 추천수증가
 	@RequestMapping(value = "/recommendUp", method = RequestMethod.POST)
 	@ResponseBody
 	public String recommendUp(HttpServletRequest request, Model model) throws Exception {
@@ -61,7 +62,8 @@ public class DefineController {
 		String conNum = request.getParameter("conNum");
 		return service.recommendUp(request, upNumber, conNum);
 	}
-	//추천수감소
+
+	// 추천수감소
 	@RequestMapping(value = "/recommendDown", method = RequestMethod.POST)
 	@ResponseBody
 	public String recommendDown(HttpServletRequest request, Model model) throws Exception {
@@ -69,7 +71,7 @@ public class DefineController {
 		String conNum = request.getParameter("conNum");
 		return service.recommendDown(request, downNumber, conNum);
 	}
-	
+
 	@RequestMapping(value = "/deleteDefineSub", method = RequestMethod.POST)
 	@ResponseBody
 	public String deleteDefineSub(HttpServletRequest request, Model model) throws Exception {
@@ -77,103 +79,117 @@ public class DefineController {
 		String num = request.getParameter("num");
 		return service.deleteDefineSub(pw, num);
 	}
-	
+
 	@RequestMapping(value = "/defineWriteSub", method = RequestMethod.POST)
 	public String defineWriteSub(HttpServletRequest request, Model model) throws Exception {
-		
+
 		service.defineWriteSub(request);
 		return "redirect:define";
 	}
-	
+
 	@RequestMapping(value = "/defineSecondSub", method = RequestMethod.POST)
 	public String defineSecondSub(HttpServletRequest request, Model model) throws Exception {
-		
+
 		service.defineSecondSub(request);
 		return "redirect:define";
 	}
-	
-	@RequestMapping(value = "/define", method = RequestMethod.GET)
-	//Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
-	public String define(HttpServletRequest request, Model model) throws Exception {
+
+	// 검색기능
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String search(HttpServletRequest request, Model model) throws Exception {
 		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
-		for(int i=0; i<MainDefineList.size(); i++) {
-			System.out.println(MainDefineList.get(i).getUp());
+		List<MainDefineContentVO> MList = new ArrayList<MainDefineContentVO>();
+		String inputText = request.getParameter("inputText");
+		for (int i = 0; i < MainDefineList.size(); i++) {
+			if (MainDefineList.get(i).getWord().equals(inputText)) {
+				MList.add(MainDefineList.get(i));
+			}
 		}
-		
-		model.addAttribute("MainDefineList", MainDefineList);
-		 
+		model.addAttribute("MainDefineList", MList);
 		List<DefineSubVO> getDefinSubList = service.getDefinSubList();
 		model.addAttribute("getDefinSubList", getDefinSubList);
-		
+
 		refreshNum++;
 		HttpSession session = request.getSession();
 		session.setAttribute("refreshNum", refreshNum);
 		return "define";
 	}
-	
+
+	@RequestMapping(value = "/define", method = RequestMethod.GET)
+	// Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
+	public String define(HttpServletRequest request, Model model) throws Exception {
+		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
+
+		model.addAttribute("MainDefineList", MainDefineList);
+
+		List<DefineSubVO> getDefinSubList = service.getDefinSubList();
+		model.addAttribute("getDefinSubList", getDefinSubList);
+
+		refreshNum++;
+		HttpSession session = request.getSession();
+		session.setAttribute("refreshNum", refreshNum);
+		return "define";
+	}
+
 	@RequestMapping(value = "/define_write", method = RequestMethod.GET)
 	public String define_write(Model model) throws Exception {
-		
-		
+
 		return "define_write";
 	}
-	
+
 	@RequestMapping(value = "/newword_write", method = RequestMethod.GET)
 	public String newword_write(Model model) throws Exception {
-		
+
 		return "newword_write";
 	}
-	
+
 	@RequestMapping(value = "/newwordWriting", method = RequestMethod.POST)
 	public String newwordWriting(HttpServletRequest request, Model model) throws Exception {
 		service.newwordWriting(request);
 		return "redirect:define";
 	}
-	
+
 	@RequestMapping(value = "img1", method = RequestMethod.POST)
-    public void communityImageUpload1(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) {
- 
-        OutputStream out = null;
-        PrintWriter printWriter = null;
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset=utf-8");
- 
-        try{
-        	UUID uuid = UUID.randomUUID();
-    		String fileName = uuid + "_" + upload.getOriginalFilename();
-    		System.out.println(fileName);
-            byte[] bytes = upload.getBytes();
-            String uploadPath = "/Users/taeky/eclipse-workspace/SpringBoard/src/main/webapp/resources/img/" + fileName;//저장경로
-         
-            out = new FileOutputStream(new File(uploadPath));
-            out.write(bytes);
-            String callback = request.getParameter("CKEditorFuncNum");
-            System.out.println(callback);
-            printWriter = response.getWriter();
-            String fileUrl = "img/" + fileName; //url경로
-    		
-            printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("
-                    + callback
-                    + ",'"
-                    + fileUrl
-                    + "','이미지를 업로드 하였습니다.'"
-                    + ")</script>");
-            printWriter.flush();
- 
-        }catch(IOException e){
-            e.printStackTrace();
-        } finally {
-            try {
-                if (out != null) {
-                    out.close();
-                }
-                if (printWriter != null) {
-                    printWriter.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return;
-    }	
+	public void communityImageUpload1(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam MultipartFile upload) {
+
+		OutputStream out = null;
+		PrintWriter printWriter = null;
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+
+		try {
+			UUID uuid = UUID.randomUUID();
+			String fileName = uuid + "_" + upload.getOriginalFilename();
+			System.out.println(fileName);
+			byte[] bytes = upload.getBytes();
+			String uploadPath = "/Users/taeky/eclipse-workspace/SpringBoard/src/main/webapp/resources/img/" + fileName;// 저장경로
+
+			out = new FileOutputStream(new File(uploadPath));
+			out.write(bytes);
+			String callback = request.getParameter("CKEditorFuncNum");
+			System.out.println(callback);
+			printWriter = response.getWriter();
+			String fileUrl = "img/" + fileName; // url경로
+
+			printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(" + callback
+					+ ",'" + fileUrl + "','이미지를 업로드 하였습니다.'" + ")</script>");
+			printWriter.flush();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (out != null) {
+					out.close();
+				}
+				if (printWriter != null) {
+					printWriter.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return;
+	}
 }

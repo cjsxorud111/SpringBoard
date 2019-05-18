@@ -133,10 +133,10 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 
-					<form class="form-inline" action="defineSecondSub" method="post">
+					<form class="form-inline" action="search" method="get">
 						<!-- 검색창 -->
 						<span class='green_window'> 
-							<input type='text' autocomplete="off" id='inputText'
+							<input type='text' name=inputText autocomplete="off" id='inputText'
 							class='input_text' onfocusout="loseFocus()"/>
 							<div id="searchRecommendSection">
 							</div>
@@ -146,7 +146,6 @@
 							var endNum = 0;
 							
 							function wordClick(word){
-								alert(word);
 								$("#inputText").val(word);
 							}
 							
