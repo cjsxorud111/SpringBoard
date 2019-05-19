@@ -177,14 +177,13 @@ public class DefineServiceImpl implements DefineService {
 		List<MainDefineContentVO> MainDefineList = dao.selectMainDefCon();
 		String inputText = request.getParameter("inputText");
 		String inputTextDiv = handiv.toKoJasoAtom(inputText);
-		List<MainDefineContentVO> newSearchRecommendList = new ArrayList<MainDefineContentVO>();
 		String show = "";
 		inputTextDiv.charAt(inputTextDiv.length()-1);
 		int num = 0;
+		
 		for (int i = 0; i < MainDefineList.size(); i++) {
 			if(MainDefineList.get(i).getSplitWord() != null) {
-				if(MainDefineList.get(i).getSplitWord().length() >= inputTextDiv.length()&& inputTextDiv.charAt(inputTextDiv.length()-1) == MainDefineList.get(i).getSplitWord().charAt(inputTextDiv.length()-1)) {
-					newSearchRecommendList.add(MainDefineList.get(i));
+				if(MainDefineList.get(i).getSplitWord().length() >= inputTextDiv.length()&& inputTextDiv.equals(MainDefineList.get(i).getSplitWord().substring(0,inputTextDiv.length()))) {
 					num++;
 					show += "<div id='num";
 					show += num;
@@ -192,18 +191,19 @@ public class DefineServiceImpl implements DefineService {
 					show += "<div style=\" cursor: pointer;\"  onclick=\"wordClick('";
 					show += MainDefineList.get(i).getWord();
 					show += "');\">";
-					show += num + MainDefineList.get(i).getWord();
+					show += MainDefineList.get(i).getWord();
 					show += "</div></div>";
 				}
 			}
 		}
+		
 		JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("show", show);
         jsonObject.put("num", num);
        
         String jsonStr = jsonObject.toString();
-        
+    	System.out.println("dddd5555s");
 		return jsonStr;
 	}
 

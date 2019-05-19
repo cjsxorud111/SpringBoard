@@ -99,19 +99,36 @@ public class DefineController {
 	public String search(HttpServletRequest request, Model model) throws Exception {
 		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
 		List<MainDefineContentVO> MList = new ArrayList<MainDefineContentVO>();
+		HttpSession session = request.getSession();
 		String inputText = request.getParameter("inputText");
-		for (int i = 0; i < MainDefineList.size(); i++) {
-			if (MainDefineList.get(i).getWord().equals(inputText)) {
-				MList.add(MainDefineList.get(i));
+		
+		List<MainDefineContentVO> MainList = (List<MainDefineContentVO>) session.getAttribute("MList");
+		if(MainList.get(0).getWord() == null) {
+			for (int i = 0; i < MainDefineList.size(); i++) {
+				if (MainDefineList.get(i).getWord().equals(inputText)) {
+					MList.add(MainDefineList.get(i));
+					System.out.println("위에거"+MainDefineList.get(i).getWord());
+				}
+			}
+			
+		} else {
+			session.removeAttribute("MList");
+			for (int i = 0; i < MainList.size(); i++) {
+				if (MainList.get(i).getWord().equals(inputText)) {
+					MList.add(MainList.get(i));
+					System.out.println("아래거"+MainList.get(i).getWord());
+				}
 			}
 		}
+		session.setAttribute("MList", MList);
 		model.addAttribute("MainDefineList", MList);
 		List<DefineSubVO> getDefinSubList = service.getDefinSubList();
 		model.addAttribute("getDefinSubList", getDefinSubList);
 
 		refreshNum++;
-		HttpSession session = request.getSession();
+		
 		session.setAttribute("refreshNum", refreshNum);
+		
 		return "define";
 	}
 
