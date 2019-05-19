@@ -219,10 +219,15 @@
 					</form>
 
 					<div id="navLink">
-						&nbsp;&nbsp;&nbsp; <a href="define" style="color: white;">새롭게정의된단어</a>&nbsp;&nbsp;&nbsp;
-						<a href="newword_write" style="color: white;">새로운단어정의하기</a>&nbsp;&nbsp;&nbsp;
-						<a href="login" style="color: white;">로그인</a>&nbsp;&nbsp;&nbsp; <a
-							href="memberjoin" style="color: white;">회원가입</a>&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp; 
+						<a href="define" style="color: white;">새롭게정의된단어</a>
+						&nbsp;&nbsp;&nbsp;
+						<a href="newword_write" style="color: white;">새로운단어정의하기</a>
+						&nbsp;&nbsp;&nbsp;
+						<a href="login" style="color: white;">로그인</a>
+						&nbsp;&nbsp;&nbsp; 
+						<a href="memberjoin" style="color: white;">회원가입</a>
+						&nbsp;&nbsp;&nbsp;
 					</div>
 				</ul>
 			</div>
@@ -233,7 +238,12 @@
 		<div id="container01" style="position: relative;">
 			<div id="container02">
 				<div>
-					<h1>${a.word}</h1>
+					<h1>
+					<form action="linkWord" id="frm${a.num}" method="get">
+					<input type="hidden" name="linkWord" value="${a.word}">
+					<a href="#" onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
+					</form>
+					</h1>
 				</div>
 				<div>
 					<h2>단어정의</h2>
@@ -253,8 +263,7 @@
 						id="recommendDown${a.num}">비추천: ${a.down}</button>
 				</div>
 				<script>
-				
-				
+
 				function defineContentDelete(conNum){
 					$.ajax({
 						type : "POST", //전송방식을 지정한다 (POST,GET)

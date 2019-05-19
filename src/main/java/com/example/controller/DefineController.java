@@ -42,7 +42,7 @@ public class DefineController {
 	@RequestMapping(value = "/searchWord", produces = "application/text; charset=utf8", method = RequestMethod.POST)
 	@ResponseBody
 	public String searchWord(HttpServletRequest request, Model model) throws Exception {
-
+		
 		return service.searchWord(request);
 	}
 
@@ -101,26 +101,40 @@ public class DefineController {
 		List<MainDefineContentVO> MList = new ArrayList<MainDefineContentVO>();
 		HttpSession session = request.getSession();
 		String inputText = request.getParameter("inputText");
-		
-		List<MainDefineContentVO> MainList = (List<MainDefineContentVO>) session.getAttribute("MList");
-		if(MainList.get(0).getWord() == null) {
-			for (int i = 0; i < MainDefineList.size(); i++) {
-				if (MainDefineList.get(i).getWord().equals(inputText)) {
-					MList.add(MainDefineList.get(i));
-					System.out.println("위에거"+MainDefineList.get(i).getWord());
-				}
-			}
-			
-		} else {
-			session.removeAttribute("MList");
-			for (int i = 0; i < MainList.size(); i++) {
-				if (MainList.get(i).getWord().equals(inputText)) {
-					MList.add(MainList.get(i));
-					System.out.println("아래거"+MainList.get(i).getWord());
-				}
+		String linkWord = request.getParameter("linkWord");
+		System.out.println("here"+" "+linkWord);
+		for (int i = 0; i < MainDefineList.size(); i++) {
+			if (MainDefineList.get(i).getWord().equals(inputText)) {
+				MList.add(MainDefineList.get(i));
 			}
 		}
-		session.setAttribute("MList", MList);
+		
+		model.addAttribute("MainDefineList", MList);
+		List<DefineSubVO> getDefinSubList = service.getDefinSubList();
+		model.addAttribute("getDefinSubList", getDefinSubList);
+
+		refreshNum++;
+		
+		session.setAttribute("refreshNum", refreshNum);
+		
+		return "define";
+	}
+	
+	@RequestMapping(value = "/linkWord", method = RequestMethod.GET)
+	public String linkWord(HttpServletRequest request, Model model) throws Exception {
+		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
+		List<MainDefineContentVO> MList = new ArrayList<MainDefineContentVO>();
+		HttpSession session = request.getSession();
+		
+		String linkWord = request.getParameter("linkWord");
+		System.out.println("here"+" "+linkWord);
+		for (int i = 0; i < MainDefineList.size(); i++) {
+			if (MainDefineList.get(i).getWord().equals(linkWord)) {
+				MList.add(MainDefineList.get(i));
+				System.out.println(MainDefineList.get(i).getWord());
+			}
+		}
+		
 		model.addAttribute("MainDefineList", MList);
 		List<DefineSubVO> getDefinSubList = service.getDefinSubList();
 		model.addAttribute("getDefinSubList", getDefinSubList);
