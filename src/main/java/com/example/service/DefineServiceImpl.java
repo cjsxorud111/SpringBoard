@@ -203,7 +203,6 @@ public class DefineServiceImpl implements DefineService {
         jsonObject.put("num", num);
        
         String jsonStr = jsonObject.toString();
-    	System.out.println("dddd5555s");
 		return jsonStr;
 	}
 

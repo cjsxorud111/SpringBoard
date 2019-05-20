@@ -102,7 +102,6 @@ public class DefineController {
 		HttpSession session = request.getSession();
 		String inputText = request.getParameter("inputText");
 		String linkWord = request.getParameter("linkWord");
-		System.out.println("here"+" "+linkWord);
 		for (int i = 0; i < MainDefineList.size(); i++) {
 			if (MainDefineList.get(i).getWord().equals(inputText)) {
 				MList.add(MainDefineList.get(i));
@@ -119,7 +118,7 @@ public class DefineController {
 		
 		return "define";
 	}
-	
+	//단어눌렀을때 검색기능
 	@RequestMapping(value = "/linkWord", method = RequestMethod.GET)
 	public String linkWord(HttpServletRequest request, Model model) throws Exception {
 		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
@@ -127,14 +126,11 @@ public class DefineController {
 		HttpSession session = request.getSession();
 		
 		String linkWord = request.getParameter("linkWord");
-		System.out.println("here"+" "+linkWord);
 		for (int i = 0; i < MainDefineList.size(); i++) {
 			if (MainDefineList.get(i).getWord().equals(linkWord)) {
 				MList.add(MainDefineList.get(i));
-				System.out.println(MainDefineList.get(i).getWord());
 			}
 		}
-		
 		model.addAttribute("MainDefineList", MList);
 		List<DefineSubVO> getDefinSubList = service.getDefinSubList();
 		model.addAttribute("getDefinSubList", getDefinSubList);
