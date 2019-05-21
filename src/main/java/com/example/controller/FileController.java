@@ -37,7 +37,7 @@ public class FileController {
 		List<FileContentVO2> GetContentList = service.getfile(num);
 		model.addAttribute("GetContentList", GetContentList);
 		FileContentVO2 a = GetContentList.get(0);
-		// ���񽺿��� ��Ʈ���� �迭�� sql������ �ް� Ȩ��Ʈ�ѷ����� �𵨿� �־ ����
+		//테스트
 
 		return "file_content";
 	}
