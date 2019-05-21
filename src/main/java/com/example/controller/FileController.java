@@ -41,7 +41,11 @@ public class FileController {
 
 		return "file_content";
 	}
+<<<<<<< HEAD
 	
+=======
+	//testtest
+>>>>>>> dc672c8... 깃 풀 테스트
 	@RequestMapping(value = "/fileupdate", method = RequestMethod.GET)
 	public String fileupdate(HttpServletRequest request, Model model) throws Exception {
 		String num = request.getParameter("num");
