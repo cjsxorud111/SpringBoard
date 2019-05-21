@@ -37,15 +37,11 @@ public class FileController {
 		List<FileContentVO2> GetContentList = service.getfile(num);
 		model.addAttribute("GetContentList", GetContentList);
 		FileContentVO2 a = GetContentList.get(0);
-		// ¼­ºñ½º¿¡¼­ ½ºÆ®¸µÇü ¹è¿­·Î sql½ÇÇà°á°ú ¹Þ°í È¨ÄÁÆ®·Ñ·¯¿¡¼­ ¸ðµ¨¿¡ ³Ö¾î¼­ Àü´Þ
+		// ï¿½ï¿½ï¿½ñ½º¿ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ sqlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ°ï¿½ È¨ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ðµ¨¿ï¿½ ï¿½Ö¾î¼­ ï¿½ï¿½ï¿½ï¿½
 
 		return "file_content";
 	}
-<<<<<<< HEAD
-	
-=======
-	//testtest
->>>>>>> dc672c8... ê¹ƒ í’€ í…ŒìŠ¤íŠ¸
+
 	@RequestMapping(value = "/fileupdate", method = RequestMethod.GET)
 	public String fileupdate(HttpServletRequest request, Model model) throws Exception {
 		String num = request.getParameter("num");
@@ -83,17 +79,17 @@ public class FileController {
 
 		String result = saveFile(uploadfile);
 
-		String save_file_name = result; // ÀúÀåÇÏ°í ¹ÞÀº °á°ú
+		String save_file_name = result; // ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
 		request.setAttribute("save_file_name", save_file_name);
 
-		// ÀÌÇÏ·Î db¿¡ ÀúÀåÇÒ °Å ´Ù request ´ã¾Æ¼­ db¿¡ ÀúÀåÈÄ °Ô½ÃÆÇ¿¡ »çÁøÃâ·Â ¸¸µé±â
+		// ï¿½ï¿½ï¿½Ï·ï¿½ dbï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ request ï¿½ï¿½Æ¼ï¿½ dbï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		service.filewriting(request);
 
-		if (result != null) { // ÆÄÀÏ ÀúÀå ¼º°ø
+		if (result != null) { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			model.addAttribute("result", result);
-		} else { // ÆÄÀÏ ÀúÀå ½ÇÆÐ
+		} else { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			model.addAttribute("result", "fail");
 		}
 
@@ -105,15 +101,15 @@ public class FileController {
 		
 		String result = saveFile(uploadfile);
 
-		String save_file_name = result; // ÀúÀåÇÏ°í ¹ÞÀº °á°ú
+		String save_file_name = result; // ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
 		request.setAttribute("save_file_name", save_file_name);
 
 		service.fileupdating(request);
 
-		if (result != null) { // ÆÄÀÏ ÀúÀå ¼º°ø
+		if (result != null) { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			model.addAttribute("result", result);
-		} else { // ÆÄÀÏ ÀúÀå ½ÇÆÐ
+		} else { // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			model.addAttribute("result", "fail");
 		}
 
@@ -121,18 +117,18 @@ public class FileController {
 	}
    
 	private String saveFile(MultipartFile file) {
-		// ÆÄÀÏ ÀÌ¸§ º¯°æ
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 		UUID uuid = UUID.randomUUID();
 		
 		String saveName = uuid + "_" + file.getOriginalFilename();
 		
-		File saveFile = new File("C:\\Users\\ÃµÅÂ°æ\\eclipse-workspace05\\Portfolio\\src\\main\\webapp\\resources\\img",
-				saveName);// ÀúÀåÇÒ Æú´õ ÀÌ¸§, ÀúÀåÇÒ ÆÄÀÏ ÀÌ¸§
+		File saveFile = new File("C:\\Users\\Ãµï¿½Â°ï¿½\\eclipse-workspace05\\Portfolio\\src\\main\\webapp\\resources\\img",
+				saveName);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
 		/*File saveFile = new File("/tomcat/webapps/Portfolio/resources/img",
 				saveName); */
 		
 		try {
-			file.transferTo(saveFile); // ¾÷·Îµå ÆÄÀÏ¿¡ saveFileÀÌ¶ó´Â ²®µ¥±â ÀÔÈû
+			file.transferTo(saveFile); // ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ saveFileï¿½Ì¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
