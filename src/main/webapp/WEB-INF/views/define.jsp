@@ -17,7 +17,7 @@
 
 <script src="<c:url value="resources/js/defineJavaScript.js" />"></script>
 <script>
-	// 댓글이나대댓글시 로그인검사위한변수test
+	// 댓글이나대댓글시 로그인검사위한변수testtest
 	var session = '<%=sessionId%>';
 </script>
 </head>
