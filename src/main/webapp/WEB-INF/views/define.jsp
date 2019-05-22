@@ -60,7 +60,7 @@
 						&nbsp;&nbsp;&nbsp;
 						<a href="login" style="color: white;">Login</a>
 						&nbsp;&nbsp;&nbsp; 
-						<a href="memberjoin" style="color: white;">회원가입</a>
+						<a href="logout" style="color: white;">Logout</a>
 						&nbsp;&nbsp;&nbsp;
 					</div>
 					<div><%=sessionId%></div>

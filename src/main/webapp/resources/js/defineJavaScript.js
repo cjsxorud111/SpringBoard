@@ -4,7 +4,8 @@ window.onload = function() {
 	var belowCommentSection = document
 			.getElementsByClassName("belowCommentSection");
 	var deleteTag = document.getElementsByClassName("deleteTag");
-
+	var logoutTag = document.getElementById("navLink");
+	logoutTag.style.display = "none";
 	for (var i = 0; i < aboveCommentSection.length; i++) {
 		aboveCommentSection.item(i).style.display = "none";
 	}
@@ -249,3 +250,4 @@ function recommendDown(downNumber, conNum){
 		});
 	}
 }
+
