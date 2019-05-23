@@ -51,9 +51,10 @@ public class LoginController {
 			HttpSession session = request.getSession();
 			session.setAttribute("ID", a);
 			session.setAttribute("PW", pw);
-			return "redirect:home";
+			return "redirect:define";
 
 		} else {
+			request.setAttribute("notMember", "notMember");
 			return "redirect:memberjoin";
 		}
 	}
