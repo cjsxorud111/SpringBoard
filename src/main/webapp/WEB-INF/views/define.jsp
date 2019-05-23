@@ -58,16 +58,39 @@
 						&nbsp;&nbsp;&nbsp;
 						<a href="newword_write" style="color: white;">새로운단어정의하기</a>
 						&nbsp;&nbsp;&nbsp;
-						<a href="login" style="color: white;">Login</a>
+						<a href="" id="log"></a>
 						&nbsp;&nbsp;&nbsp; 
-						<a href="logout" style="color: white;">Logout</a>
-						&nbsp;&nbsp;&nbsp;
 					</div>
 					<div><%=sessionId%></div>
 				</ul>
 			</div>
 		</div>
 	</nav>
+	<!-- 자바스크립트에서수정이안되기에onload자바스크립트만jsp에만듬 -->
+	<script>
+	window.onload = function() {
+		var aboveCommentSection = document
+				.getElementsByClassName("aboveCommentSection");
+		var belowCommentSection = document
+				.getElementsByClassName("belowCommentSection");
+		var deleteTag = document.getElementsByClassName("deleteTag");
+		
+		for (var i = 0; i < aboveCommentSection.length; i++) {
+			aboveCommentSection.item(i).style.display = "none";
+		}
+		for (var i = 0; i < belowCommentSection.length; i++) {
+			belowCommentSection.item(i).style.display = "none";
+		}
+		for (var i = 0; i < deleteTag.length; i++) {
+			deleteTag.item(i).style.display = "none";
+		}
+		if(session == 'null'){
+			document.getElementById("log").innerHTML = "<a href='login' style='color: white;'>Login</a>";
+		}else{
+			document.getElementById("log").innerHTML = "<a href='logout' id='logout' style='color: white;'>Logout</a>";
+		}
+	}
+	</script>
 	<br>
 	<c:forEach items="${MainDefineList}" var="a">
 		<div id="container01" style="position: relative;">

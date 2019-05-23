@@ -1,24 +1,3 @@
-window.onload = function() {
-	var aboveCommentSection = document
-			.getElementsByClassName("aboveCommentSection");
-	var belowCommentSection = document
-			.getElementsByClassName("belowCommentSection");
-	var deleteTag = document.getElementsByClassName("deleteTag");
-	var logoutTag = document.getElementById("navLink");
-	logoutTag.style.display = "none";
-	for (var i = 0; i < aboveCommentSection.length; i++) {
-		aboveCommentSection.item(i).style.display = "none";
-	}
-	for (var i = 0; i < belowCommentSection.length; i++) {
-		belowCommentSection.item(i).style.display = "none";
-	}
-	for (var i = 0; i < deleteTag.length; i++) {
-		deleteTag.item(i).style.display = "none";
-	}
-}
-
-
- 
 var isSession = false;
 if (session != null) {
 	isSession = true;

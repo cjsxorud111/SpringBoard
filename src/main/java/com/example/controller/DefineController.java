@@ -80,6 +80,14 @@ public class DefineController {
 		return service.deleteDefineSub(pw, num);
 	}
 
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request, Model model) throws Exception {
+		HttpSession session = request.getSession();
+		session.removeAttribute("ID");
+		return "redirect:define";
+	}
+	
 	@RequestMapping(value = "/defineWriteSub", method = RequestMethod.POST)
 	public String defineWriteSub(HttpServletRequest request, Model model) throws Exception {
 
