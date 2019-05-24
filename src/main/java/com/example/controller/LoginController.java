@@ -42,7 +42,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/logining", method = RequestMethod.GET)
-	public String logining(HttpServletRequest request, Model model) throws Exception {
+	public String logining(HttpServletRequest request,HttpServletRequest response, Model model) throws Exception {
 		boolean aa = service.logining(request);
 
 		if (aa == true) {
@@ -54,8 +54,9 @@ public class LoginController {
 			return "redirect:define";
 
 		} else {
-			request.setAttribute("notMember", "notMember");
-			return "redirect:memberjoin";
+			//request.setAttribute("notMembe", "notMembe");
+			model.addAttribute("notMember", "일치하는 ID가 없습니다. <br> 회원가입을 해주세요.");
+			return "memberjoin";
 		}
 	}
 }

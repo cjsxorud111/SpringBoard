@@ -173,4 +173,26 @@
   	margin:-50px 0 0 -50px;
 }
 
+/* memberjoin.jsp */
+#memberJoin{
+	background-color: yellow;
+}
+#signUp{
+	width: 20rem;
+	text-align: center;
+	position:absolute;
+  	top:28%;
+  	left:40%;
+  	margin:-50px 0 0 -50px;
+}
+#notMember{
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+#signUpButton{
+	width: 4rem;
+}
+#deleteButton{
+	width: 4rem;
+}
 
