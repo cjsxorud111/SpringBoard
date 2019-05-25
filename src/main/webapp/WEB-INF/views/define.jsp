@@ -19,6 +19,10 @@
 <script>
 	// 댓글이나대댓글시 로그인검사위한변수testtest
 	var session = '<%=sessionId%>';
+	var isSession = false;
+	if (session != "null") {
+		isSession = true;
+	}
 </script>
 </head>
 <body class="backGround" style="position: relative;">
@@ -40,11 +44,10 @@
 
 					<form class="form-inline" action="search" method="get">
 						<!-- 검색창 -->
-						<span class='green_window'> 
-							<input type='text' name=inputText autocomplete="off" id='inputText'
-							class='input_text' onfocusout="loseFocus()"/>
-							<div id="searchRecommendSection">
-							</div>
+						<span class='green_window'> <input type='text'
+							name=inputText autocomplete="off" id='inputText'
+							class='input_text' onfocusout="loseFocus()" />
+							<div id="searchRecommendSection"></div>
 						</span>
 						<script type="text/javascript">
 							
@@ -53,13 +56,9 @@
 					</form>
 
 					<div id="navLink">
-						&nbsp;&nbsp;&nbsp; 
-						<a href="define" style="color: white;">새롭게정의된단어</a>
-						&nbsp;&nbsp;&nbsp;
-						<a href="newword_write" style="color: white;">새로운단어정의하기</a>
-						&nbsp;&nbsp;&nbsp;
-						<a href="" id="log"></a>
-						&nbsp;&nbsp;&nbsp; 
+						&nbsp;&nbsp;&nbsp; <a href="define" style="color: white;">새롭게정의된단어</a>
+						&nbsp;&nbsp;&nbsp; <a href="newword_write" style="color: white;">새로운단어정의하기</a>
+						&nbsp;&nbsp;&nbsp; <a href="" id="log"></a> &nbsp;&nbsp;&nbsp;
 					</div>
 					<div><%=sessionId%></div>
 				</ul>
@@ -90,22 +89,41 @@
 			document.getElementById("log").innerHTML = "<a href='logout' id='logout' style='color: white;'>Logout</a>";
 		}
 	}
+	
+	function scroll_follow( id ){
+		//스크롤이 움직일때마다 이벤트 발생
+		$(window).scroll(function( )  { 
+		     var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+		     $("#scroll").css('top',  position ); //해당 오브젝트 위치값 재설정
+		});
+	}
+	scroll_follow( "#scroll" );
+		
 	</script>
+
+	<div id="scroll" style="position:absolute;right:0;top:0;"> 
+		<table> 
+		<tr><td>■■■■■■■■■■■</td> </tr>
+		<tr><td>■■■■b1ix■■■■</td> </tr>
+		<tr><td>■■■■■■■■■■■</td> </tr> 
+		</table> 
+	</div>
 	<br>
 	<c:forEach items="${MainDefineList}" var="a">
 		<div id="container01" style="position: relative;">
 			<div id="container02">
-			&nbsp;&nbsp;
-			<!-- 단어제목으로검색링크 -->
+				&nbsp;&nbsp;
+				<!-- 단어제목으로검색링크 -->
 				<div>
 					<h1>
-					<form action="linkWord" id="frm${a.num}" method="get">
-					<input type="hidden" name="linkWord" value="${a.word}">
-					<a href="#" onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
-					</form>
+						<form action="linkWord" id="frm${a.num}" method="get">
+							<input type="hidden" name="linkWord" value="${a.word}"> <a
+								href="#"
+								onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
+						</form>
 					</h1>
 				</div>
-				
+
 				<div>${a.info}</div>
 				<div>글번호: ${a.num}</div>
 				<div>글쓴이: ${a.id}</div>
