@@ -2,16 +2,33 @@
 
 /* 전체div태그*/
 .backGround{
-	background-color: #c0c0c0;
+	background-color: #e5eef4;
 }
 
-/* 내부div태그*/
+/* 왼쪽창*/
 #container01 {
-	margin-left: 10rem;
-	margin-right: 10rem; 
+	margin-left: 28rem;
+	margin-right: 55rem; 
 	margin-bottom: 2rem;
 	background-color: #FFFFFF;
 }
+/* 오른쪽창 */
+#scroll{
+	background-color: white;
+	width: 19rem;
+	height: 40rem;
+	margin-top: 7rem;
+	margin-left: 34.5rem;
+}
+/* 왼쪽창에서 실제컨텐츠 표시부분 */
+#container02 {
+	margin-left: 2rem;
+	margin-right: 2rem;
+	margin-top: 1rem;
+	margin-bottom: 2rem;
+	background-color: #FFFFFF;
+}
+
 /* 추,비추 */
 #rate{
 	float: right;
@@ -34,13 +51,7 @@
 	height: 2.7rem;
 	font-size: 20px;
 }
-#container02 {
-	margin-left: 4rem;
-	margin-right: 24rem; 
-	margin-top: 1rem;
-	margin-bottom: 2rem;
-	background-color: #FFFFFF;
-}
+
 /* 네브바 링크 */
 #navLink{
 	font-size: 17px;

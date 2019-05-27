@@ -28,7 +28,7 @@
 <body class="backGround" style="position: relative;">
 	<%@ include file="nav.jsp"%>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
-		style="position: relative;">
+		style="position: relative; height: 6rem;">
 		<div class="container">
 			<div>
 				<a href="define" id="title" style="color: white; font-weight: 30px;">신조어사전</a>
@@ -101,16 +101,12 @@
 		
 	</script>
 
-	<div id="scroll" style="position:absolute;right:0;top:0;"> 
-		<table> 
-		<tr><td>■■■■■■■■■■■</td> </tr>
-		<tr><td>■■■■b1ix■■■■</td> </tr>
-		<tr><td>■■■■■■■■■■■</td> </tr> 
-		</table> 
-	</div>
-	<br>
+	<!-- 오른쪽창 -->
+	<div id="scroll" style="position:absolute;right:0;top:0;"></div>
+	
 	<c:forEach items="${MainDefineList}" var="a">
 		<div id="container01" style="position: relative;">
+			<!-- 왼쪽창에서 실제컨텐츠 표시부분 -->
 			<div id="container02">
 				&nbsp;&nbsp;
 				<!-- 단어제목으로검색링크 -->
