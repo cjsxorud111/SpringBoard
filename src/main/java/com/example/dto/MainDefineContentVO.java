@@ -9,6 +9,15 @@ public class MainDefineContentVO {
 	private int up;
 	private int down;
 	private String splitWord;
+	private String currenttime;
+	
+	public String getCurrenttime() {
+		return currenttime;
+	}
+	public void setCurrenttime(String currenttime) {
+		this.currenttime = currenttime;
+	}
+	
 	public String getSplitWord() {
 		return splitWord;
 	}

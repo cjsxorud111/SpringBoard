@@ -148,6 +148,7 @@ function wordClick(word) {
 $('#inputText')
 		.keyup(
 				function(event) {
+					alert("ddd");
 					var keySet = "ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㄲㄸㅃㅆㅏㅑㅓㅕㅗㅛㅜㅠㅡㅣㅐㅒㅔㅖ1234567890,.?/<>:;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 					if (event.keyCode == 38) { // 위방향키눌렀을때
 						num--;

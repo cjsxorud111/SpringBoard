@@ -25,13 +25,13 @@
 	}
 </script>
 </head>
-<body class="backGround" style="position: relative;">
+<body id="backGround" style="background-color: #CACCCE; position: relative;">
 	<%@ include file="nav.jsp"%>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
-		style="position: relative; height: 6rem;">
+		style="position: relative; height: 6rem; background: blue">
 		<div class="container">
 			<div>
-				<a href="define" id="title" style="color: white; font-weight: 30px;">신조어사전</a>
+				<a href="define" id="title" style="color: white; font-weight: 45px; margin-left: 1rem;" >한줄피디아</a>
 			</div>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -56,9 +56,9 @@
 					</form>
 
 					<div id="navLink">
-						&nbsp;&nbsp;&nbsp; <a href="define" style="color: white;">새롭게정의된단어</a>
-						&nbsp;&nbsp;&nbsp; <a href="newword_write" style="color: white;">새로운단어정의하기</a>
-						&nbsp;&nbsp;&nbsp; <a href="" id="log"></a> &nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp; <a href="define" style="color: white; font-size: 1.33rem;">새롭게정의된단어</a>
+						&nbsp;&nbsp;&nbsp; <a href="newword_write" style="color: white; font-size: 1.33rem;">새로운단어정의하기</a>
+						&nbsp;&nbsp;&nbsp; <a href="" id="log" style="font-size: 1.33rem;"></a> &nbsp;&nbsp;&nbsp;
 					</div>
 					<div><%=sessionId%></div>
 				</ul>
@@ -102,8 +102,16 @@
 	</script>
 
 	<!-- 오른쪽창 -->
-	<div id="scroll" style="position:absolute;right:0;top:0;"></div>
-	
+	<div id="scroll" style="position: absolute; left: 0; top: 0;">
+		<div>최근정의가 추가된 단어</div>
+		<c:forEach items="${MainDefineList}" var="a">
+			<div class="wordShortCut">
+				<a href="#"
+					onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
+			</div>
+		</c:forEach>
+	</div>
+
 	<c:forEach items="${MainDefineList}" var="a">
 		<div id="container01" style="position: relative;">
 			<!-- 왼쪽창에서 실제컨텐츠 표시부분 -->
@@ -111,6 +119,7 @@
 				&nbsp;&nbsp;
 				<!-- 단어제목으로검색링크 -->
 				<div>
+				<div>${a.currenttime}</div>
 					<h1>
 						<form action="linkWord" id="frm${a.num}" method="get">
 							<input type="hidden" name="linkWord" value="${a.word}"> <a

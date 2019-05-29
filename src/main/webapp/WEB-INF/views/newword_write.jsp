@@ -14,86 +14,45 @@
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script> -->
 <title>Home</title>
-<link href="resources/css/style.css?after" rel="stylesheet"
+<link href="resources/css/defineStyle.css?after" rel="stylesheet"
 	type="text/css">
 
 </head>
-<body>
+<body style="background-color: #CACCCE;">
 	<%@ include file="nav.jsp"%>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-		<div class="container">
-			<a class="navbar-brand" href="home">신조어사전</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active"><a class="nav-link" href="home">답글형
-							게시판 </a></li>
-
-					<li class="nav-item"><a class="nav-link" href="login">로그인</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="memberjoin">회원가입</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
-
-	<div class="container">
-		<br> <br> <br>
-
-	</div>
-
-	<br>
-	<div id="container">
-		<div id="write">
-			<%
-				String id = (String) session.getAttribute("ID");
-				System.out.println(id + "님 환영합니다.");
-			%>
-			<table>
-				<form action="newwordWriting" method="post"
-					enctype="multipart/form-data">
-					
-					<tr>
-					<td>
-						단어명
-						<br>
-						<input type="text" name="WORD" size="20" value="">
-						</td>
-					</tr>
-					
-					<tr>
-					<td>
-						아이디
-						<br>
-						<input type="text" name="ID" size="20" value="<%=id%>">
-						</td>
-					</tr>
-					
-					<tr>
-
-						<td>비밀번호<br> <input type="text" name="PW" size="20"
-							value=""></td>
-					</tr>
-
-					<tr>
-
-						<td>글내용<br> <textarea name="editor1" id="editor1"
-								rows="10" cols="80"></textarea></td>
-					</tr>
-
-					<tr>
-						<td><input type="submit" value="업로드" id="in"></td>
-					</tr>
-				</form>
-			</table>
-		</div>
-	</div>
+	<%
+		String id = (String) session.getAttribute("ID");
+		String pw = (String) session.getAttribute("PW");
+		System.out.println(id + "님 환영합니다.");
+	%>
+	<table id="cont">
+		<form action="newwordWriting" method="post"
+			enctype="multipart/form-data">
+			<tr>
+				<td><br>
+				</td>
+			</tr>
+			<tr>
+				<td><br> <input type="text" class="wid" name="WORD"
+					size="20" placeholder="&nbsp;단어명"></td>
+			</tr>
+			<tr>
+				<td><br> <textarea name="editor1" class="editor1"
+						rows="10" cols="80" placeholder="글내용">
+						</textarea></td>
+			</tr>
+			<br>
+			<tr>
+				<input type="hidden" name="ID" value="<%=id%>">
+				<input type="hidden" name="PW" value="<%=pw%>">
+				<td><input type="submit" value="단어정의" id="in"></td>
+			</tr>
+		</form>
+		<tr>
+			<td><a href="define"id="inde">취소</a></td>
+		</tr>
+		
+	</table>
 	<script type="text/javascript">
 		$(function() {
 
@@ -115,7 +74,6 @@
 					break;
 				}
 			});
-
 		});
 	</script>
 </body>

@@ -6,6 +6,7 @@ public class NewwordVO {
 	private String word;
 	private String editor1;
 	private String splitWord;
+	
 	public String getId() {
 		return id;
 	}

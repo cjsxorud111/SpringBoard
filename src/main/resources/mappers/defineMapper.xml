@@ -6,7 +6,7 @@
 <mapper namespace="com.example.mapper.defineMapper">
 	  
 	<insert id="newwordWriting" parameterType="com.example.dto.NewwordVO" >
-		INSERT INTO DEFINE (WORD, ID, PW, INFO, SPLITWORD) VALUES (#{word}, #{id}, #{pw}, #{editor1}, #{splitWord})
+		INSERT INTO DEFINE (WORD, ID, PW, INFO, SPLITWORD, CURRENTTIME) VALUES (#{word}, #{id}, #{pw}, #{editor1}, #{splitWord}, now())
 	</insert>
 	
 	<insert id="defineWriteSub" parameterType="com.example.dto.DefineSubVO" >
@@ -18,7 +18,7 @@
 	</insert>
 	
 	<select id="mainDefineList" resultType="com.example.dto.MainDefineContentVO" >
-		SELECT NUM, ID, PW, WORD, INFO, UP, DOWN, SPLITWORD FROM DEFINE
+		SELECT NUM, ID, PW, WORD, INFO, UP, DOWN, SPLITWORD, CURRENTTIME FROM DEFINE ORDER BY NUM DESC
 	</select>
 	
 	<select id="recommendSelect" parameterType="String" resultType="com.example.dto.ReturnRecommendVO" >
