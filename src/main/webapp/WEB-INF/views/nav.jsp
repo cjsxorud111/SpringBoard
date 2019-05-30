@@ -16,7 +16,6 @@
 	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.css">
 <!-- Bootstrap core JavaScript -->
 	
-<script src="//code.jquery.com/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

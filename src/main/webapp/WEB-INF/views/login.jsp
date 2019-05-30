@@ -8,7 +8,7 @@
 	type="text/css">
 <title>Login</title>
 </head>
-<body id="loginBody">
+<body id="loginBody" style="background-color: #CACCCE">
 	<%@ include file="nav.jsp"%>
 	<div id="loginInputSection">
 		<div id="loginText">

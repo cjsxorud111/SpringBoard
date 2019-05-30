@@ -26,6 +26,9 @@
 		System.out.println(id + "님 환영합니다.");
 	%>
 	<table id="cont">
+	<script type="text/javascript">
+		
+	</script>
 		<form action="newwordWriting" method="post"
 			enctype="multipart/form-data">
 			<tr>
@@ -33,7 +36,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td><br> <input type="text" class="wid" name="WORD"
+				<td><br> <input type="text" class="wid" id="wid" name="WORD"
 					size="20" placeholder="&nbsp;단어명"></td>
 			</tr>
 			<tr>
@@ -54,8 +57,10 @@
 		
 	</table>
 	<script type="text/javascript">
+		$('#wid').keyup(function(event) {
+			alert("ddd");	
+		});
 		$(function() {
-
 			CKEDITOR.replace('editor1', {//해당 이름으로 된 textarea에 에디터를 적용
 				width : '100%',
 				height : '200px',

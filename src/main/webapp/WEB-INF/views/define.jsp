@@ -6,27 +6,37 @@
 	String sessionId = (String) session.getAttribute("ID");
 	String sessionPw = (String) session.getAttribute("PW");
 %>
+<%@ include file="nav.jsp"%>
 <html>
 <head>
 
 <title>새롭게추가된 단어</title>
 <link href="resources/css/defineStyle.css?after" rel="stylesheet"
 	type="text/css">
-
 <script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="<c:url value="resources/js/defineJavaScript.js" />"></script>
-<script>
+<script type="text/javascript">
+
 	// 댓글이나대댓글시 로그인검사위한변수testtest
 	var session = '<%=sessionId%>';
 	var isSession = false;
 	if (session != "null") {
 		isSession = true;
 	}
+	
+	function writeLoginCheck(){
+		if(isSession == true){
+			window.location.href='newword_write';
+		} else {
+			alert("로그인이 필요합니다.");
+			window.location.href='login';
+		}
+	}
+	
 </script>
 </head>
 <body id="backGround" style="background-color: #CACCCE; position: relative;">
-	<%@ include file="nav.jsp"%>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
 		style="position: relative; height: 6rem; background: blue">
 		<div class="container">
@@ -49,15 +59,12 @@
 							class='input_text' onfocusout="loseFocus()" />
 							<div id="searchRecommendSection"></div>
 						</span>
-						<script type="text/javascript">
-							
-						</script>
 						<button type='submit' class='sch_smit'>검색</button>
 					</form>
 
 					<div id="navLink">
 						&nbsp;&nbsp;&nbsp; <a href="define" style="color: white; font-size: 1.33rem;">새롭게정의된단어</a>
-						&nbsp;&nbsp;&nbsp; <a href="newword_write" style="color: white; font-size: 1.33rem;">새로운단어정의하기</a>
+						&nbsp;&nbsp;&nbsp; <a href="#" onclick="writeLoginCheck()" style="color: white; font-size: 1.33rem;">새로운단어정의하기</a>
 						&nbsp;&nbsp;&nbsp; <a href="" id="log" style="font-size: 1.33rem;"></a> &nbsp;&nbsp;&nbsp;
 					</div>
 					<div><%=sessionId%></div>
@@ -98,9 +105,8 @@
 		});
 	}
 	scroll_follow( "#scroll" );
-		
 	</script>
-
+	
 	<!-- 오른쪽창 -->
 	<div id="scroll" style="position: absolute; left: 0; top: 0;">
 		<div>최근정의가 추가된 단어</div>
@@ -245,4 +251,63 @@
 	</c:forEach>
 
 </body>
+<script>
+$('#inputText').keyup(function(event) {
+	var keySet = "ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㄲㄸㅃㅆㅏㅑㅓㅕㅗㅛㅜㅠㅡㅣㅐㅒㅔㅖ1234567890,.?/<>:;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	if (event.keyCode == 38) { // 위방향키눌렀을때
+		num--;
+		if (num <= 0) {
+			num = endNum;
+			var divId = "num" + 1;
+			$('#' + divId).css("background-color", "white");
+		}
+		var id = "num" + num;
+		var bottom = "num" + Number(num + 1);
+		var text = document.getElementById(id).value;
+		$("#inputText").val($('#' + id).text());
+		$('#' + id).css("background-color", "#99FF99");
+		$('#' + bottom).css("background-color", "white");
+
+	} else if (event.keyCode == 40) { // 아래방향키눌렀을때
+		num++;
+		if (num > endNum) {
+			num = 1;
+			var divId = "num" + endNum;
+			$('#' + divId).css("background-color", "white");
+		}
+		var id = "num" + num;
+		var up = "num" + Number(num - 1);
+
+		var text = document.getElementById(id).value;
+		$("#inputText").val($('#' + id).text());
+		$('#' + id).css("background-color", "#99FF99");
+		$('#' + up).css("background-color", "white");
+	}
+
+	if (keySet.indexOf(event.key) != -1) {
+		num = 0;
+		var inputText = $("#inputText").val();
+
+		$.ajax({
+			type : "POST", // 전송방식을 지정한다 (POST,GET)
+			url : "searchWord",// 호출 URL을 설정한다. GET방식일경우 뒤에
+								// 파라티터를 붙여서 사용해도된다.
+			dataType : "json",// 호출한 페이지의 형식이다.
+								// xml,json,html,text등의 여러 방식을
+								// 사용할 수 있다.
+			data : {
+				inputText : inputText
+			},
+			error : function() {
+				alert("error");
+			},
+			success : function(parseData) {
+				$("#searchRecommendSection").html(
+						parseData.show);
+				endNum = parseData.num;
+			}
+		});
+	}
+});
+</script>
 </html>

@@ -145,66 +145,7 @@ function wordClick(word) {
 	$("#inputText").val(word);
 }
 
-$('#inputText')
-		.keyup(
-				function(event) {
-					alert("ddd");
-					var keySet = "ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㄲㄸㅃㅆㅏㅑㅓㅕㅗㅛㅜㅠㅡㅣㅐㅒㅔㅖ1234567890,.?/<>:;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-					if (event.keyCode == 38) { // 위방향키눌렀을때
-						num--;
-						if (num <= 0) {
-							num = endNum;
-							var divId = "num" + 1;
-							$('#' + divId).css("background-color", "white");
-						}
-						var id = "num" + num;
-						var bottom = "num" + Number(num + 1);
-						var text = document.getElementById(id).value;
-						$("#inputText").val($('#' + id).text());
-						$('#' + id).css("background-color", "#99FF99");
-						$('#' + bottom).css("background-color", "white");
 
-					} else if (event.keyCode == 40) { // 아래방향키눌렀을때
-						num++;
-						if (num > endNum) {
-							num = 1;
-							var divId = "num" + endNum;
-							$('#' + divId).css("background-color", "white");
-						}
-						var id = "num" + num;
-						var up = "num" + Number(num - 1);
-
-						var text = document.getElementById(id).value;
-						$("#inputText").val($('#' + id).text());
-						$('#' + id).css("background-color", "#99FF99");
-						$('#' + up).css("background-color", "white");
-					}
-
-					if (keySet.indexOf(event.key) != -1) {
-						num = 0;
-						var inputText = $("#inputText").val();
-
-						$.ajax({
-							type : "POST", // 전송방식을 지정한다 (POST,GET)
-							url : "searchWord",// 호출 URL을 설정한다. GET방식일경우 뒤에
-												// 파라티터를 붙여서 사용해도된다.
-							dataType : "json",// 호출한 페이지의 형식이다.
-												// xml,json,html,text등의 여러 방식을
-												// 사용할 수 있다.
-							data : {
-								inputText : inputText
-							},
-							error : function() {
-								alert("error");
-							},
-							success : function(parseData) {
-								$("#searchRecommendSection").html(
-										parseData.show);
-								endNum = parseData.num;
-							}
-						});
-					}
-				});
 
 function loseFocus() {
 	setTimeout(function() {
