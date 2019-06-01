@@ -7,6 +7,7 @@ public class DefineSubVO {
 	private String space;
 	private String content;
 	private String pw;
+	private String id;
 	
 	public String getPw() {
 		return pw;
@@ -20,7 +21,7 @@ public class DefineSubVO {
 	public void setNum(String num) {
 		this.num = num;
 	}
-	private String id;
+	
 	public String getId() {
 		return id;
 	}

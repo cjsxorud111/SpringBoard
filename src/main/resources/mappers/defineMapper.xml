@@ -10,7 +10,7 @@
 	</insert>
 	
 	<insert id="defineWriteSub" parameterType="com.example.dto.DefineSubVO" >
-		INSERT INTO DEFINESUB (CONNUM, SPACE, CONTENT, PW) VALUES (#{connum}, #{space}, #{content}, #{pw})
+		INSERT INTO DEFINESUB (CONNUM, SPACE, CONTENT, ID, PW) VALUES (#{connum}, #{space}, #{content}, #{id}, #{pw})
 	</insert>
 	
 	<insert id="recommendWriting" parameterType="com.example.dto.RecommendVO" >
@@ -26,7 +26,7 @@
 	</select>
 	
 	<select id="getDefinSubList" resultType="com.example.dto.DefineSubVO" >
-		SELECT NUM, CONNUM, SPACE, CONTENT FROM DEFINESUB 
+		SELECT NUM, CONNUM, SPACE, CONTENT, ID FROM DEFINESUB 
 	</select>
 	
 	<select id="getDefineSub" parameterType="Integer" resultType="com.example.dto.DefineSubVO" >

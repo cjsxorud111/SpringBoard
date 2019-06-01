@@ -8,7 +8,11 @@
 %>
 <%@ include file="nav.jsp"%>
 <html>
+
 <head>
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet" />
 
 <title>새롭게추가된 단어</title>
 <link href="resources/css/defineStyle.css?after" rel="stylesheet"
@@ -17,7 +21,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="<c:url value="resources/js/defineJavaScript.js" />"></script>
 <script type="text/javascript">
-
+	
 	// 댓글이나대댓글시 로그인검사위한변수testtest
 	var session = '<%=sessionId%>';
 	var isSession = false;
@@ -35,13 +39,16 @@
 	}
 	
 </script>
+
 </head>
-<body id="backGround" style="background-color: #CACCCE; position: relative;">
+<body id="backGround"
+	style="background-color: #CACCCE; position: relative;">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
-		style="position: relative; height: 6rem; background: blue">
+		style="position: relative; height: 5rem; background: blue">
 		<div class="container">
 			<div>
-				<a href="define" id="title" style="color: white; font-weight: 45px; margin-left: 1rem;" >한줄피디아</a>
+				<a href="define" id="title"
+					style="color: white; font-weight: 50px; margin-left: 1rem;">한줄피디아</a>
 			</div>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -59,15 +66,22 @@
 							class='input_text' onfocusout="loseFocus()" />
 							<div id="searchRecommendSection"></div>
 						</span>
-						<button type='submit' class='sch_smit'>검색</button>
+						<!-- 돋보기 -->
+						<button type='submit' class='sch_smit'>
+							<span class="demoSpan1">
+						</button>
 					</form>
-
 					<div id="navLink">
-						&nbsp;&nbsp;&nbsp; <a href="define" style="color: white; font-size: 1.33rem;">새롭게정의된단어</a>
-						&nbsp;&nbsp;&nbsp; <a href="#" onclick="writeLoginCheck()" style="color: white; font-size: 1.33rem;">새로운단어정의하기</a>
-						&nbsp;&nbsp;&nbsp; <a href="" id="log" style="font-size: 1.33rem;"></a> &nbsp;&nbsp;&nbsp;
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> &nbsp;&nbsp;&nbsp; <a
+							href="#" onclick="writeLoginCheck()"
+							style="position: relative; top: 2px; color: white; font-size: 1.7rem; text-decoration: none;">새단어정의하기</a>
+						&nbsp;&nbsp;&nbsp; <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <a
+							href="" id="log"
+							style="position: relative; top: 2px; color: white; font-size: 1.7rem; text-decoration: none;"></a>
+						&nbsp;&nbsp;&nbsp;
 					</div>
-					<div><%=sessionId%></div>
+
 				</ul>
 			</div>
 		</div>
@@ -75,6 +89,7 @@
 	<!-- 자바스크립트에서수정이안되기에onload자바스크립트만jsp에만듬 -->
 	<script>
 	window.onload = function() {
+		$('#loading').hide();
 		var aboveCommentSection = document
 				.getElementsByClassName("aboveCommentSection");
 		var belowCommentSection = document
@@ -91,9 +106,9 @@
 			deleteTag.item(i).style.display = "none";
 		}
 		if(session == 'null'){
-			document.getElementById("log").innerHTML = "<a href='login' style='color: white;'>Login</a>";
+			document.getElementById("log").innerHTML = "<a href='login' style='color: white; text-decoration: none;'>Login</a>";
 		}else{
-			document.getElementById("log").innerHTML = "<a href='logout' id='logout' style='color: white;'>Logout</a>";
+			document.getElementById("log").innerHTML = "<a href='logout' id='logout' style='color: white; text-decoration: none;'>Logout</a>";
 		}
 	}
 	
@@ -106,61 +121,85 @@
 	}
 	scroll_follow( "#scroll" );
 	</script>
-	
 	<!-- 오른쪽창 -->
 	<div id="scroll" style="position: absolute; left: 0; top: 0;">
-		<div>최근정의가 추가된 단어</div>
-		<c:forEach items="${MainDefineList}" var="a">
+		<div style="margin-bottom: 1rem;">최근정의가 추가된 단어</div>
+		<c:forEach items="${MainDefineList}" var="a" end="13">
 			<div class="wordShortCut">
-				<a href="#"
-					onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
+				<div class="myDIV">
+					<a href="#"
+						onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
+				</div>
+				<div
+					style="margin-left: 5px; font-size: 0.8rem; float: right; display: inline-block;">${a.currenttime}</div>
 			</div>
 		</c:forEach>
 	</div>
 
 	<c:forEach items="${MainDefineList}" var="a">
+		<!-- 왼쪽창 -->
 		<div id="container01" style="position: relative;">
 			<!-- 왼쪽창에서 실제컨텐츠 표시부분 -->
 			<div id="container02">
 				&nbsp;&nbsp;
 				<!-- 단어제목으로검색링크 -->
 				<div>
-				<div>${a.currenttime}</div>
+
+					<div style="float: right;">
+						<div>${a.currenttime}정의됨</div>
+						<div>
+							<a href="define_write?num=${a.num}" style="float: right">새정의추가</a>
+						</div>
+						<div>&nbsp;</div>
+						<!-- 글수정 글삭제버튼 -->
+						<div id="delete" style="float: right;">
+							<button class="modifyButton">수정</button>
+							<button onclick="deleteCheck(${a.num}, '${a.id}');"
+								class="defineDeleteButton">삭제</button>
+
+						</div>
+
+					</div>
 					<h1>
 						<form action="linkWord" id="frm${a.num}" method="get">
 							<input type="hidden" name="linkWord" value="${a.word}"> <a
 								href="#"
-								onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
+								onclick="document.getElementById('frm${a.num}').submit();"
+								style="text-decoration: none; font-color: black">${a.word}</a>
 						</form>
 					</h1>
 				</div>
 
 				<div>${a.info}</div>
-				<div>글번호: ${a.num}</div>
+				<%-- <div>글번호: ${a.num}</div> --%>
+
+				<!-- 추천, 비추천 버튼 -->
+				<div id="rate" style="float: right;">
+					<div>
+						<button onclick="recommendUp(${a.up}, ${a.num});"
+							id="recommendUp${a.num}" class="upVote">추천: ${a.up}</button>
+					</div>
+					<div>
+						<button onclick="recommendDown(${a.down}, ${a.num});"
+							id="recommendDown${a.num}" class="downVote">비추천:
+							${a.down}</button>
+					</div>
+				</div>
 				<div>글쓴이: ${a.id}</div>
-				<div id="delete">
-					&nbsp;&nbsp;
-					<button onclick="deleteCheck(${a.num}, '${a.id}');">글삭제</button>
+				<br>
+				<div>
+					<a href="javascript:commentClick(${a.num});"
+						style="margin-top: 1rem; text-decoration: none;">댓글+</a>
 				</div>
-
-				<div id="rate">
-					<button onclick="recommendUp(${a.up}, ${a.num});"
-						id="recommendUp${a.num}">추천: ${a.up}</button>
-					<button onclick="recommendDown(${a.down}, ${a.num});"
-						id="recommendDown${a.num}">비추천: ${a.down}</button>
-				</div>
-
-				<a href="define_write?num=${a.num}">이 단어의 새로운 정의 추가</a> <br> <a
-					href="javascript:commentClick(${a.num});">댓글+</a>
-
-				<table class="table">
+				<table frame=void>
 					<tr>
 						<form action="defineWriteSub" method="post">
 							<td id="button${a.num}" class="aboveCommentSection"><textarea
 									name="subcon" rows="2" cols="30"></textarea> <input
 								type="hidden" name="num" value="${a.num}" /> <input
 								type="hidden" name="space" value="0" /> <input type="hidden"
-								name="pw" value="<%=sessionPw%>" /> <input type="submit"
+								name="pw" value="<%=sessionPw%>" /> <input type="hidden"
+								name="id" value="<%=sessionId%>" /><input type="submit"
 								value="댓글달기"></td>
 						</form>
 					</tr>
@@ -185,16 +224,16 @@
 										<c:set var="space" value="${b.space}" />
 										<div class="subViewSection">
 											<c:if test="${space > 0}">
-
 												<!-- 댓글표시 화살표 도형 -->
-												<div id="diagram"></div>
-												<div class="cont-box-pseudo"></div>
+												<div id="diagram" style="position: relative; right: 36.5px;"></div>
+												<div class="cont-box-pseudo"
+													style="position: relative; right: 36.5px;"></div>
 											</c:if>
 										</div>
 										<div class="subViewSection">
 											<a href="javascript:belowCommentClick(${b.num});"
-												style="color: black;">
-												<div id="subView">&nbsp;&nbsp;${b.content}</div>
+												style="color: black; position: relative; right: 36.5px; border: 1px splid red;">
+												<div id="subView">&nbsp;&nbsp;id:${b.id} - ${b.content}</div>
 											</a>
 										</div>
 
@@ -232,7 +271,8 @@
 											<textarea name="subcon" rows="2" cols="40"></textarea>
 											<input type="hidden" name="subnum" value="${b.num}" /> <input
 												type="hidden" name="space" value="${b.space+1}" /> <input
-												type="hidden" name="connum" value="${a.num}" /> <input
+												type="hidden" name="connum" value="${a.num}" />  <input
+												type="hidden" name="id" value="<%=sessionId%>" /> <input
 												type="hidden" name="pw" value="<%=sessionPw%>" /> <input
 												type="submit" value="댓글달기" />
 										</div>
@@ -245,7 +285,6 @@
 
 				</table>
 
-				<br> <br>
 			</div>
 		</div>
 	</c:forEach>

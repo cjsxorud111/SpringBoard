@@ -60,6 +60,7 @@ public class DefineServiceImpl implements DefineService {
 		DefineSubVO vo = new DefineSubVO();
 
 		vo.setContent(request.getParameter("subcon"));
+		vo.setId(request.getParameter("id"));
 		vo.setPw(request.getParameter("pw"));
 		vo.setConnum(request.getParameter("num"));
 		vo.setSpace(request.getParameter("space"));
@@ -80,6 +81,7 @@ public class DefineServiceImpl implements DefineService {
 		vo.setConnum(request.getParameter("connum"));
 		vo.setSpace(request.getParameter("space"));
 		vo.setNum(request.getParameter("subnum"));
+		vo.setId(request.getParameter("id"));
 		vo.setPw(request.getParameter("pw"));
 		List<DefineSubVO> allSubList = dao.getDefinSubList(); // 전체테이블 가져옴
 		dao.DeleteAllSub(); // 테이블내용 전체삭제

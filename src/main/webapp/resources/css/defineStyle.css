@@ -3,9 +3,10 @@
 /* 왼쪽창*/
 #container01 {
 	width: 38rem;
+	border: 1px solid white;
 	margin-left: 28rem;
 	margin-right: 55rem;
-	margin-bottom: 0.5rem;
+	margin-top: 1rem;
 	background-color: #FFFFFF;
 }
 /* 오른쪽창 */
@@ -13,64 +14,121 @@
 	background-color: white;
 	width: 19rem;
 	height: 40rem;
-	margin-top: 7rem;
+	margin-top: 6rem;
 	margin-left: 67rem;
 	padding: 2rem;
 }
 /* 오른쪽단어들 */
-.wordShortCut{
+.wordShortCut {
 	border-bottom: 1px solid grey;
 	font-size: 1.1rem;
-	margin-bottom: 10px;
+	margin-bottom: 12px;
 }
 /* 왼쪽창에서 실제컨텐츠 표시부분 */
 #container02 {
 	margin-left: 2rem;
 	margin-right: 2rem;
 	margin-top: 1rem;
-	margin-bottom: 2rem;
 	background-color: #FFFFFF;
 }
 /* 검색창 */
 .green_window {
 	display: inline-block;
 	position: relative;
-	top: 4px;
-	width: 366px;
-	height: 50px;
-	border: 3px solid #2B7A78;
-	background: white;
+	top: 8px;
 }
+.table{
+	border-right:hidden;
+	border-left:hidden;
+	border-top:hidden;
+	border-bottom:hidden;
+}
+
 .input_text {
-	width: 208px;
-	height: 41px;
+	border-radius: 3px 3px 3px 3px;
+	width: 330px;
+	height: 50px;
+	padding-left: 1rem;
 	position: relative;
 	bottom: 2px;
 	margin: 6px 0 0 9px;
 	border: 0;
 	line-height: 21px;
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 25px;
 	outline: none;
+	position: relative
 }
+/* 돋보기아이콘 */
+.demoSpan1 {
+	height: 27px;
+	width: 20px;
+	display: block;
+	position: relative;
+}
+
+.demoSpan1:before, .demoSpan1:after {
+	content: '';
+	height: 20px;
+	display: block;
+	position: absolute;
+	/* 돋보기동그라미부분위치 */
+	top: 1px;
+	right: 1px;
+}
+
+.demoSpan1:before {
+	width: 30px;
+	height: 30px;
+	border: 4px white solid;
+	border-radius: 100%;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+}
+
+.demoSpan1:after {
+	width: 5px;
+	background: white;
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	/* 돋보기막대위치 */
+	top: 23px;
+	right: -1px;
+}
+
+/* 로딩시페이지 */
+#loading {
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	position: fixed;
+	display: block;
+	opacity: 0.7;
+	background-color: #fff;
+	z-index: 99;
+	text-align: center;
+}
+
+#loading-image {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 100;
+}
+
 /* 검색버튼 */
 .sch_smit {
-	width: 54px;
-	height: 50px;
-	position: relative;
-	top: 4px;
-	margin: 0;
-	border: 0;
-	vertical-align: top;
-	background: #2B7A78;
-	color: white;
-	font-weight: bold;
-	border-radius: 1px;
 	cursor: pointer;
+	border: 0;
+	outline: 0;
+	background-color: #ffffff;
+	background-color: rgba(255, 255, 255, 0);
 }
-.sch_smit:hover {
-	background: #f7d894;
-}
+
 /* 반응형위한미디어쿼리 현재임시로 반응형으로 창비율조절하지만 칸으로 수정필요*/
 @media ( max-width :1600px) {
 	/* 왼쪽창*/
@@ -81,13 +139,11 @@
 	#scroll {
 		margin-left: 59rem;
 	}
-	.green_window {
-		width: 266px;
-	}
 	.input_text {
-		width: 248px;
+		width: 330px;
 	}
 }
+
 @media ( max-width :1400px) {
 	/* 왼쪽창*/
 	#container01 {
@@ -97,13 +153,11 @@
 	#scroll {
 		margin-left: 51rem;
 	}
-	.green_window {
-		width: 200px;
-	}
 	.input_text {
-		width: 188px;
+		width: 330px;
 	}
 }
+
 @media ( max-width :1200px) {
 	/* 왼쪽창*/
 	#container01 {
@@ -113,30 +167,20 @@
 	#scroll {
 		margin-left: 45rem;
 	}
-	.green_window {
-		width: 100px;
-	}
 	.input_text {
-		width: 88px;
-	}
-}
-@media ( max-width :1000px) {
-	
-	#scroll {
-		display: none;
-	}
-	.green_window {
-		width: 100px;
-	}
-	.input_text {
-		width: 78px;
+		width: 300px;
 	}
 }
 
-/* 추,비추 */
-#rate {
-	float: right;
+@media ( max-width :1000px) {
+	#scroll {
+		display: none;
+	}
+	.input_text {
+		width: 200px;
+	}
 }
+
 /* 추천검색어창 */
 #searchRecommendSection {
 	margin-top: 10px;
@@ -149,13 +193,67 @@
 	height: 2.7rem;
 	font-size: 20px;
 }
-
 .recommendSection:hover {
 	background-color: yellow;
 	color: blue;
 	width: 359px;
 	height: 2.7rem;
 	font-size: 20px;
+}
+.defineDeleteButton{
+	position: relative;
+	left: 4.5px;
+	font-size:12px;
+	cursor: pointer;
+	outline: 0;
+	border: 0;
+	background-color: #ffffff;
+	background-color: rgba(255, 255, 255, 0);
+}
+.defineDeleteButton:hover{
+	color: skyblue;
+}
+.modifyButton{
+	position: relative;
+	left: 14px;
+	font-size:12px;
+	cursor: pointer;
+	outline: 0;
+	border: 0;
+	background-color: #ffffff;
+	background-color: rgba(255, 255, 255, 0);
+}
+.modifyButton:hover{
+	color: skyblue;
+}
+/* BUTTON 5 */
+.upVote {
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	color: #000;
+	border: 1px solid #000;
+	cursor: pointer;
+	width: 100px;
+	margin-bottom: 3px;
+}
+.myDIV {
+	display: inline-block; 
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	width:90px;
+	overflow:hidden;
+}
+.downVote {
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	color: #000;
+	border: 1px solid #000;
+	cursor: pointer;
+	width: 100px;
 }
 
 /* 네브바 링크 */
@@ -176,17 +274,11 @@
 	padding-bottom: 5px;
 	position: relative;
 	bottom: 2.5px;
-	font-size: 31px;
+	font-size: 40px;
 }
 
 #title:link {
 	text-decoration: none;
-}
-
-
-/* 글삭제버튼 */
-#delete {
-	float: right;
 }
 
 /* 댓글표시화살표 */
@@ -244,7 +336,8 @@
 }
 
 #subView {
-	padding-right: 10rem;
+	
+	padding-right: 20rem;
 }
 
 #loginBody {
@@ -288,38 +381,41 @@
 	width: 4rem;
 }
 /* newword_write */
-
-#cont{
+#cont {
 	margin-top: 3rem;
 	margin: auto;
-	width: 20rem;	
+	width: 20rem;
 }
-.wid{
+
+.wid {
 	width: 40rem;
 	height: 4rem;
 	font-size: 2rem;
 }
-.editor1{
+
+.editor1 {
 	width: 40rem;
 }
-#in{
-	text-decoration:none;
-	color:#000; 
+
+#in {
+	text-decoration: none;
+	color: #000;
 	font-size: 2.1rem;
 	height: 4rem;
 	margin-top: 1rem;
 	width: 40.05rem;
 }
-#inde{
-	display:inline-block; 
-	text-align:center; 
-	vertical-align:middle; 
-	text-decoration:none;
-	padding-top: 0.7rem; 
-	font-size: 2.1rem; 
-	color:#000; 
-	border:1px solid #000; 
-	width: 40rem; 
-	height: 4rem; 
-	line-height:38px;
+
+#inde {
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	padding-top: 0.7rem;
+	font-size: 2.1rem;
+	color: #000;
+	border: 1px solid #000;
+	width: 40rem;
+	height: 4rem;
+	line-height: 38px;
 }

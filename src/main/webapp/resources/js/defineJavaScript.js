@@ -145,8 +145,6 @@ function wordClick(word) {
 	$("#inputText").val(word);
 }
 
-
-
 function loseFocus() {
 	setTimeout(function() {
 		textOut();

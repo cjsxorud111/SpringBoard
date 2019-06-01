@@ -26,9 +26,7 @@
 		System.out.println(id + "님 환영합니다.");
 	%>
 	<table id="cont">
-	<script type="text/javascript">
-		
-	</script>
+	
 		<form action="newwordWriting" method="post"
 			enctype="multipart/form-data">
 			<tr>
@@ -57,16 +55,12 @@
 		
 	</table>
 	<script type="text/javascript">
-		$('#wid').keyup(function(event) {
-			alert("ddd");	
-		});
 		$(function() {
 			CKEDITOR.replace('editor1', {//해당 이름으로 된 textarea에 에디터를 적용
 				width : '100%',
 				height : '200px',
 				filebrowserImageUploadUrl : 'img1' //여기 경로로 파일을 전달하여 업로드 시킨다.
 			});
-
 			CKEDITOR.on('dialogDefinition', function(ev) {
 				var dialogName = ev.data.name;
 				var dialogDefinition = ev.data.definition;
