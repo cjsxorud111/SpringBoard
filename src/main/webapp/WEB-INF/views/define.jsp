@@ -138,7 +138,8 @@
 
 	<c:forEach items="${MainDefineList}" var="a">
 		<!-- 왼쪽창 -->
-		<div id="container01" style="position: relative;">
+		<div id="container01"
+			style="position: relative;">
 			<!-- 왼쪽창에서 실제컨텐츠 표시부분 -->
 			<div id="container02">
 				&nbsp;&nbsp;
@@ -206,7 +207,6 @@
 				</table>
 
 				<!-- 댓글표시 -->
-
 				<c:set var="num" value="${a.num}" />
 
 				<table class="table">
@@ -230,17 +230,20 @@
 													style="position: relative; right: 36.5px;"></div>
 											</c:if>
 										</div>
-										<div class="subViewSection">
-											<a href="javascript:belowCommentClick(${b.num});"
-												style="color: black; position: relative; right: 36.5px; border: 1px splid red;">
-												<div id="subView">&nbsp;&nbsp;id:${b.id} - ${b.content}</div>
-											</a>
+										<div class="subViewSection" style="	line-height: 110%; margin-top: -1%; margin-bottom: -1%;">
+											<div style="color: black; position: relative; right: 36.5px;">
+												<div>&nbsp;&nbsp;${b.id}</div>
+												<div id="subView">&nbsp;&nbsp;${b.content}</div>
+											</div>
 										</div>
 
 										<!-- 공백 -->
 										<div class="temp">&nbsp;&nbsp;</div>
 										<!-- 댓글버튼 -->
 										<div class="deleteShowTag">
+											<a href="javascript:belowCommentClick(${b.num});"> <input
+												type="submit" value="답글" style="font-size:80%"/>
+											</a>
 											<a href="javascript:deleteClick(${b.num});"> <input
 												type="submit" id="deleteShowButton" value="삭제" />
 											</a>
@@ -266,15 +269,16 @@
 											<div id="diagram"></div>
 											<div class="cont-box-pseudo"></div>
 										</div>
+										
 										<div class="textSection">&nbsp;&nbsp;</div>
 										<div class="textSection">
-											<textarea name="subcon" rows="2" cols="40"></textarea>
+											<textarea name="subcon" rows="2" cols="40" style="height:55px;"></textarea>
 											<input type="hidden" name="subnum" value="${b.num}" /> <input
 												type="hidden" name="space" value="${b.space+1}" /> <input
 												type="hidden" name="connum" value="${a.num}" />  <input
 												type="hidden" name="id" value="<%=sessionId%>" /> <input
 												type="hidden" name="pw" value="<%=sessionPw%>" /> <input
-												type="submit" value="댓글달기" />
+												type="submit" value="댓글달기" style="font-size: 80%;"/>
 										</div>
 									</td>
 								</form>
@@ -284,7 +288,7 @@
 					</c:forEach>
 
 				</table>
-
+										
 			</div>
 		</div>
 	</c:forEach>

@@ -311,24 +311,24 @@
 
 /* ´ñ±ÛÇ¥½ÃÃ¢ */
 .subViewSection {
-	float: left;
+	/* float: left; */
 }
 
 /* ´ñ±Û±â·ÏÇ¥½ÃÃ¢ */
 .textSection {
-	float: left;
+	/* float: left; */
 }
 
 .deleteTag {
-	float: right;
+	/* float: right; */
 }
 
 .deleteShowTag {
-	float: right;
+	/* float: right; */
 }
 
 .temp {
-	float: right;
+	/* float: right; */
 }
 
 #deleteShowButton {
@@ -336,8 +336,7 @@
 }
 
 #subView {
-	
-	padding-right: 20rem;
+	width: 22rem;
 }
 
 #loginBody {
