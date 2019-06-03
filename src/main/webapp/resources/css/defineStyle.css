@@ -332,11 +332,13 @@
 }
 
 #deleteShowButton {
+	float: right;
 	font-size: 80%;
 }
 
 #subView {
-	width: 22rem;
+	
+	word-wrap: break-word;
 }
 
 #loginBody {
