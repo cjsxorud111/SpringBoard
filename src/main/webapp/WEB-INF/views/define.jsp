@@ -193,11 +193,13 @@
 				</div>
 				<table frame=void>
 					<tr>
+						<!-- 기본댓글달기 --><!-- 기본댓글달기 --><!-- 기본댓글달기 --><!-- 기본댓글달기 --><!-- 기본댓글달기 --><!-- 기본댓글달기 -->
 						<form action="defineWriteSub" method="post">
 							<td id="button${a.num}" class="aboveCommentSection"><textarea
 									name="subcon" rows="2" cols="30"></textarea> <input
 								type="hidden" name="num" value="${a.num}" /> <input
 								type="hidden" name="space" value="0" /> <input type="hidden"
+								name="groupNum" value="${lastGroupNum.groupnum}" /> <input type="hidden"
 								name="pw" value="<%=sessionPw%>" /> <input type="hidden"
 								name="id" value="<%=sessionId%>" /><input type="submit"
 								value="댓글달기"></td>
@@ -217,7 +219,7 @@
 
 							<tr>
 								<div class="subViewSection"
-									style="line-height: 110%; margin-top: -2%; margin-bottom: -1%;">
+									style="line-height: 110%; margin-top: -2%; border-bottom: 1px solid red;">
 
 									<c:set var="space" value="${b.space}" />
 									<!-- jstl에서if else문 -->
@@ -229,7 +231,7 @@
 											<div style="position:relative; left:43px; bottom:10px;">${b.id}</div>
 											<div id="subView"
 												style="padding-left: 41px; width: 36rem;">
-												${b.content}
+												 ${b.groupnum}${b.content}
 												<!-- 댓글버튼 -->
 											</div>
 									    </c:when>
@@ -241,7 +243,7 @@
 									        <div style="position:relative; left:13px; bottom:10px;">${b.id}</div>
 									   		<div id="subView"
 												style="padding-left: 1rem; width: 36rem;">
-												${b.content}
+												${b.groupnum}${b.content}
 												<!-- 댓글버튼 -->
 											</div>
 									   
@@ -249,6 +251,7 @@
 	
 									</c:choose>
 								</div>
+								<!-- 답글삭제버튼 -->
 								<div class="deleteShowTag" style="position:relative; bottom: 2rem;">
 									<a href="javascript:belowCommentClick(${b.num});"> <input
 										type="submit" value="답글" style="font-size: 80%" />
@@ -258,9 +261,8 @@
 								</div>
 
 							</tr>
-
 							<tr>
-								<!-- 댓글의댓글 -->
+								<!-- 답글 --><!-- 답글 --><!-- 답글 --><!-- 답글 --><!-- 답글 --><!-- 답글 -->
 								<form action="defineSecondSub" method="post">
 
 									<div id="commentClickButton${b.num}" class="belowCommentSection">
@@ -270,13 +272,14 @@
 											<div id="diagram"></div>
 											<div class="cont-box-pseudo"></div>
 										</div>
-
+										<!-- 답글입력창 -->
 										<div class="textSection">
 											<textarea name="subcon" rows="2" cols="55"
 												style="position:relative; left:1rem; margin-left:1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;"></textarea>
 											<input type="hidden" name="subnum" value="${b.num}" /> <input
 												type="hidden" name="space" value="${b.space+1}" /> <input
 												type="hidden" name="connum" value="${a.num}" /> <input
+												type="hidden" name="groupnum" value="${b.groupnum}" /> <input
 												type="hidden" name="id" value="<%=sessionId%>" /> <input
 												type="hidden" name="pw" value="<%=sessionPw%>" /> 
 										</div>
@@ -284,7 +287,6 @@
 									</div>
 								</form>
 							</tr>
-							
 
 						</c:if>
 

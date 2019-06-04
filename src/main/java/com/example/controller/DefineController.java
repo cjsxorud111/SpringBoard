@@ -152,7 +152,7 @@ public class DefineController {
 
 	@RequestMapping(value = "/define", method = RequestMethod.GET)
 	// Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
-	public String define(HttpServletRequest request, Model model) throws Exception {
+	public String define(HttpServletRequest request,HttpServletRequest response, Model model) throws Exception {
 		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
 
 		model.addAttribute("MainDefineList", MainDefineList);
@@ -161,6 +161,8 @@ public class DefineController {
 		model.addAttribute("getDefinSubList", getDefinSubList);
 
 		refreshNum++;
+		
+		response.setAttribute("lastGroupNum", getDefinSubList.get(getDefinSubList.size()-1));
 		HttpSession session = request.getSession();
 		session.setAttribute("refreshNum", refreshNum);
 		return "define";
