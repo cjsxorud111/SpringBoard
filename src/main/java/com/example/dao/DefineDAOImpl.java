@@ -38,6 +38,8 @@ public class DefineDAOImpl implements DefineDAO {
 	@Override
 	public List<MainDefineContentVO> linkCon(String linkWord) throws Exception {
 		List<MainDefineContentVO> linkCon = sqlSession.selectList(Namespace + ".linkCon", linkWord);
+	//	List<MainDefineContentVO> linkCon = sqlSession.selectList(Namespace + ".mainDefineList");
+		
 		return linkCon;
 	}
 	

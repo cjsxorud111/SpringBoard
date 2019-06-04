@@ -22,8 +22,8 @@
 	</select>
 	
 	<select id="linkCon" resultType="com.example.dto.MainDefineContentVO" parameterType="String">
-		SELECT NUM, ID, PW, WORD, INFO, UP, DOWN, SPLITWORD, CURRENTTIME FROM DEFINE WHERE WORD = #{WORD} ORDER BY UP ASC
-	</select>
+		SELECT NUM, ID, PW, WORD, INFO, UP, DOWN, SPLITWORD, CURRENTTIME FROM DEFINE WHERE WORD = #{linkWord} ORDER BY UP DESC
+	</select> 
 	
 	<select id="recommendSelect" parameterType="String" resultType="com.example.dto.ReturnRecommendVO" >
 		SELECT NUM, ID FROM RECOMMENDATION WHERE NUM = #{conNum};

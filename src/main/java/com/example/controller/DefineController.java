@@ -132,15 +132,6 @@ public class DefineController {
 		
 		List<MainDefineContentVO> linkCon = service.linkCon(request);
 		HttpSession session = request.getSession();
-		//		List<MainDefineContentVO> MList = new ArrayList<MainDefineContentVO>();
-		
-//		
-//		String linkWord = request.getParameter("linkWord");
-//		for (int i = 0; i < MainDefineList.size(); i++) {
-//			if (MainDefineList.get(i).getWord().equals(linkWord)) {
-//				MList.add(MainDefineList.get(i));
-//			}
-//		}
 		
 		model.addAttribute("MainDefineList", linkCon);
 		
