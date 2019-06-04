@@ -220,18 +220,15 @@
 									style="line-height: 110%; margin-top: -2%; margin-bottom: -1%;">
 
 									<c:set var="space" value="${b.space}" />
-
-
-
+									<!-- jstl에서if else문 -->
 									<c:choose>
-
 										<c:when test="${space > 0}">
 									       <!-- 댓글표시 화살표 도형 -->
 											<div id="diagram" style="position: relative; left: 30px;"></div>
 											<div class="cont-box-pseudo" style="position: relative; left: 30px;"></div>
 											<div style="position:relative; left:43px; bottom:10px;">${b.id}</div>
 											<div id="subView"
-												style="padding-left: 41px; width: 36rem; border-bottom: 1px solid red;">
+												style="padding-left: 41px; width: 36rem;">
 												${b.content}
 												<!-- 댓글버튼 -->
 											</div>
@@ -243,7 +240,7 @@
 											  </div>
 									        <div style="position:relative; left:13px; bottom:10px;">${b.id}</div>
 									   		<div id="subView"
-												style="padding-left: 1rem; width: 36rem; border-bottom: 1px solid red;">
+												style="padding-left: 1rem; width: 36rem;">
 												${b.content}
 												<!-- 댓글버튼 -->
 											</div>
@@ -251,18 +248,8 @@
 									    </c:otherwise>
 	
 									</c:choose>
-
-									<%-- <c:if test="${space > 0}">
-										<!-- 댓글표시 화살표 도형 -->
-
-										<div id="diagram" style="position: relative;"></div>
-										<div class="cont-box-pseudo" style="position: relative;"></div>
-
-									</c:if>
-									<div>${b.id}</div> --%>
-									
 								</div>
-								<div class="deleteShowTag">
+								<div class="deleteShowTag" style="position:relative; bottom: 2rem;">
 									<a href="javascript:belowCommentClick(${b.num});"> <input
 										type="submit" value="답글" style="font-size: 80%" />
 									</a> <a href="javascript:deleteClick(${b.num});"> <input
@@ -276,33 +263,28 @@
 								<!-- 댓글의댓글 -->
 								<form action="defineSecondSub" method="post">
 
-									<td id="commentClickButton${b.num}" class="belowCommentSection">
-										<div class="textSection">
-											<c:forEach begin="0" end="${b.space}">
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										</c:forEach>
-										</div>
-										<div class="textSection">
-
+									<div id="commentClickButton${b.num}" class="belowCommentSection">
+										
+										<div class="textSection" style="position:relative; top: 0.8rem; left: 1.4rem;">
 											<!-- 댓글표시 화살표 -->
 											<div id="diagram"></div>
 											<div class="cont-box-pseudo"></div>
 										</div>
 
-										<div class="textSection">&nbsp;&nbsp;</div>
 										<div class="textSection">
-											<textarea name="subcon" rows="2" cols="80"
-												style="height: 55px; table-layout: fixed;"></textarea>
+											<textarea name="subcon" rows="2" cols="55"
+												style="position:relative; left:1rem; margin-left:1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;"></textarea>
 											<input type="hidden" name="subnum" value="${b.num}" /> <input
 												type="hidden" name="space" value="${b.space+1}" /> <input
 												type="hidden" name="connum" value="${a.num}" /> <input
 												type="hidden" name="id" value="<%=sessionId%>" /> <input
-												type="hidden" name="pw" value="<%=sessionPw%>" /> <input
-												type="submit" value="댓글달기" style="font-size: 80%;" />
+												type="hidden" name="pw" value="<%=sessionPw%>" /> 
 										</div>
-									</td>
+										<input type="submit" value="댓글달기" style="position:relative; left:1rem; font-size: 80%; float:right;" />
+									</div>
 								</form>
 							</tr>
+							
 
 						</c:if>
 
@@ -373,5 +355,35 @@ $('#inputText').keyup(function(event) {
 		});
 	}
 });
+
+function deleteClick(num) {
+	var userInput = prompt("비밀번호를 입력해주세요" + "");
+	deleteSub(num, userInput);
+}
+
+function deleteSub(num, userInput) {
+	$.ajax({
+		type : "POST", // 전송방식을 지정한다 (POST,GET)
+		url : "deleteDefineSub",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+		dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
+		// 있다.
+		data : {
+			pw : userInput,
+			num : num
+		},
+		error : function() {
+			alert("error");
+		},
+		success : function(Parse_data) {
+
+			if (Parse_data == 'yes') {
+				location.reload();
+			} else {
+				alert("비밀번호가 다릅니다.");
+			}
+		}
+	});
+}
+
 </script>
 </html>

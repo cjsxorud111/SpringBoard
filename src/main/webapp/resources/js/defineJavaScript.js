@@ -109,35 +109,6 @@ function belowCommentClick(num) {
 	}
 }
 
-function deleteClick(num) {
-	var userInput = prompt("비밀번호를 입력해주세요" + "");
-	deleteSub(num, userInput);
-}
-
-function deleteSub(num, userInput) {
-	$.ajax({
-		type : "POST", // 전송방식을 지정한다 (POST,GET)
-		url : "deleteDefineSub",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-		dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
-		// 있다.
-		data : {
-			pw : userInput,
-			num : num
-		},
-		error : function() {
-			alert("error");
-		},
-		success : function(Parse_data) {
-
-			if (Parse_data == 'yes') {
-				location.reload();
-			} else {
-				alert("비밀번호가 다릅니다.");
-			}
-		}
-	});
-}
-
 var num = 0;
 var endNum = 0;
 

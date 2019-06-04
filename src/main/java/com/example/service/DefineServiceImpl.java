@@ -108,7 +108,6 @@ public class DefineServiceImpl implements DefineService {
 		int numb = Integer.parseInt(num);
 		DefineSubVO defineSub = dao.getDefinSub(numb);
 		String isDelete = "no";
-
 		if (defineSub.getPw() != null && defineSub.getPw().equals(pw)) {
 			dao.deleteDefineSub(numb);
 			isDelete = "yes";

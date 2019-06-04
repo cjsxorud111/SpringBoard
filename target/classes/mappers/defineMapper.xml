@@ -45,13 +45,16 @@
 		DELETE FROM DEFINESUB WHERE CONNUM = #{conNum};
 	</delete> 
 	
+	<delete id="deleteDefineSub" parameterType="Integer"> 
+		DELETE FROM DEFINESUB WHERE NUM = #{num};
+	</delete> 
+	
 	<delete id="deleteDefineRecommend" parameterType="String"> 
 		DELETE FROM RECOMMENDATION WHERE NUM = #{conNum};
 	</delete> 
 	
 	<update id="recommendUp" parameterType="String">
 		UPDATE DEFINE SET UP = UP + 1 WHERE NUM = #{conNum}
-		 
 	</update>  
 	
 	<update id="recommendDown" parameterType="String">
