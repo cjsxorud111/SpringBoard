@@ -56,6 +56,14 @@ public class DefineServiceImpl implements DefineService {
 	}
 
 	@Override
+	public List<MainDefineContentVO> linkCon(HttpServletRequest request) throws Exception {
+		String linkWord = request.getParameter("linkWord");
+		List<MainDefineContentVO> linkCon = dao.linkCon(linkWord);
+		
+		return linkCon;
+	}
+	
+	@Override
 	public void defineWriteSub(HttpServletRequest request) throws Exception {
 		DefineSubVO vo = new DefineSubVO();
 
@@ -86,30 +94,7 @@ public class DefineServiceImpl implements DefineService {
 		vo.setPw(request.getParameter("pw"));
 		vo.setGroupnum(Integer.parseInt(request.getParameter("groupnum")));
 		
-//		List<DefineSubVO> allSubList = dao.getDefinSubList(); // 전체테이블 가져옴
-//		dao.DeleteAllSub(); // 테이블내용 전체삭제
-//		List<DefineSubVO> newSubList = new ArrayList<DefineSubVO>(); // 중간에댓글 새로 삽입할 리스트
-//		for (int i = 0; i < allSubList.size(); i++) {
-//			DefineSubVO temp = new DefineSubVO();
-//
-//			temp = allSubList.get(i);
-//			newSubList.add(temp);
-//			int a = 1;
-//			int b = 1;
-//			if (temp.getNum().equals(request.getParameter("subnum"))) {
-//				newSubList.add(vo);
-//			}
-//		}
-//		for (int i = 0; i < newSubList.size(); i++) {
-//			dao.defineWriteSub(newSubList.get(i));
-//		}
-		
 		dao.defineWriteSub(vo);
-		
-		
-		
-		
-		
 	}
 
 	// 댓글삭제

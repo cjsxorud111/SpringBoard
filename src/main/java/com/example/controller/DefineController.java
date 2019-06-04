@@ -129,17 +129,21 @@ public class DefineController {
 	//단어눌렀을때 검색기능
 	@RequestMapping(value = "/linkWord", method = RequestMethod.GET)
 	public String linkWord(HttpServletRequest request, Model model) throws Exception {
-		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
-		List<MainDefineContentVO> MList = new ArrayList<MainDefineContentVO>();
-		HttpSession session = request.getSession();
 		
-		String linkWord = request.getParameter("linkWord");
-		for (int i = 0; i < MainDefineList.size(); i++) {
-			if (MainDefineList.get(i).getWord().equals(linkWord)) {
-				MList.add(MainDefineList.get(i));
-			}
-		}
-		model.addAttribute("MainDefineList", MList);
+		List<MainDefineContentVO> linkCon = service.linkCon(request);
+		HttpSession session = request.getSession();
+		//		List<MainDefineContentVO> MList = new ArrayList<MainDefineContentVO>();
+		
+//		
+//		String linkWord = request.getParameter("linkWord");
+//		for (int i = 0; i < MainDefineList.size(); i++) {
+//			if (MainDefineList.get(i).getWord().equals(linkWord)) {
+//				MList.add(MainDefineList.get(i));
+//			}
+//		}
+		
+		model.addAttribute("MainDefineList", linkCon);
+		
 		List<DefineSubVO> getDefinSubList = service.getDefinSubList();
 		model.addAttribute("getDefinSubList", getDefinSubList);
 

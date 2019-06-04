@@ -219,7 +219,7 @@
 
 							<tr>
 								<div class="subViewSection"
-									style="line-height: 110%; margin-top: -2%; border-bottom: 1px solid red;">
+									style="line-height: 110%; margin-top: -2%;">
 
 									<c:set var="space" value="${b.space}" />
 									<!-- jstl에서if else문 -->
@@ -279,6 +279,7 @@
 											<input type="hidden" name="subnum" value="${b.num}" /> <input
 												type="hidden" name="space" value="${b.space+1}" /> <input
 												type="hidden" name="connum" value="${a.num}" /> <input
+												type="hidden" name="answerId" value="${b.id}" /> <input
 												type="hidden" name="groupnum" value="${b.groupnum}" /> <input
 												type="hidden" name="id" value="<%=sessionId%>" /> <input
 												type="hidden" name="pw" value="<%=sessionPw%>" /> 

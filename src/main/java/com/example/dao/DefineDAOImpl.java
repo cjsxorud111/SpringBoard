@@ -34,6 +34,13 @@ public class DefineDAOImpl implements DefineDAO {
 		List<MainDefineContentVO> MainDefineList = sqlSession.selectList(Namespace + ".mainDefineList");
 		return MainDefineList;
 	}
+	
+	@Override
+	public List<MainDefineContentVO> linkCon(String linkWord) throws Exception {
+		List<MainDefineContentVO> linkCon = sqlSession.selectList(Namespace + ".linkCon", linkWord);
+		return linkCon;
+	}
+	
 	//기존 추천,비추천 여부를 확인하기위한 셀렉트
 	@Override
 	public List<ReturnRecommendVO> recommendSelect(String conNum) throws Exception {

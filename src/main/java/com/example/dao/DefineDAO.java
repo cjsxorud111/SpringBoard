@@ -23,6 +23,8 @@ public interface DefineDAO {
 	public void newwordWriting(NewwordVO vo) throws Exception;
 
 	public List<MainDefineContentVO> selectMainDefCon() throws Exception;
+	
+	public List<MainDefineContentVO> linkCon(String linkWord) throws Exception;
 
 	public void defineWriteSub(DefineSubVO vo) throws Exception;
 

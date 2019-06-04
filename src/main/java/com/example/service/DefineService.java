@@ -21,6 +21,8 @@ public interface DefineService {
 
 	public List<MainDefineContentVO> selectMainDefCon()throws Exception;
 
+	public List<MainDefineContentVO> linkCon(HttpServletRequest request)throws Exception;
+
 	public void defineWriteSub(HttpServletRequest request)throws Exception;
 
 	public List<DefineSubVO> getDefinSubList()throws Exception;
