@@ -207,54 +207,69 @@
 
 				<!-- 댓글표시 -->
 				<c:set var="num" value="${a.num}" />
-
-				<table class="table" style="width:18rem;">
+				<div style="margin-top: 10px;"></div>
+				<table class="table">
 					<c:forEach items="${getDefinSubList}" var="b">
 
 						<c:set var="connum" value="${b.connum}" />
 
 						<c:if test="${num eq connum}">
+
 							<tr>
-								<td>
-									<div>
-										<div class="subViewSection">
-											<c:forEach begin="0" end="${b.space}">&nbsp;&nbsp;&nbsp;&nbsp;</c:forEach>
-										</div>
-										<c:set var="space" value="${b.space}" />
+								<div class="subViewSection"
+									style="line-height: 110%; margin-top: -2%; margin-bottom: -1%;">
 
-										<div class="subViewSection"
-											style="line-height: 110%; margin-top: -1%; margin-bottom: -1%;">
+									<c:set var="space" value="${b.space}" />
 
-											<div style="margin-bottom: 5px; margin-left: 5rem;">
 
-												<c:if test="${space > 0}">
-													<!-- 댓글표시 화살표 도형 -->
-													<div id="diagram"
-														style="position: relative; right: 36.5px;"></div>
-													<div class="cont-box-pseudo"
-														style="position: relative; right: 36.5px;"></div>
-												</c:if>
-												${b.id}
-											</div>
+
+									<c:choose>
+
+										<c:when test="${space > 0}">
+									       <!-- 댓글표시 화살표 도형 -->
+											<div id="diagram" style="position: relative; left: 30px;"></div>
+											<div class="cont-box-pseudo" style="position: relative; left: 30px;"></div>
+											<div style="position:relative; left:43px; bottom:10px;">${b.id}</div>
 											<div id="subView"
-												style="border: 1px solid red; padding-left: 1rem; width: 36rem;">
+												style="padding-left: 41px; width: 36rem; border-bottom: 1px solid red;">
 												${b.content}
 												<!-- 댓글버튼 -->
-												<div class="deleteShowTag">
-													<a href="javascript:belowCommentClick(${b.num});"> <input
-														type="submit" value="답글" style="font-size: 80%" />
-													</a> <a href="javascript:deleteClick(${b.num});"> <input
-														type="submit" id="deleteShowButton" value="삭제" />
-													</a>
-												</div>
-
 											</div>
+									    </c:when>
 
+										<c:otherwise>
+											<div>&nbsp;
+											&nbsp;
+											  </div>
+									        <div style="position:relative; left:13px; bottom:10px;">${b.id}</div>
+									   		<div id="subView"
+												style="padding-left: 1rem; width: 36rem; border-bottom: 1px solid red;">
+												${b.content}
+												<!-- 댓글버튼 -->
+											</div>
+									   
+									    </c:otherwise>
+	
+									</c:choose>
 
-										</div>
+									<%-- <c:if test="${space > 0}">
+										<!-- 댓글표시 화살표 도형 -->
 
-									</div>
-								</td>
+										<div id="diagram" style="position: relative;"></div>
+										<div class="cont-box-pseudo" style="position: relative;"></div>
+
+									</c:if>
+									<div>${b.id}</div> --%>
+									
+								</div>
+								<div class="deleteShowTag">
+									<a href="javascript:belowCommentClick(${b.num});"> <input
+										type="submit" value="답글" style="font-size: 80%" />
+									</a> <a href="javascript:deleteClick(${b.num});"> <input
+										type="submit" id="deleteShowButton" value="삭제" />
+									</a>
+								</div>
+
 							</tr>
 
 							<tr>
@@ -288,6 +303,7 @@
 									</td>
 								</form>
 							</tr>
+
 						</c:if>
 
 					</c:forEach>
