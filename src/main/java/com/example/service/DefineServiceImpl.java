@@ -66,14 +66,22 @@ public class DefineServiceImpl implements DefineService {
 	@Override
 	public void defineWriteSub(HttpServletRequest request) throws Exception {
 		DefineSubVO vo = new DefineSubVO();
+		System.out.println("오류2");
 
 		vo.setContent(request.getParameter("subcon"));
 		vo.setId(request.getParameter("id"));
 		vo.setPw(request.getParameter("pw"));
+		System.out.println("오류2.5");
+
 		vo.setGroupnum(Integer.parseInt(request.getParameter("groupNum"))+1);
+		System.out.println("오류2.6");
 		vo.setConnum(request.getParameter("num"));
 		vo.setSpace(request.getParameter("space"));
+		System.out.println("오류3");
+
 		dao.defineWriteSub(vo);
+		System.out.println("오류4");
+
 	}
 
 	@Override

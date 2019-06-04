@@ -90,7 +90,7 @@ public class DefineController {
 	
 	@RequestMapping(value = "/defineWriteSub", method = RequestMethod.POST)
 	public String defineWriteSub(HttpServletRequest request, Model model) throws Exception {
-
+		System.out.println("오류1");
 		service.defineWriteSub(request);
 		return "redirect:define";
 	}
@@ -104,7 +104,7 @@ public class DefineController {
 
 	// 검색기능
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public String search(HttpServletRequest request, Model model) throws Exception {
+	public String search(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
 		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
 		List<MainDefineContentVO> MList = new ArrayList<MainDefineContentVO>();
 		HttpSession session = request.getSession();
@@ -128,7 +128,7 @@ public class DefineController {
 	}
 	//단어눌렀을때 검색기능
 	@RequestMapping(value = "/linkWord", method = RequestMethod.GET)
-	public String linkWord(HttpServletRequest request, Model model) throws Exception {
+	public String linkWord(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
 		
 		List<MainDefineContentVO> linkCon = service.linkCon(request);
 		HttpSession session = request.getSession();
@@ -140,6 +140,7 @@ public class DefineController {
 
 		refreshNum++;
 		
+		response.setAttribute("lastGroupNum", getDefinSubList.get(getDefinSubList.size()-1));
 		session.setAttribute("refreshNum", refreshNum);
 		
 		return "define";
@@ -147,7 +148,7 @@ public class DefineController {
 
 	@RequestMapping(value = "/define", method = RequestMethod.GET)
 	// Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
-	public String define(HttpServletRequest request,HttpServletRequest response, Model model) throws Exception {
+	public String define(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
 		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
 
 		model.addAttribute("MainDefineList", MainDefineList);

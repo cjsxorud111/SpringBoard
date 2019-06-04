@@ -231,7 +231,7 @@
 											<div style="position:relative; left:43px; bottom:10px;">${b.id}</div>
 											<div id="subView"
 												style="padding-left: 41px; width: 36rem;">
-												 ${b.groupnum}${b.content}
+												${b.groupnum}${b.content}
 												<!-- 댓글버튼 -->
 											</div>
 									    </c:when>
