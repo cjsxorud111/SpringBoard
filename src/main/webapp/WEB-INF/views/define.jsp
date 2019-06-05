@@ -59,10 +59,10 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 
-					<form class="form-inline" action="search" method="get">
+					<form class="form-inline" action="linkWord" method="get">
 						<!-- 검색창 -->
 						<span class='green_window'> <input type='text'
-							name=inputText autocomplete="off" id='inputText'
+							name=linkWord autocomplete="off" id='inputText'
 							class='input_text' onfocusout="loseFocus()" />
 							<div id="searchRecommendSection"></div>
 						</span>
@@ -86,6 +86,9 @@
 			</div>
 		</div>
 	</nav>
+
+
+
 	<!-- 자바스크립트에서수정이안되기에onload자바스크립트만jsp에만듬 -->
 	<script>
 	window.onload = function() {
@@ -106,9 +109,9 @@
 			deleteTag.item(i).style.display = "none";
 		}
 		if(session == 'null'){
-			document.getElementById("log").innerHTML = "<a href='login' style='color: white; text-decoration: none;'>Login</a>";
+			document.getElementById("log").innerHTML = "<a href='login' style='color: white; text-decoration: none;'><input type='hidden' name='textStatus' value='${textStatusVO.textStatus}' />Login</a>";
 		}else{
-			document.getElementById("log").innerHTML = "<a href='logout' id='logout' style='color: white; text-decoration: none;'>Logout</a>";
+			document.getElementById("log").innerHTML = "<a href='logout' id='logout' style='color: white; text-decoration: none;'><input type='hidden' name='textStatus' value='${textStatusVO.textStatus}' />Logout</a>";
 		}
 	}
 	
@@ -121,6 +124,9 @@
 	}
 	scroll_follow( "#scroll" );
 	</script>
+
+	<div>textStatus: ${textStatusVO.textStatus}</div>
+
 	<!-- 오른쪽창 -->
 	<div id="scroll" style="position: absolute; left: 0; top: 0;">
 		<div style="margin-bottom: 1rem;">최근정의가 추가된 단어</div>
@@ -193,20 +199,55 @@
 				</div>
 				<table frame=void>
 					<tr>
-						<!-- 기본댓글달기 --><!-- 기본댓글달기 --><!-- 기본댓글달기 --><!-- 기본댓글달기 --><!-- 기본댓글달기 --><!-- 기본댓글달기 -->
-						<form action="defineWriteSub" method="post">
+						<!-- 기본댓글달기 -->
+						<!-- 기본댓글달기 -->
+						<!-- 기본댓글달기 -->
+						<!-- 기본댓글달기 -->
+						<!-- 기본댓글달기 -->
+						<!-- 기본댓글달기 -->
+						<%-- <form action="defineWriteSub" method="post">
 							<td id="button${a.num}" class="aboveCommentSection"><textarea
-									name="subcon" rows="2" cols="30"></textarea> <input
+									id="textArea" name="subcon" rows="2" cols="30"></textarea> <input
 								type="hidden" name="num" value="${a.num}" /> <input
 								type="hidden" name="space" value="0" /> <input type="hidden"
-								name="groupNum" value="${lastGroupNum.groupnum}" /> <input type="hidden"
-								name="pw" value="<%=sessionPw%>" /> <input type="hidden"
-								name="id" value="<%=sessionId%>" /><input type="submit"
+								name="groupNum" value="${lastGroupNum.groupnum}" /> <input
+								type="hidden" name="pw" value="<%=sessionPw%>" /> <input
+								type="hidden" name="id" value="<%=sessionId%>" /> <input
+								type="hidden" name="linkWord"
+								value="${textStatusVO.textStatus}" /><input type="submit"
 								value="댓글달기"></td>
-						</form>
+						</form> --%>
+						<td id="button${a.num}" class="aboveCommentSection"><textarea
+									id="textArea" name="subcon" rows="2" cols="30"></textarea> 
+							<input type="submit"
+								onclick="writeSub('${a.num}', '0', '${lastGroupNum.groupnum}','<%=sessionPw%>', '<%=sessionId%>');" value="댓글달기"></td> 
 					</tr>
 				</table>
-
+				<script>
+				function writeSub(num, space, groupNum, pw, id) {
+					var textValue = $("#textArea").val();
+					$.ajax({
+						type : "POST", // 전송방식을 지정한다 (POST,GET)
+						url : "defineWriteSub",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+						dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
+						// 있다.
+						data : {
+							textValue : textValue,
+							num : num,
+							space : space,
+							groupNum : groupNum,
+							pw : pw,
+							id : id
+						},
+						error : function() {
+							alert("error");
+						},
+						success : function(success) {
+							alert(success);
+						}
+					});
+				}
+				</script> 
 				<!-- 댓글표시 -->
 				<c:set var="num" value="${a.num}" />
 				<div style="margin-top: 10px;"></div>
@@ -225,34 +266,32 @@
 									<!-- jstl에서if else문 -->
 									<c:choose>
 										<c:when test="${space > 0}">
-									       <!-- 댓글표시 화살표 도형 -->
+											<!-- 댓글표시 화살표 도형 -->
 											<div id="diagram" style="position: relative; left: 30px;"></div>
-											<div class="cont-box-pseudo" style="position: relative; left: 30px;"></div>
-											<div style="position:relative; left:43px; bottom:10px;">${b.id}</div>
-											<div id="subView"
-												style="padding-left: 41px; width: 36rem;">
+											<div class="cont-box-pseudo"
+												style="position: relative; left: 30px;"></div>
+											<div style="position: relative; left: 43px; bottom: 10px;">${b.id}</div>
+											<div id="subView" style="padding-left: 41px; width: 36rem;">
 												${b.groupnum}${b.content}
 												<!-- 댓글버튼 -->
 											</div>
-									    </c:when>
+										</c:when>
 
 										<c:otherwise>
-											<div>&nbsp;
-											&nbsp;
-											  </div>
-									        <div style="position:relative; left:13px; bottom:10px;">${b.id}</div>
-									   		<div id="subView"
-												style="padding-left: 1rem; width: 36rem;">
+											<div>&nbsp; &nbsp;</div>
+											<div style="position: relative; left: 13px; bottom: 10px;">${b.id}</div>
+											<div id="subView" style="padding-left: 1rem; width: 36rem;">
 												${b.groupnum}${b.content}
 												<!-- 댓글버튼 -->
 											</div>
-									   
-									    </c:otherwise>
-	
+
+										</c:otherwise>
+
 									</c:choose>
 								</div>
 								<!-- 답글삭제버튼 -->
-								<div class="deleteShowTag" style="position:relative; bottom: 2rem;">
+								<div class="deleteShowTag"
+									style="position: relative; bottom: 2rem;">
 									<a href="javascript:belowCommentClick(${b.num});"> <input
 										type="submit" value="답글" style="font-size: 80%" />
 									</a> <a href="javascript:deleteClick(${b.num});"> <input
@@ -262,12 +301,19 @@
 
 							</tr>
 							<tr>
-								<!-- 답글 --><!-- 답글 --><!-- 답글 --><!-- 답글 --><!-- 답글 --><!-- 답글 -->
+								<!-- 답글 -->
+								<!-- 답글 -->
+								<!-- 답글 -->
+								<!-- 답글 -->
+								<!-- 답글 -->
+								<!-- 답글 -->
 								<form action="defineSecondSub" method="post">
 
-									<div id="commentClickButton${b.num}" class="belowCommentSection">
-										
-										<div class="textSection" style="position:relative; top: 0.8rem; left: 1.4rem;">
+									<div id="commentClickButton${b.num}"
+										class="belowCommentSection">
+
+										<div class="textSection"
+											style="position: relative; top: 0.8rem; left: 1.4rem;">
 											<!-- 댓글표시 화살표 -->
 											<div id="diagram"></div>
 											<div class="cont-box-pseudo"></div>
@@ -275,16 +321,19 @@
 										<!-- 답글입력창 -->
 										<div class="textSection">
 											<textarea name="subcon" rows="2" cols="55"
-												style="position:relative; left:1rem; margin-left:1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;"></textarea>
+												style="position: relative; left: 1rem; margin-left: 1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;"></textarea>
 											<input type="hidden" name="subnum" value="${b.num}" /> <input
 												type="hidden" name="space" value="${b.space+1}" /> <input
 												type="hidden" name="connum" value="${a.num}" /> <input
 												type="hidden" name="answerId" value="${b.id}" /> <input
 												type="hidden" name="groupnum" value="${b.groupnum}" /> <input
 												type="hidden" name="id" value="<%=sessionId%>" /> <input
-												type="hidden" name="pw" value="<%=sessionPw%>" /> 
+												type="hidden" name="pw" value="<%=sessionPw%>" /> <input
+												type="hidden" name="linkWord"
+												value="${textStatusVO.textStatus}" />
 										</div>
-										<input type="submit" value="댓글달기" style="position:relative; left:1rem; font-size: 80%; float:right;" />
+										<input type="submit" value="댓글달기"
+											style="position: relative; left: 1rem; font-size: 80%; float: right;" />
 									</div>
 								</form>
 							</tr>

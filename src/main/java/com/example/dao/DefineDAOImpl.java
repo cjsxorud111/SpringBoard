@@ -52,8 +52,9 @@ public class DefineDAOImpl implements DefineDAO {
 	
 	@Override
 	public void defineWriteSub(DefineSubVO vo) throws Exception {
-		
+		System.out.println("오류dao1");
 		sqlSession.insert(Namespace + ".defineWriteSub", vo);
+		System.out.println("오류dao2");
 	}
 
 	@Override

@@ -54,7 +54,7 @@ public class DefineServiceImpl implements DefineService {
 		
 		return MainDefineList;
 	}
-
+	
 	@Override
 	public List<MainDefineContentVO> linkCon(HttpServletRequest request) throws Exception {
 		String linkWord = request.getParameter("linkWord");
@@ -66,22 +66,18 @@ public class DefineServiceImpl implements DefineService {
 	@Override
 	public void defineWriteSub(HttpServletRequest request) throws Exception {
 		DefineSubVO vo = new DefineSubVO();
-		System.out.println("오류2");
-
+		System.out.println("오류01");
 		vo.setContent(request.getParameter("subcon"));
 		vo.setId(request.getParameter("id"));
 		vo.setPw(request.getParameter("pw"));
-		System.out.println("오류2.5");
-
+		vo.setContent(request.getParameter("textValue"));
+		System.out.println("오류02");
 		vo.setGroupnum(Integer.parseInt(request.getParameter("groupNum"))+1);
-		System.out.println("오류2.6");
 		vo.setConnum(request.getParameter("num"));
 		vo.setSpace(request.getParameter("space"));
-		System.out.println("오류3");
-
+		System.out.println(vo.getContent()+" "+vo.getGroupnum()+" "+vo.getId()+ " " +vo.getPw()+" " + vo.getSpace() + " " +vo.getConnum());
 		dao.defineWriteSub(vo);
-		System.out.println("오류4");
-
+		System.out.println("오류04");
 	}
 
 	@Override

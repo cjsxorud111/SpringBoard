@@ -20,7 +20,7 @@ public interface DefineService {
 	public void newwordWriting(HttpServletRequest request) throws Exception;
 
 	public List<MainDefineContentVO> selectMainDefCon()throws Exception;
-
+	
 	public List<MainDefineContentVO> linkCon(HttpServletRequest request)throws Exception;
 
 	public void defineWriteSub(HttpServletRequest request)throws Exception;

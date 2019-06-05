@@ -29,9 +29,9 @@ import com.example.dto.GetContentVO;
 import com.example.dto.HomeContentVO;
 import com.example.dto.MainDefineContentVO;
 import com.example.dto.SubVO;
+import com.example.dto.textStatusVO;
 import com.example.service.DefineService;
 import com.example.service.HomeService;
-
 @Controller
 public class DefineController {
 	int refreshNum = 0;
@@ -85,67 +85,117 @@ public class DefineController {
 	public String logout(HttpServletRequest request, Model model) throws Exception {
 		HttpSession session = request.getSession();
 		session.removeAttribute("ID");
-		return "redirect:define";
-	}
-	
-	@RequestMapping(value = "/defineWriteSub", method = RequestMethod.POST)
-	public String defineWriteSub(HttpServletRequest request, Model model) throws Exception {
-		System.out.println("오류1");
-		service.defineWriteSub(request);
-		return "redirect:define";
-	}
-
-	@RequestMapping(value = "/defineSecondSub", method = RequestMethod.POST)
-	public String defineSecondSub(HttpServletRequest request, Model model) throws Exception {
-
-		service.defineSecondSub(request);
-		return "redirect:define";
-	}
-
-	// 검색기능
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public String search(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
-		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
-		List<MainDefineContentVO> MList = new ArrayList<MainDefineContentVO>();
-		HttpSession session = request.getSession();
-		String inputText = request.getParameter("inputText");
-		String linkWord = request.getParameter("linkWord");
-		for (int i = 0; i < MainDefineList.size(); i++) {
-			if (MainDefineList.get(i).getWord().equals(inputText)) {
-				MList.add(MainDefineList.get(i));
-			}
+		
+		if(request.getAttribute("textStatus").equals("main")) {
+			return "redirect:define";
+		} else {
+			return "linkWord";
 		}
 		
-		model.addAttribute("MainDefineList", MList);
-		List<DefineSubVO> getDefinSubList = service.getDefinSubList();
-		model.addAttribute("getDefinSubList", getDefinSubList);
-
-		refreshNum++;
-		
-		session.setAttribute("refreshNum", refreshNum);
-		
-		return "define";
 	}
+	
+//	@RequestMapping(value = "/defineWriteSub", method = RequestMethod.POST)
+//	public String defineWriteSub(HttpServletRequest request, Model model) throws Exception {
+//		System.out.println("오류1");
+//		service.defineWriteSub(request);
+//		
+//		if(request.getAttribute("linkWord").equals("main")) {
+//			return "redirect:define";
+//		} else {
+//			return "linkWord";
+//		}
+//	}
+
+//	@RequestMapping(value = "/defineSecondSub", method = RequestMethod.POST)
+//	public String defineSecondSub(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
+//		
+//		service.defineSecondSub(request); 
+//		
+//		if(!request.getParameter("linkWord").equals("main")) {
+//			List<MainDefineContentVO> linkCon = service.linkCon(request);
+//			System.out.println(request.getParameter("linkWord"));
+//			System.out.println("오류:02");
+//			HttpSession session = request.getSession();
+//			System.out.println("오류:03");
+//			model.addAttribute("MainDefineList", linkCon);
+//			System.out.println("오류:04");
+//			List<DefineSubVO> getDefinSubList = service.getDefinSubList();
+//			model.addAttribute("getDefinSubList", getDefinSubList);
+//			System.out.println("오류:05");
+//			//어떤페이지인지구분
+//			String linkWord = request.getParameter("linkWord");
+//			textStatusVO textStatusVO = new textStatusVO();
+//			textStatusVO.setTextStatus(linkWord);
+//			response.setAttribute("textStatusVO", textStatusVO);
+//			refreshNum++;
+//			System.out.println("오류:06");
+//			response.setAttribute("lastGroupNum", getDefinSubList.get(getDefinSubList.size()-1));
+//			session.setAttribute("refreshNum", refreshNum);
+//			System.out.println("오류:07");
+//			return "define";
+//		} 
+//		System.out.println("오류:08");
+//		return "redirect:define";
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//여//여//여//여//여//여//여//여//여//여//여//여//여//여//여
+	@RequestMapping(value = "/defineWriteSub", method = RequestMethod.POST)
+	public String defineWriteSub(HttpServletRequest request, Model model) throws Exception {
+		service.defineWriteSub(request);
+		return "success";
+	}
+	
+	@RequestMapping(value = "/defineSecondSub", method = RequestMethod.POST)
+	public void defineSecondSub(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
+		service.defineSecondSub(request); 
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
 	//단어눌렀을때 검색기능
 	@RequestMapping(value = "/linkWord", method = RequestMethod.GET)
 	public String linkWord(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
 		
 		List<MainDefineContentVO> linkCon = service.linkCon(request);
+		System.out.println(request.getParameter("linkWord"));
+		System.out.println("오류:02");
 		HttpSession session = request.getSession();
-		
+		System.out.println("오류:03");
 		model.addAttribute("MainDefineList", linkCon);
-		
+		System.out.println("오류:04");
 		List<DefineSubVO> getDefinSubList = service.getDefinSubList();
 		model.addAttribute("getDefinSubList", getDefinSubList);
-
+		System.out.println("오류:05");
+		//어떤페이지인지구분
+		String linkWord = request.getParameter("linkWord");
+		textStatusVO textStatusVO = new textStatusVO();
+		textStatusVO.setTextStatus(linkWord);
+		response.setAttribute("textStatusVO", textStatusVO);
 		refreshNum++;
-		
+		System.out.println("오류:06");
 		response.setAttribute("lastGroupNum", getDefinSubList.get(getDefinSubList.size()-1));
 		session.setAttribute("refreshNum", refreshNum);
-		
+		System.out.println("오류:07");
 		return "define";
 	}
 
+	//define메인페이지
 	@RequestMapping(value = "/define", method = RequestMethod.GET)
 	// Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
 	public String define(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
@@ -154,10 +204,13 @@ public class DefineController {
 		model.addAttribute("MainDefineList", MainDefineList);
 
 		List<DefineSubVO> getDefinSubList = service.getDefinSubList();
-		model.addAttribute("getDefinSubList", getDefinSubList);
-
-		refreshNum++;
+		model.addAttribute("getDefinSubList", getDefinSubList);	
+		//어떤페이지인지구분
+		textStatusVO textStatusVO = new textStatusVO();
+		textStatusVO.setTextStatus("main");
+		response.setAttribute("textStatusVO", textStatusVO);
 		
+		refreshNum++;
 		response.setAttribute("lastGroupNum", getDefinSubList.get(getDefinSubList.size()-1));
 		HttpSession session = request.getSession();
 		session.setAttribute("refreshNum", refreshNum);
