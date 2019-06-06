@@ -87,8 +87,6 @@
 		</div>
 	</nav>
 
-
-
 	<!-- 자바스크립트에서수정이안되기에onload자바스크립트만jsp에만듬 -->
 	<script>
 	window.onload = function() {
@@ -124,8 +122,6 @@
 	}
 	scroll_follow( "#scroll" );
 	</script>
-
-	<div>textStatus: ${textStatusVO.textStatus}</div>
 
 	<!-- 오른쪽창 -->
 	<div id="scroll" style="position: absolute; left: 0; top: 0;">
@@ -218,9 +214,10 @@
 								value="댓글달기"></td>
 						</form> --%>
 						<td id="button${a.num}" class="aboveCommentSection"><textarea
-									id="textArea" name="subcon" rows="2" cols="30"></textarea> 
-							<input type="submit"
-								onclick="writeSub('${a.num}', '0', '${lastGroupNum.groupnum}','<%=sessionPw%>', '<%=sessionId%>');" value="댓글달기"></td> 
+								id="textArea" name="subcon" rows="2" cols="30"></textarea> <input
+							type="submit"
+							onclick="writeSub('${a.num}', '0', '${lastGroupNum.groupnum}','<%=sessionPw%>', '<%=sessionId%>');"
+							value="댓글달기"></td>
 					</tr>
 				</table>
 				<script>
@@ -243,11 +240,11 @@
 							alert("error");
 						},
 						success : function(success) {
-							alert(success);
+							location.reload();
 						}
 					});
 				}
-				</script> 
+				</script>
 				<!-- 댓글표시 -->
 				<c:set var="num" value="${a.num}" />
 				<div style="margin-top: 10px;"></div>
@@ -307,7 +304,7 @@
 								<!-- 답글 -->
 								<!-- 답글 -->
 								<!-- 답글 -->
-								<form action="defineSecondSub" method="post">
+								<!-- <form action="defineSecondSub" method="post"> -->
 
 									<div id="commentClickButton${b.num}"
 										class="belowCommentSection">
@@ -320,9 +317,8 @@
 										</div>
 										<!-- 답글입력창 -->
 										<div class="textSection">
-											<textarea name="subcon" rows="2" cols="55"
-												style="position: relative; left: 1rem; margin-left: 1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;"></textarea>
-											<input type="hidden" name="subnum" value="${b.num}" /> <input
+											<textarea id="textAreaSecond${b.num}" name="subcon" rows="2" cols="55" style="position: relative; left: 1rem; margin-left: 1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;"></textarea>
+											<%-- <input type="hidden" name="subnum" value="${b.num}" /> <input
 												type="hidden" name="space" value="${b.space+1}" /> <input
 												type="hidden" name="connum" value="${a.num}" /> <input
 												type="hidden" name="answerId" value="${b.id}" /> <input
@@ -330,12 +326,47 @@
 												type="hidden" name="id" value="<%=sessionId%>" /> <input
 												type="hidden" name="pw" value="<%=sessionPw%>" /> <input
 												type="hidden" name="linkWord"
-												value="${textStatusVO.textStatus}" />
+												value="${textStatusVO.textStatus}" /> --%>
+												<input
+											type="submit"
+											onclick="writeSecondSub('${b.num}', '${b.space+1}','${b.id}','${b.groupnum}','<%=sessionPw%>', '<%=sessionId%>');"
+											value="댓글달기" style="position: relative; left: 1rem; font-size: 80%; float: right;" />
+												<!-- <input type="submit" value="댓글달기"
+											style="position: relative; left: 1rem; font-size: 80%; float: right;" /> -->
 										</div>
-										<input type="submit" value="댓글달기"
-											style="position: relative; left: 1rem; font-size: 80%; float: right;" />
+										
 									</div>
-								</form>
+								<!-- </form> -->
+
+								<script>
+								function writeSecondSub(num, space, answerId, groupNum, pw, id) {
+									var textId = 'textAreaSecond' + num;
+									var textValue = $('#' + textId).val();
+									alert(textId + " " + textValue);
+									$.ajax({
+										type : "POST", // 전송방식을 지정한다 (POST,GET)
+										url : "defineSecondSub",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+										dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
+										// 있다.
+										data : {
+											textVal : textValue,
+											num : num,
+											answerId : answerId,
+											space : space,
+											groupNum : groupNum,
+											pw : pw,
+											id : id
+										},
+										error : function() {
+											alert("error");
+										},
+										success : function(success) {
+											location.reload();
+										}
+									});
+								}
+								</script>
+
 							</tr>
 
 						</c:if>

@@ -62,7 +62,7 @@ public class DefineServiceImpl implements DefineService {
 		
 		return linkCon;
 	}
-	
+	      
 	@Override
 	public void defineWriteSub(HttpServletRequest request) throws Exception {
 		DefineSubVO vo = new DefineSubVO();
@@ -89,16 +89,19 @@ public class DefineServiceImpl implements DefineService {
 	@Override
 	public void defineSecondSub(HttpServletRequest request) throws Exception {
 		DefineSubVO vo = new DefineSubVO();
-
-		vo.setContent("to" + " " + request.getParameter("answerId") + " "+ request.getParameter("subcon"));
-		vo.setConnum(request.getParameter("connum"));
+		System.out.println("오류0");
+		System.out.println(request.getParameter("textVal")+"D오류");
+		vo.setContent("to" + " " + request.getParameter("answerId") + " "+ request.getParameter("textVal"));
+		vo.setConnum(request.getParameter("num"));
 		vo.setSpace(request.getParameter("space"));
-		vo.setNum(request.getParameter("subnum"));
+		System.out.println("오류1");
+		//vo.setNum(request.getParameter("subnum"));
 		vo.setId(request.getParameter("id"));
 		vo.setPw(request.getParameter("pw"));
-		vo.setGroupnum(Integer.parseInt(request.getParameter("groupnum")));
-		
+		vo.setGroupnum(Integer.parseInt(request.getParameter("groupNum")));
+		System.out.println("오류1");
 		dao.defineWriteSub(vo);
+		System.out.println("오류2");
 	}
 
 	// 댓글삭제

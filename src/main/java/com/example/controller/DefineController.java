@@ -85,113 +85,40 @@ public class DefineController {
 	public String logout(HttpServletRequest request, Model model) throws Exception {
 		HttpSession session = request.getSession();
 		session.removeAttribute("ID");
-		
-		if(request.getAttribute("textStatus").equals("main")) {
-			return "redirect:define";
-		} else {
-			return "linkWord";
-		}
-		
+		return "redirect:define";
 	}
-	
-//	@RequestMapping(value = "/defineWriteSub", method = RequestMethod.POST)
-//	public String defineWriteSub(HttpServletRequest request, Model model) throws Exception {
-//		System.out.println("오류1");
-//		service.defineWriteSub(request);
-//		
-//		if(request.getAttribute("linkWord").equals("main")) {
-//			return "redirect:define";
-//		} else {
-//			return "linkWord";
-//		}
-//	}
-
-//	@RequestMapping(value = "/defineSecondSub", method = RequestMethod.POST)
-//	public String defineSecondSub(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
-//		
-//		service.defineSecondSub(request); 
-//		
-//		if(!request.getParameter("linkWord").equals("main")) {
-//			List<MainDefineContentVO> linkCon = service.linkCon(request);
-//			System.out.println(request.getParameter("linkWord"));
-//			System.out.println("오류:02");
-//			HttpSession session = request.getSession();
-//			System.out.println("오류:03");
-//			model.addAttribute("MainDefineList", linkCon);
-//			System.out.println("오류:04");
-//			List<DefineSubVO> getDefinSubList = service.getDefinSubList();
-//			model.addAttribute("getDefinSubList", getDefinSubList);
-//			System.out.println("오류:05");
-//			//어떤페이지인지구분
-//			String linkWord = request.getParameter("linkWord");
-//			textStatusVO textStatusVO = new textStatusVO();
-//			textStatusVO.setTextStatus(linkWord);
-//			response.setAttribute("textStatusVO", textStatusVO);
-//			refreshNum++;
-//			System.out.println("오류:06");
-//			response.setAttribute("lastGroupNum", getDefinSubList.get(getDefinSubList.size()-1));
-//			session.setAttribute("refreshNum", refreshNum);
-//			System.out.println("오류:07");
-//			return "define";
-//		} 
-//		System.out.println("오류:08");
-//		return "redirect:define";
-//	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	//여//여//여//여//여//여//여//여//여//여//여//여//여//여//여
 	@RequestMapping(value = "/defineWriteSub", method = RequestMethod.POST)
+	@ResponseBody
 	public String defineWriteSub(HttpServletRequest request, Model model) throws Exception {
 		service.defineWriteSub(request);
 		return "success";
 	}
 	
 	@RequestMapping(value = "/defineSecondSub", method = RequestMethod.POST)
-	public void defineSecondSub(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
+	@ResponseBody
+	public String defineSecondSub(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
+		System.out.println(request.getParameter("textVal")+"D오류");
 		service.defineSecondSub(request); 
+		return "success";
 	}
 
-	
-	
-	
-	
-	
-	
 	
 	
 	//단어눌렀을때 검색기능
 	@RequestMapping(value = "/linkWord", method = RequestMethod.GET)
 	public String linkWord(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
-		
 		List<MainDefineContentVO> linkCon = service.linkCon(request);
-		System.out.println(request.getParameter("linkWord"));
-		System.out.println("오류:02");
 		HttpSession session = request.getSession();
-		System.out.println("오류:03");
 		model.addAttribute("MainDefineList", linkCon);
-		System.out.println("오류:04");
 		List<DefineSubVO> getDefinSubList = service.getDefinSubList();
 		model.addAttribute("getDefinSubList", getDefinSubList);
-		System.out.println("오류:05");
 		//어떤페이지인지구분
-		String linkWord = request.getParameter("linkWord");
-		textStatusVO textStatusVO = new textStatusVO();
-		textStatusVO.setTextStatus(linkWord);
-		response.setAttribute("textStatusVO", textStatusVO);
+		
 		refreshNum++;
-		System.out.println("오류:06");
 		response.setAttribute("lastGroupNum", getDefinSubList.get(getDefinSubList.size()-1));
 		session.setAttribute("refreshNum", refreshNum);
-		System.out.println("오류:07");
 		return "define";
 	}
 
