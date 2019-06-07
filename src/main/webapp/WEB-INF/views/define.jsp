@@ -100,16 +100,16 @@
 		for (var i = 0; i < aboveCommentSection.length; i++) {
 			aboveCommentSection.item(i).style.display = "none";
 		}
-		for (var i = 0; i < belowCommentSection.length; i++) {
+		/* for (var i = 0; i < belowCommentSection.length; i++) {
 			belowCommentSection.item(i).style.display = "none";
-		}
+		} */
 		for (var i = 0; i < deleteTag.length; i++) {
 			deleteTag.item(i).style.display = "none";
 		}
 		if(session == 'null'){
-			document.getElementById("log").innerHTML = "<a href='login' style='color: white; text-decoration: none;'><input type='hidden' name='textStatus' value='${textStatusVO.textStatus}' />Login</a>";
+			document.getElementById("log").innerHTML = "<a href='login' style='color: white; text-decoration: none;'>Login</a>";
 		}else{
-			document.getElementById("log").innerHTML = "<a href='logout' id='logout' style='color: white; text-decoration: none;'><input type='hidden' name='textStatus' value='${textStatusVO.textStatus}' />Logout</a>";
+			document.getElementById("log").innerHTML = "<a href='logout' id='logout' style='color: white; text-decoration: none;'>Logout</a>";
 		}
 	}
 	
@@ -173,7 +173,7 @@
 				</div>
 
 				<div>${a.info}</div>
-				<%-- <div>글번호: ${a.num}</div> --%>
+				<div>글번호: ${a.num}</div>
 
 				<!-- 추천, 비추천 버튼 -->
 				<div id="rate" style="float: right;">
@@ -201,18 +201,7 @@
 						<!-- 기본댓글달기 -->
 						<!-- 기본댓글달기 -->
 						<!-- 기본댓글달기 -->
-						<%-- <form action="defineWriteSub" method="post">
-							<td id="button${a.num}" class="aboveCommentSection"><textarea
-									id="textArea" name="subcon" rows="2" cols="30"></textarea> <input
-								type="hidden" name="num" value="${a.num}" /> <input
-								type="hidden" name="space" value="0" /> <input type="hidden"
-								name="groupNum" value="${lastGroupNum.groupnum}" /> <input
-								type="hidden" name="pw" value="<%=sessionPw%>" /> <input
-								type="hidden" name="id" value="<%=sessionId%>" /> <input
-								type="hidden" name="linkWord"
-								value="${textStatusVO.textStatus}" /><input type="submit"
-								value="댓글달기"></td>
-						</form> --%>
+
 						<td id="button${a.num}" class="aboveCommentSection"><textarea
 								id="textArea" name="subcon" rows="2" cols="30"></textarea> <input
 							type="submit"
@@ -258,7 +247,7 @@
 							<tr>
 								<div class="subViewSection"
 									style="line-height: 110%; margin-top: -2%;">
-
+									<div>${a.num}</div>
 									<c:set var="space" value="${b.space}" />
 									<!-- jstl에서if else문 -->
 									<c:choose>
@@ -289,9 +278,40 @@
 								<!-- 답글삭제버튼 -->
 								<div class="deleteShowTag"
 									style="position: relative; bottom: 2rem;">
-									<a href="javascript:belowCommentClick(${b.num});"> <input
+
+
+
+
+
+
+
+
+
+
+									<%-- <a href="javascript:belowCommentClick(${b.num});"> <input
 										type="submit" value="답글" style="font-size: 80%" />
-									</a> <a href="javascript:deleteClick(${b.num});"> <input
+									</a>  --%>
+									<!-- <a href="#" >  -->
+
+
+
+
+
+
+
+
+
+
+									<input type="submit"
+										onclick="ansCommentSec('${b.num}', '${a.num}', '${b.space}', '${b.id}', '${b.groupnum}');"
+										value="답글" style="font-size: 80%" />
+									<!-- 	</a>  -->
+
+
+									<%-- (${b.num}, ${a.num}, ${b.space}, ${b.id}, ${b.groupnum} --%>
+
+
+									<a href="javascript:deleteClick(${b.num});"> <input
 										type="submit" id="deleteShowButton" value="삭제" />
 									</a>
 								</div>
@@ -304,45 +324,57 @@
 								<!-- 답글 -->
 								<!-- 답글 -->
 								<!-- 답글 -->
-								<!-- <form action="defineSecondSub" method="post"> -->
+								<div id="commentClickButton${b.num}" class="belowCommentSection">
 
-									<div id="commentClickButton${b.num}"
-										class="belowCommentSection">
-
-										<div class="textSection"
+									<!-- <div class="textSection"
 											style="position: relative; top: 0.8rem; left: 1.4rem;">
-											<!-- 댓글표시 화살표 -->
-											<div id="diagram"></div>
-											<div class="cont-box-pseudo"></div>
-										</div>
-										<!-- 답글입력창 -->
-										<div class="textSection">
-											<textarea id="textAreaSecond${b.num}" name="subcon" rows="2" cols="55" style="position: relative; left: 1rem; margin-left: 1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;"></textarea>
-											<%-- <input type="hidden" name="subnum" value="${b.num}" /> <input
-												type="hidden" name="space" value="${b.space+1}" /> <input
-												type="hidden" name="connum" value="${a.num}" /> <input
-												type="hidden" name="answerId" value="${b.id}" /> <input
-												type="hidden" name="groupnum" value="${b.groupnum}" /> <input
-												type="hidden" name="id" value="<%=sessionId%>" /> <input
-												type="hidden" name="pw" value="<%=sessionPw%>" /> <input
-												type="hidden" name="linkWord"
-												value="${textStatusVO.textStatus}" /> --%>
-												<input
-											type="submit"
-											onclick="writeSecondSub('${b.num}', '${b.space+1}','${b.id}','${b.groupnum}','<%=sessionPw%>', '<%=sessionId%>');"
+											댓글표시 화살표
+											<div id="diagram"/>
+											<div class="cont-box-pseudo"/>
+										</div> -->
+									<!-- 답글입력창 -->
+									<!-- <div class="textSection"> -->
+									<%-- 									<textarea id="textAreaSecond${b.num}" name="subcon" rows="2" cols="55" style="position: relative; left: 1rem; margin-left: 1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;"></textarea>
+											
+												<input type="submit"
+											onclick="writeSecondSub('${b.num}','${a.num}','${b.space+1}','${b.id}','${b.groupnum}','<%=sessionPw%>', '<%=sessionId%>');"
 											value="댓글달기" style="position: relative; left: 1rem; font-size: 80%; float: right;" />
-												<!-- <input type="submit" value="댓글달기"
-											style="position: relative; left: 1rem; font-size: 80%; float: right;" /> -->
-										</div>
-										
-									</div>
-								<!-- </form> -->
+										</div> --%>
 
+
+
+
+
+
+
+									<div id="ansSec${b.num}">asdfsda ${a.num}</div>
+
+
+
+
+
+
+
+
+
+								</div>
 								<script>
-								function writeSecondSub(num, space, answerId, groupNum, pw, id) {
+								function ansCommentSec(num, connum, space, id, groupnum){
+									
+									var sec = 'ansSec' + num;
+									var spacenum = space + 1;
+									var textA = 'textAreaSecond' + num;
+									var arrowhtml = "<div class='textSection' style='position: relative; top: 0.8rem; left: 1.4rem;'><div id='diagram'/><div class='cont-box-pseudo'/></div>";
+									var innerhtml = "<textarea id='"+textA+"' name='subcon' rows='2' cols='55' style='position: relative; left: 1rem; margin-left: 1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;'></textarea><input type='submit' onclick=\"writeSecondSub('"+num+"','"+connum+"','"+spacenum+"','"+id+"','"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='댓글달기' style='position: relative; left: 1rem; font-size: 80%; float: right;' />";
+									var innerarrowhtml = arrowhtml + innerhtml;
+									$('#'+sec).html(innerarrowhtml); 
+									
+								}
+								
+								
+								function writeSecondSub(num, connum, space, answerId, groupNum, pw, id) {
 									var textId = 'textAreaSecond' + num;
 									var textValue = $('#' + textId).val();
-									alert(textId + " " + textValue);
 									$.ajax({
 										type : "POST", // 전송방식을 지정한다 (POST,GET)
 										url : "defineSecondSub",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
@@ -350,7 +382,7 @@
 										// 있다.
 										data : {
 											textVal : textValue,
-											num : num,
+											num : connum,
 											answerId : answerId,
 											space : space,
 											groupNum : groupNum,
