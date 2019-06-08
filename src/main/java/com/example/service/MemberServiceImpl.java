@@ -26,15 +26,18 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDAO dao;
 	
 	@Override
-	public boolean logining(HttpServletRequest request) throws Exception {
+	public String logining(HttpServletRequest request) throws Exception {
 		String a = request.getParameter("ID");
 		String b = request.getParameter("PW");
-		System.out.println(a + b + "여기여기ㅗ");
 		String c = dao.selectpw(a);
+		System.out.println("요기"+c);
+		if (c == null) {
+			return "noId";
+		}
 		if (b.equals(c)) {
-			return true;
+			return "true";
 		} else {
-			return false;
+			return "notPw";
 		}
 	}
 	

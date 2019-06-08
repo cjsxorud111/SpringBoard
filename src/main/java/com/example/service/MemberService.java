@@ -14,6 +14,6 @@ import com.example.dto.SubVO;
 public interface MemberService {
 	
 	public void memberjoining(HttpServletRequest request) throws Exception;
-	public boolean logining(HttpServletRequest request) throws Exception;
+	public String logining(HttpServletRequest request) throws Exception;
 
 }

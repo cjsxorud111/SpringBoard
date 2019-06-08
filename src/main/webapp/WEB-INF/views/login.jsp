@@ -26,7 +26,7 @@
 					placeholder=" PASSWORD">
 			</div>
 			<div class="row">
-				<a href="javascript:loginClick(<%=word%>);" class="btn btn-primary" id="login">로그인</a>
+				<a href="javascript:loginClick();" class="btn btn-primary" id="login">로그인</a>
 			</div>
 			<div class="row">
 				<a href="memberjoin" class="btn btn-primary" id="pw">회원가입</a>
@@ -37,11 +37,20 @@
 			</div>
 		<!-- </form> -->
 	</div>
+	
 </body>
-<script type="text/javascript">
-function loginClick(linkWord){
+<script>
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function loginClick(){
 	var id = $('#id').val();
 	var pw = $('#pw').val();
+	var word = getParameterByName('word');
 	$.ajax({
 		type : "GET", // 전송방식을 지정한다 (POST,GET)
 		url : "logining",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
@@ -55,21 +64,20 @@ function loginClick(linkWord){
 			alert("error");
 		},
 		success : function(returnValue) {
-			
 			if(returnValue == 'success'){
-				if(linkword == 'main'){
-					history.back();
-				} else {
-					window.location.href = 'linkWord?linkWord='+linkWord;
+				if(word == 'main'){
+					window.location.href = 'define';
+				}else{
+					window.location.href = 'linkWord?linkWord='+word;
 				}
-				//history.go(-1);
+			}else if(returnValue == 'noId'){
+				alert("일치하는 아이디가 없습니다.");
 			}else{
-				window.location.href = 'memberjoin';
+				alert("패스워드가 다릅니다.");
 			}
 		}
 	});
 }
-
 
 </script>
 </html>

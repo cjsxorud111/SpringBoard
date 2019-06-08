@@ -45,21 +45,18 @@ public class LoginController {
 	@RequestMapping(value = "/logining", method = RequestMethod.GET)
 	@ResponseBody
 	public String logining(HttpServletRequest request,HttpServletRequest response, Model model) throws Exception {
-		boolean aa = service.logining(request);
-		System.out.println("오류1"+aa);
-		if (aa == true) {
+		String aa = service.logining(request);
+		if (aa.equals("true")) {
 			String a = request.getParameter("ID");
 			String pw = request.getParameter("PW");
 			HttpSession session = request.getSession();
 			session.setAttribute("ID", a);
 			session.setAttribute("PW", pw);
-			System.out.println("오류2" + a + pw);
 			return "success";
+		} else if(aa.equals("noId")){
+			return "noId";
 		} else {
-			//request.setAttribute("notMembe", "notMembe");
-			model.addAttribute("notMember", "일치하는 ID가 없습니다. <br> 회원가입을 해주세요.");
-			System.out.println("오류3");
-			return "fail";
+			return "notPw";
 		}
 	}
 }

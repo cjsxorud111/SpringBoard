@@ -48,7 +48,7 @@
 		<div class="container">
 			<div>
 				<a href="define" id="title"
-					style="color: white; font-weight: 50px; margin-left: 1rem;">한줄피디아</a>
+					style="color: white; font-weight: 50px; margin-left: 1rem;">xx위키</a>
 			</div>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -90,7 +90,6 @@
 	
 
 
-	<div>${textStatusVO.textStatus}</div>
 
 
 	<!-- 자바스크립트에서수정이안되기에onload자바스크립트만jsp에만듬 -->
