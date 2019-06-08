@@ -115,9 +115,13 @@ public class DefineController {
 		List<DefineSubVO> getDefinSubList = service.getDefinSubList();
 		model.addAttribute("getDefinSubList", getDefinSubList);
 		//어떤페이지인지구분
-		
+		String linkWord = request.getParameter("linkWord");
+		textStatusVO textStatusVO = new textStatusVO();
+		textStatusVO.setTextStatus(linkWord);
+		response.setAttribute("textStatusVO", textStatusVO);
 		refreshNum++;
 		response.setAttribute("lastGroupNum", getDefinSubList.get(getDefinSubList.size()-1));
+		response.setAttribute("word", getDefinSubList.get(getDefinSubList.size()-1));
 		session.setAttribute("refreshNum", refreshNum);
 		return "define";
 	}

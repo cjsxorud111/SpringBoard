@@ -10,20 +10,23 @@
 </head>
 <body id="loginBody" style="background-color: #CACCCE">
 	<%@ include file="nav.jsp"%>
+	<% String word = request.getParameter("word");%>
+	
+
 	<div id="loginInputSection">
 		<div id="loginText">
 			<h1>Login</h1>
 		</div>
-		<form action="logining" method="get">
+		<!-- <form action="logining" method="get"> -->
 			<div class="row">
-				<input type="text" class="form-control" name="ID" placeholder=" ID">
+				<input type="text" id="id" class="form-control" name="ID" placeholder=" ID">
 			</div>
 			<div class="row">
-				<input type="text" class="form-control" name="PW"
+				<input type="text" id="pw" class="form-control" name="PW"
 					placeholder=" PASSWORD">
 			</div>
 			<div class="row">
-				<input type="submit" class="btn btn-primary" value="로그인" id="login">
+				<a href="javascript:loginClick(<%=word%>);" class="btn btn-primary" id="login">로그인</a>
 			</div>
 			<div class="row">
 				<a href="memberjoin" class="btn btn-primary" id="pw">회원가입</a>
@@ -32,8 +35,41 @@
 			<div class="row">
 				<div id="naverIdLogin"></div>
 			</div>
-		</form>
+		<!-- </form> -->
 	</div>
-
 </body>
+<script type="text/javascript">
+function loginClick(linkWord){
+	var id = $('#id').val();
+	var pw = $('#pw').val();
+	$.ajax({
+		type : "GET", // 전송방식을 지정한다 (POST,GET)
+		url : "logining",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+		dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
+		// 있다.
+		data : {
+			ID : id,
+			PW : pw
+		},
+		error : function() {
+			alert("error");
+		},
+		success : function(returnValue) {
+			
+			if(returnValue == 'success'){
+				if(linkword == 'main'){
+					history.back();
+				} else {
+					window.location.href = 'linkWord?linkWord='+linkWord;
+				}
+				//history.go(-1);
+			}else{
+				window.location.href = 'memberjoin';
+			}
+		}
+	});
+}
+
+
+</script>
 </html>

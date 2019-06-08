@@ -78,7 +78,7 @@
 							style="position: relative; top: 2px; color: white; font-size: 1.7rem; text-decoration: none;">새단어정의하기</a>
 						&nbsp;&nbsp;&nbsp; <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <a
 							href="" id="log"
-							style="position: relative; top: 2px; color: white; font-size: 1.7rem; text-decoration: none;"></a>
+							style="position: relative; top: 2px; color: white; font-size: 1.7rem; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 						&nbsp;&nbsp;&nbsp;
 					</div>
 
@@ -86,6 +86,12 @@
 			</div>
 		</div>
 	</nav>
+	<!-- html테스트공간 --><!-- html테스트공간 --><!-- html테스트공간 --><!-- html테스트공간 -->
+	
+
+
+	<div>${textStatusVO.textStatus}</div>
+
 
 	<!-- 자바스크립트에서수정이안되기에onload자바스크립트만jsp에만듬 -->
 	<script>
@@ -97,9 +103,9 @@
 				.getElementsByClassName("belowCommentSection");
 		var deleteTag = document.getElementsByClassName("deleteTag");
 		
-		for (var i = 0; i < aboveCommentSection.length; i++) {
+		/* for (var i = 0; i < aboveCommentSection.length; i++) {
 			aboveCommentSection.item(i).style.display = "none";
-		}
+		} */
 		/* for (var i = 0; i < belowCommentSection.length; i++) {
 			belowCommentSection.item(i).style.display = "none";
 		} */
@@ -107,7 +113,7 @@
 			deleteTag.item(i).style.display = "none";
 		}
 		if(session == 'null'){
-			document.getElementById("log").innerHTML = "<a href='login' style='color: white; text-decoration: none;'>Login</a>";
+			document.getElementById("log").innerHTML = "<a href='login?word=${textStatusVO.textStatus}' style='color: white; text-decoration: none;'>Login</a>";
 		}else{
 			document.getElementById("log").innerHTML = "<a href='logout' id='logout' style='color: white; text-decoration: none;'>Logout</a>";
 		}
@@ -190,7 +196,7 @@
 				<div>글쓴이: ${a.id}</div>
 				<br>
 				<div>
-					<a href="javascript:commentClick(${a.num});"
+					<a href="javascript:aboveComment(${a.num}, ${lastGroupNum.groupnum});"
 						style="margin-top: 1rem; text-decoration: none;">댓글+</a>
 				</div>
 				<table frame=void>
@@ -202,16 +208,29 @@
 						<!-- 기본댓글달기 -->
 						<!-- 기본댓글달기 -->
 
-						<td id="button${a.num}" class="aboveCommentSection"><textarea
-								id="textArea" name="subcon" rows="2" cols="30"></textarea> <input
-							type="submit"
-							onclick="writeSub('${a.num}', '0', '${lastGroupNum.groupnum}','<%=sessionPw%>', '<%=sessionId%>');"
-							value="댓글달기"></td>
+						<td id="button${a.num}" class="aboveCommentSection">
+						
+						</td>
 					</tr>
 				</table>
 				<script>
-				function writeSub(num, space, groupNum, pw, id) {
-					var textValue = $("#textArea").val();
+				function aboveComment(num, groupnum) {
+					
+					if(isSession == false) {
+						alert("먼저로그인을 해주세요");
+					} else{
+						var sec = 'button' + num;
+						var textA = 'textArea' + num;
+						var arrowhtml = "<textarea id='"+textA+"' name='subcon' rows='2' cols='52' style='position: relative; left: 1rem; margin-left: 1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;'></textarea>";
+						var innerhtml = "<div style='position: relative; left: 1rem; font-size: 80%; float: right;'><div><input type='submit' onclick=\"writeSub('"+textA+"','"+num +"', '0', '"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='댓글달기'/></div>";
+						var temp = "<div><input type='submit' onclick=\"cancelSecondSub('"+sec+"');\" value='댓글취소'/></div></div>"
+						var innerarrowhtml = arrowhtml + innerhtml + temp;
+						$('#'+sec).html(innerarrowhtml); 
+					}
+				}
+				
+				function writeSub(textA, num, space, groupNum, pw, id) {
+					var textValue = $('#'+textA).val();
 					$.ajax({
 						type : "POST", // 전송방식을 지정한다 (POST,GET)
 						url : "defineWriteSub",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
@@ -247,7 +266,6 @@
 							<tr>
 								<div class="subViewSection"
 									style="line-height: 110%; margin-top: -2%;">
-									<div>${a.num}</div>
 									<c:set var="space" value="${b.space}" />
 									<!-- jstl에서if else문 -->
 									<c:choose>
@@ -279,37 +297,17 @@
 								<div class="deleteShowTag"
 									style="position: relative; bottom: 2rem;">
 
-
-
-
-
-
-
-
-
-
 									<%-- <a href="javascript:belowCommentClick(${b.num});"> <input
 										type="submit" value="답글" style="font-size: 80%" />
 									</a>  --%>
 									<!-- <a href="#" >  -->
-
-
-
-
-
-
-
-
-
 
 									<input type="submit"
 										onclick="ansCommentSec('${b.num}', '${a.num}', '${b.space}', '${b.id}', '${b.groupnum}');"
 										value="답글" style="font-size: 80%" />
 									<!-- 	</a>  -->
 
-
 									<%-- (${b.num}, ${a.num}, ${b.space}, ${b.id}, ${b.groupnum} --%>
-
 
 									<a href="javascript:deleteClick(${b.num});"> <input
 										type="submit" id="deleteShowButton" value="삭제" />
@@ -334,43 +332,36 @@
 										</div> -->
 									<!-- 답글입력창 -->
 									<!-- <div class="textSection"> -->
-									<%-- 									<textarea id="textAreaSecond${b.num}" name="subcon" rows="2" cols="55" style="position: relative; left: 1rem; margin-left: 1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;"></textarea>
+									<%-- <textarea id="textAreaSecond${b.num}" name="subcon" rows="2" cols="55" style="position: relative; left: 1rem; margin-left: 1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;"></textarea>
 											
 												<input type="submit"
 											onclick="writeSecondSub('${b.num}','${a.num}','${b.space+1}','${b.id}','${b.groupnum}','<%=sessionPw%>', '<%=sessionId%>');"
 											value="댓글달기" style="position: relative; left: 1rem; font-size: 80%; float: right;" />
 										</div> --%>
 
-
-
-
-
-
-
-									<div id="ansSec${b.num}">asdfsda ${a.num}</div>
-
-
-
-
-
-
-
-
+									<div id="ansSec${b.num}"></div>
 
 								</div>
 								<script>
 								function ansCommentSec(num, connum, space, id, groupnum){
-									
-									var sec = 'ansSec' + num;
-									var spacenum = space + 1;
-									var textA = 'textAreaSecond' + num;
-									var arrowhtml = "<div class='textSection' style='position: relative; top: 0.8rem; left: 1.4rem;'><div id='diagram'/><div class='cont-box-pseudo'/></div>";
-									var innerhtml = "<textarea id='"+textA+"' name='subcon' rows='2' cols='55' style='position: relative; left: 1rem; margin-left: 1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;'></textarea><input type='submit' onclick=\"writeSecondSub('"+num+"','"+connum+"','"+spacenum+"','"+id+"','"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='댓글달기' style='position: relative; left: 1rem; font-size: 80%; float: right;' />";
-									var innerarrowhtml = arrowhtml + innerhtml;
-									$('#'+sec).html(innerarrowhtml); 
-									
+									if(isSession == false) {
+										alert("먼저로그인을 해주세요");
+									} else{
+										var sec = 'ansSec' + num;
+										var spacenum = space + 1;
+										var textA = 'textAreaSecond' + num;
+										var arrowhtml = "<div class='textSection' style='position: relative; top: 0.8rem; left: 1.4rem;'><div id='diagram'/><div class='cont-box-pseudo'/></div>";
+										var innerhtml = "<textarea id='"+textA+"' name='subcon' rows='2' cols='55' style='position: relative; left: 1rem; margin-left: 1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;'></textarea>";
+										var writebutton = "<div style='position: relative; left: 1rem; font-size: 80%; float: right;'><div><input type='submit' onclick=\"writeSecondSub('"+num+"','"+connum+"','"+spacenum+"','"+id+"','"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='답글달기'/></div>";
+										var calcelbutton = "<div><input type='submit' onclick=\"cancelSecondSub('"+sec+"');\" value='답글취소'/></div></div>";
+										var innerarrowhtml = arrowhtml + innerhtml + writebutton + calcelbutton;
+										$('#'+sec).html(innerarrowhtml); 
+									}
 								}
 								
+								function cancelSecondSub(sec){
+									$('#'+sec).html(""); 
+								}
 								
 								function writeSecondSub(num, connum, space, answerId, groupNum, pw, id) {
 									var textId = 'textAreaSecond' + num;

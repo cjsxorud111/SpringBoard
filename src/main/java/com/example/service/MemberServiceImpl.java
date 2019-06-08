@@ -29,6 +29,7 @@ public class MemberServiceImpl implements MemberService {
 	public boolean logining(HttpServletRequest request) throws Exception {
 		String a = request.getParameter("ID");
 		String b = request.getParameter("PW");
+		System.out.println(a + b + "여기여기ㅗ");
 		String c = dao.selectpw(a);
 		if (b.equals(c)) {
 			return true;
