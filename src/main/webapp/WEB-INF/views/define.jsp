@@ -34,15 +34,330 @@
 			window.location.href='newword_write';
 		} else {
 			alert("로그인이 필요합니다.");
-			window.location.href='login';
+			window.location.href='login?word=write(*)';
 		}
 	}
-	
 </script>
-
+<style>
+	header{
+		background-color: #121629;
+        border-bottom:1px solid gray;
+        padding-left:20px;
+        
+    }
+    footer{
+        border-top:1px solid gray;
+        padding:20px;
+        text-align: center;
+    }
+    .content{
+        display:flex;
+    }
+    .content{
+        border-right:1px solid blue;
+    }
+    .content aside{
+        border-left:1px solid red;    
+    }
+    nav, aside{
+        flex-basis: 150px;
+        flex-shrink: 0;
+    }
+   	#test01{
+   		border-right: 1px solid red;
+    }
+    main{
+        padding:10px;
+    }
+</style>
 </head>
 <body id="backGround"
-	style="background-color: #CACCCE; position: relative;">
+	style="background-color: #CACCCE; position: relative; display: flex; flex-direction: column;">
+	<header>
+        <h1>생</h1>
+    </header>
+    <section class="content">
+	<nav id="test01">
+        
+    </nav>
+    <main>
+    	
+    	<c:forEach items="${MainDefineList}" var="a">
+		<!-- 왼쪽창 -->
+		<div id="container03" style="position: relative;">
+			<!-- 왼쪽창에서 실제컨텐츠 표시부분 -->
+			<div id="container04" style="width: 40rem; padding: 1rem; background-color: #FFFFFF;">
+				&nbsp;&nbsp;
+				<!-- 단어제목으로검색링크 -->
+				<div>
+
+					<div style="float: right;">
+						<div>${a.currenttime}정의됨</div>
+						<div>
+							<a href="define_write?num=${a.num}" style="float: right">새정의추가</a>
+						</div>
+						<div>&nbsp;</div>
+						<!-- 글수정 글삭제버튼 -->
+						<div id="delete" style="float: right;">
+							<button class="modifyButton">수정</button>
+							<button onclick="deleteCheck(${a.num}, '${a.id}');"
+								class="defineDeleteButton">삭제</button>
+
+						</div>
+
+					</div>
+					<h1>
+						<form action="linkWord" id="frm${a.num}" method="get">
+							<input type="hidden" name="linkWord" value="${a.word}"> <a
+								href="#"
+								onclick="document.getElementById('frm${a.num}').submit();"
+								style="text-decoration: none; font-color: black">${a.word}</a>
+						</form>
+					</h1>
+				</div>
+
+				<div>${a.info}</div>
+				<div>글번호: ${a.num}</div>
+
+				<!-- 추천, 비추천 버튼 -->
+				<div id="rate" style="float: right;">
+					<div>
+						<button onclick="recommendUp(${a.up}, ${a.num});"
+							id="recommendUp${a.num}" class="upVote">추천: ${a.up}</button>
+					</div>
+					<div>
+						<button onclick="recommendDown(${a.down}, ${a.num});"
+							id="recommendDown${a.num}" class="downVote">비추천:
+							${a.down}</button>
+					</div>
+				</div>
+				<div>글쓴이: ${a.id}</div>
+				<br>
+				<div>
+					<a href="javascript:aboveComment(${a.num}, ${lastGroupNum.groupnum});"
+						style="margin-top: 1rem; text-decoration: none;">댓글+</a>
+				</div>
+				<table frame=void>
+					<tr>
+						<!-- 기본댓글달기 -->
+						<!-- 기본댓글달기 -->
+						<!-- 기본댓글달기 -->
+						<!-- 기본댓글달기 -->
+						<!-- 기본댓글달기 -->
+						<!-- 기본댓글달기 -->
+
+						<td id="button${a.num}" class="aboveCommentSection">
+						
+						</td>
+					</tr>
+				</table>
+				<script>
+				function aboveComment(num, groupnum) {
+					
+					if(isSession == false) {
+						alert("먼저로그인을 해주세요");
+					} else{
+						var sec = 'button' + num;
+						var textA = 'textArea' + num;
+						var arrowhtml = "<textarea id='"+textA+"' name='subcon' rows='2' cols='52' style='position: relative; left: 1rem; margin-left: 1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;'></textarea>";
+						var innerhtml = "<div style='position: relative; left: 1rem; font-size: 80%; float: right;'><div><input type='submit' onclick=\"writeSub('"+textA+"','"+num +"', '0', '"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='댓글달기'/></div>";
+						var temp = "<div><input type='submit' onclick=\"cancelSecondSub('"+sec+"');\" value='댓글취소'/></div></div>"
+						var innerarrowhtml = arrowhtml + innerhtml + temp;
+						$('#'+sec).html(innerarrowhtml); 
+					}
+				}
+				
+				function writeSub(textA, num, space, groupNum, pw, id) {
+					var textValue = $('#'+textA).val();
+					$.ajax({
+						type : "POST", // 전송방식을 지정한다 (POST,GET)
+						url : "defineWriteSub",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+						dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
+						// 있다.
+						data : {
+							textValue : textValue,
+							num : num,
+							space : space,
+							groupNum : groupNum,
+							pw : pw,
+							id : id
+						},
+						error : function() {
+							alert("error");
+						},
+						success : function(success) {
+							location.reload();
+						}
+					});
+				}
+				</script>
+				<!-- 댓글표시 -->
+				<c:set var="num" value="${a.num}" />
+				<div style="margin-top: 10px;"></div>
+				<table class="table">
+					<c:forEach items="${getDefinSubList}" var="b">
+
+						<c:set var="connum" value="${b.connum}" />
+
+						<c:if test="${num eq connum}">
+
+							<tr>
+								<div class="subViewSection"
+									style="line-height: 110%; margin-top: -2%;">
+									<c:set var="space" value="${b.space}" />
+									<!-- jstl에서if else문 -->
+									<c:choose>
+										<c:when test="${space > 0}">
+											<!-- 댓글표시 화살표 도형 -->
+											<div id="diagram" style="position: relative; left: 30px;"></div>
+											<div class="cont-box-pseudo"
+												style="position: relative; left: 30px;"></div>
+											<div style="position: relative; left: 43px; bottom: 10px;">${b.id}</div>
+											<div id="subView" style="padding-left: 41px; width: 36rem;">
+												${b.groupnum}${b.content}
+												<!-- 댓글버튼 -->
+											</div>
+										</c:when>
+
+										<c:otherwise>
+											<div>&nbsp; &nbsp;</div>
+											<div style="position: relative; left: 13px; bottom: 10px;">${b.id}</div>
+											<div id="subView" style="padding-left: 1rem; width: 36rem;">
+												${b.groupnum}${b.content}
+												<!-- 댓글버튼 -->
+											</div>
+
+										</c:otherwise>
+
+									</c:choose>
+								</div>
+								<!-- 답글삭제버튼 -->
+								<div class="deleteShowTag"
+									style="position: relative; bottom: 2rem;">
+
+									<%-- <a href="javascript:belowCommentClick(${b.num});"> <input
+										type="submit" value="답글" style="font-size: 80%" />
+									</a>  --%>
+									<!-- <a href="#" >  -->
+
+									<input type="submit"
+										onclick="ansCommentSec('${b.num}', '${a.num}', '${b.space}', '${b.id}', '${b.groupnum}');"
+										value="답글" style="font-size: 80%" />
+									<!-- 	</a>  -->
+
+									<%-- (${b.num}, ${a.num}, ${b.space}, ${b.id}, ${b.groupnum} --%>
+
+									<a href="javascript:deleteClick(${b.num});"> <input
+										type="submit" id="deleteShowButton" value="삭제" />
+									</a>
+								</div>
+
+							</tr>
+							<tr>
+								<!-- 답글 -->
+								<!-- 답글 -->
+								<!-- 답글 -->
+								<!-- 답글 -->
+								<!-- 답글 -->
+								<!-- 답글 -->
+								<div id="commentClickButton${b.num}" class="belowCommentSection">
+
+									<!-- <div class="textSection"
+											style="position: relative; top: 0.8rem; left: 1.4rem;">
+											댓글표시 화살표
+											<div id="diagram"/>
+											<div class="cont-box-pseudo"/>
+										</div> -->
+									<!-- 답글입력창 -->
+									<!-- <div class="textSection"> -->
+									<%-- <textarea id="textAreaSecond${b.num}" name="subcon" rows="2" cols="55" style="position: relative; left: 1rem; margin-left: 1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;"></textarea>
+											
+												<input type="submit"
+											onclick="writeSecondSub('${b.num}','${a.num}','${b.space+1}','${b.id}','${b.groupnum}','<%=sessionPw%>', '<%=sessionId%>');"
+											value="댓글달기" style="position: relative; left: 1rem; font-size: 80%; float: right;" />
+										</div> --%>
+
+									<div id="ansSec${b.num}"></div>
+
+								</div>
+								<script>
+								function ansCommentSec(num, connum, space, id, groupnum){
+									if(isSession == false) {
+										alert("먼저로그인을 해주세요");
+									} else{
+										var sec = 'ansSec' + num;
+										var spacenum = space + 1;
+										var textA = 'textAreaSecond' + num;
+										var arrowhtml = "<div class='textSection' style='position: relative; top: 0.8rem; left: 1.4rem;'><div id='diagram'/><div class='cont-box-pseudo'/></div>";
+										var innerhtml = "<textarea id='"+textA+"' name='subcon' rows='2' cols='55' style='position: relative; left: 1rem; margin-left: 1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;'></textarea>";
+										var writebutton = "<div style='position: relative; left: 1rem; font-size: 80%; float: right;'><div><input type='submit' onclick=\"writeSecondSub('"+num+"','"+connum+"','"+spacenum+"','"+id+"','"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='답글달기'/></div>";
+										var calcelbutton = "<div><input type='submit' onclick=\"cancelSecondSub('"+sec+"');\" value='답글취소'/></div></div>";
+										var innerarrowhtml = arrowhtml + innerhtml + writebutton + calcelbutton;
+										$('#'+sec).html(innerarrowhtml); 
+									}
+								}
+								
+								function cancelSecondSub(sec){
+									$('#'+sec).html(""); 
+								}
+								
+								function writeSecondSub(num, connum, space, answerId, groupNum, pw, id) {
+									var textId = 'textAreaSecond' + num;
+									var textValue = $('#' + textId).val();
+									$.ajax({
+										type : "POST", // 전송방식을 지정한다 (POST,GET)
+										url : "defineSecondSub",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+										dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
+										// 있다.
+										data : {
+											textVal : textValue,
+											num : connum,
+											answerId : answerId,
+											space : space,
+											groupNum : groupNum,
+											pw : pw,
+											id : id
+										},
+										error : function() {
+											alert("error");
+										},
+										success : function(success) {
+											location.reload();
+										}
+									});
+								}
+								</script>
+
+							</tr>
+
+						</c:if>
+
+					</c:forEach>
+
+				</table>
+
+			</div>
+		</div>
+	</c:forEach>
+    
+    </main>
+    <aside>
+       
+    </aside>
+    </section>
+    <footer>
+        <a href="https://opentutorials.org/course/1">홈페이지</a>
+    </footer>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<!-- new --><!-- new --><!-- new --><!-- new --><!-- new --><!-- new --><!-- new --><!-- new --><!-- new --><!-- new --><!-- new --><!-- new --><!-- new --><!-- new --><!-- new --><!-- new -->    
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
 		style="position: relative; height: 5rem; background: blue">
 		<div class="container">
@@ -114,8 +429,24 @@
 		if(session == 'null'){
 			document.getElementById("log").innerHTML = "<a href='login?word=${textStatusVO.textStatus}' style='color: white; text-decoration: none;'>Login</a>";
 		}else{
-			document.getElementById("log").innerHTML = "<a href='logout' id='logout' style='color: white; text-decoration: none;'>Logout</a>";
+			document.getElementById("log").innerHTML = "<a href='javascript:logout();' id='logout' style='color: white; text-decoration: none;'>Logout</a>";
 		}
+	}
+	function logout(){
+		$.ajax({
+			type : "GET", // 전송방식을 지정한다 (POST,GET)
+			url : "logout",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+			dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
+			// 있다.
+			data : {
+			},
+			error : function() {
+				alert("error");
+			},
+			success : function(success) {
+				location.reload();
+			}
+		});
 	}
 	
 	function scroll_follow( id ){

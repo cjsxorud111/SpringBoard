@@ -82,10 +82,10 @@ public class DefineController {
 
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpServletRequest request, Model model) throws Exception {
+	@ResponseBody
+	public void logout(HttpServletRequest request, Model model) throws Exception {
 		HttpSession session = request.getSession();
 		session.removeAttribute("ID");
-		return "redirect:define";
 	}
 	
 	//여//여//여//여//여//여//여//여//여//여//여//여//여//여//여
@@ -138,7 +138,7 @@ public class DefineController {
 		model.addAttribute("getDefinSubList", getDefinSubList);	
 		//어떤페이지인지구분
 		textStatusVO textStatusVO = new textStatusVO();
-		textStatusVO.setTextStatus("main");
+		textStatusVO.setTextStatus("main(*)");
 		response.setAttribute("textStatusVO", textStatusVO);
 		
 		refreshNum++;
@@ -147,6 +147,14 @@ public class DefineController {
 		session.setAttribute("refreshNum", refreshNum);
 		return "define";
 	}
+	
+	//test
+	@RequestMapping(value = "/define2", method = RequestMethod.GET)
+	// Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
+	public String define2(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
+		return "define2";
+	}
+	
 
 	@RequestMapping(value = "/define_write", method = RequestMethod.GET)
 	public String define_write(Model model) throws Exception {
