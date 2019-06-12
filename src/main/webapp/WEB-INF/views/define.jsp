@@ -90,33 +90,11 @@
 	scroll_follow( "#scroll" );
 	</script>
 <style>
-header {
-	background-color: #121629;
-	border-bottom: 1px solid gray;
-	padding-left: 20px;
-}
 
 footer {
 	border-top: 1px solid gray;
 	padding: 20px;
 	text-align: center;
-}
-
-.content {
-	display: flex;
-}
-
-.content {
-	border-right: 1px solid blue;
-}
-
-.content aside {
-	border-left: 1px solid red;
-}
-
-nav, aside {
-	flex-basis: 0px;
-	flex-shrink: 0;
 }
 
 #test01 {
@@ -144,14 +122,14 @@ main {
 			<a href="define" id="title"
 				style="color: white; font-weigh: 50px; margin-left: 1rem; margin-bottom: 5rem; position: relative; bottom: 8px;">xx위키</a>
 		</div>
-
+ 
 		<div style="float: left; margin-left: 5rem;">
 			<form class="form-inline" action="linkWord" method="get">
 				<!-- 검색창 -->
 				<div>
 					<input type='text' name=linkWord autocomplete="off" id='inputText'
-						class='input_text' onfocusout="loseFocus()" />
-					<span id="searchRecommendSection" style="width: 330px;"></span>
+						class='input_text' style="width:340px;" onfocusout="loseFocus()" />
+					<span id="searchRecommendSection" style="position:absolute; width: 330px; top: 71px; z-index:100; padding-left:10px; "></span>
 				</div>
 				
 				<!-- 돋보기 -->
@@ -192,20 +170,20 @@ main {
 		</div>
 		<c:forEach items="${MainDefineList}" var="a">
 			<!-- 왼쪽창 -->
-			<div id="container03" style="position: relative;">
+			<div id="container03" style="margin-top:2px;">
 				<!-- 왼쪽창에서 실제컨텐츠 표시부분 -->
 				<div id="container04"
-					style="width: 39rem; padding: 1rem; background-color: #FFFFFF;">
+					style="width: 39rem; padding: 1rem; margin-bottom:1.8rem; background-color: #FFFFFF;">
 					&nbsp;&nbsp;
 					<!-- 단어제목으로검색링크 -->
 					<div>
 
 						<div style="float: right;">
 							<div>${a.currenttime}정의됨</div>
-							<div>
-								<a href="define_write?num=${a.num}" style="float: right">새정의추가</a>
+							<div style="">
+								<a href="define_write?num=${a.num}" style="float: right;">새정의추가</a>
 							</div>
-							<div>&nbsp;</div>
+							<div style="">&nbsp;</div>
 							<!-- 글수정 글삭제버튼 -->
 							<div id="delete" style="float: right;">
 								<button class="modifyButton">수정</button>
@@ -220,7 +198,7 @@ main {
 								<input type="hidden" name="linkWord" value="${a.word}">
 								<a href="#"
 									onclick="document.getElementById('frm${a.num}').submit();"
-									style="text-decoration: none; font-color: black">${a.word}</a>
+									style="text-decoration: none; font-color: black; ">${a.word}</a>
 							</form>
 						</h1>
 					</div>
@@ -397,8 +375,8 @@ main {
 										var sec = 'ansSec' + num;
 										var spacenum = space + 1;
 										var textA = 'textAreaSecond' + num;
-										var arrowhtml = "<div class='textSection' style='position: relative; top: 0.8rem; left: 1.4rem;'><div id='diagram'/><div class='cont-box-pseudo'/></div>";
-										var innerhtml = "<textarea id='"+textA+"' name='subcon' rows='2' cols='55' style='position: relative; left: 1rem; margin-left: 1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;'></textarea>";
+										var arrowhtml = "<div class='textSection' style='position: relative; top: 0.8rem; left: 1.4rem; border:1px solid red;'><div id='diagram'/><div class='cont-box-pseudo'/></div>";
+										var innerhtml = "<textarea id='"+textA+"' name='subcon' rows='2' cols='55' style='position: relative; left: 1rem; margin-left: 1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed; float: right;'></textarea>";
 										var writebutton = "<div style='position: relative; left: 1rem; font-size: 80%; float: right;'><div><input type='submit' onclick=\"writeSecondSub('"+num+"','"+connum+"','"+spacenum+"','"+id+"','"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='답글달기'/></div>";
 										var calcelbutton = "<div><input type='submit' onclick=\"cancelSecondSub('"+sec+"');\" value='답글취소'/></div></div>";
 										var innerarrowhtml = arrowhtml + innerhtml + writebutton + calcelbutton;

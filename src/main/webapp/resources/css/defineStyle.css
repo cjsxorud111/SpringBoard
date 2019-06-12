@@ -119,51 +119,14 @@
 @media ( max-width :1600px) {
 	/* 왼쪽창*/
 	#container01 {
-		margin-left: 20rem;
+		/* margin-left: 20rem; */
 	}
 	/* 오른쪽창 */
 	#scroll {
 		/* margin-left: 59rem; */
 	}
 	.input_text {
-		width: 330px;
-	}
-}
-
-@media ( max-width :1400px) {
-	/* 왼쪽창*/
-	#container01 {
-		margin-left: 12rem;
-	}
-	/* 오른쪽창 */
-	#scroll {
-		/* margin-left: 51rem; */
-	}
-	.input_text {
-		width: 330px;
-	}
-}
-
-@media ( max-width :1200px) {
-	/* 왼쪽창*/
-	#container01 {
-		margin-left: 6rem;
-	}
-	/* 오른쪽창 */
-	#scroll {
-		/* margin-left: 45rem; */
-	}
-	.input_text {
-		width: 300px;
-	}
-}
-
-@media ( max-width :1000px) {
-	#scroll {
-		display: none;
-	}
-	.input_text {
-		width: 200px;
+		/* width: 330px; */
 	}
 }
 
