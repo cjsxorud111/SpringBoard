@@ -37,6 +37,10 @@
 		SELECT NUM, CONNUM, SPACE, CONTENT, PW FROM DEFINESUB WHERE NUM = #{numb};
 	</select>
 	
+	<select id="getDefineModifyCon" parameterType="String" resultType="com.example.dto.GetModifyContentVO" >
+		SELECT NUM, WORD, INFO FROM DEFINE WHERE NUM = #{conNum};
+	</select>
+	
 	<delete id="deleteAllSub" > 
 		Truncate DEFINESUB
 	</delete> 
@@ -64,6 +68,19 @@
 	<update id="recommendDown" parameterType="String">
 		UPDATE DEFINE SET DOWN = DOWN + 1 WHERE NUM = #{conNum}
 	</update>  
+	
+	
+	
+	
+	<!-- 여기수정 -->
+	
+	
+	
+	
+	
+	<update id="modifyWriting" parameterType="GetModifyContentVO">
+		UPDATE DEFINE SET DOWN = DOWN + 1 WHERE NUM = #{conNum}
+	</update> 
 	 
 </mapper>
 

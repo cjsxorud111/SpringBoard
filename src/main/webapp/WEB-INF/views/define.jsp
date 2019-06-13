@@ -186,8 +186,12 @@ main {
 							<div style="">&nbsp;</div>
 							<!-- 글수정 글삭제버튼 -->
 							<div id="delete" style="float: right;">
-								<button onclick="modifyCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}');"
-									class="modifyButton">수정</button>
+								<form action="defineContentModify" method="post">
+									<input type="hidden" name="conNum" value="${a.num}"/>
+									<input type="hidden" name="textStatus" value="${textStatusVO.textStatus}"/>
+									<button <%-- onclick="modifyCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}');" --%>
+										class="modifyButton">수정</button>
+								</form>
 								<button onclick="deleteCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}');"
 									class="defineDeleteButton">삭제</button>
 							</div>
@@ -208,7 +212,36 @@ main {
 										}
 									}
 								}
-	
+								
+								function defineContentModify(conNum, textStatus) {
+									alert("modify");
+									$.ajax({
+										type : "POST", // 전송방식을 지정한다 (POST,GET)
+										url : "defineContentModify",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서
+																	// 사용해도된다.
+										dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
+															// 있다.
+										data : {
+											conNum : conNum,
+											textStatus : textStatus
+										},
+										error : function() {
+											alert("error");
+										},
+//										설정하지 않았는데 왜define으로 가는지 이해못함 이해하고 수정필요
+										success : function(Parse_data) {
+											alert(Parse_data);
+//											alert("삭제되었습니다.");
+//											location.reload();
+//											
+//											if(textStatus == "main(*)"){
+//												window.location.href='define';
+//											}else{
+//												window.location.href='linkWord?linkWord='+textStatus;
+//											}
+										}
+									});
+								}
 							</script>
 						</div>
 						<h1>

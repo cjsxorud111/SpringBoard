@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 import com.example.dto.DefineSubVO;
 import com.example.dto.FileContentVO;
 import com.example.dto.FileContentVO2;
+import com.example.dto.GetContentVO;
+import com.example.dto.GetModifyContentVO;
 import com.example.dto.MainDefineContentVO;
 import com.example.dto.NewwordVO;
 import com.example.dto.RecommendVO;
@@ -28,7 +30,7 @@ public class DefineDAOImpl implements DefineDAO {
 	public void newwordWriting(NewwordVO vo) throws Exception {
 		sqlSession.insert(Namespace + ".newwordWriting", vo);
 	}
-
+	
 	@Override
 	public List<MainDefineContentVO> selectMainDefCon() throws Exception {
 		List<MainDefineContentVO> MainDefineList = sqlSession.selectList(Namespace + ".mainDefineList");
@@ -74,6 +76,12 @@ public class DefineDAOImpl implements DefineDAO {
 		return sqlSession.selectOne(Namespace + ".getDefineSub", num);
 	}
 	
+	@Override
+	public GetModifyContentVO defineContentModify(String conNum) throws Exception {
+		System.out.println("dhdhdh3");
+		return sqlSession.selectOne(Namespace + ".getDefineModifyCon", conNum);
+	}
+	
 	//댓글삭제
 	@Override
 	public void deleteDefineSub(int num) throws Exception {
@@ -89,6 +97,12 @@ public class DefineDAOImpl implements DefineDAO {
 	public void recommendDown(String downNumber, String conNum) throws Exception {
 		sqlSession.update(Namespace + ".recommendDown", conNum);
 	}
+	
+	@Override
+	public void modifyWriting(GetModifyContentVO vo) throws Exception {
+		sqlSession.update(Namespace + ".modifyWriting", vo);
+	}
+
 
 	@Override
 	public void recommendWrite(RecommendVO recommendVO) throws Exception {

@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.dto.DefineSubVO;
 import com.example.dto.GetContentVO;
+import com.example.dto.GetModifyContentVO;
 import com.example.dto.HomeContentVO;
 import com.example.dto.MainDefineContentVO;
 import com.example.dto.SubVO;
@@ -63,6 +64,25 @@ public class DefineController {
 //			return returnUrl;
 //		}
 		return "jello";
+	}
+	
+	// 글수정
+	@RequestMapping(value = "/defineContentModify", method = RequestMethod.POST)
+	public String defineContentModify(HttpServletRequest request,HttpServletRequest response, Model model) throws Exception {
+		System.out.println("heelllloooo");
+		GetModifyContentVO modifyContentVO = service.defineContentModify(request);
+		String textStatus = request.getParameter("textStatus");
+		String returnUrl = "linkWord?linkWord="+textStatus;
+		response.setAttribute("modifyContentVO", modifyContentVO);
+
+//			설정하지 않았는데 왜define으로 가는지 이해못함 이해하고 수정필요
+//			if(textStatus.equals("main(*)")) {
+//				System.out.println("hsddsloo");
+//				return "";
+//			} else {
+//				return returnUrl;
+//			}
+		return "define_modify";
 	}
 
 	@RequestMapping(value = "/temp", method = RequestMethod.POST)
@@ -185,6 +205,12 @@ public class DefineController {
 	@RequestMapping(value = "/newwordWriting", method = RequestMethod.POST)
 	public String newwordWriting(HttpServletRequest request, Model model) throws Exception {
 		service.newwordWriting(request);
+		return "redirect:define";
+	}
+	
+	@RequestMapping(value = "/modifyWriting", method = RequestMethod.POST)
+	public String modifyWriting(HttpServletRequest request, Model model) throws Exception {
+		service.modifyWriting(request);
 		return "redirect:define";
 	}
 

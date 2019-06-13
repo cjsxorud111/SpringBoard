@@ -157,3 +157,4 @@ function defineContentDelete(conNum, textStatus) {
 		}
 	});
 }
+

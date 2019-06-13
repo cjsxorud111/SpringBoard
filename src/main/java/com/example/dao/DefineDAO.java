@@ -9,6 +9,7 @@ import com.example.dto.DefineSubVO;
 import com.example.dto.FileContentVO;
 import com.example.dto.FileContentVO2;
 import com.example.dto.GetContentVO;
+import com.example.dto.GetModifyContentVO;
 import com.example.dto.HomeContentVO;
 import com.example.dto.MainDefineContentVO;
 import com.example.dto.MemberVO;
@@ -45,5 +46,10 @@ public interface DefineDAO {
 	public List<ReturnRecommendVO> recommendSelect(String conNum) throws Exception;
 
 	public void deleteDefineContent(String conNum) throws Exception;
+
+	public GetModifyContentVO defineContentModify(String conNum) throws Exception;
+
+	public void modifyWriting(GetModifyContentVO vo)throws Exception;
+
 
 }

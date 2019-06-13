@@ -16,6 +16,8 @@ import com.example.dao.PhotoDAO;
 import com.example.dto.DefineSubVO;
 import com.example.dto.FileContentVO;
 import com.example.dto.FileContentVO2;
+import com.example.dto.GetContentVO;
+import com.example.dto.GetModifyContentVO;
 import com.example.dto.HomeContentVO;
 import com.example.dto.MainDefineContentVO;
 import com.example.dto.NewupdatingVO;
@@ -48,6 +50,16 @@ public class DefineServiceImpl implements DefineService {
 		dao.newwordWriting(vo);
 	}
 
+	@Override
+	public void modifyWriting(HttpServletRequest request) throws Exception {
+		GetModifyContentVO vo = new GetModifyContentVO();
+		vo.setWord(request.getParameter("WORD"));
+		vo.setNum(request.getParameter("conNum"));
+		vo.setInfo(request.getParameter("editor1"));
+		dao.modifyWriting(vo);
+	}
+
+	
 	@Override
 	public List<MainDefineContentVO> selectMainDefCon() throws Exception {
 		List<MainDefineContentVO> MainDefineList = dao.selectMainDefCon();
@@ -207,6 +219,14 @@ public class DefineServiceImpl implements DefineService {
        
         String jsonStr = jsonObject.toString();
 		return jsonStr;
+	}
+
+	@Override
+	public GetModifyContentVO defineContentModify(HttpServletRequest request) throws Exception {
+		System.out.println("dhdhdh1");
+		String conNum = request.getParameter("conNum");
+		System.out.println("dhdhdh2");
+		return dao.defineContentModify(conNum);
 	}
 
 }
