@@ -51,9 +51,25 @@ public class DefineController {
 	@ResponseBody
 	public String deleteDefineContent(HttpServletRequest request, Model model) throws Exception {
 		service.deleteDefineContent(request);
-		return "redirect:define";
+		String textStatus = request.getParameter("textStatus");
+		String returnUrl = "linkWord?linkWord="+textStatus;
+		System.out.println("helllloo");
+		
+//		설정하지 않았는데 왜define으로 가는지 이해못함 이해하고 수정필요
+//		if(textStatus.equals("main(*)")) {
+//			System.out.println("hsddsloo");
+//			return "";
+//		} else {
+//			return returnUrl;
+//		}
+		return "jello";
 	}
 
+	@RequestMapping(value = "/temp", method = RequestMethod.POST)
+	public String temp(HttpServletRequest request, Model model) throws Exception {
+		return "temp";
+	}
+	
 	// 추천수증가
 	@RequestMapping(value = "/recommendUp", method = RequestMethod.POST)
 	@ResponseBody
@@ -103,8 +119,6 @@ public class DefineController {
 		service.defineSecondSub(request); 
 		return "success";
 	}
-
-	
 	
 	//단어눌렀을때 검색기능
 	@RequestMapping(value = "/linkWord", method = RequestMethod.GET)
@@ -140,7 +154,7 @@ public class DefineController {
 		textStatusVO textStatusVO = new textStatusVO();
 		textStatusVO.setTextStatus("main(*)");
 		response.setAttribute("textStatusVO", textStatusVO);
-		
+		System.out.println("hello");
 		refreshNum++;
 		response.setAttribute("lastGroupNum", getDefinSubList.get(getDefinSubList.size()-1));
 		HttpSession session = request.getSession();
