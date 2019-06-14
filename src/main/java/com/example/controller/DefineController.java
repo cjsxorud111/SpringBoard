@@ -49,29 +49,27 @@ public class DefineController {
 
 	// 글삭제하기
 	@RequestMapping(value = "/deleteDefineContent", method = RequestMethod.POST)
-	@ResponseBody
-	public String deleteDefineContent(HttpServletRequest request, Model model) throws Exception {
+	public void deleteDefineContent(HttpServletRequest request,HttpServletRequest response, Model model) throws Exception {
 		service.deleteDefineContent(request);
 		String textStatus = request.getParameter("textStatus");
-		String returnUrl = "linkWord?linkWord="+textStatus;
-		System.out.println("helllloo");
-		
-//		설정하지 않았는데 왜define으로 가는지 이해못함 이해하고 수정필요
+		String returnUrl = "redirect:linkWord?linkWord="+textStatus;
+		System.out.println(returnUrl);
+		//설정하지 않았는데 왜define으로 가는지 이해못함 이해하고 수정필요
 //		if(textStatus.equals("main(*)")) {
 //			System.out.println("hsddsloo");
-//			return "";
+//			return "redirect:define";
 //		} else {
-//			return returnUrl;
+//			
+//			return "define";
 //		}
-		return "jello";
 	}
 	
 	// 글수정
 	@RequestMapping(value = "/defineContentModify", method = RequestMethod.POST)
 	public String defineContentModify(HttpServletRequest request,HttpServletRequest response, Model model) throws Exception {
-		System.out.println("heelllloooo");
 		GetModifyContentVO modifyContentVO = service.defineContentModify(request);
 		String textStatus = request.getParameter("textStatus");
+		
 		String returnUrl = "linkWord?linkWord="+textStatus;
 		response.setAttribute("modifyContentVO", modifyContentVO);
 

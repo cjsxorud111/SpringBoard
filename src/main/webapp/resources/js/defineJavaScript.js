@@ -62,22 +62,7 @@ function recommendDown(downNumber, conNum) {
 		});
 	}
 }
-function deleteCheck(conNum, id, textStatus) {
-	if (isSession == false) {
-		alert("먼저로그인을 해주세요");
-	} else {
-		/* 세션id와 글id대조하여 일치시삭제 */
-		if (session == id) {
-			var really = confirm("삭제하시겠습니까?");
-			if (really) {
-				defineContentDelete(conNum, textStatus);
-				location.reload();
-			}
-		} else {
-			alert("작성하신글만 삭제할수있습니다.")
-		}
-	}
-}
+
 
 function commentClick(num) {
 	var commentSection = 'button' + num;
@@ -128,33 +113,5 @@ function textOut() {
 	searchRecommendSection.innerHTML = "";
 }
 
-function defineContentDelete(conNum, textStatus) {
-	alert("hello");
-	$.ajax({
-		type : "POST", // 전송방식을 지정한다 (POST,GET)
-		url : "deleteDefineContent",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서
-									// 사용해도된다.
-		dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
-							// 있다.
-		data : {
-			conNum : conNum,
-			textStatus : textStatus
-		},
-		error : function() {
-			alert("error");
-		},
-//		설정하지 않았는데 왜define으로 가는지 이해못함 이해하고 수정필요
-		success : function(Parse_data) {
-			alert(Parse_data);
-//			alert("삭제되었습니다.");
-//			location.reload();
-//			
-//			if(textStatus == "main(*)"){
-//				window.location.href='define';
-//			}else{
-//				window.location.href='linkWord?linkWord='+textStatus;
-//			}
-		}
-	});
-}
+
 

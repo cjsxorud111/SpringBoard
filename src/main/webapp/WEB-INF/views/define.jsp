@@ -186,38 +186,80 @@ main {
 							<div style="">&nbsp;</div>
 							<!-- 글수정 글삭제버튼 -->
 							<div id="delete" style="float: right;">
-								<form action="defineContentModify" method="post">
+								<form action="defineContentModify" method="post" onsubmit="return modifyCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}')">
 									<input type="hidden" name="conNum" value="${a.num}"/>
 									<input type="hidden" name="textStatus" value="${textStatusVO.textStatus}"/>
 									<button <%-- onclick="modifyCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}');" --%>
 										class="modifyButton">수정</button>
 								</form>
-								<button onclick="deleteCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}');"
-									class="defineDeleteButton">삭제</button>
+								<%-- <form action="deleteDefineContent" method="post" onsubmit="return delConCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}')">
+									<input type="hidden" name="conNum" value="${a.num}"/>
+									<input type="hidden" name="textStatus" value="${textStatusVO.textStatus}"/>
+									<input type="hidden" name="linkWord" value="${textStatusVO.textStatus}"/> --%>
+									
+									
+									<button onclick="deleteCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}');"
+										class="defineDeleteButton">삭제</button>
+								<!-- </form> -->
 							</div>
+							
 							<script>
 								function modifyCheck(num, id, textStatus){
 									if (isSession == false) {
 										alert("먼저로그인을 해주세요");
+										return false;
 									} else {
 										/* 세션id와 글id대조하여 일치시삭제 */
 										if (session == id) {
 											var really = confirm("수정하시겠습니까?");
 											if (really) {
-												defineContentModify(conNum, textStatus);
-												location.reload();
+												return true;
 											}
 										} else {
 											alert("작성하신글만 수정할수있습니다.")
+											return false;
+										}
+									}
+								}
+								function delConCheck(num, id, textStatus){
+									if (isSession == false) {
+										alert("먼저로그인을 해주세요");
+										return false;
+									} else {
+										/* 세션id와 글id대조하여 일치시삭제 */
+										if (session == id) {
+											var really = confirm("삭제하시겠습니까?");
+											if (really) {
+												return true;
+											}
+										} else {
+											alert("작성하신글만 삭제할수있습니다.")
+											return false;
 										}
 									}
 								}
 								
-								function defineContentModify(conNum, textStatus) {
-									alert("modify");
+								function deleteCheck(conNum, id, textStatus) {
+									if (isSession == false) {
+										alert("먼저로그인을 해주세요");
+									} else {
+										/* 세션id와 글id대조하여 일치시삭제 */
+										if (session == id) {
+											var really = confirm("삭제하시겠습니까?");
+											if (really) {
+												defineContentDelete(conNum, textStatus);
+												location.reload();
+											}
+										} else {
+											alert("작성하신글만 삭제할수있습니다.")
+										}
+									}
+								}
+								
+								function defineContentDelete(conNum, textStatus) {
 									$.ajax({
 										type : "POST", // 전송방식을 지정한다 (POST,GET)
-										url : "defineContentModify",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서
+										url : "deleteDefineContent",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서
 																	// 사용해도된다.
 										dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
 															// 있다.
@@ -230,7 +272,8 @@ main {
 										},
 //										설정하지 않았는데 왜define으로 가는지 이해못함 이해하고 수정필요
 										success : function(Parse_data) {
-											alert(Parse_data);
+											//alert(Parse_data);
+											location.reload();
 //											alert("삭제되었습니다.");
 //											location.reload();
 //											

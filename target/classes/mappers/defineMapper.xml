@@ -69,17 +69,9 @@
 		UPDATE DEFINE SET DOWN = DOWN + 1 WHERE NUM = #{conNum}
 	</update>  
 	
-	
-	
-	
 	<!-- 여기수정 -->
-	
-	
-	
-	
-	
-	<update id="modifyWriting" parameterType="GetModifyContentVO">
-		UPDATE DEFINE SET DOWN = DOWN + 1 WHERE NUM = #{conNum}
+	<update id="modifyWriting" parameterType="com.example.dto.GetModifyContentVO">
+		UPDATE DEFINE SET WORD = #{word}, INFO = #{info} WHERE NUM = #{num}
 	</update> 
 	 
 </mapper>
