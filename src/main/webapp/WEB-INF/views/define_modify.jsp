@@ -99,7 +99,6 @@
 			});
 		}
 	
-	
 		/* $(function() {
 			CKEDITOR.replace('editor1', {//해당 이름으로 된 textarea에 에디터를 적용
 				width : '100%',

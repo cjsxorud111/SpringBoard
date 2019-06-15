@@ -116,6 +116,6 @@ public class DefineDAOImpl implements DefineDAO {
 		sqlSession.delete(Namespace + ".deleteDefineContent", conNum);
 		sqlSession.delete(Namespace + ".deleteDefineAllConSub", conNum);
 		sqlSession.delete(Namespace + ".deleteDefineRecommend", conNum);
-		
+		System.out.println("heellello");
 	}
 }

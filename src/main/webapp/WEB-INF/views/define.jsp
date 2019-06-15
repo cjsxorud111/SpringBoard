@@ -248,7 +248,6 @@ main {
 											var really = confirm("삭제하시겠습니까?");
 											if (really) {
 												defineContentDelete(conNum, textStatus);
-												location.reload();
 											}
 										} else {
 											alert("작성하신글만 삭제할수있습니다.")
@@ -268,20 +267,20 @@ main {
 											textStatus : textStatus
 										},
 										error : function() {
-											alert("error");
+										/* 	alert("error"); */
+											if(textStatus == "main(*)"){
+												window.location.href='define';
+											}else{
+												window.location.href='linkWord?linkWord='+textStatus;
+											}
 										},
-//										설정하지 않았는데 왜define으로 가는지 이해못함 이해하고 수정필요
 										success : function(Parse_data) {
-											//alert(Parse_data);
-											location.reload();
-//											alert("삭제되었습니다.");
-//											location.reload();
-//											
-//											if(textStatus == "main(*)"){
-//												window.location.href='define';
-//											}else{
-//												window.location.href='linkWord?linkWord='+textStatus;
-//											}
+												alert("gheelo");
+											if(textStatus == "main(*)"){
+												window.location.href='define';
+											}else{
+												window.location.href='linkWord?linkWord='+textStatus;
+											}
 										}
 									});
 								}

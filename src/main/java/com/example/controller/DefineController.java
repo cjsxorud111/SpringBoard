@@ -56,7 +56,7 @@ public class DefineController {
 	
 	// 글삭제하기
 	@RequestMapping(value = "/deleteDefineContent", method = RequestMethod.POST)
-	public void deleteDefineContent(HttpServletRequest request,HttpServletRequest response, Model model) throws Exception {
+	public String deleteDefineContent(HttpServletRequest request,HttpServletRequest response, Model model) throws Exception {
 		service.deleteDefineContent(request);
 		
 		String textStatus = request.getParameter("textStatus");
@@ -70,6 +70,8 @@ public class DefineController {
 //			
 //			return "define";
 //		}
+		System.out.println("helloo");
+		return "success";
 	}
 	
 	// 글수정
