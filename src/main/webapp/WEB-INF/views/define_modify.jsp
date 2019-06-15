@@ -27,8 +27,8 @@
 	%>
 	<table id="cont">
 	
-		<form action="modifyWriting" method="post"
-			enctype="multipart/form-data">
+		<!-- <form action="modifyWriting" method="post"
+			enctype="multipart/form-data"> -->
 			<tr>
 				<td><br>
 				</td>
@@ -38,7 +38,7 @@
 					size="20" placeholder="&nbsp;단어명" style="padding-left:1rem;" value="${modifyContentVO.word}"></td>
 			</tr>
 			<tr>
-				<td><br> <textarea name="editor1" class="editor1"
+				<td><br> <textarea name="editor1" class="editor1" id="textValue"
 						rows="10" cols="80" placeholder="글내용">
 						${modifyContentVO.info}
 						</textarea></td>
@@ -48,16 +48,59 @@
 				<input type="hidden" name="conNum" value="${modifyContentVO.num}">
 				<input type="hidden" name="ID" value="<%=id%>">
 				<input type="hidden" name="PW" value="<%=pw%>">
-				<td><input type="submit" value="수정하기" id="in"></td>
+				<td><input type="button" onclick="defineContentModify(${modifyContentVO.num} ,'${textStatusVO.textStatus}')" value="수정하기" id="in"></td>
 			</tr>
-		</form>
+		<!-- </form> -->
 		<tr>
 			<td><a href="define"id="inde">취소</a></td>
 		</tr>
 		
 	</table>
 	<script type="text/javascript">
-		$(function() {
+	
+		function defineContentModify(conNum,textStatus) {
+			var word = $('#wid').val();
+			var textValue = $('#textValue').val();
+			/* alert(textStatus); */
+			/* var textarea = document.getElementById('#textValue'); */
+			//alert(textValue);
+			$.ajax({
+				type : "POST", // 전송방식을 지정한다 (POST,GET)
+				url : " modifyWriting",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서
+											// 사용해도된다.
+				dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
+									// 있다.
+				data : {
+					conNum : conNum,
+					WORD : word,
+					textValue : textValue
+				},
+				error : function() {
+					alert("error");
+				},
+	//			설정하지 않았는데 왜define으로 가는지 이해못함 이해하고 수정필요
+				success : function(Parse_data) {
+					//alert("hello");
+					if(textStatus == 'main(*)'){
+						window.location.href = 'define';
+					} else {
+						window.location.href ='linkWord?linkWord='+textStatus;
+					}
+ 					//window.history.back();
+                    //location.reload(); 
+					/* location.reload();
+					window.location.href='login?word=write(*)';
+					window.history.go(-3);
+					location.reload(); */
+					//window.history.back();
+					/* location.reload(); */
+					
+				}
+			});
+		}
+	
+	
+		/* $(function() {
 			CKEDITOR.replace('editor1', {//해당 이름으로 된 textarea에 에디터를 적용
 				width : '100%',
 				height : '200px',
@@ -75,7 +118,7 @@
 					break;
 				}
 			});
-		});
+		}); */
 	</script>
 </body>
 </html>

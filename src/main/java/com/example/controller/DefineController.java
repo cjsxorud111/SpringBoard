@@ -47,10 +47,18 @@ public class DefineController {
 		return service.searchWord(request);
 	}
 
+	@RequestMapping(value = "/modifyWriting", method = RequestMethod.POST)
+	@ResponseBody
+	public String modifyWriting(HttpServletRequest request, Model model) throws Exception {
+		service.modifyWriting(request);
+		return "redirect:define";
+	}
+	
 	// 글삭제하기
 	@RequestMapping(value = "/deleteDefineContent", method = RequestMethod.POST)
 	public void deleteDefineContent(HttpServletRequest request,HttpServletRequest response, Model model) throws Exception {
 		service.deleteDefineContent(request);
+		
 		String textStatus = request.getParameter("textStatus");
 		String returnUrl = "redirect:linkWord?linkWord="+textStatus;
 		System.out.println(returnUrl);
@@ -69,10 +77,12 @@ public class DefineController {
 	public String defineContentModify(HttpServletRequest request,HttpServletRequest response, Model model) throws Exception {
 		GetModifyContentVO modifyContentVO = service.defineContentModify(request);
 		String textStatus = request.getParameter("textStatus");
-		
-		String returnUrl = "linkWord?linkWord="+textStatus;
-		response.setAttribute("modifyContentVO", modifyContentVO);
+		textStatusVO textStatusVO = new textStatusVO();
 
+		String returnUrl = "redirect:define_modify?textStatus="+textStatus;
+		response.setAttribute("modifyContentVO", modifyContentVO);
+		textStatusVO.setTextStatus(textStatus);
+		response.setAttribute("textStatusVO", textStatusVO );
 //			설정하지 않았는데 왜define으로 가는지 이해못함 이해하고 수정필요
 //			if(textStatus.equals("main(*)")) {
 //				System.out.println("hsddsloo");
@@ -206,12 +216,6 @@ public class DefineController {
 		return "redirect:define";
 	}
 	
-	@RequestMapping(value = "/modifyWriting", method = RequestMethod.POST)
-	public String modifyWriting(HttpServletRequest request, Model model) throws Exception {
-		service.modifyWriting(request);
-		return "redirect:define";
-	}
-
 	@RequestMapping(value = "img1", method = RequestMethod.POST)
 	public void communityImageUpload1(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam MultipartFile upload) {

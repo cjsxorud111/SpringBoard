@@ -55,7 +55,8 @@ public class DefineServiceImpl implements DefineService {
 		GetModifyContentVO vo = new GetModifyContentVO();
 		vo.setWord(request.getParameter("WORD"));
 		vo.setNum(request.getParameter("conNum"));
-		vo.setInfo(request.getParameter("editor1"));
+		vo.setInfo(request.getParameter("textValue"));
+		System.out.println(request.getParameter("textValue")+"dslasdlkfjsdlka");
 		dao.modifyWriting(vo);
 	}
 
@@ -223,9 +224,7 @@ public class DefineServiceImpl implements DefineService {
 
 	@Override
 	public GetModifyContentVO defineContentModify(HttpServletRequest request) throws Exception {
-		System.out.println("dhdhdh1");
 		String conNum = request.getParameter("conNum");
-		System.out.println("dhdhdh2");
 		return dao.defineContentModify(conNum);
 	}
 
