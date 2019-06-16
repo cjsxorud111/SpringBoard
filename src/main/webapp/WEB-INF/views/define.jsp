@@ -151,33 +151,33 @@ main {
 </div>
 
 <div class="container-fluid" style='background-color: #CACCCE;'>
-	<div
-		style="width: 900px; /* border: 1px solid red; */ padding-top: 20px; margin: auto;">
+	<div style="width: 900px; padding-top: 20px; margin: auto;">
+	
 		<!-- 오른쪽창 -->
-		<div id="scroll"
-			style="position: relative; width: 250px; padding: 10px; float: right; left: 0; top: 0;">
-			<div style="margin-bottom: 1rem;">최근정의가 추가된 단어</div>
+		<div id="scroll"style="position: relative; left: 0; top: 0; width: 250px; padding: 10px; float: right;">
+			<div style="margin-bottom: 1rem;">
+			최근정의가 추가된 단어
+			</div>
 			<c:forEach items="${MainDefineList}" var="a" end="13">
 				<div class="wordShortCut">
+					<!-- 단어표시 -->
 					<div class="myDIV">
-						<a href="#"
-							onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
+						<a href="#" onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
 					</div>
-					<div
-						style="margin-left: 5px; font-size: 0.8rem; float: right; display: inline-block;">${a.currenttime}</div>
+					<!-- 날짜표시 -->
+					<div style="margin-left: 5px; font-size: 0.8rem; float: right; display: inline-block;">${a.currenttime}</div>
 				</div>
 			</c:forEach>
 		</div>
 		<c:forEach items="${MainDefineList}" var="a">
 			<!-- 왼쪽창 -->
-			<div id="container03" style="margin-top: 2px;">
+			<div id="container03" style="">
 				<!-- 왼쪽창에서 실제컨텐츠 표시부분 -->
 				<div id="container04"
-					style="width: 39rem; padding: 1rem; margin-bottom: 1.8rem; background-color: #FFFFFF;">
+					style="width: 39rem; padding-left: 1.5rem; padding-right: 1.5rem; padding-bottom: 0.07rem; padding-top: 0.1rem; margin-bottom: 1.8rem; background-color: #FFFFFF;">
 					&nbsp;&nbsp;
 					<!-- 단어제목으로검색링크 -->
 					<div>
-
 						<div style="float: right;">
 							<div>${a.currenttime}정의됨</div>
 							<div style="">
@@ -185,22 +185,18 @@ main {
 							</div>
 							<div style="">&nbsp;</div>
 							<!-- 글수정 글삭제버튼 -->
-							<div id="delete" style="float: right;">
-								<form action="defineContentModify" method="post" onsubmit="return modifyCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}')">
-									<input type="hidden" name="conNum" value="${a.num}"/>
-									<input type="hidden" name="textStatus" value="${textStatusVO.textStatus}"/>
-									<button <%-- onclick="modifyCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}');" --%>
-										class="modifyButton">수정</button>
-								</form>
-								<%-- <form action="deleteDefineContent" method="post" onsubmit="return delConCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}')">
-									<input type="hidden" name="conNum" value="${a.num}"/>
-									<input type="hidden" name="textStatus" value="${textStatusVO.textStatus}"/>
-									<input type="hidden" name="linkWord" value="${textStatusVO.textStatus}"/> --%>
-									
-									
+							<div id="delete" >
+								<div style="float: right;">
 									<button onclick="deleteCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}');"
 										class="defineDeleteButton">삭제</button>
-								<!-- </form> -->
+								</div>
+								<div style="float: right;">
+									<form action="defineContentModify" method="post" onsubmit="return modifyCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}')">
+										<input type="hidden" name="conNum" value="${a.num}"/>
+										<input type="hidden" name="textStatus" value="${textStatusVO.textStatus}"/>
+										<button class="modifyButton">수정</button>
+									</form>
+								</div>
 							</div>
 							
 							<script>

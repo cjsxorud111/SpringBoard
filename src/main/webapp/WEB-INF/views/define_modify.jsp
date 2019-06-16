@@ -2,68 +2,63 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.io.*, java.util.*"%>
-
 <html>
 <head>
-
 <script src="//code.jquery.com/jquery.min.js"></script>
-
 <script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script> -->
-<title>Home</title>
+<title>글수정</title>
 <link href="resources/css/defineStyle.css?after" rel="stylesheet"
 	type="text/css">
-
 </head>
-<body style="background-color: #CACCCE;">
+<body style="background-color: #CACCCE; display: table;">
 	<%@ include file="nav.jsp"%>
 	<%
 		String id = (String) session.getAttribute("ID");
 		String pw = (String) session.getAttribute("PW");
-		System.out.println(id + "님 환영합니다.");
 	%>
-	<table id="cont">
-	
-		<!-- <form action="modifyWriting" method="post"
-			enctype="multipart/form-data"> -->
-			<tr>
-				<td><br>
-				</td>
-			</tr>
-			<tr>
-				<td><br> <input type="text" class="wid" id="wid" name="WORD"
-					size="20" placeholder="&nbsp;단어명" style="padding-left:1rem;" value="${modifyContentVO.word}"></td>
-			</tr>
-			<tr>
-				<td><br> <textarea name="editor1" class="editor1" id="textValue"
-						rows="10" cols="80" placeholder="글내용">
-						${modifyContentVO.info}
-						</textarea></td>
-			</tr>
-			<br>
-			<tr>
-				<input type="hidden" name="conNum" value="${modifyContentVO.num}">
-				<input type="hidden" name="ID" value="<%=id%>">
-				<input type="hidden" name="PW" value="<%=pw%>">
-				<td><input type="button" onclick="defineContentModify(${modifyContentVO.num} ,'${textStatusVO.textStatus}')" value="수정하기" id="in"></td>
-			</tr>
-		<!-- </form> -->
+	<div style='background-color: yellow; width: 50rem; display: table-cell;'>
+	<table id="cont" style='margin-top: 2.7rem;'>
 		<tr>
-			<td><a href="define"id="inde">취소</a></td>
+			<td>
+			<br>
+			</td>
 		</tr>
-		
+		<tr>
+			<td style="font-size: 2.1rem; text-align: center; padding-bottom: 3rem; font-weight: 700;">글수정하기</td>
+		</tr>
+		<tr>
+			<td><input type="text" class="wid" id="wid" name="WORD"
+				size="20" placeholder="&nbsp;단어명" style="padding-left:1rem;  margin-bottom: 2rem;" value="${modifyContentVO.word}">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<textarea name="editor1" class="editor1" id="textValue"
+				rows="10" cols="80" placeholder="글내용" style="text-align: left; ">
+				${modifyContentVO.info}
+				</textarea>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="button" style="margin-top:2rem;" onclick="defineContentModify(${modifyContentVO.num} ,'${textStatusVO.textStatus}')" value="수정하기" id="in">
+			</td>
+		</tr>
+		<tr>
+			<td><a href="define" id="inde" style="margin-top:2rem;">취소</a></td>
+		</tr>
+		<tr>
+			<td>
+			<br>
+			</td>
+		</tr>
 	</table>
+	</div>
 	<script type="text/javascript">
 	
 		function defineContentModify(conNum,textStatus) {
 			var word = $('#wid').val();
 			var textValue = $('#textValue').val();
-			/* alert(textStatus); */
-			/* var textarea = document.getElementById('#textValue'); */
-			//alert(textValue);
 			$.ajax({
 				type : "POST", // 전송방식을 지정한다 (POST,GET)
 				url : " modifyWriting",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서
@@ -78,23 +73,12 @@
 				error : function() {
 					alert("error");
 				},
-	//			설정하지 않았는데 왜define으로 가는지 이해못함 이해하고 수정필요
 				success : function(Parse_data) {
-					//alert("hello");
 					if(textStatus == 'main(*)'){
 						window.location.href = 'define';
 					} else {
 						window.location.href ='linkWord?linkWord='+textStatus;
 					}
- 					//window.history.back();
-                    //location.reload(); 
-					/* location.reload();
-					window.location.href='login?word=write(*)';
-					window.history.go(-3);
-					location.reload(); */
-					//window.history.back();
-					/* location.reload(); */
-					
 				}
 			});
 		}
