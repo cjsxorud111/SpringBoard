@@ -10,13 +10,13 @@
 <link href="resources/css/defineStyle.css?after" rel="stylesheet"
 	type="text/css">
 </head>
-<body style="background-color: #CACCCE; display: table;">
+<body style="background-color: #CACCCE; ">
 	<%@ include file="nav.jsp"%>
 	<%
 		String id = (String) session.getAttribute("ID");
 		String pw = (String) session.getAttribute("PW");
 	%>
-	<div style='background-color: yellow; width: 50rem; display: table-cell;'>
+	<div style='background-color: yellow; width: 44rem; '>
 	<table id="cont" style='margin-top: 2.7rem;'>
 		<tr>
 			<td>

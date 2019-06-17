@@ -203,7 +203,7 @@ public class DefineServiceImpl implements DefineService {
 					num++;
 					show += "<div id='num";
 					show += num;
-					show += "' class='recommendSection' style='width:330px;'>";
+					show += "' class='recommendSection' style='width:310px; box-shadow:1px 1px 1px 1px gray;'>";
 					show += "<div style=\" cursor: pointer;\" onclick=\"wordClick('";
 					show += MainDefineList.get(i).getWord();
 					show += "');\">";

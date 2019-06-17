@@ -7,8 +7,17 @@
 <link href="resources/css/defineStyle.css?after" rel="stylesheet"
 	type="text/css">
 <title>Login</title>
+<style>
+.container-fluid{
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-right: auto;
+  margin-left: auto;
+  border:1px solid blue;
+}
+</style>
 </head>
-<body id="loginBody" style="background-color: #CACCCE">
+<body id="loginBody" class="container-fluid" style="background-color: #CACCCE">
 	<%@ include file="nav.jsp"%>
 	<% String word = request.getParameter("word");%>
 	
@@ -19,10 +28,13 @@
 		</div>
 		<!-- <form action="logining" method="get"> -->
 			<div class="row">
-				<input type="text" id="id" class="form-control" name="ID" placeholder=" ID">
+				<input type="text" id="id" style="width: "class="form-control" name="ID" placeholder=" ID">
 			</div>
 			<div class="row">
-				<input type="text" id="pw" class="form-control" name="PW"
+				<input type="password"  class="form-control" name="PW" placeholder=" PASSWORD">
+			</div>
+			<div class="row">
+				<input type="password" id="pw" class="form-control" name="PW"
 					placeholder=" PASSWORD">
 			</div>
 			<div class="row">

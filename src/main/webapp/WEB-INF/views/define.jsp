@@ -114,22 +114,22 @@ main {
 
 </head>
 
-<div style="background-color: #121629; height: 5.5rem;">
+<div style="background-color: #060606/* 333333 *//*302C2A */; height: 3.6rem;">
 	<div
-		style="width: 1000px; /* border: 1px solid red; */ padding-top: 20px; margin: auto;">
+		style="width: 1000px; /* border: 1px solid red; */ padding-top: 10px; margin: auto;">
 		<div style="float: left;">
 			<a href="define" id="title"
-				style="color: white; font-weigh: 50px; margin-left: 1rem; margin-bottom: 5rem; position: relative; bottom: 8px;">xx위키</a>
+				style="color: white; font-weigh: 10px; margin-left: 1rem; margin-bottom: 1rem; position: relative; right:10px; bottom: 10px; font-weight:100;">HelloWord!</a>
 		</div>
 
-		<div style="float: left; margin-left: 5rem;">
+		<div style="float: left; margin-left: 3rem; margin-top:-1px; ">
 			<form class="form-inline" action="linkWord" method="get">
 				<!-- 검색창 -->
 				<div>
 					<input type='text' name=linkWord autocomplete="off" id='inputText'
-						class='input_text' style="width: 340px;" onfocusout="loseFocus()" />
+						class='input_text' style="width: 310px;" onfocusout="loseFocus()" />
 					<span id="searchRecommendSection"
-						style="position: absolute; width: 330px; top: 71px; z-index: 100; padding-left: 10px;"></span>
+						style="position: absolute; width: 240px; top: 51px; z-index: 100;"></span>
 				</div>
 
 				<!-- 돋보기 -->
@@ -139,18 +139,18 @@ main {
 				</button>
 			</form>
 		</div>
-		<div id="navLink" style="float: left; margin-left: 3rem;">
+		<div id="navLink" style="float: left; margin-left: 1rem;">
 			<a href="#" onclick="writeLoginCheck()"
-				style="position: relative; bottom: 10px; color: white; font-size: 1.7rem; text-decoration: none;">새단어정의하기</a>
+				style="position: relative; bottom: 18px; color: white; margin-left: 1rem; font-size: 1.6rem; text-decoration: none; font-weight:100; ">새단어정의하기</a>
 			<a href="#" id="log"
-				style="position: relative; bottom: 10px; margin-left: 1rem; color: white; font-size: 1.7rem; text-decoration: none;"></a>
+				style="position: relative; left: 7px; bottom: 18px; margin-left: 2rem; color: white; font-size: 1.8rem; text-decoration: none; font-weight:100;"></a>
 		</div>
 
 	</div>
 
 </div>
 
-<div class="container-fluid" style='background-color: #CACCCE;'>
+<div class="container-fluid" style='background-color: #FFCC00/* #CACCCE */;'>
 	<div style="width: 900px; padding-top: 20px; margin: auto;">
 	
 		<!-- 오른쪽창 -->
@@ -531,8 +531,8 @@ main {
 	<a href="https://opentutorials.org/course/1">홈페이지</a>
 </footer>
 <script>
+//검색창에서 키보드 눌렀을때 동작
 $('#inputText').keyup(function(event) {
-	
 	var keySet = "ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㄲㄸㅃㅆㅏㅑㅓㅕㅗㅛㅜㅠㅡㅣㅐㅒㅔㅖ1234567890,.?/<>:;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	if (event.keyCode == 38) { // 위방향키눌렀을때
 		num--;
@@ -589,7 +589,7 @@ $('#inputText').keyup(function(event) {
 		});
 	}
 });
-
+//삭제시 비밀번호체크
 function deleteClick(num) {
 	var userInput = prompt("비밀번호를 입력해주세요" + "");
 	deleteSub(num, userInput);
