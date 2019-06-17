@@ -10,13 +10,12 @@
 <link href="resources/css/defineStyle.css?after" rel="stylesheet"
 	type="text/css">
 </head>
-<body style="background-color: #CACCCE; ">
+<body style="background-color: #FFCC00; text-align: center;">
 	<%@ include file="nav.jsp"%>
 	<%
 		String id = (String) session.getAttribute("ID");
 		String pw = (String) session.getAttribute("PW");
 	%>
-	<div style='background-color: yellow; width: 44rem; '>
 	<table id="cont" style='margin-top: 2.7rem;'>
 		<tr>
 			<td>
@@ -24,28 +23,31 @@
 			</td>
 		</tr>
 		<tr>
-			<td style="font-size: 2.1rem; text-align: center; padding-bottom: 3rem; font-weight: 700;">글수정하기</td>
+			<td style="font-size: 2.1rem; text-align: center; padding-bottom: 2rem; font-weight: 500;">글수정하기<div id="heart"></div></td>
 		</tr>
 		<tr>
 			<td><input type="text" class="wid" id="wid" name="WORD"
-				size="20" placeholder="&nbsp;단어명" style="padding-left:1rem;  margin-bottom: 2rem;" value="${modifyContentVO.word}">
+				size="20" placeholder="&nbsp;단어명" style="padding-left:1rem;  margin-bottom: 1rem;" value="${modifyContentVO.word}">
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<textarea name="editor1" class="editor1" id="textValue"
-				rows="10" cols="80" placeholder="글내용" style="text-align: left; ">
+				rows="10" cols="50" placeholder="글내용" style="text-align: left; ">
 				${modifyContentVO.info}
 				</textarea>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<input type="button" style="margin-top:2rem;" onclick="defineContentModify(${modifyContentVO.num} ,'${textStatusVO.textStatus}')" value="수정하기" id="in">
+			<div>
+				<input type="button" style="margin-top:1rem; float: left;" onclick="defineContentModify(${modifyContentVO.num} ,'${textStatusVO.textStatus}')" value="수정하기" id="in">
+				<a href="define" id="inde" style="margin-top:1rem; color:white;">취소</a>
+			</div>
 			</td>
 		</tr>
 		<tr>
-			<td><a href="define" id="inde" style="margin-top:2rem;">취소</a></td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>
@@ -53,7 +55,6 @@
 			</td>
 		</tr>
 	</table>
-	</div>
 	<script type="text/javascript">
 	
 		function defineContentModify(conNum,textStatus) {

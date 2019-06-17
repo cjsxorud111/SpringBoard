@@ -29,11 +29,11 @@
 	border-top:hidden;
 	border-bottom:hidden;
 }
-
+/* 검색창 */
 .input_text {
 	border-radius: 3px 3px 3px 3px;
 	width: 330px;
-	height: 37px;
+	height: 40px;
 	padding-left: 0.5rem;
 	/* position: relative; */
 	/* bottom: 2px; */
@@ -297,7 +297,7 @@
 }
 
 /* login.jsp */
-/*#loginInputSection {
+/**/#loginInputSection {
 	 width: 20rem;
 	text-align: center;
 	position: absolute;
@@ -305,7 +305,7 @@
 	left: 40%;
 	margin: -50px 0 0 -50px;
 }
- */
+ 
 /* memberjoin.jsp */
 #memberJoin {
 	background-color: yellow;
@@ -347,19 +347,22 @@
 
 .editor1 {
 	width: 40rem;
+	height: 20rem;
 }
 
 #in{
 	/* display: inline-block; */
+	color: white;
 	text-align: center; 
 	padding-bottom: 10px;
 	vertical-align: middle;
 	text-decoration: none;
 	padding-top: 0.7rem;
 	font-size: 2.1rem;
-	background-color: #50bcdf;
-	width: 40rem;
-	height: 4rem;
+	background-color: #0080ff;
+	width: 19.5rem;
+	margin-right: 1rem; 
+	height: 4.05rem;
 	line-height: 38px; 
 }
 #inde {
@@ -370,8 +373,33 @@
 	padding-top: 0.7rem;
 	font-size: 2.1rem;
 	color: #000;
-	background-color: #50bcdf;
-	width: 40rem;
-	height: 4rem;
+	background-color: #0080ff;
+	width: 19.5rem;
+	height: 3.95rem;
 	line-height: 38px;
 }
+
+/* 글수정하트도형 */
+#heart {
+      position: relative;
+      width: 100px;
+      height: 90px;
+    }
+    #heart:before,
+    #heart:after {
+      position: absolute;
+      content: "";
+      left: 50px;
+      top: 0;
+      width: 50px;
+      height: 80px;
+      background: red;
+      border-radius: 50px 50px 0 0;
+      transform: rotate(-45deg);
+      transform-origin: 0 100%;
+    }
+    #heart:after {
+      left: 0;
+      transform: rotate(45deg);
+      transform-origin: 100% 100%;
+    }

@@ -91,22 +91,12 @@
 	</script>
 <style>
 footer {
-	border-top: 1px solid gray;
-	padding: 20px;
+	padding: 15px;
 	text-align: center;
 }
-
-#test01 {
-	border-right: 1px solid red;
-}
-
-main {
-	padding: 10px;
-}
-
 .container-fluid {
-	padding-right: 0px;
-	padding-left: 0px;
+	padding-right: 50px;
+	padding-left: 50px;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -114,7 +104,7 @@ main {
 
 </head>
 
-<div style="background-color: #060606/* 333333 *//*302C2A */; height: 3.6rem;">
+<div style="background-color: #060606/* 333333 *//*302C2A */; height: 3.8rem;">
 	<div
 		style="width: 1000px; /* border: 1px solid red; */ padding-top: 10px; margin: auto;">
 		<div style="float: left;">
@@ -147,15 +137,13 @@ main {
 		</div>
 
 	</div>
-
 </div>
-
-<div class="container-fluid" style='background-color: #FFCC00/* #CACCCE */;'>
-	<div style="width: 900px; padding-top: 20px; margin: auto;">
+<div class="container-fluid" style=' border:1px solid #FFCC00; background-color: #FFCC00/* #CACCCE */;'>
+	<div style="width: 896px; /* border:1px solid red; */ padding-top: 20px; margin: auto;">
 	
 		<!-- 오른쪽창 -->
 		<div id="scroll"style="position: relative; left: 0; top: 0; width: 250px; padding: 10px; float: right;">
-			<div style="margin-bottom: 1rem;">
+			<div style="padding-top: 0.7rem; margin-bottom: 1rem; margin-left:2.5rem;">
 			최근정의가 추가된 단어
 			</div>
 			<c:forEach items="${MainDefineList}" var="a" end="13">
@@ -174,12 +162,12 @@ main {
 			<div id="container03" style="">
 				<!-- 왼쪽창에서 실제컨텐츠 표시부분 -->
 				<div id="container04"
-					style="width: 39rem; padding-left: 1.5rem; padding-right: 1.5rem; padding-bottom: 0.07rem; padding-top: 0.1rem; margin-bottom: 1.8rem; background-color: #FFFFFF;">
+					style="width: 39rem; padding-left: 1.5rem; padding-right: 1.5rem; padding-top: 0.1rem; margin-bottom: 1.3rem; background-color: #FFFFFF;">
 					&nbsp;&nbsp;
 					<!-- 단어제목으로검색링크 -->
 					<div>
 						<div style="float: right;">
-							<div>${a.currenttime}정의됨</div>
+							<div>${a.currenttime}</div>
 							<div style="">
 								<a href="define_write?num=${a.num}" style="float: right;">새정의추가</a>
 							</div>
@@ -528,7 +516,7 @@ main {
 	</div>
 </div>
 <footer>
-	<a href="https://opentutorials.org/course/1">홈페이지</a>
+	<a href="define">홈</a>
 </footer>
 <script>
 //검색창에서 키보드 눌렀을때 동작

@@ -8,46 +8,33 @@
 	type="text/css">
 <title>Login</title>
 <style>
-.container-fluid{
-  padding-right: 0px;
-  padding-left: 0px;
-  margin-right: auto;
-  margin-left: auto;
-  border:1px solid blue;
-}
+
 </style>
 </head>
-<body id="loginBody" class="container-fluid" style="background-color: #CACCCE">
+<body id="loginBody" class="container-fluid" style="background-color: #FFCC00">
 	<%@ include file="nav.jsp"%>
 	<% String word = request.getParameter("word");%>
-	
 
 	<div id="loginInputSection">
 		<div id="loginText">
 			<h1>Login</h1>
 		</div>
-		<!-- <form action="logining" method="get"> -->
-			<div class="row">
-				<input type="text" id="id" style="width: "class="form-control" name="ID" placeholder=" ID">
-			</div>
-			<div class="row">
-				<input type="password"  class="form-control" name="PW" placeholder=" PASSWORD">
-			</div>
-			<div class="row">
-				<input type="password" id="pw" class="form-control" name="PW"
-					placeholder=" PASSWORD">
-			</div>
-			<div class="row">
-				<a href="javascript:loginClick();" class="btn btn-primary" id="login">로그인</a>
-			</div>
-			<div class="row">
-				<a href="memberjoin" class="btn btn-primary" id="pw">회원가입</a>
-			</div>
-
-			<div class="row">
-				<div id="naverIdLogin"></div>
-			</div>
-		<!-- </form> -->
+		<div class="row">
+			<input type="text" id="id" style="width: "class="form-control" name="ID" placeholder=" ID">
+		</div>
+		<div class="row">
+			<input type="password" id="pw" class="form-control" name="PW"
+				placeholder=" PASSWORD">
+		</div>
+		<div class="row">
+			<a href="javascript:loginClick();" class="btn btn-primary" id="login">로그인</a>
+		</div>
+		<div class="row">
+			<a href="memberjoin" class="btn btn-primary" id="pw">회원가입</a>
+		</div>
+		<div class="row">
+			<div id="naverIdLogin"></div>
+		</div>
 	</div>
 	
 </body>

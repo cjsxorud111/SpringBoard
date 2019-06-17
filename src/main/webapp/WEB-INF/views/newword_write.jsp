@@ -13,12 +13,12 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script> -->
-<title>Home</title>
+<title>새단어정의하기</title>
 <link href="resources/css/defineStyle.css?after" rel="stylesheet"
 	type="text/css">
 
 </head>
-<body style="background-color: #CACCCE;">
+<body style="background-color: #FFCC00;">
 	<%@ include file="nav.jsp"%>
 	<%
 		String id = (String) session.getAttribute("ID");
@@ -26,11 +26,12 @@
 		System.out.println(id + "님 환영합니다.");
 	%>
 	<table id="cont">
-	
 		<form action="newwordWriting" method="post"
 			enctype="multipart/form-data">
 			<tr>
-				<td><br>
+				<td style="text-align: center; font-size:30px; font-weight:700;">
+				<br><br>
+				 새단어 정의하기
 				</td>
 			</tr>
 			<tr>
@@ -39,18 +40,22 @@
 			</tr>
 			<tr>
 				<td><br> <textarea name="editor1" class="editor1"
-						rows="10" cols="80" placeholder="글내용">
+						rows="10" cols="120" placeholder="글내용">
 						</textarea></td>
 			</tr>
-			<br>
-			<tr>
+			
+			<tr style="margin-top: 1rem;">
 				<input type="hidden" name="ID" value="<%=id%>">
 				<input type="hidden" name="PW" value="<%=pw%>">
-				<td><input type="submit" value="단어정의" id="in"></td>
+				<td>
+				<div style="margin-top: 1rem; height: 3.9rem;">
+				<input type="submit" value="단어정의" id="in"><a href="define"id="inde" style="color:white;">취소</a>
+				</div>
+				</td>
 			</tr>
 		</form>
 		<tr>
-			<td><a href="define"id="inde">취소</a></td>
+			<td></td>
 		</tr>
 		
 	</table>
