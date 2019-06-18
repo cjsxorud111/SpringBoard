@@ -36,7 +36,7 @@
 			</tr>
 			<tr>
 				<td><br> <input type="text" class="wid" id="wid" name="WORD"
-					size="20" style="border:none" placeholder="&nbsp;단어명"></td>
+					size="20" style="border:none; padding-left: 8px;" placeholder="&nbsp;단어명" value="${param.word}"></td>
 			</tr>
 			<tr>
 				<td><br> <textarea name="editor1" class="editor1"

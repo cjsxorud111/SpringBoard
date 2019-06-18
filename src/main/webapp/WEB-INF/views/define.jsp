@@ -117,9 +117,9 @@ footer {
 				<!-- 검색창 -->
 				<div>
 					<input type='text' name=linkWord autocomplete="off" id='inputText'
-						class='input_text' style="width: 310px;" onfocusout="loseFocus()" />
+						class='input_text' style="width: 310px; border:none;" onfocusout="loseFocus()" />
 					<span id="searchRecommendSection"
-						style="position: absolute; width: 240px; top: 51px; z-index: 100;"></span>
+						style="position: absolute;  width: 240px; top: 51px; z-index: 100;"></span>
 				</div>
 
 				<!-- 돋보기 -->
@@ -169,7 +169,7 @@ footer {
 						<div style="float: right;">
 							<div>${a.currenttime}</div>
 							<div style="">
-								<a href="define_write?num=${a.num}" style="float: right;">새정의추가</a>
+								<a href="thisword_write?word=${a.word}" style="float: right;">새정의추가</a>
 							</div>
 							<div style="">&nbsp;</div>
 							<!-- 글수정 글삭제버튼 -->
@@ -520,35 +520,55 @@ footer {
 </footer>
 <script>
 //검색창에서 키보드 눌렀을때 동작
+/* $('.recommendSection').hover(function() {
+  $(this).css("color", "red");
+};  */
+var number = 0;
+var keynumber = 0;
+function mover(num){
+	var keyid = "num" + keynumber;
+	$('#' + keyid).css("background-color", "white");
+	number = num;
+	var id = "num"+number;
+	$('#' + id).css("background-color", "#E0E0E0");
+}
+function mout(num){
+	number = num;
+	var id = "num"+number;
+	$('#' + id).css("background-color", "white");
+}
+
 $('#inputText').keyup(function(event) {
 	var keySet = "ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㄲㄸㅃㅆㅏㅑㅓㅕㅗㅛㅜㅠㅡㅣㅐㅒㅔㅖ1234567890,.?/<>:;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	if (event.keyCode == 38) { // 위방향키눌렀을때
-		num--;
-		if (num <= 0) {
-			num = endNum;
+		number--;
+		keynumber = number;
+		if (number <= 0) {
+			number = endNum;
 			var divId = "num" + 1;
 			$('#' + divId).css("background-color", "white");
 		}
-		var id = "num" + num;
-		var bottom = "num" + Number(num + 1);
+		var id = "num" + number;
+		var bottom = "num" + Number(number + 1);
 		var text = document.getElementById(id).value;
 		$("#inputText").val($('#' + id).text());
-		$('#' + id).css("background-color", "#99FF99");
+		$('#' + id).css("background-color", "#E0E0E0");
 		$('#' + bottom).css("background-color", "white");
 
 	} else if (event.keyCode == 40) { // 아래방향키눌렀을때
-		num++;
-		if (num > endNum) {
-			num = 1;
+		number++;
+		keynumber = number;
+		if (number > endNum) {
+			number = 1;
 			var divId = "num" + endNum;
 			$('#' + divId).css("background-color", "white");
 		}
-		var id = "num" + num;
-		var up = "num" + Number(num - 1);
+		var id = "num" + number;
+		var up = "num" + Number(number - 1);
 
 		var text = document.getElementById(id).value;
 		$("#inputText").val($('#' + id).text());
-		$('#' + id).css("background-color", "#99FF99");
+		$('#' + id).css("background-color", "#E0E0E0");
 		$('#' + up).css("background-color", "white");
 	}
 

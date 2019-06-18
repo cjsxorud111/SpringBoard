@@ -23,17 +23,17 @@
 			</td>
 		</tr>
 		<tr>
-			<td style="font-size: 2.1rem; text-align: center; padding-bottom: 2rem; font-weight: 500;">글수정하기<div id="heart"></div></td>
+			<td style="font-size: 2.1rem; text-align: center; padding-bottom: 2rem; font-weight: 500;">수정하기</td>
 		</tr>
 		<tr>
 			<td><input type="text" class="wid" id="wid" name="WORD"
-				size="20" placeholder="&nbsp;단어명" style="padding-left:1rem;  margin-bottom: 1rem;" value="${modifyContentVO.word}">
+				size="20" placeholder="&nbsp;단어명" style="border: none; padding-left:1rem;  margin-bottom: 1rem;" value="${modifyContentVO.word}">
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<textarea name="editor1" class="editor1" id="textValue"
-				rows="10" cols="50" placeholder="글내용" style="text-align: left; ">
+				rows="10" cols="50" placeholder="글내용" style="border: none; text-align: left; ">
 				${modifyContentVO.info}
 				</textarea>
 			</td>

@@ -56,7 +56,6 @@ public class DefineServiceImpl implements DefineService {
 		vo.setWord(request.getParameter("WORD"));
 		vo.setNum(request.getParameter("conNum"));
 		vo.setInfo(request.getParameter("textValue"));
-		System.out.println(request.getParameter("textValue")+"dslasdlkfjsdlka");
 		dao.modifyWriting(vo);
 	}
 
@@ -79,18 +78,14 @@ public class DefineServiceImpl implements DefineService {
 	@Override
 	public void defineWriteSub(HttpServletRequest request) throws Exception {
 		DefineSubVO vo = new DefineSubVO();
-		System.out.println("오류01");
 		vo.setContent(request.getParameter("subcon"));
 		vo.setId(request.getParameter("id"));
 		vo.setPw(request.getParameter("pw"));
 		vo.setContent(request.getParameter("textValue"));
-		System.out.println("오류02");
 		vo.setGroupnum(Integer.parseInt(request.getParameter("groupNum"))+1);
 		vo.setConnum(request.getParameter("num"));
 		vo.setSpace(request.getParameter("space"));
-		System.out.println(vo.getContent()+" "+vo.getGroupnum()+" "+vo.getId()+ " " +vo.getPw()+" " + vo.getSpace() + " " +vo.getConnum());
 		dao.defineWriteSub(vo);
-		System.out.println("오류04");
 	}
 
 	@Override
@@ -102,19 +97,15 @@ public class DefineServiceImpl implements DefineService {
 	@Override
 	public void defineSecondSub(HttpServletRequest request) throws Exception {
 		DefineSubVO vo = new DefineSubVO();
-		System.out.println("오류0");
 		System.out.println(request.getParameter("textVal")+"D오류");
 		vo.setContent("to" + " " + request.getParameter("answerId") + " "+ request.getParameter("textVal"));
 		vo.setConnum(request.getParameter("num"));
 		vo.setSpace(request.getParameter("space"));
-		System.out.println("오류1");
 		//vo.setNum(request.getParameter("subnum"));
 		vo.setId(request.getParameter("id"));
 		vo.setPw(request.getParameter("pw"));
 		vo.setGroupnum(Integer.parseInt(request.getParameter("groupNum")));
-		System.out.println("오류1");
 		dao.defineWriteSub(vo);
-		System.out.println("오류2");
 	}
 
 	// 댓글삭제
@@ -190,20 +181,22 @@ public class DefineServiceImpl implements DefineService {
 	public String searchWord(HttpServletRequest request) throws Exception {
 		HangulDivide handiv = new HangulDivide();
 		
-		List<MainDefineContentVO> MainDefineList = dao.selectMainDefCon();
+		List<MainDefineContentVO> MainDefineList = dao.selectRecommendMainDefCon();
 		String inputText = request.getParameter("inputText");
 		String inputTextDiv = handiv.toKoJasoAtom(inputText);
 		String show = "";
 		inputTextDiv.charAt(inputTextDiv.length()-1);
 		int num = 0;
+		System.out.println("here");
 		
 		for (int i = 0; i < MainDefineList.size(); i++) {
 			if(MainDefineList.get(i).getSplitWord() != null) {
 				if(MainDefineList.get(i).getSplitWord().length() >= inputTextDiv.length()&& inputTextDiv.equals(MainDefineList.get(i).getSplitWord().substring(0,inputTextDiv.length()))) {
+					System.out.println("hello00");
 					num++;
 					show += "<div id='num";
 					show += num;
-					show += "' class='recommendSection' style='width:310px; box-shadow:1px 1px 1px 1px gray;'>";
+					show += "' class='recommendSection' onmouseover='mover("+num+")' onmouseout='mout("+num+")' style='width:310px; padding-left:8px; padding-top:5px; box-shadow:1px 1px 1px 1px gray;'>";
 					show += "<div style=\" cursor: pointer;\" onclick=\"wordClick('";
 					show += MainDefineList.get(i).getWord();
 					show += "');\">";

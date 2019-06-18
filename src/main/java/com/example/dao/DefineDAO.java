@@ -51,5 +51,7 @@ public interface DefineDAO {
 
 	public void modifyWriting(GetModifyContentVO vo)throws Exception;
 
+	public List<MainDefineContentVO> selectRecommendMainDefCon()throws Exception;
+
 
 }

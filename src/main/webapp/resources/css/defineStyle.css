@@ -144,13 +144,13 @@
 	height: 2.7rem;
 	font-size: 20px;
 }
-.recommendSection:hover {
+/*  .recommendSection:hover {
 	background-color: #E0E0E0;
 	color: #117CE8;
 	width: 359px;
 	height: 2.7rem;
 	font-size: 20px;
-}
+} */  
 .defineDeleteButton{
 	position: relative;
 	left: 4.5px;

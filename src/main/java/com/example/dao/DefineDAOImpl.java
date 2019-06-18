@@ -38,9 +38,14 @@ public class DefineDAOImpl implements DefineDAO {
 	}
 	
 	@Override
+	public List<MainDefineContentVO> selectRecommendMainDefCon() throws Exception {
+		List<MainDefineContentVO> MainDefineList = sqlSession.selectList(Namespace + ".recommendDefineList");
+		return MainDefineList;
+	}
+	
+	@Override
 	public List<MainDefineContentVO> linkCon(String linkWord) throws Exception {
 		List<MainDefineContentVO> linkCon = sqlSession.selectList(Namespace + ".linkCon", linkWord);
-	//	List<MainDefineContentVO> linkCon = sqlSession.selectList(Namespace + ".mainDefineList");
 		
 		return linkCon;
 	}
@@ -54,9 +59,7 @@ public class DefineDAOImpl implements DefineDAO {
 	
 	@Override
 	public void defineWriteSub(DefineSubVO vo) throws Exception {
-		System.out.println("오류dao1");
 		sqlSession.insert(Namespace + ".defineWriteSub", vo);
-		System.out.println("오류dao2");
 	}
 
 	@Override

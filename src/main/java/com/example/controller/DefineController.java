@@ -61,7 +61,6 @@ public class DefineController {
 		
 		String textStatus = request.getParameter("textStatus");
 		String returnUrl = "redirect:linkWord?linkWord="+textStatus;
-		System.out.println(returnUrl);
 		//설정하지 않았는데 왜define으로 가는지 이해못함 이해하고 수정필요
 //		if(textStatus.equals("main(*)")) {
 //			System.out.println("hsddsloo");
@@ -125,7 +124,6 @@ public class DefineController {
 		String num = request.getParameter("num");
 		return service.deleteDefineSub(pw, num);
 	}
-
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	@ResponseBody
@@ -134,7 +132,6 @@ public class DefineController {
 		session.removeAttribute("ID");
 	}
 	
-	//여//여//여//여//여//여//여//여//여//여//여//여//여//여//여
 	@RequestMapping(value = "/defineWriteSub", method = RequestMethod.POST)
 	@ResponseBody
 	public String defineWriteSub(HttpServletRequest request, Model model) throws Exception {
@@ -206,10 +203,9 @@ public class DefineController {
 		return "define_write";
 	}
 
-	@RequestMapping(value = "/newword_write", method = RequestMethod.GET)
-	public String newword_write(Model model) throws Exception {
-
-		return "newword_write";
+	@RequestMapping(value = "/thisword_write", method = RequestMethod.GET)
+	public String thisword_write(Model model) throws Exception {
+		return "thisword_write";
 	}
 
 	@RequestMapping(value = "/newwordWriting", method = RequestMethod.POST)
