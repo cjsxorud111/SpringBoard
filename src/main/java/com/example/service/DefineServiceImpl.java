@@ -187,12 +187,9 @@ public class DefineServiceImpl implements DefineService {
 		String show = "";
 		inputTextDiv.charAt(inputTextDiv.length()-1);
 		int num = 0;
-		System.out.println("here");
-		
 		for (int i = 0; i < MainDefineList.size(); i++) {
 			if(MainDefineList.get(i).getSplitWord() != null) {
 				if(MainDefineList.get(i).getSplitWord().length() >= inputTextDiv.length()&& inputTextDiv.equals(MainDefineList.get(i).getSplitWord().substring(0,inputTextDiv.length()))) {
-					System.out.println("hello00");
 					num++;
 					show += "<div id='num";
 					show += num;

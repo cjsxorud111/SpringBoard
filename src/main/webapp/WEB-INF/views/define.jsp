@@ -22,7 +22,7 @@
 <script src="<c:url value="resources/js/defineJavaScript.js" />"></script>
 <script type="text/javascript">
 	
-	// 댓글이나대댓글시 로그인검사위한변수testtest
+	// 댓글이나대댓글시 로그인검사위한변수
 	var session = '<%=sessionId%>';
 	var isSession = false;
 	if (session != "null") {
@@ -37,23 +37,52 @@
 			window.location.href='login?word=write(*)';
 		}
 	}
+	
+	function getQuerystring(paramName){ 
+		var _tempUrl = window.location.search.substring(1); //url에서 처음부터 '?'까지 삭제 
+			var _tempArray = _tempUrl.split('&'); // '&'을 기준으로 분리하기 
+			for(var i = 0; _tempArray.length; i++) { 
+				
+				var _keyValuePair = _tempArray[i].split('='); // '=' 을 기준으로 분리하기 
+				
+				if(_keyValuePair[0] == paramName){ // _keyValuePair[0] : 파라미터 명 // _keyValuePair[1] : 파라미터 값 
+					return _keyValuePair[1]; 
+				} 
+			} 
+	}
+	
 </script>
 <!-- 자바스크립트에서수정이안되기에onload자바스크립트만jsp에만듬 -->
 <script>
 	window.onload = function() {
 		$('#loading').hide();
+		
+		var stringVal = window.location.href;
+	    substring = "?";
+	    
+	    var divcon = "<div style='text-align:center; background-color:white; padding:1.5rem; width:39rem; margin-bottom:1.3rem;'>"; 
+	    divcon +="<div style='color:tomato; margin-bottom: 1rem; font-size:30px;'>HelloWord에 오신것을 환영합니다.</div>"; 
+	    divcon +="HelloWord는 여러분이 직접 정의하는 사전입니다.<br>"; 
+	    divcon +="원하는 단어를 무엇이든 자유롭게 정의하고 다른사람의 정의와 비교해보세요!";
+	    divcon +="</div>";
+	    
+	    
+		if(stringVal.indexOf(substring) == -1){
+			document.getElementById("explane").innerHTML = divcon;
+		}
+		/* var getLinkWord = getQuerystring(linkWord);
+		var getPage = getQuerystring(page); */
+		/* alert(getLinkWord + " " + getPage); */
+		/* if(getLinkWord == null && getPage == null){
+			
+		} */
+		
 		var aboveCommentSection = document
 				.getElementsByClassName("aboveCommentSection");
 		var belowCommentSection = document
 				.getElementsByClassName("belowCommentSection");
 		var deleteTag = document.getElementsByClassName("deleteTag");
 		
-		/* for (var i = 0; i < aboveCommentSection.length; i++) {
-			aboveCommentSection.item(i).style.display = "none";
-		} */
-		/* for (var i = 0; i < belowCommentSection.length; i++) {
-			belowCommentSection.item(i).style.display = "none";
-		} */
 		for (var i = 0; i < deleteTag.length; i++) {
 			deleteTag.item(i).style.display = "none";
 		}
@@ -92,7 +121,11 @@
 <style>
 footer {
 	padding: 15px;
+	margin-top: 150;
 	text-align: center;
+	position: relative;
+	height: 150px;
+	clear: both;
 }
 .container-fluid {
 	padding-right: 50px;
@@ -103,7 +136,40 @@ footer {
 </style>
 
 </head>
+<%
+	//controller에서 model.addAttribute 로 보낸걸 request로 받음
+	Object contentNum = request.getAttribute("Cnum");
 
+	int number = Integer.parseInt(contentNum.toString());
+
+	//총 몇 페이지인지 계산
+	double num = (double) number / 10;
+	double temp = num - (int) num;
+	//총 페이지수
+	int pagenum;
+
+	if (temp == 0) {
+		pagenum = (int) num;
+	} else {
+		pagenum = (int) num + 1;
+	}
+
+	//페이지 블록 계산 
+	int herePage = 0;
+	int begin = 0;
+	int end = 0;
+
+	String pages = request.getParameter("page");
+
+	if (pages == null) {
+		herePage = 1;
+	} else {
+		herePage = Integer.parseInt(pages);
+	}
+
+	begin = herePage * 10 - 10;
+	end = herePage * 10 - 1;
+%>
 <div style="background-color: #060606/* 333333 *//*302C2A */; height: 3.8rem;">
 	<div
 		style="width: 1000px; /* border: 1px solid red; */ padding-top: 10px; margin: auto;">
@@ -138,7 +204,7 @@ footer {
 
 	</div>
 </div>
-<div class="container-fluid" style=' border:1px solid #FFCC00; background-color: #FFCC00/* #CACCCE */;'>
+<div class="container-fluid" style=' border:1px solid red; background-color: #FFCC00/* #CACCCE */;'>
 	<div style="width: 896px; /* border:1px solid red; */ padding-top: 20px; margin: auto;">
 	
 		<!-- 오른쪽창 -->
@@ -150,15 +216,22 @@ footer {
 				<div class="wordShortCut">
 					<!-- 단어표시 -->
 					<div class="myDIV">
-						<a href="#" onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
+						<a href="#" style="text-decoration: none;" onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
 					</div>
 					<!-- 날짜표시 -->
 					<div style="margin-left: 5px; font-size: 0.8rem; float: right; display: inline-block;">${a.currenttime}</div>
 				</div>
 			</c:forEach>
 		</div>
-		<c:forEach items="${MainDefineList}" var="a">
-			<!-- 왼쪽창 -->
+		
+		<div id="explane">
+		
+		
+		
+		</div>
+		
+		<!-- 왼쪽창 -->
+		<c:forEach items="${MainDefineList}" var="a" begin="<%=begin%>" end="<%=end%>">
 			<div id="container03" style="">
 				<!-- 왼쪽창에서 실제컨텐츠 표시부분 -->
 				<div id="container04"
@@ -169,7 +242,7 @@ footer {
 						<div style="float: right;">
 							<div>${a.currenttime}</div>
 							<div style="">
-								<a href="thisword_write?word=${a.word}" style="float: right;">새정의추가</a>
+								<a href="thisword_write?word=${a.word}" style="float: right; text-decoration: none;">새정의추가</a>
 							</div>
 							<div style="">&nbsp;</div>
 							<!-- 글수정 글삭제버튼 -->
@@ -287,14 +360,34 @@ footer {
 					<div id="rate" style="float: right;">
 						<div>
 							<button onclick="recommendUp(${a.up}, ${a.num});"
-								id="recommendUp${a.num}" class="upVote">추천: ${a.up}</button>
+								id="recommendUp${a.num}" onmouseover="recommendUpOver(${a.num})" onmouseout="recommendUpOut(${a.num})" class="upVote">추천: ${a.up}</button>
 						</div>
 						<div>
 							<button onclick="recommendDown(${a.down}, ${a.num});"
-								id="recommendDown${a.num}" class="downVote">비추천:
+								id="recommendDown${a.num}" onmouseover="recommendDownOver(${a.num})" onmouseout="recommendDownOut(${a.num})" class="downVote">비추천:
 								${a.down}</button>
 						</div>
 					</div>
+					
+					<script>
+						function recommendUpOver(num){
+							var id = "recommendUp" + num;
+							$('#' + id).css("background-color", "#5BB93F");
+						}
+						function recommendDownOver(num){
+							var id = "recommendDown" + num;
+							$('#' + id).css("background-color", "tomato");
+						}
+						function recommendUpOut(num){
+							var id = "recommendUp" + num;
+							$('#' + id).css("background-color", "white");
+						}
+						function recommendDownOut(num){
+							var id = "recommendDown" + num;
+							$('#' + id).css("background-color", "white");
+						}
+					</script>
+					
 					<div>글쓴이: ${a.id}</div>
 					<br>
 					<div>
@@ -382,7 +475,7 @@ footer {
 												<div style="position: relative; left: 43px; bottom: 10px;">${b.id}</div>
 												<div id="subView" style="padding-left: 41px; width: 36rem;">
 													${b.groupnum}${b.content}
-													<!-- 댓글버튼 -->
+												<!-- 댓글버튼 -->
 												</div>
 											</c:when>
 
@@ -512,12 +605,24 @@ footer {
 				</div>
 			</div>
 		</c:forEach>
-
+	<div id="paging" style="text-align:center; background-color: white; margin-bottom:1rem;">
+		<a href="define?page=1">[처음]</a>
+			<%
+			for (int i = 1; i <= pagenum; i++) {
+			%> 
+		<a href="define?page=<%=i%>"><%=i%></a>&nbsp 
+			<%
+	 		}
+	 		%> 
+	 	<a href="define?page=<%=pagenum%>">[끝]</a>
+	</div>
 	</div>
 </div>
+
 <footer>
 	<a href="define">홈</a>
 </footer>
+
 <script>
 //검색창에서 키보드 눌렀을때 동작
 /* $('.recommendSection').hover(function() {

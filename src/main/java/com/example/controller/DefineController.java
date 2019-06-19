@@ -151,8 +151,10 @@ public class DefineController {
 	@RequestMapping(value = "/linkWord", method = RequestMethod.GET)
 	public String linkWord(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
 		List<MainDefineContentVO> linkCon = service.linkCon(request);
+		
 		HttpSession session = request.getSession();
 		model.addAttribute("MainDefineList", linkCon);
+		model.addAttribute("Cnum", linkCon.size());
 		List<DefineSubVO> getDefinSubList = service.getDefinSubList();
 		model.addAttribute("getDefinSubList", getDefinSubList);
 		//어떤페이지인지구분
@@ -166,13 +168,21 @@ public class DefineController {
 		session.setAttribute("refreshNum", refreshNum);
 		return "define";
 	}
+	
+	@RequestMapping(value = "/newword_write", method = RequestMethod.GET)
+	public String newword_write(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
+		return "newword_write";
+	}
 
 	//define메인페이지
 	@RequestMapping(value = "/define", method = RequestMethod.GET)
 	// Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
 	public String define(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
 		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
-
+		int Cnum = MainDefineList.size();
+		
+		model.addAttribute("Cnum", Cnum);
+		
 		model.addAttribute("MainDefineList", MainDefineList);
 
 		List<DefineSubVO> getDefinSubList = service.getDefinSubList();
@@ -181,7 +191,6 @@ public class DefineController {
 		textStatusVO textStatusVO = new textStatusVO();
 		textStatusVO.setTextStatus("main(*)");
 		response.setAttribute("textStatusVO", textStatusVO);
-		System.out.println("hello");
 		refreshNum++;
 		response.setAttribute("lastGroupNum", getDefinSubList.get(getDefinSubList.size()-1));
 		HttpSession session = request.getSession();
