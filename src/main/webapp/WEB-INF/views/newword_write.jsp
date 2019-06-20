@@ -30,8 +30,9 @@
 			enctype="multipart/form-data">
 			<tr>
 				<td style="text-align: center; font-size:30px; padding-bottom:2rem; font-weight:500;">
-				<br><br>
-				 새단어 정의하기
+				<br>
+				 <div style='color:#2AAE02; font-weight:700;'>새단어 정의하기</div>
+				 
 				</td>
 			</tr>
 			<tr>
@@ -39,8 +40,17 @@
 					size="20" style="border:none" placeholder="&nbsp;단어명"></td>
 			</tr>
 			<tr>
+				<td>
+					<br>
+					<div style='font-size:22px; margin-bottom:13px;'>원하는 단어를 자유롭게 정의해주세요!</div>
+					<div style='font-size:20px; color:tomato; font-weight:600;'>예) 단어명: 사전</div>
+					<div style='font-size:20px; color:tomato; font-weight:600; margin-left: 1.8rem;'>정의: 단어의 뜻을 서술해놓은것</div>
+				
+				</td>
+			</tr>
+			<tr>
 				<td><br> <textarea name="editor1" class="editor1"
-						rows="10" cols="120" placeholder="글내용">
+						rows="10" cols="120" placeholder="글내용얼">
 						</textarea></td>
 			</tr>
 			
@@ -57,9 +67,10 @@
 		<tr>
 			<td></td>
 		</tr>
-		
 	</table>
-	<script type="text/javascript">
+	
+	<!-- 이미지업로드 -->
+	<!-- <script type="text/javascript">
 		$(function() {
 			CKEDITOR.replace('editor1', {//해당 이름으로 된 textarea에 에디터를 적용
 				width : '100%',
@@ -79,6 +90,6 @@
 				}
 			});
 		});
-	</script>
+	</script> -->
 </body>
 </html>

@@ -23,7 +23,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td style="font-size: 2.1rem; text-align: center; padding-bottom: 2rem; font-weight: 500;">수정하기</td>
+			<td style="font-size: 2.1rem; text-align: center; padding-bottom: 2rem; color:#2AAE02; font-weight:700;">수정하기</td>
 		</tr>
 		<tr>
 			<td><input type="text" class="wid" id="wid" name="WORD"

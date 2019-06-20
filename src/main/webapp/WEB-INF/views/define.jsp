@@ -53,18 +53,60 @@
 	
 </script>
 <!-- 자바스크립트에서수정이안되기에onload자바스크립트만jsp에만듬 -->
+<%
+	//controller에서 model.addAttribute 로 보낸걸 request로 받음
+	Object contentNum = request.getAttribute("Cnum");
+
+	int number = Integer.parseInt(contentNum.toString());
+
+	//총 몇 페이지인지 계산
+	double num = (double) number / 10;
+	double temp = num - (int) num;
+	//총 페이지수
+	int pagenum;
+
+	if (temp == 0) {
+		pagenum = (int) num;
+	} else {
+		pagenum = (int) num + 1;
+	}
+
+	//페이지 블록 계산 
+	int herePage = 0;
+	int begin = 0;
+	int end = 0;
+
+	String pages = request.getParameter("page");
+
+	if (pages == null) {
+		herePage = 1;
+	} else {
+		herePage = Integer.parseInt(pages);
+	}
+
+	begin = herePage * 10 - 10;
+	end = herePage * 10 - 1;
+%>
 <script>
 	window.onload = function() {
+		var num = 0;
+		<c:forEach items="${MainDefineList}" var="a" begin="<%=begin%>" end="<%=end%>">
+			num++;
+		</c:forEach>
+		
+		if(num == 1){
+			$('#innerSection').css('height','85%');
+		}
 		$('#loading').hide();
 		
 		var stringVal = window.location.href;
 	    substring = "?";
 	    
 	    var divcon = "<div style='text-align:center; background-color:white; padding:1.5rem; width:39rem; margin-bottom:1.3rem;'>"; 
-	    divcon +="<div style='color:tomato; margin-bottom: 1rem; font-size:30px;'>HelloWord에 오신것을 환영합니다.</div>"; 
-	    divcon +="HelloWord는 여러분이 직접 정의하는 사전입니다.<br>"; 
-	    divcon +="원하는 단어를 무엇이든 자유롭게 정의하고 다른사람의 정의와 비교해보세요!";
-	    divcon +="</div>";
+	    divcon += "<div style='color:tomato; margin-bottom: 1rem; font-size:30px;'>HelloWord에 오신것을 환영합니다.</div>"; 
+	    divcon += "HelloWord는 여러분이 직접 정의하는 사전입니다.<br>"; 
+	    divcon += "원하는 단어를 무엇이든 자유롭게 정의하고 다른사람의 정의와 비교해보세요!";
+	    divcon += "</div>";
 	    
 	    
 		if(stringVal.indexOf(substring) == -1){
@@ -119,13 +161,10 @@
 	scroll_follow( "#scroll" );
 	</script>
 <style>
-footer {
+
+.foot{
 	padding: 15px;
-	margin-top: 150;
 	text-align: center;
-	position: relative;
-	height: 150px;
-	clear: both;
 }
 .container-fluid {
 	padding-right: 50px;
@@ -136,40 +175,7 @@ footer {
 </style>
 
 </head>
-<%
-	//controller에서 model.addAttribute 로 보낸걸 request로 받음
-	Object contentNum = request.getAttribute("Cnum");
 
-	int number = Integer.parseInt(contentNum.toString());
-
-	//총 몇 페이지인지 계산
-	double num = (double) number / 10;
-	double temp = num - (int) num;
-	//총 페이지수
-	int pagenum;
-
-	if (temp == 0) {
-		pagenum = (int) num;
-	} else {
-		pagenum = (int) num + 1;
-	}
-
-	//페이지 블록 계산 
-	int herePage = 0;
-	int begin = 0;
-	int end = 0;
-
-	String pages = request.getParameter("page");
-
-	if (pages == null) {
-		herePage = 1;
-	} else {
-		herePage = Integer.parseInt(pages);
-	}
-
-	begin = herePage * 10 - 10;
-	end = herePage * 10 - 1;
-%>
 <div style="background-color: #060606/* 333333 *//*302C2A */; height: 3.8rem;">
 	<div
 		style="width: 1000px; /* border: 1px solid red; */ padding-top: 10px; margin: auto;">
@@ -204,8 +210,8 @@ footer {
 
 	</div>
 </div>
-<div class="container-fluid" style=' border:1px solid red; background-color: #FFCC00/* #CACCCE */;'>
-	<div style="width: 896px; /* border:1px solid red; */ padding-top: 20px; margin: auto;">
+<div class="container-fluid" style='position: relative; background-color: #FFCC00;'>
+	<div id = 'innerSection' style="width: 896px; border:1px solid #FFCC00; padding-top: 20px; margin: auto;">
 	
 		<!-- 오른쪽창 -->
 		<div id="scroll"style="position: relative; left: 0; top: 0; width: 250px; padding: 10px; float: right;">
@@ -224,11 +230,7 @@ footer {
 			</c:forEach>
 		</div>
 		
-		<div id="explane">
-		
-		
-		
-		</div>
+		<div id="explane"></div>
 		
 		<!-- 왼쪽창 -->
 		<c:forEach items="${MainDefineList}" var="a" begin="<%=begin%>" end="<%=end%>">
@@ -617,11 +619,14 @@ footer {
 	 	<a href="define?page=<%=pagenum%>">[끝]</a>
 	</div>
 	</div>
+	
 </div>
 
-<footer>
-	<a href="define">홈</a>
-</footer>
+<div class="foot">
+		<a href="define">홈</a>
+	</div>
+	
+
 
 <script>
 //검색창에서 키보드 눌렀을때 동작
