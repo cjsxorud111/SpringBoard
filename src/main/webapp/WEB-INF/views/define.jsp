@@ -623,7 +623,7 @@
 </div>
 
 <div class="foot">
-		<a href="define">홈</a>
+		<a href="define">home</a>
 	</div>
 	
 

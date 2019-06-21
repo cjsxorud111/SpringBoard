@@ -63,7 +63,6 @@
 <body id="memberJoin">
 	<div id="signUp">
 		<div id="notMember">${notMember}</div>
-		<%-- <div><%= (String)request.getAttribute("notMember") %></div> --%>
 
 		<!-- 아이디영문요청 태그-->
 		<div id="engg"></div>
