@@ -175,18 +175,19 @@
 </style>
 
 </head>
-
+<!-- 네브바 -->
 <div style="background-color: #060606/* 333333 *//*302C2A */; height: 3.8rem;">
 	<div
-		style="width: 1000px; /* border: 1px solid red; */ padding-top: 10px; margin: auto;">
+		style="width: 1000px; width: 56rem; padding-top: 10px; margin: auto;">
+		<!-- 로고 -->
 		<div style="float: left;">
 			<a href="define" id="title"
-				style="color: white; font-weigh: 10px; margin-left: 1rem; margin-bottom: 1rem; position: relative; right:10px; bottom: 10px; font-weight:100;">HelloWord!</a>
+				style="color: white; font-weigh: 10px; margin-left: 0.1rem; margin-bottom: 1rem; position: relative; bottom: 10px; font-weight:100;">HelloWord!</a>
 		</div>
-
-		<div style="float: left; margin-left: 3rem; margin-top:-1px; ">
+		<!-- 검색창 -->
+		<div style="float: left; margin-left: 2.8rem; margin-top:-1px;">
 			<form class="form-inline" action="linkWord" method="get">
-				<!-- 검색창 -->
+				<!-- 텍스트박스 -->
 				<div>
 					<input type='text' name=linkWord autocomplete="off" id='inputText'
 						class='input_text' style="width: 310px; border:none;" onfocusout="loseFocus()" />
@@ -196,22 +197,25 @@
 
 				<!-- 돋보기 -->
 				<button type='submit'
-					style="margin-bottom: 13px; margin-left: 10px;" class='sch_smit'>
+					style="margin-bottom: 13px; margin-left: 11px;" class='sch_smit'>
 					<span class="demoSpan1">
 				</button>
 			</form>
 		</div>
-		<div id="navLink" style="float: left; margin-left: 1rem;">
+		<!-- 검색창오른쪽링크 -->
+		<div id="navLink" style="float: left;">
 			<a href="#" onclick="writeLoginCheck()"
-				style="position: relative; bottom: 18px; color: white; margin-left: 1rem; font-size: 1.6rem; text-decoration: none; font-weight:100; ">새단어정의하기</a>
+				style="position: relative; bottom: 12px; color: white; margin-left: 0.1rem; font-size: 1.4rem; text-decoration: none; font-weight:400; ">새단어정의하기</a>
 			<a href="#" id="log"
-				style="position: relative; left: 7px; bottom: 18px; margin-left: 2rem; color: white; font-size: 1.8rem; text-decoration: none; font-weight:100;"></a>
+				style="position: relative; left: 7px; bottom: 12px; margin-left: 2rem; color: white; font-size: 1.5rem; text-decoration: none; font-weight:300;"></a>
 		</div>
-
 	</div>
 </div>
+
+<!-- 전체배경 -->
 <div class="container-fluid" style='position: relative; background-color: #FFCC00;'>
-	<div id = 'innerSection' style="width: 896px; border:1px solid #FFCC00; padding-top: 20px; margin: auto;">
+	<!-- 내부배경 -->
+	<div id = 'innerSection' style="width: 896px; border:1px solid #FFCC00; padding-top: 17px; margin: auto;">
 	
 		<!-- 오른쪽창 -->
 		<div id="scroll"style="position: relative; left: 0; top: 0; width: 250px; padding: 10px; float: right;">
@@ -230,6 +234,7 @@
 			</c:forEach>
 		</div>
 		
+		<!-- 웹사이트설명창 -->
 		<div id="explane"></div>
 		
 		<!-- 왼쪽창 -->
@@ -237,7 +242,7 @@
 			<div id="container03" style="">
 				<!-- 왼쪽창에서 실제컨텐츠 표시부분 -->
 				<div id="container04"
-					style="width: 39rem; padding-left: 1.5rem; padding-right: 1.5rem; padding-top: 0.1rem; margin-bottom: 1.3rem; background-color: #FFFFFF;">
+					style="width: 39rem; padding-left: 1.5rem; padding-right: 1.5rem; padding-top: 0.1rem; margin-bottom: 1.25rem; background-color: #FFFFFF;">
 					&nbsp;&nbsp;
 					<!-- 단어제목으로검색링크 -->
 					<div>
