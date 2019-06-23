@@ -103,9 +103,9 @@
 	    substring = "?";
 	    
 	    var divcon = "<div style='text-align:center; background-color:white; padding:1.5rem; width:39rem; margin-bottom:1.3rem;'>"; 
-	    divcon += "<div style='color:tomato; margin-bottom: 1rem; font-size:30px;'>HelloWord에 오신것을 환영합니다.</div>"; 
-	    divcon += "HelloWord는 여러분이 직접 정의하는 사전입니다.<br>"; 
-	    divcon += "원하는 단어를 무엇이든 자유롭게 정의하고 다른사람의 정의와 비교해보세요!";
+	    divcon += "<div style='color:#F54708; margin-bottom: 1rem; font-family: cursive; font-size:30px;'>HelloWord!에 오신것을 환영합니다.</div>"; 
+	    divcon += "<div style='font-size: 18px;'>HelloWord!는 여러분이 직접 정의하는 사전입니다.</div>" ; 
+	    divcon += "<div style='font-size: 18px;'>원하는 단어를 무엇이든 자유롭게 정의하고 다른사람의 정의를 추천해주세요!</div>";
 	    divcon += "</div>";
 	    
 	    
@@ -172,6 +172,7 @@
 	margin-right: auto;
 	margin-left: auto;
 }
+
 </style>
 
 </head>
@@ -182,10 +183,16 @@
 		<!-- 로고 -->
 		<div style="float: left;">
 			<a href="define" id="title"
-				style="color: white; font-weigh: 10px; margin-left: 0.1rem; margin-bottom: 1rem; position: relative; bottom: 10px; font-weight:100;">HelloWord!</a>
+				style="color: white; margin-left: 0.1rem; margin-bottom: 1rem; position: relative; bottom: 10px; font-weight:200;">
+				
+				<div id="logo" style="position: relative; z-index: 100; font-family: cursive;">HelloWord!</div>
+				<div style="width:176px; height:1px; position: absolute; bottom: 17.5px;  background-color:#FFCC00;"></div>
+				<div style="width:176px; height:1px; position: absolute; bottom: 19.5px;  background-color:#FFAC07;"></div>
+				<div style="width:176px; height:1px; position: absolute; bottom: 21.5px;  background-color:#FF9C07;"></div>
+			</a>
 		</div>
 		<!-- 검색창 -->
-		<div style="float: left; margin-left: 2.8rem; margin-top:-1px;">
+		<div style="float: left; margin-left: 3.2rem; margin-top:-1px;">
 			<form class="form-inline" action="linkWord" method="get">
 				<!-- 텍스트박스 -->
 				<div>
@@ -205,28 +212,28 @@
 		<!-- 검색창오른쪽링크 -->
 		<div id="navLink" style="float: left;">
 			<a href="#" onclick="writeLoginCheck()"
-				style="position: relative; bottom: 12px; color: white; margin-left: 0.1rem; font-size: 1.4rem; text-decoration: none; font-weight:400; ">새단어정의하기</a>
+				style="position: relative; bottom: 12px; color: white; margin-left: 0.1rem; font-size: 1.5rem; text-decoration: none; font-weight:350; ">새단어정의하기</a>
 			<a href="#" id="log"
-				style="position: relative; left: 7px; bottom: 12px; margin-left: 2rem; color: white; font-size: 1.5rem; text-decoration: none; font-weight:300;"></a>
+				style="position: relative; left: 7px; bottom: 12px; margin-left: 2rem; color: white; font-family: sans-serif; font-size: 1.5rem; text-decoration: none; font-weight:400;"></a>
 		</div>
 	</div>
 </div>
 
 <!-- 전체배경 -->
-<div class="container-fluid" style='position: relative; background-color: #FFCC00;'>
+<div class="container-fluid" style='position: relative; /* background-color: #FFCC00; */ background: linear-gradient( to right, #FFD422, #FCB900 );'>
 	<!-- 내부배경 -->
-	<div id = 'innerSection' style="width: 896px; border:1px solid #FFCC00; padding-top: 17px; margin: auto;">
+	<div id = 'innerSection' style="width: 896px; padding-bottom: 0.3rem; padding-top: 17px; margin: auto;">
 	
 		<!-- 오른쪽창 -->
 		<div id="scroll"style="position: relative; left: 0; top: 0; width: 250px; padding: 10px; float: right;">
-			<div style="padding-top: 0.7rem; margin-bottom: 1rem; margin-left:2.5rem;">
+			<div style="padding-top: 0.7rem; margin-bottom: 1rem; margin-left:2.5rem; font-weight:600; ">
 			최근정의가 추가된 단어
 			</div>
 			<c:forEach items="${MainDefineList}" var="a" end="13">
 				<div class="wordShortCut">
 					<!-- 단어표시 -->
 					<div class="myDIV">
-						<a href="#" style="text-decoration: none;" onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
+						<a href="#" style="text-decoration: none; font-weight: 600;" onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
 					</div>
 					<!-- 날짜표시 -->
 					<div style="margin-left: 5px; font-size: 0.8rem; float: right; display: inline-block;">${a.currenttime}</div>
@@ -256,13 +263,13 @@
 							<div id="delete" >
 								<div style="float: right;">
 									<button onclick="deleteCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}');"
-										class="defineDeleteButton">삭제</button>
+										class="defineDeleteButton" style="font-weight:500;">삭제</button>
 								</div>
 								<div style="float: right;">
 									<form action="defineContentModify" method="post" onsubmit="return modifyCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}')">
 										<input type="hidden" name="conNum" value="${a.num}"/>
 										<input type="hidden" name="textStatus" value="${textStatusVO.textStatus}"/>
-										<button class="modifyButton">수정</button>
+										<button class="modifyButton" style="font-weight:500;">수정</button>
 									</form>
 								</div>
 							</div>
@@ -350,16 +357,16 @@
 								}
 							</script>
 						</div>
+						<!-- 오른쪽단어제목 -->
 						<h1>
 							<form action="linkWord" id="frm${a.num}" method="get">
 								<input type="hidden" name="linkWord" value="${a.word}">
 								<a href="#"
 									onclick="document.getElementById('frm${a.num}').submit();"
-									style="text-decoration: none; font-color: black;">${a.word}</a>
+									style="text-decoration: none; font-color: black; font-weight:600;">${a.word}</a>
 							</form>
 						</h1>
 					</div>
-
 					<div>${a.info}</div>
 					<div>글번호: ${a.num}</div>
 
@@ -400,17 +407,12 @@
 					<div>
 						<a
 							href="javascript:aboveComment(${a.num}, ${lastGroupNum.groupnum});"
-							style="margin-top: 1rem; text-decoration: none;">댓글+</a>
+							style="margin-top: 1rem; font-weight: 600; text-decoration: none;">댓글달기</a>
 					</div>
 					<table frame=void>
 						<tr>
 							<!-- 기본댓글달기 -->
-							<!-- 기본댓글달기 -->
-							<!-- 기본댓글달기 -->
-							<!-- 기본댓글달기 -->
-							<!-- 기본댓글달기 -->
-							<!-- 기본댓글달기 -->
-
+							
 							<td id="button${a.num}" class="aboveCommentSection"></td>
 						</tr>
 					</table>
@@ -422,8 +424,8 @@
 					} else{
 						var sec = 'button' + num;
 						var textA = 'textArea' + num;
-						var arrowhtml = "<textarea id='"+textA+"' name='subcon' rows='2' cols='52' style='position: relative; left: 1rem; margin-left: 2rem; margin-bottom: 1.7rem; width: 29rem; height: 55px; table-layout: fixed;'></textarea>";
-						var innerhtml = "<div style='position: relative; left: 1rem; font-size: 80%; float: right;'><div><input type='submit' style='height:1.7rem;' onclick=\"writeSub('"+textA+"','"+num +"', '0', '"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='댓글달기'/></div>";
+						var arrowhtml = "<textarea id='"+textA+"' name='subcon' rows='2' cols='52' style='position: relative; top:0.5rem; right:1.7rem; margin-left: 2rem; margin-bottom: 1.7rem; width: 29rem; height: 55px; table-layout: fixed;'></textarea>";
+						var innerhtml = "<div style='position: relative; top:0.5rem; right:1.7rem; font-size: 80%; float: right;'><div><input type='submit' style='height:1.7rem;' onclick=\"writeSub('"+textA+"','"+num +"', '0', '"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='댓글달기'/></div>";
 						var temp = "<div><input type='submit' style='height: 1.73rem;' onclick=\"cancelSecondSub('"+sec+"');\" value='댓글취소'/></div></div>"
 						var innerarrowhtml = arrowhtml + innerhtml + temp;
 						$('#'+sec).html(innerarrowhtml); 
@@ -481,7 +483,7 @@
 													style="position: relative; left: 30px;"></div>
 												<div style="position: relative; left: 43px; bottom: 10px;">${b.id}</div>
 												<div id="subView" style="padding-left: 41px; width: 36rem;">
-													${b.groupnum}${b.content}
+													${b.content}
 												<!-- 댓글버튼 -->
 												</div>
 											</c:when>
@@ -490,7 +492,7 @@
 												<div>&nbsp; &nbsp;</div>
 												<div style="position: relative; left: 13px; bottom: 10px;">${b.id}</div>
 												<div id="subView" style="padding-left: 1rem; width: 36rem;">
-													${b.groupnum}${b.content}
+													${b.content}
 													<!-- 댓글버튼 -->
 												</div>
 
@@ -522,28 +524,8 @@
 								</tr>
 								<tr>
 									<!-- 답글 -->
-									<!-- 답글 -->
-									<!-- 답글 -->
-									<!-- 답글 -->
-									<!-- 답글 -->
-									<!-- 답글 -->
 									<div id="commentClickButton${b.num}"
 										class="belowCommentSection">
-
-										<!-- <div class="textSection"
-											style="position: relative; top: 0.8rem; left: 1.4rem;">
-											댓글표시 화살표
-											<div id="diagram"/>
-											<div class="cont-box-pseudo"/>
-										</div> -->
-										<!-- 답글입력창 -->
-										<!-- <div class="textSection"> -->
-										<%-- <textarea id="textAreaSecond${b.num}" name="subcon" rows="2" cols="55" style="position: relative; left: 1rem; margin-left: 1.2rem; margin-bottom: 1.7rem; height: 55px; table-layout: fixed;"></textarea>
-											
-												<input type="submit"
-											onclick="writeSecondSub('${b.num}','${a.num}','${b.space+1}','${b.id}','${b.groupnum}','<%=sessionPw%>', '<%=sessionId%>');"
-											value="댓글달기" style="position: relative; left: 1rem; font-size: 80%; float: right;" />
-										</div> --%>
 
 										<div id="ansSec${b.num}"></div>
 
@@ -556,9 +538,9 @@
 										var sec = 'ansSec' + num;
 										var spacenum = space + 1;
 										var textA = 'textAreaSecond' + num;
-										var arrowhtml = "<div class='textSection' style='margin-left:0.5rem; position: relative; top: 0.8rem; left: 1.4rem;'><div id='diagram'/><div class='cont-box-pseudo'/></div>";
-										var innerhtml = "<span style=''><textarea id='"+textA+"' name='subcon' rows='2' cols='55' style='margin-left: 2.2rem; margin-bottom: 1rem; margin-top: 0.7rem; height: 55px; table-layout: fixed; float: left;'></textarea></span>"; 
-										var writebutton = "<span style='position: relative; bottom:0.8rem; margin-right:0.5rem; font-size: 80%; float: left;'><div><input type='submit' style='height:1.7rem;' onclick=\"writeSecondSub('"+num+"','"+connum+"','"+spacenum+"','"+id+"','"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='답글달기'/></div>";
+										var arrowhtml = "<div class='textSection' style='margin-left:0.5rem; margin-bottom:5rem; position: relative; top: 0.8rem; left: 1.4rem;'><div id='diagram'/><div class='cont-box-pseudo'/></div>";
+										var innerhtml = "<span style=''><textarea id='"+textA+"' name='subcon' rows='2' cols='55' style='position: relative; left: 2.2rem; margin-bottom: 1rem; margin-top: 0.3rem; height: 55px; table-layout: fixed; float: left;'></textarea></span>"; 
+										var writebutton = "<span style='position: relative; bottom:0.8rem; left:2.1rem; bottom:1.2rem; margin-right:0.5rem; font-size: 80%; float: left;'><div><input type='submit' style='height:1.7rem;' onclick=\"writeSecondSub('"+num+"','"+connum+"','"+spacenum+"','"+id+"','"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='답글달기'/></div>";
 										var calcelbutton = "<div><input type='submit' style='height:1.7rem;' onclick=\"cancelSecondSub('"+sec+"');\" value='답글취소'/></div></span>";
 										var innerarrowhtml = arrowhtml + innerhtml + writebutton + calcelbutton;
 										$('#'+sec).html(innerarrowhtml); 
@@ -627,11 +609,9 @@
 	
 </div>
 
-<div class="foot">
-		<a href="define">home</a>
+<div class="foot" style="background-color:black;">
+		<a href="define" style="color:white;">home</a>
 	</div>
-	
-
 
 <script>
 //검색창에서 키보드 눌렀을때 동작

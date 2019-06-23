@@ -66,31 +66,32 @@
 
 		<!-- 아이디영문요청 태그-->
 		<div id="engg"></div>
+		<div style="text-align:center;"><h1>Sign up</h1></div>
 		<form action="memberjoining" method="get">
-			<div>
+			<div style="margin-bottom:0.8rem;">
 				<input type="text" class="form-control" name="ID" size="30"
 					placeholder="ID">
 			</div>
-			<br>
-			<div>
+			
+			<div style="margin-bottom:0.8rem;">
 				<input type="text" class="form-control" name="PW" size="30"
 					placeholder="PASSWORD">
 			</div>
-			<br>
-			<div>
+			
+			<div style="margin-bottom:0.8rem;">
 				<input type="text" class="form-control" name="NAME" size="30"
 					placeholder="이름">
 			</div>
-			<br>
-			<div>
+			
+			<div style="margin-bottom:0.8rem;">
 				<input type="text" class="form-control" name="EMAIL" size="30"
 					placeholder="E-MAIL">
 			</div>
-			<br>
-			<div id="signUpButton">
+			
+			<div id="signUpButton" style="margin-bottom:0.8rem;">
 				<input type="submit" style="width:20rem;"class="btn btn-primary" value="회원가입">
 			</div>
-			<br>
+			
 			<div id="deleteButton">
 				<a href="define" style="width:20rem;" class="btn btn-primary">취소</a>
 			</div>

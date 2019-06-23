@@ -25,40 +25,44 @@
 		String pw = (String) session.getAttribute("PW");
 		System.out.println(id + "님 환영합니다.");
 	%>
-	<table id="cont">
+<div style="background-color:#DBDBDB; border-radius: 9px 9px 9px 9px; padding-top:1.5rem; position: relative; top: 5%; bottom: 0; left: 25%; right: 40%; padding-bottom:1.5rem; width:45rem;">
+	<table id="cont" style="padding-top:1rem; background-color:#DBDBDB;">
 		<form action="newwordWriting" method="post"
 			enctype="multipart/form-data">
 			<tr>
-				<td style="text-align: center; font-size:30px; padding-bottom:2rem; font-weight:500;">
-				<br>
-				 <div style='color:#2AAE02; font-weight:700;'>새단어 정의하기</div>
+				<td style="text-align: center; font-size:30px; font-weight:500;">
+				
+				 <div style='color:black; position: relative; z-index: 100; font-weight:700;'>
+				 <div>새단어 정의하기</div>
+				
+				 </div>
 				 
 				</td>
 			</tr>
 			<tr>
 				<td><br> <input type="text" class="wid" id="wid" name="WORD"
-					size="20" style="border:none" placeholder="&nbsp;단어명"></td>
+					size="20" style="border:none; padding-left: 1rem;" placeholder="&nbsp;단어명"></td>
 			</tr>
 			<tr>
 				<td>
 					<br>
 					<div style='font-size:22px; margin-bottom:13px;'>원하는 단어를 자유롭게 정의해주세요!</div>
-					<div style='font-size:20px; color:tomato; font-weight:600;'>예) 단어명: 사전</div>
-					<div style='font-size:20px; color:tomato; font-weight:600; margin-left: 1.8rem;'>정의: 단어의 뜻을 서술해놓은것</div>
+					<div style='font-size:20px; color:#F54708; font-weight:600;'>예) 단어명: 사전</div>
+					<div style='font-size:20px; color:#F54708; font-weight:600; margin-left: 1.8rem;'>정의: 단어의 뜻을 서술해놓은것</div>
 				
 				</td>
 			</tr>
 			<tr>
 				<td><br> <textarea name="editor1" class="editor1"
-						rows="10" cols="120" placeholder="글내용얼">
+						rows="10" cols="120" style="border:none">
 						</textarea></td>
 			</tr>
-			
+			<!-- 정의취소버튼 -->
 			<tr style="margin-top: 1rem;">
 				<input type="hidden" name="ID" value="<%=id%>">
 				<input type="hidden" name="PW" value="<%=pw%>">
 				<td>
-				<div style="margin-top: 1rem; height: 3.9rem;">
+				<div style="margin-top: 1rem; ">
 				<input type="submit" value="단어정의" id="in"><a href="define"id="inde" style="color:white;">취소</a>
 				</div>
 				</td>
@@ -68,7 +72,7 @@
 			<td></td>
 		</tr>
 	</table>
-	
+</div> 
 	<!-- 이미지업로드 -->
 	<!-- <script type="text/javascript">
 		$(function() {
