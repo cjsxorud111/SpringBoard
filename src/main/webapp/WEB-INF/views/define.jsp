@@ -10,6 +10,7 @@
 <html>
 
 <head>
+
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
 	rel="stylesheet" />
@@ -174,10 +175,11 @@
 }
 
 </style>
-
+<meta name="google-site-verification" content="SQWRkLaGa_ZfTcO7MTunO6zcad_-7bFPg_bdazI4Zk8" />
 </head>
+<div>google-site-verification</div>
 <!-- 네브바 -->
-<div style="background-color: #060606/* 333333 *//*302C2A */; height: 3.8rem;">
+<div style="background-color: #2B2B2E/* 333333 *//*302C2A */; height: 3.8rem;">
 	<div
 		style="width: 1000px; width: 56rem; padding-top: 10px; margin: auto;">
 		<!-- 로고 -->
@@ -220,7 +222,7 @@
 </div>
 
 <!-- 전체배경 -->
-<div class="container-fluid" style='position: relative; /* background-color: #FFCC00; */ background: linear-gradient( to right, #FFD422, #FCB900 );'>
+<div class="container-fluid" style='position: relative; /* background-color: #FFCC00; */ background: linear-gradient( to right, #FFDA40, #FCB900 );'>
 	<!-- 내부배경 -->
 	<div id = 'innerSection' style="width: 896px; padding-bottom: 0.3rem; padding-top: 17px; margin: auto;">
 	
@@ -609,9 +611,9 @@
 	
 </div>
 
-<div class="foot" style="background-color:black;">
-		<a href="define" style="color:white;">home</a>
-	</div>
+<div class="foot" style="background-color:#2B2B2E;">
+	<div style="color:white;">Copyright 2019. Tae kyoung. all rights reserved.</div>
+</div>
 
 <script>
 //검색창에서 키보드 눌렀을때 동작
