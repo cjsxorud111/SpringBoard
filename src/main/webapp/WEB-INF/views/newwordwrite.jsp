@@ -63,7 +63,7 @@
 				<input type="hidden" name="PW" value="<%=pw%>">
 				<td>
 				<div style="margin-top: 1rem; ">
-				<input type="submit" value="단어정의" id="in"><a href="define"id="inde" style="color:white;">취소</a>
+				<input type="submit" value="단어정의" id="in"><a href="/" id="inde" style="color:white;">취소</a>
 				</div>
 				</td>
 			</tr>

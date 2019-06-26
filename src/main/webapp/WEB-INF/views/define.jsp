@@ -10,7 +10,8 @@
 <html>
 
 <head>
-
+<meta name="google-site-verification" content="SQWRkLaGa_ZfTcO7MTunO6zcad_-7bFPg_bdazI4Zk8" />
+<meta name="naver-site-verification" content="b8b1382411790af26ef1553f419ce247d8465d24"/>
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
 	rel="stylesheet" />
@@ -32,7 +33,7 @@
 	
 	function writeLoginCheck(){
 		if(isSession == true){
-			window.location.href='newword_write';
+			window.location.href='newwordwrite';
 		} else {
 			alert("로그인이 필요합니다.");
 			window.location.href='login?word=write(*)';
@@ -175,16 +176,14 @@
 }
 
 </style>
-<meta name="google-site-verification" content="SQWRkLaGa_ZfTcO7MTunO6zcad_-7bFPg_bdazI4Zk8" />
 </head>
-<div>google-site-verification</div>
 <!-- 네브바 -->
 <div style="background-color: #2B2B2E/* 333333 *//*302C2A */; height: 3.8rem;">
 	<div
 		style="width: 1000px; width: 56rem; padding-top: 10px; margin: auto;">
 		<!-- 로고 -->
 		<div style="float: left;">
-			<a href="define" id="title"
+			<a href="/" id="title"
 				style="color: white; margin-left: 0.1rem; margin-bottom: 1rem; position: relative; bottom: 10px; font-weight:200;">
 				
 				<div id="logo" style="position: relative; z-index: 100; font-family: cursive;">HelloWord!</div>
@@ -258,7 +257,7 @@
 						<div style="float: right;">
 							<div>${a.currenttime}</div>
 							<div style="">
-								<a href="thisword_write?word=${a.word}" style="float: right; text-decoration: none;">새정의추가</a>
+								<a href="thiswordwrite?word=${a.word}" style="float: right; text-decoration: none;">새정의추가</a>
 							</div>
 							<div style="">&nbsp;</div>
 							<!-- 글수정 글삭제버튼 -->

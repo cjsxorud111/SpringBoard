@@ -67,7 +67,7 @@ function loginClick(){
 				if(word == 'main(*)'){
 					window.location.href = 'define';
 				}else if(word == 'write(*)'){
-					window.location.href = 'newword_write';
+					window.location.href = 'newwordwrite';
 				}else{
 					window.location.href = 'linkWord?linkWord='+word;
 				}

@@ -169,18 +169,17 @@ public class DefineController {
 		return "define";
 	}
 	
-	@RequestMapping(value = "/newword_write", method = RequestMethod.GET)
+	@RequestMapping(value = "/newwordwrite", method = RequestMethod.GET)
 	public String newword_write(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
-		return "newword_write";
+		return "newwordwrite";
 	}
 
 	//define메인페이지
-	@RequestMapping(value = "/define", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	// Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
 	public String define(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
 		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
 		int Cnum = MainDefineList.size();
-		
 		model.addAttribute("Cnum", Cnum);
 		
 		model.addAttribute("MainDefineList", MainDefineList);
@@ -197,14 +196,6 @@ public class DefineController {
 		session.setAttribute("refreshNum", refreshNum);
 		return "define";
 	}
-	
-	//test
-	@RequestMapping(value = "/define2", method = RequestMethod.GET)
-	// Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
-	public String define2(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
-		return "define2";
-	}
-	
 
 	@RequestMapping(value = "/define_write", method = RequestMethod.GET)
 	public String define_write(Model model) throws Exception {
@@ -212,9 +203,9 @@ public class DefineController {
 		return "define_write";
 	}
 
-	@RequestMapping(value = "/thisword_write", method = RequestMethod.GET)
+	@RequestMapping(value = "/thiswordwrite", method = RequestMethod.GET)
 	public String thisword_write(Model model) throws Exception {
-		return "thisword_write";
+		return "thiswordwrite";
 	}
 
 	@RequestMapping(value = "/newwordWriting", method = RequestMethod.POST)

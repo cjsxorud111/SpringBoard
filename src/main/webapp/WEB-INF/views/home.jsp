@@ -5,6 +5,7 @@
 
 <html>
 <head>
+<meta name="naver-site-verification" content="b8b1382411790af26ef1553f419ce247d8465d24"/>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
