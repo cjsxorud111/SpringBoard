@@ -51,7 +51,7 @@ public class DefineController {
 	@ResponseBody
 	public String modifyWriting(HttpServletRequest request, Model model) throws Exception {
 		service.modifyWriting(request);
-		return "redirect:define";
+		return "redirect:/";
 	}
 	
 	// 글삭제하기
@@ -211,7 +211,7 @@ public class DefineController {
 	@RequestMapping(value = "/newwordWriting", method = RequestMethod.POST)
 	public String newwordWriting(HttpServletRequest request, Model model) throws Exception {
 		service.newwordWriting(request);
-		return "redirect:define";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "img1", method = RequestMethod.POST)

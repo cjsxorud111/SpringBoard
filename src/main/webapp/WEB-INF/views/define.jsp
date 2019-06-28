@@ -341,7 +341,7 @@
 										error : function() {
 										/* 	alert("error"); */
 											if(textStatus == "main(*)"){
-												window.location.href='define';
+												window.location.href='/';
 											}else{
 												window.location.href='linkWord?linkWord='+textStatus;
 											}
@@ -349,7 +349,7 @@
 										success : function(Parse_data) {
 												alert("gheelo");
 											if(textStatus == "main(*)"){
-												window.location.href='define';
+												window.location.href='/';
 											}else{
 												window.location.href='linkWord?linkWord='+textStatus;
 											}

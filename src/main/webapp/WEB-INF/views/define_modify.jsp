@@ -76,7 +76,7 @@
 				},
 				success : function(Parse_data) {
 					if(textStatus == 'main(*)'){
-						window.location.href = 'define';
+						window.location.href = '/';
 					} else {
 						window.location.href ='linkWord?linkWord='+textStatus;
 					}

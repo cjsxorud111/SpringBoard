@@ -51,6 +51,6 @@ public class MemberjoinController {
 		     }     
 		}
 		service.memberjoining(request);
-		return "redirect:home";
+		return "redirect:/";
 	}
 }

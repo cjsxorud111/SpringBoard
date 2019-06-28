@@ -65,7 +65,7 @@ function loginClick(){
 		success : function(returnValue) {
 			if(returnValue == 'success'){
 				if(word == 'main(*)'){
-					window.location.href = 'define';
+					window.location.href = '/';
 				}else if(word == 'write(*)'){
 					window.location.href = 'newwordwrite';
 				}else{
