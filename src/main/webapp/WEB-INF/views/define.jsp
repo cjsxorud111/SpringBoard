@@ -10,12 +10,12 @@
 <html>
 
 <head>
-<meta name="google-site-verification" content="SQWRkLaGa_ZfTcO7MTunO6zcad_-7bFPg_bdazI4Zk8" />
 <meta name="naver-site-verification" content="b8b1382411790af26ef1553f419ce247d8465d24"/>
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
 	rel="stylesheet" />
 
+<meta name="google-site-verification" content="SQWRkLaGa_ZfTcO7MTunO6zcad_-7bFPg_bdazI4Zk8" />
 <title>새롭게추가된 단어</title>
 <link href="resources/css/defineStyle.css?after" rel="stylesheet"
 	type="text/css">
@@ -42,15 +42,15 @@
 	
 	function getQuerystring(paramName){ 
 		var _tempUrl = window.location.search.substring(1); //url에서 처음부터 '?'까지 삭제 
-			var _tempArray = _tempUrl.split('&'); // '&'을 기준으로 분리하기 
-			for(var i = 0; _tempArray.length; i++) { 
-				
-				var _keyValuePair = _tempArray[i].split('='); // '=' 을 기준으로 분리하기 
-				
-				if(_keyValuePair[0] == paramName){ // _keyValuePair[0] : 파라미터 명 // _keyValuePair[1] : 파라미터 값 
-					return _keyValuePair[1]; 
-				} 
+		var _tempArray = _tempUrl.split('&'); // '&'을 기준으로 분리하기 
+		for(var i = 0; _tempArray.length; i++) { 
+			
+			var _keyValuePair = _tempArray[i].split('='); // '=' 을 기준으로 분리하기 
+			
+			if(_keyValuePair[0] == paramName){ // _keyValuePair[0] : 파라미터 명 // _keyValuePair[1] : 파라미터 값 
+				return _keyValuePair[1]; 
 			} 
+		} 
 	}
 	
 </script>
@@ -114,12 +114,6 @@
 		if(stringVal.indexOf(substring) == -1){
 			document.getElementById("explane").innerHTML = divcon;
 		}
-		/* var getLinkWord = getQuerystring(linkWord);
-		var getPage = getQuerystring(page); */
-		/* alert(getLinkWord + " " + getPage); */
-		/* if(getLinkWord == null && getPage == null){
-			
-		} */
 		
 		var aboveCommentSection = document
 				.getElementsByClassName("aboveCommentSection");
@@ -178,7 +172,7 @@
 </style>
 </head>
 <!-- 네브바 -->
-<div style="background-color: #2B2B2E/* 333333 *//*302C2A */; height: 3.8rem;">
+<div style="background-color: #2B2B2E; height: 3.8rem;">
 	<div
 		style="width: 1000px; width: 56rem; padding-top: 10px; margin: auto;">
 		<!-- 로고 -->
