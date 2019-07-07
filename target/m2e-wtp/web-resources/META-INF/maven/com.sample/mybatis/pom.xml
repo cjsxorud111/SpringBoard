@@ -16,12 +16,12 @@
 	</properties>
 
 	<dependencies>
-	<dependency>
-		<!-- json생성라이브러리 -->
-        <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1</version>
-        </dependency>
+		<dependency>
+			<!-- json생성라이브러리 -->
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1</version>
+		</dependency>
 
 
 		<!-- 이미지 썸네일 생성 라이브러리 -->
@@ -49,7 +49,6 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
-
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -77,6 +76,11 @@
 		</dependency>
 
 		<!-- Logging -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.1.7</version> <!--버전은 상황에 따라 -->
+		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>

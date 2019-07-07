@@ -65,7 +65,8 @@ function loginClick(){
 		success : function(returnValue) {
 			if(returnValue == 'success'){
 				if(word == 'main(*)'){
-					window.location.href = '/';
+					//window.location.href = '/';
+					window.location.href = 'http://localhost:8090/controller/';
 				}else if(word == 'write(*)'){
 					window.location.href = 'newwordwrite';
 				}else{

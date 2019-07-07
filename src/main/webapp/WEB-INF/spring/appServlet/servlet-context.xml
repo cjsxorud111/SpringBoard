@@ -38,6 +38,16 @@
 		<beans:property name="maxUploadSize" value="10485760" /> 10mb 제한
 	</beans:bean> -->
 
-
+	<!-- 인터셉터 선언 -->
+	<beans:bean id="LoginInterceptor"
+	class="com.example.interceptor.LoginInterceptor" />
+	<!-- 인터셉터와 url매핑 -->
+		<interceptors>
+			<interceptor>
+				<mapping path="http://localhost:8090/controller/login?word=main(*)" />
+				<beans:ref bean="LoginInterceptor"/>			
+			
+			</interceptor>
+		</interceptors>
 </beans:beans>
 

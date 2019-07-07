@@ -10,20 +10,29 @@
 <html>
 
 <head>
-<meta name="naver-site-verification" content="b8b1382411790af26ef1553f419ce247d8465d24"/>
+<meta name="naver-site-verification"
+	content="b8b1382411790af26ef1553f419ce247d8465d24" />
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
 	rel="stylesheet" />
 
-<meta name="google-site-verification" content="SQWRkLaGa_ZfTcO7MTunO6zcad_-7bFPg_bdazI4Zk8" />
+<meta name="google-site-verification"
+	content="SQWRkLaGa_ZfTcO7MTunO6zcad_-7bFPg_bdazI4Zk8" />
 <title>새롭게추가된 단어</title>
 <link href="resources/css/defineStyle.css?after" rel="stylesheet"
 	type="text/css">
 <script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="<c:url value="resources/js/defineJavaScript.js" />"></script>
+<script async
+	src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-7915256697883097",
+    enable_page_level_ads: true
+  });
+</script>
 <script type="text/javascript">
-	
 	// 댓글이나대댓글시 로그인검사위한변수
 	var session = '<%=sessionId%>';
 	var isSession = false;
@@ -157,18 +166,17 @@
 	scroll_follow( "#scroll" );
 	</script>
 <style>
-
-.foot{
+.foot {
 	padding: 15px;
 	text-align: center;
 }
+
 .container-fluid {
 	padding-right: 50px;
 	padding-left: 50px;
 	margin-right: auto;
 	margin-left: auto;
 }
-
 </style>
 </head>
 <!-- 네브바 -->
@@ -178,23 +186,27 @@
 		<!-- 로고 -->
 		<div style="float: left;">
 			<a href="/" id="title"
-				style="color: white; margin-left: 0.1rem; margin-bottom: 1rem; position: relative; bottom: 10px; font-weight:200;">
-				
-				<div id="logo" style="position: relative; z-index: 100; font-family: cursive;">HelloWord!</div>
-				<div style="width:176px; height:1px; position: absolute; bottom: 17.5px;  background-color:#FFCC00;"></div>
-				<div style="width:176px; height:1px; position: absolute; bottom: 19.5px;  background-color:#FFAC07;"></div>
-				<div style="width:176px; height:1px; position: absolute; bottom: 21.5px;  background-color:#FF9C07;"></div>
+				style="color: white; margin-left: 0.1rem; margin-bottom: 1rem; position: relative; bottom: 10px; font-weight: 200;">
+
+				<div id="logo"
+					style="position: relative; z-index: 100;">HelloWord!</div>
+				<div
+					style="width: 176px; height: 1px; position: absolute; bottom: 17.5px; background-color: #FFCC00;"></div>
+				<div
+					style="width: 176px; height: 1px; position: absolute; bottom: 19.5px; background-color: #FFAC07;"></div>
+				<div
+					style="width: 176px; height: 1px; position: absolute; bottom: 21.5px; background-color: #FF9C07;"></div>
 			</a>
 		</div>
 		<!-- 검색창 -->
-		<div style="float: left; margin-left: 3.2rem; margin-top:-1px;">
+		<div style="float: left; margin-left: 2.4rem; margin-top: -1px;">
 			<form class="form-inline" action="linkWord" method="get">
 				<!-- 텍스트박스 -->
 				<div>
 					<input type='text' name=linkWord autocomplete="off" id='inputText'
-						class='input_text' style="width: 310px; border:none;" onfocusout="loseFocus()" />
-					<span id="searchRecommendSection"
-						style="position: absolute;  width: 240px; top: 51px; z-index: 100;"></span>
+						class='input_text' style="width: 310px; border: none;"
+						onfocusout="loseFocus()" /> <span id="searchRecommendSection"
+						style="position: absolute; width: 240px; top: 51px; z-index: 100;"></span>
 				</div>
 
 				<!-- 돋보기 -->
@@ -205,42 +217,49 @@
 			</form>
 		</div>
 		<!-- 검색창오른쪽링크 -->
+		
 		<div id="navLink" style="float: left;">
 			<a href="#" onclick="writeLoginCheck()"
-				style="position: relative; bottom: 12px; color: white; margin-left: 0.1rem; font-size: 1.5rem; text-decoration: none; font-weight:350; ">새단어정의하기</a>
+				style="position: relative; bottom: 12px; color: white; margin-left: 0.1rem; font-size: 1.5rem; text-decoration: none; font-weight: 350;">새단어정의하기</a>
 			<a href="#" id="log"
-				style="position: relative; left: 7px; bottom: 12px; margin-left: 2rem; color: white; font-family: sans-serif; font-size: 1.5rem; text-decoration: none; font-weight:400;"></a>
+				style="position: relative; left: 7px; bottom: 12px; margin-left: 2rem; color: white; font-family: sans-serif; font-size: 1.5rem; text-decoration: none; font-weight: 400;"></a>
 		</div>
 	</div>
 </div>
 
 <!-- 전체배경 -->
-<div class="container-fluid" style='position: relative; /* background-color: #FFCC00; */ background: linear-gradient( to right, #FFDA40, #FCB900 );'>
+<div class="container-fluid"
+	style='position: relative; /* background-color: #FFCC00; */ background: linear-gradient(to right, #FFDA40, #FCB900);'>
 	<!-- 내부배경 -->
-	<div id = 'innerSection' style="width: 896px; padding-bottom: 0.3rem; padding-top: 17px; margin: auto;">
-	
+	<div id='innerSection'
+		style="width: 896px; padding-bottom: 0.3rem; padding-top: 17px; margin: auto;">
+
 		<!-- 오른쪽창 -->
-		<div id="scroll"style="position: relative; left: 0; top: 0; width: 250px; padding: 10px; float: right;">
-			<div style="padding-top: 0.7rem; margin-bottom: 1rem; margin-left:2.5rem; font-weight:600; ">
-			최근정의가 추가된 단어
-			</div>
+		<div id="scroll"
+			style="position: relative; left: 0; top: 0; width: 250px; padding: 10px; float: right;">
+			<div
+				style="padding-top: 0.7rem; margin-bottom: 1rem; margin-left: 2.5rem; font-weight: 600;">
+				최근정의가 추가된 단어</div>
 			<c:forEach items="${MainDefineList}" var="a" end="13">
 				<div class="wordShortCut">
 					<!-- 단어표시 -->
 					<div class="myDIV">
-						<a href="#" style="text-decoration: none; font-weight: 600;" onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
+						<a href="#" style="text-decoration: none; font-weight: 600;"
+							onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
 					</div>
 					<!-- 날짜표시 -->
-					<div style="margin-left: 5px; font-size: 0.8rem; float: right; display: inline-block;">${a.currenttime}</div>
+					<div
+						style="margin-left: 5px; font-size: 0.8rem; float: right; display: inline-block;">${a.currenttime}</div>
 				</div>
 			</c:forEach>
 		</div>
-		
+
 		<!-- 웹사이트설명창 -->
 		<div id="explane"></div>
-		
+
 		<!-- 왼쪽창 -->
-		<c:forEach items="${MainDefineList}" var="a" begin="<%=begin%>" end="<%=end%>">
+		<c:forEach items="${MainDefineList}" var="a" begin="<%=begin%>"
+			end="<%=end%>">
 			<div id="container03" style="">
 				<!-- 왼쪽창에서 실제컨텐츠 표시부분 -->
 				<div id="container04"
@@ -251,24 +270,28 @@
 						<div style="float: right;">
 							<div>${a.currenttime}</div>
 							<div style="">
-								<a href="thiswordwrite?word=${a.word}" style="float: right; text-decoration: none;">새정의추가</a>
+								<a href="thiswordwrite?word=${a.word}"
+									style="float: right; text-decoration: none;">새정의추가</a>
 							</div>
 							<div style="">&nbsp;</div>
 							<!-- 글수정 글삭제버튼 -->
-							<div id="delete" >
+							<div id="delete">
 								<div style="float: right;">
-									<button onclick="deleteCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}');"
-										class="defineDeleteButton" style="font-weight:500;">삭제</button>
+									<button
+										onclick="deleteCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}');"
+										class="defineDeleteButton" style="font-weight: 500;">삭제</button>
 								</div>
 								<div style="float: right;">
-									<form action="defineContentModify" method="post" onsubmit="return modifyCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}')">
-										<input type="hidden" name="conNum" value="${a.num}"/>
-										<input type="hidden" name="textStatus" value="${textStatusVO.textStatus}"/>
-										<button class="modifyButton" style="font-weight:500;">수정</button>
+									<form action="defineContentModify" method="post"
+										onsubmit="return modifyCheck(${a.num}, '${a.id}', '${textStatusVO.textStatus}')">
+										<input type="hidden" name="conNum" value="${a.num}" /> <input
+											type="hidden" name="textStatus"
+											value="${textStatusVO.textStatus}" />
+										<button class="modifyButton" style="font-weight: 500;">수정</button>
 									</form>
 								</div>
 							</div>
-							
+
 							<script>
 								function modifyCheck(num, id, textStatus){
 									if (isSession == false) {
@@ -358,7 +381,7 @@
 								<input type="hidden" name="linkWord" value="${a.word}">
 								<a href="#"
 									onclick="document.getElementById('frm${a.num}').submit();"
-									style="text-decoration: none; font-color: black; font-weight:600;">${a.word}</a>
+									style="text-decoration: none; font-color: black; font-weight: 600;">${a.word}</a>
 							</form>
 						</h1>
 					</div>
@@ -369,15 +392,19 @@
 					<div id="rate" style="float: right;">
 						<div>
 							<button onclick="recommendUp(${a.up}, ${a.num});"
-								id="recommendUp${a.num}" onmouseover="recommendUpOver(${a.num})" onmouseout="recommendUpOut(${a.num})" class="upVote">추천: ${a.up}</button>
+								id="recommendUp${a.num}" onmouseover="recommendUpOver(${a.num})"
+								onmouseout="recommendUpOut(${a.num})" class="upVote">추천:
+								${a.up}</button>
 						</div>
 						<div>
 							<button onclick="recommendDown(${a.down}, ${a.num});"
-								id="recommendDown${a.num}" onmouseover="recommendDownOver(${a.num})" onmouseout="recommendDownOut(${a.num})" class="downVote">비추천:
+								id="recommendDown${a.num}"
+								onmouseover="recommendDownOver(${a.num})"
+								onmouseout="recommendDownOut(${a.num})" class="downVote">비추천:
 								${a.down}</button>
 						</div>
 					</div>
-					
+
 					<script>
 						function recommendUpOver(num){
 							var id = "recommendUp" + num;
@@ -396,7 +423,7 @@
 							$('#' + id).css("background-color", "white");
 						}
 					</script>
-					
+
 					<div>글쓴이: ${a.id}</div>
 					<br>
 					<div>
@@ -407,7 +434,7 @@
 					<table frame=void>
 						<tr>
 							<!-- 기본댓글달기 -->
-							
+
 							<td id="button${a.num}" class="aboveCommentSection"></td>
 						</tr>
 					</table>
@@ -479,7 +506,7 @@
 												<div style="position: relative; left: 43px; bottom: 10px;">${b.id}</div>
 												<div id="subView" style="padding-left: 41px; width: 36rem;">
 													${b.content}
-												<!-- 댓글버튼 -->
+													<!-- 댓글버튼 -->
 												</div>
 											</c:when>
 
@@ -589,23 +616,25 @@
 				</div>
 			</div>
 		</c:forEach>
-	<div id="paging" style="text-align:center; background-color: white; margin-bottom:1rem;">
-		<a href="define?page=1">[처음]</a>
+		<div id="paging"
+			style="text-align: center; background-color: white; margin-bottom: 1rem;">
+			<a href="define?page=1">[처음]</a>
 			<%
-			for (int i = 1; i <= pagenum; i++) {
-			%> 
-		<a href="define?page=<%=i%>"><%=i%></a>&nbsp 
+				for (int i = 1; i <= pagenum; i++) {
+			%>
+			<a href="define?page=<%=i%>"><%=i%></a>&nbsp
 			<%
-	 		}
-	 		%> 
-	 	<a href="define?page=<%=pagenum%>">[끝]</a>
+				}
+			%>
+			<a href="define?page=<%=pagenum%>">[끝]</a>
+		</div>
 	</div>
-	</div>
-	
+
 </div>
 
-<div class="foot" style="background-color:#2B2B2E;">
-	<div style="color:white;">Copyright 2019. Tae kyoung. all rights reserved.</div>
+<div class="foot" style="background-color: #2B2B2E;">
+	<div style="color: white;">Copyright 2019. Tae kyoung. all rights
+		reserved.</div>
 </div>
 
 <script>

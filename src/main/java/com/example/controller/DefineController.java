@@ -5,9 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 import javax.inject.Inject;
@@ -15,7 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,14 +25,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.dto.DefineSubVO;
-import com.example.dto.GetContentVO;
 import com.example.dto.GetModifyContentVO;
-import com.example.dto.HomeContentVO;
 import com.example.dto.MainDefineContentVO;
-import com.example.dto.SubVO;
 import com.example.dto.textStatusVO;
 import com.example.service.DefineService;
-import com.example.service.HomeService;
+
 @Controller
 public class DefineController {
 	int refreshNum = 0;
@@ -61,15 +58,7 @@ public class DefineController {
 		
 		String textStatus = request.getParameter("textStatus");
 		String returnUrl = "redirect:linkWord?linkWord="+textStatus;
-		//설정하지 않았는데 왜define으로 가는지 이해못함 이해하고 수정필요
-//		if(textStatus.equals("main(*)")) {
-//			System.out.println("hsddsloo");
-//			return "redirect:define";
-//		} else {
-//			
-//			return "define";
-//		}
-		System.out.println("helloo");
+		
 		return "success";
 	}
 	
@@ -84,19 +73,8 @@ public class DefineController {
 		response.setAttribute("modifyContentVO", modifyContentVO);
 		textStatusVO.setTextStatus(textStatus);
 		response.setAttribute("textStatusVO", textStatusVO );
-//			설정하지 않았는데 왜define으로 가는지 이해못함 이해하고 수정필요
-//			if(textStatus.equals("main(*)")) {
-//				System.out.println("hsddsloo");
-//				return "";
-//			} else {
-//				return returnUrl;
-//			}
-		return "define_modify";
-	}
 
-	@RequestMapping(value = "/temp", method = RequestMethod.POST)
-	public String temp(HttpServletRequest request, Model model) throws Exception {
-		return "temp";
+		return "define_modify";
 	}
 	
 	// 추천수증가
@@ -142,7 +120,6 @@ public class DefineController {
 	@RequestMapping(value = "/defineSecondSub", method = RequestMethod.POST)
 	@ResponseBody
 	public String defineSecondSub(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
-		System.out.println(request.getParameter("textVal")+"D오류");
 		service.defineSecondSub(request); 
 		return "success";
 	}
@@ -177,13 +154,15 @@ public class DefineController {
 	//define메인페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	// Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
-	public String define(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
+	public String define(Locale locale, HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
 		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
 		int Cnum = MainDefineList.size();
 		model.addAttribute("Cnum", Cnum);
-		
+		Logger logger = LoggerFactory.getLogger(this.getClass());
 		model.addAttribute("MainDefineList", MainDefineList);
-
+		System.out.println("로그엔드");
+		logger.info("Welcome home! The client locale is {}.", locale);
+		logger.error("test","에러발생");
 		List<DefineSubVO> getDefinSubList = service.getDefinSubList();
 		model.addAttribute("getDefinSubList", getDefinSubList);	
 		//어떤페이지인지구분
@@ -226,14 +205,12 @@ public class DefineController {
 		try {
 			UUID uuid = UUID.randomUUID();
 			String fileName = uuid + "_" + upload.getOriginalFilename();
-			System.out.println(fileName);
 			byte[] bytes = upload.getBytes();
 			String uploadPath = "/Users/taeky/eclipse-workspace/SpringBoard/src/main/webapp/resources/img/" + fileName;// 저장경로
 
 			out = new FileOutputStream(new File(uploadPath));
 			out.write(bytes);
 			String callback = request.getParameter("CKEditorFuncNum");
-			System.out.println(callback);
 			printWriter = response.getWriter();
 			String fileUrl = "img/" + fileName; // url경로
 

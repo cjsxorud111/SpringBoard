@@ -35,7 +35,7 @@ public class DefineDAOImpl implements DefineDAO {
 	public List<MainDefineContentVO> selectMainDefCon() throws Exception {
 		List<MainDefineContentVO> MainDefineList = sqlSession.selectList(Namespace + ".mainDefineList");
 		return MainDefineList;
-	}
+	}    
 	
 	@Override
 	public List<MainDefineContentVO> selectRecommendMainDefCon() throws Exception {

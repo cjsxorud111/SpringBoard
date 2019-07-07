@@ -208,13 +208,6 @@
 }
 
 /* 네브바 링크 */
-#navLink {
-	font-size: 17px;
-	font-color: white;
-	position: relative;
-	 top: 15px; 
-	padding-left: 3rem;
-}
 
 #navbarResponsive {
 	margin-top: 8px;
