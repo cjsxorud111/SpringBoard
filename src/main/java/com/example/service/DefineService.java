@@ -4,17 +4,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.json.simple.JSONObject;
-
 import com.example.dto.DefineSubVO;
-import com.example.dto.FileContentVO;
-import com.example.dto.FileContentVO2;
-import com.example.dto.GetContentVO;
 import com.example.dto.GetModifyContentVO;
-import com.example.dto.HomeContentVO;
 import com.example.dto.MainDefineContentVO;
-import com.example.dto.MemberVO;
-import com.example.dto.SubVO;
 
 public interface DefineService {
 	
