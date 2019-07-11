@@ -618,15 +618,15 @@
 		</c:forEach>
 		<div id="paging"
 			style="text-align: center; background-color: white; margin-bottom: 1rem;">
-			<a href="define?page=1">[처음]</a>
+			<a href="?page=1">[처음]</a>
 			<%
 				for (int i = 1; i <= pagenum; i++) {
 			%>
-			<a href="define?page=<%=i%>"><%=i%></a>&nbsp
+			<a href="?page=<%=i%>"><%=i%></a>&nbsp
 			<%
 				}
 			%>
-			<a href="define?page=<%=pagenum%>">[끝]</a>
+			<a href="?page=<%=pagenum%>">[끝]</a>
 		</div>
 	</div>
 
