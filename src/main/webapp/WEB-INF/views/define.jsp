@@ -185,7 +185,7 @@
 		style="width: 1000px; width: 56rem; padding-top: 10px; margin: auto;">
 		<!-- 로고 -->
 		<div style="float: left;">
-			<a href="/" id="title"
+			<a href="http://www.helloword.kr/" id="title"
 				style="color: white; margin-left: 0.1rem; margin-bottom: 1rem; position: relative; bottom: 10px; font-weight: 200;">
 
 				<div id="logo"

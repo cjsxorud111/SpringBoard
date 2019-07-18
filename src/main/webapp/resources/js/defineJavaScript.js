@@ -2,7 +2,7 @@ function recommendUp(upNumber, conNum) {
 	$("#te").text("test");
 
 	if (isSession == false) {
-		alert("먼저로그인을 해주세요" + isSession + session);
+		alert("먼저로그인을 해주세요");
 	} else {
 		$.ajax({
 			type : "POST", // 전송방식을 지정한다 (POST,GET)
