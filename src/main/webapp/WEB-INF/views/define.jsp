@@ -181,8 +181,7 @@
 </head>
 <!-- 네브바 -->
 <div style="background-color: #2B2B2E; height: 3.8rem;">
-	<div
-		style="width: 1000px; width: 56rem; padding-top: 10px; margin: auto;">
+	<div style="width: 1000px; width: 56rem; padding-top: 10px; margin: auto;">
 		<!-- 로고 -->
 		<div style="float: left;">
 			<a href="http://www.helloword.kr/" id="title"
@@ -199,7 +198,7 @@
 			</a>
 		</div>
 		<!-- 검색창 -->
-		<div style="float: left; margin-left: 2.4rem; margin-top: -1px;">
+		<div style="float: left; margin-left: 5rem; margin-top: -1px;">
 			<form class="form-inline" action="linkWord" method="get">
 				<!-- 텍스트박스 -->
 				<div>
@@ -211,36 +210,36 @@
 
 				<!-- 돋보기 -->
 				<button type='submit'
-					style="margin-bottom: 13px; margin-left: 11px;" class='sch_smit'>
+					style="margin-bottom: 13px; margin-left: 10px;" class='sch_smit'>
 					<span class="demoSpan1">
 				</button>
 			</form>
 		</div>
 		<!-- 검색창오른쪽링크 -->
 		
-		<div id="navLink" style="float: left;">
-			<a href="#" onclick="writeLoginCheck()"
-				style="position: relative; bottom: 12px; color: white; margin-left: 0.1rem; font-size: 1.5rem; text-decoration: none; font-weight: 350;">새단어정의하기</a>
+		<div id="navLink" style="float: left; margin-left: 19px;">
+			<a href="#" id="leftword" onclick="writeLoginCheck()"
+				style="position: relative; left: 4px; bottom: 11px; color: white; margin-left: 0.1rem; font-size: 1.2rem; text-decoration: none; font-weight: 350;">새단어정의하기</a>
 			<a href="#" id="log"
-				style="position: relative; left: 7px; bottom: 12px; margin-left: 2rem; color: white; font-family: sans-serif; font-size: 1.5rem; text-decoration: none; font-weight: 400;"></a>
+				style="position: relative; left: 13px; bottom: 11px; margin-left: 2rem; color: white; font-family: sans-serif; font-size: 1.25rem; text-decoration: none; font-weight: 400;"></a>
 		</div>
 	</div>
 </div>
 
 <!-- 전체배경 -->
 <div class="container-fluid"
-	style='position: relative; /* background-color: #FFCC00; */ background: linear-gradient(to right, #FFDA40, #FCB900);'>
+	style='position: relative; background: #FCB900;'>
 	<!-- 내부배경 -->
 	<div id='innerSection'
 		style="width: 896px; padding-bottom: 0.3rem; padding-top: 17px; margin: auto;">
 
 		<!-- 오른쪽창 -->
 		<div id="scroll"
-			style="position: relative; left: 0; top: 0; width: 250px; padding: 10px; float: right;">
+			style="position: relative; left: 0; top: 0; padding: 10px; padding-bottom: 15px; width: 250px; float: right;">
 			<div
 				style="padding-top: 0.7rem; margin-bottom: 1rem; margin-left: 2.5rem; font-weight: 600;">
 				최근정의가 추가된 단어</div>
-			<c:forEach items="${MainDefineList}" var="a" end="13">
+			<c:forEach items="${MainDefineList}" var="a" end="14">
 				<div class="wordShortCut">
 					<!-- 단어표시 -->
 					<div class="myDIV">
@@ -263,7 +262,7 @@
 			<div id="container03" style="">
 				<!-- 왼쪽창에서 실제컨텐츠 표시부분 -->
 				<div id="container04"
-					style="width: 39rem; padding-left: 1.5rem; padding-right: 1.5rem; padding-top: 0.1rem; margin-bottom: 1.25rem; background-color: #FFFFFF;">
+					style="width: 39rem; padding-left: 1.5rem; box-shadow:1px 1px 1px 1px gray; padding-right: 1.5rem; padding-top: 0.1rem; margin-bottom: 1.25rem; background-color: #FFFFFF;">
 					&nbsp;&nbsp;
 					<!-- 단어제목으로검색링크 -->
 					<div>

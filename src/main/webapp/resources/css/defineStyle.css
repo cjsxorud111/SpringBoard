@@ -132,6 +132,14 @@
 	}
 }
 
+#leftword:hover {
+	border-bottom: 2px solid #FCB900;
+}
+
+#log:hover {
+	border-bottom: 2px solid #FCB900;
+}
+
 /* 추천검색어창 */
 #searchRecommendSection {
 	/* margin-top: 10px; */

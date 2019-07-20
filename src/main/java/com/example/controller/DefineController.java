@@ -77,6 +77,12 @@ public class DefineController {
 		return "define_modify";
 	}
 	
+	@RequestMapping(value = "/inform", method = RequestMethod.GET)
+	public String inform(HttpServletRequest request,HttpServletRequest response, Model model) throws Exception {
+
+		return "inform";
+	}
+	
 	// 추천수증가
 	@RequestMapping(value = "/recommendUp", method = RequestMethod.POST)
 	@ResponseBody
