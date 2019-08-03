@@ -219,9 +219,9 @@
 		
 		<div id="navLink" style="float: left; margin-left: 19px;">
 			<a href="#" id="leftword" onclick="writeLoginCheck()"
-				style="position: relative; left: 4px; bottom: 11px; color: white; margin-left: 0.1rem; font-size: 1.2rem; text-decoration: none; font-weight: 350;">새단어정의하기</a>
+				style="position: relative; left: 45px; top: 6px; color: white; margin-left: 0.1rem; font-size: 1.2rem; text-decoration: none; font-weight: 350;">새단어정의하기</a>
 			<a href="#" id="log"
-				style="position: relative; left: 13px; bottom: 11px; margin-left: 2rem; color: white; font-family: sans-serif; font-size: 1.25rem; text-decoration: none; font-weight: 400;"></a>
+				style="position: relative; left: 57px; top: 6px; margin-left: 2rem; color: white; font-family: sans-serif; font-size: 1.25rem; text-decoration: none; font-weight: 400;"></a>
 		</div>
 	</div>
 </div>
@@ -655,7 +655,7 @@ function mout(num){
 	var id = "num"+number;
 	$('#' + id).css("background-color", "white");
 }
-
+/* 추천검색어 */
 $('#inputText').keyup(function(event) {
 	var keySet = "ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㄲㄸㅃㅆㅏㅑㅓㅕㅗㅛㅜㅠㅡㅣㅐㅒㅔㅖ1234567890,.?/<>:;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	if (event.keyCode == 38) { // 위방향키눌렀을때

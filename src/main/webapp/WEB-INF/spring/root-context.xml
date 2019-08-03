@@ -24,7 +24,7 @@
 	</bean>
  -->
    
-   
+    <!-- jdbc 자동연결 id와 pw만 바꾸어주면 되기 때문에 di의 장점인 변경의 유연성의 예라고 할수 있다.-->
  	<bean id="dataSource"   
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>

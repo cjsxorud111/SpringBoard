@@ -35,8 +35,10 @@ public class DefineController {
 	int refreshNum = 0;
 	// 의존관계 자동연결
 	@Inject
-	private DefineService service;
-
+	private DefineService service;	
+	
+	final static Logger logger = LoggerFactory.getLogger(DefineController.class);
+	
 	@RequestMapping(value = "/searchWord", produces = "application/text; charset=utf8", method = RequestMethod.POST)
 	@ResponseBody
 	public String searchWord(HttpServletRequest request, Model model) throws Exception {
@@ -44,6 +46,10 @@ public class DefineController {
 		return service.searchWord(request);
 	}
 
+	public int test(int a, int b) {
+		return a+b;
+	}
+	
 	@RequestMapping(value = "/modifyWriting", method = RequestMethod.POST)
 	@ResponseBody
 	public String modifyWriting(HttpServletRequest request, Model model) throws Exception {
@@ -166,7 +172,8 @@ public class DefineController {
 		model.addAttribute("Cnum", Cnum);
 		Logger logger = LoggerFactory.getLogger(this.getClass());
 		model.addAttribute("MainDefineList", MainDefineList);
-		System.out.println("로그엔드");
+		logger.debug("testloggergger");
+		
 		logger.info("Welcome home! The client locale is {}.", locale);
 		logger.error("test","에러발생");
 		List<DefineSubVO> getDefinSubList = service.getDefinSubList();

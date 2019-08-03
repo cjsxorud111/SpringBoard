@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.DefineDAO;
+import com.example.dao.DefineDAOImpl;
 import com.example.dto.DefineSubVO;
 import com.example.dto.GetModifyContentVO;
 import com.example.dto.MainDefineContentVO;
@@ -24,6 +25,7 @@ public class DefineServiceImpl implements DefineService {
 	@Autowired
 	private DefineDAO dao;
 	
+	
 	@Override
 	public void newwordWriting(HttpServletRequest request) throws Exception {
 		NewwordVO vo = new NewwordVO();
@@ -35,6 +37,7 @@ public class DefineServiceImpl implements DefineService {
 		String divideCharacter = hanguldivide.toKoJasoAtom(request.getParameter("WORD"));
 		vo.setSplitWord(divideCharacter);
 		dao.newwordWriting(vo);
+		
 	}
 
 	@Override
@@ -84,7 +87,6 @@ public class DefineServiceImpl implements DefineService {
 	@Override
 	public void defineSecondSub(HttpServletRequest request) throws Exception {
 		DefineSubVO vo = new DefineSubVO();
-		System.out.println(request.getParameter("textVal")+"D오류");
 		vo.setContent("to" + " " + request.getParameter("answerId") + " "+ request.getParameter("textVal"));
 		vo.setConnum(request.getParameter("num"));
 		vo.setSpace(request.getParameter("space"));

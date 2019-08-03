@@ -8,7 +8,6 @@ public class DefineControllerTest {
 
 	@Test
 	public void testDefine() {
-		System.out.println("hellll");
 	}
 
 }

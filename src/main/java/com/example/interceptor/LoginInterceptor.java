@@ -10,8 +10,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {
-//	private static final Logger logger = 
-//			LoggerFactory.getLogger(Interceptor.class);
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -28,7 +26,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("hellopost");
 
 		super.postHandle(request, response, handler, modelAndView);
 	}

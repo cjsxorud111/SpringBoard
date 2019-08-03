@@ -16,10 +16,6 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public void memberjoining(MemberjoinVO vo) throws Exception {
-		System.out.println(vo.getId());
-		System.out.println(vo.getPw());
-		System.out.println(vo.getName());
-		System.out.println(vo.getEmail());
 		sqlSession.insert(Namespace + ".memberjoining", vo);
 	}
 	

@@ -93,7 +93,7 @@
 			</div>
 			
 			<div id="deleteButton">
-				<a href="define" style="width:20rem;" class="btn btn-primary">취소</a>
+				<a href="http://www.helloword.kr/" style="width:20rem;" class="btn btn-primary">취소</a>
 			</div>
 
 		</form>

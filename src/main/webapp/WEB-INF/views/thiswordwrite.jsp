@@ -23,7 +23,6 @@
 	<%
 		String id = (String) session.getAttribute("ID");
 		String pw = (String) session.getAttribute("PW");
-		System.out.println(id + "님 환영합니다.");
 	%>
 	<table id="cont">
 		<form action="newwordWriting" method="post"

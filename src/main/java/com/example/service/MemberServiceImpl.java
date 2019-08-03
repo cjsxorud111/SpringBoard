@@ -19,7 +19,6 @@ public class MemberServiceImpl implements MemberService {
 		String a = request.getParameter("ID");
 		String b = request.getParameter("PW");
 		String c = dao.selectpw(a);
-		System.out.println("요기"+c);
 		if (c == null) {
 			return "noId";
 		}

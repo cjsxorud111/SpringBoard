@@ -23,7 +23,6 @@
 	<%
 		String id = (String) session.getAttribute("ID");
 		String pw = (String) session.getAttribute("PW");
-		System.out.println(id + "님 환영합니다.");
 	%>
 <div style="background-color:#DBDBDB; border-radius: 9px 9px 9px 9px; padding-top:1.5rem; position: relative; top: 5%; bottom: 0; left: 25%; right: 40%; padding-bottom:1.5rem; width:45rem;">
 	<table id="cont" style="padding-top:1rem; background-color:#DBDBDB;">
