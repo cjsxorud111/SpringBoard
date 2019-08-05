@@ -162,14 +162,32 @@ public class DefineController {
 	public String newword_write(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
 		return "newwordwrite";
 	}
+	
+	static public int pageCount(int cNum) {
+		//총 페이지수 소수로계산
+		double pNum = (double)cNum / 10;
+		//나머지 페이지가 있는지 확인 
+		double isDecimal = pNum - (int)pNum;
+		
+		//총 페이지 개수
+		int totalPageNum;
 
+		if (isDecimal == 0) {
+			totalPageNum = (int)pNum;
+		} else {
+			totalPageNum = (int)pNum + 1;
+		}
+		return totalPageNum;
+	}
+	
 	//define메인페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	// Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
 	public String define(Locale locale, HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
 		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
-		int Cnum = MainDefineList.size();
-		model.addAttribute("Cnum", Cnum);
+		
+		model.addAttribute("totalPageNum", pageCount(MainDefineList.size()));
+		
 		Logger logger = LoggerFactory.getLogger(this.getClass());
 		model.addAttribute("MainDefineList", MainDefineList);
 		logger.debug("testloggergger");

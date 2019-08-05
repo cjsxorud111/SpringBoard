@@ -8,17 +8,15 @@
 %>
 <%@ include file="nav.jsp"%>
 <html>
-
 <head>
+<title>신조어사전 헬로워드!</title>
 <meta name="naver-site-verification"
 	content="b8b1382411790af26ef1553f419ce247d8465d24" />
+<meta name="google-site-verification"
+	content="SQWRkLaGa_ZfTcO7MTunO6zcad_-7bFPg_bdazI4Zk8" />
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
 	rel="stylesheet" />
-
-<meta name="google-site-verification"
-	content="SQWRkLaGa_ZfTcO7MTunO6zcad_-7bFPg_bdazI4Zk8" />
-<title>새롭게추가된 단어</title>
 <link href="resources/css/defineStyle.css?after" rel="stylesheet"
 	type="text/css">
 <script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
@@ -33,15 +31,15 @@
   });
 </script>
 <script type="text/javascript">
-	// 댓글이나대댓글시 로그인검사위한변수
+	// 댓글이나대댓글시 로그인검사 위한 변수
 	var session = '<%=sessionId%>';
 	var isSession = false;
 	if (session != "null") {
 		isSession = true;
 	}
 	
-	function writeLoginCheck(){
-		if(isSession == true){
+	function writeLoginCheck() {
+		if(isSession == true) {
 			window.location.href='newwordwrite';
 		} else {
 			alert("로그인이 필요합니다.");
@@ -63,41 +61,24 @@
 	}
 	
 </script>
-<!-- 자바스크립트에서수정이안되기에onload자바스크립트만jsp에만듬 -->
 <%
-	//controller에서 model.addAttribute 로 보낸걸 request로 받음
-	Object contentNum = request.getAttribute("Cnum");
-
-	int number = Integer.parseInt(contentNum.toString());
-
-	//총 몇 페이지인지 계산
-	double num = (double) number / 10;
-	double temp = num - (int) num;
-	//총 페이지수
-	int pagenum;
-
-	if (temp == 0) {
-		pagenum = (int) num;
-	} else {
-		pagenum = (int) num + 1;
-	}
-
 	//페이지 블록 계산 
 	int herePage = 0;
 	int begin = 0;
 	int end = 0;
-
+	
 	String pages = request.getParameter("page");
-
+	
 	if (pages == null) {
 		herePage = 1;
 	} else {
 		herePage = Integer.parseInt(pages);
 	}
-
+	
 	begin = herePage * 10 - 10;
 	end = herePage * 10 - 1;
 %>
+
 <script>
 	window.onload = function() {
 		var num = 0;
@@ -156,14 +137,16 @@
 		});
 	}
 	
-	function scroll_follow( id ){
+	//오른쪽창 스크롤 따라이동 함수
+	function scroll_follow(id){
 		//스크롤이 움직일때마다 이벤트 발생
-		$(window).scroll(function( )  { 
+		$(window).scroll(function() { 
 		     var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
 		     $("#scroll").css('top',  position ); //해당 오브젝트 위치값 재설정
 		});
 	}
-	scroll_follow( "#scroll" );
+	scroll_follow("#scroll");
+	
 	</script>
 <style>
 .foot {
@@ -615,17 +598,43 @@
 				</div>
 			</div>
 		</c:forEach>
+		
 		<div id="paging"
 			style="text-align: center; background-color: white; margin-bottom: 1rem;">
 			<a href="?page=1">[처음]</a>
+			
 			<%
-				for (int i = 1; i <= pagenum; i++) {
+				//controller에서 model.addAttribute 로 보낸걸 request로 받음
+				/* Object contentNum = request.getAttribute("Cnum");
+			
+				int number = Integer.parseInt(contentNum.toString());
+			 */
+				//총 몇 페이지인지 계산
+				/* double num = (double)number / 10;
+				double temp = num - (int)num; */
+				//총 페이지수
+				/* int pagenum;
+			
+				if (temp == 0) {
+					pagenum = (int)num;
+				} else {
+					pagenum = (int)num + 1;
+				} */
+			
+				
+			%>
+			
+			<%
+				Object totalPageNum01 = request.getAttribute("totalPageNum");
+				int totalPageNum02 =  Integer.parseInt(totalPageNum01.toString());
+
+				for (int i = 1; i <= totalPageNum02; i++) {
 			%>
 			<a href="?page=<%=i%>"><%=i%></a>&nbsp
 			<%
 				}
 			%>
-			<a href="?page=<%=pagenum%>">[끝]</a>
+			<a href="?page=<%=totalPageNum02%>">[끝]</a>
 		</div>
 	</div>
 

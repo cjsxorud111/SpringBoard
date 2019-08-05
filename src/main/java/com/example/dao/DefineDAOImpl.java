@@ -22,24 +22,20 @@ public class DefineDAOImpl implements DefineDAO {
 	@Inject
 	private SqlSession sqlSession;
 	private static final String Namespace = "com.example.mapper.defineMapper";
-
-	
-	private static final Logger logger = LoggerFactory
-			.getLogger(DefineDAOImpl.class);
 	
 	@Override
-	public void newwordWriting(NewwordVO vo) throws Exception {
+	public void newwordWriting(NewwordVO vo) {
 		sqlSession.insert(Namespace + ".newwordWriting", vo);
 	}
 	
 	@Override
-	public List<MainDefineContentVO> selectMainDefCon() throws Exception {
+	public List<MainDefineContentVO> selectMainDefCon() {
 		List<MainDefineContentVO> MainDefineList = sqlSession.selectList(Namespace + ".mainDefineList");
 		return MainDefineList;
 	}    
 	
 	@Override
-	public List<MainDefineContentVO> selectRecommendMainDefCon() throws Exception {
+	public List<MainDefineContentVO> selectRecommendMainDefCon() {
 		List<MainDefineContentVO> MainDefineList = sqlSession.selectList(Namespace + ".recommendDefineList");
 		return MainDefineList;
 	}
@@ -47,7 +43,6 @@ public class DefineDAOImpl implements DefineDAO {
 	@Override
 	public List<MainDefineContentVO> linkCon(String linkWord) throws Exception {
 		List<MainDefineContentVO> linkCon = sqlSession.selectList(Namespace + ".linkCon", linkWord);
-		
 		return linkCon;
 	}
 	
@@ -70,7 +65,7 @@ public class DefineDAOImpl implements DefineDAO {
 	}
 
 	@Override
-	public void DeleteAllSub() throws Exception {
+	public void DeleteAllSub() {
 		sqlSession.delete(Namespace + ".deleteAllSub");
 	}
 
@@ -90,11 +85,13 @@ public class DefineDAOImpl implements DefineDAO {
 	public void deleteDefineSub(int num) throws Exception {
 		sqlSession.delete(Namespace + ".deleteDefineSub", num);
 	}
+	
 	//추천+1
 	@Override
 	public void recommendUp(String upNumber, String conNum) throws Exception {
 		sqlSession.update(Namespace + ".recommendUp", conNum);
 	}
+	
 	//추천-1
 	@Override
 	public void recommendDown(String downNumber, String conNum) throws Exception {
@@ -106,12 +103,10 @@ public class DefineDAOImpl implements DefineDAO {
 		sqlSession.update(Namespace + ".modifyWriting", vo);
 	}
 
-
 	@Override
 	public void recommendWrite(RecommendVO recommendVO) throws Exception {
 		sqlSession.insert(Namespace + ".recommendWriting", recommendVO);
 	} 
-
 
 	@Override
 	public void deleteDefineContent(String conNum) throws Exception {
