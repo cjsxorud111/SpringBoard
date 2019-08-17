@@ -152,7 +152,16 @@
 	}
 	scroll_follow("#scroll");
 	
-	</script>
+	/* $(window).scroll(function(){
+		var scrollTop = $(document).scrollTop();
+		if (scrollTop < 180) {
+		    scrollTop = 180;
+		}
+		$("#scroll").stop();
+		$("#scroll").animate({ "top" : scrollTop });
+	}); */
+	
+</script>
 <style>
 .foot {
 	padding: 15px;
@@ -223,22 +232,43 @@
 
 		<!-- 오른쪽창 -->
 		<div id="scroll"
-			style="position: relative; left: 0; top: 0; padding: 10px; padding-bottom: 15px; width: 250px; float: right;">
-			<div
-				style="padding-top: 0.7rem; margin-bottom: 1rem; margin-left: 2.5rem; font-weight: 600;">
-				최근정의가 추가된 단어</div>
-			<c:forEach items="${MainDefineList}" var="a" end="14">
-				<div class="wordShortCut">
-					<!-- 단어표시 -->
-					<div class="myDIV">
-						<a href="#" style="text-decoration: none; font-weight: 600;"
-							onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
+			style="background-color: #FCB900; position: relative; left: 0; top: 0; padding-bottom: 15px; width: 250px; float: right;">
+			
+			<div style="background-color: white; box-shadow:1px 1px 1px 1px gray; padding: 10px; margin-bottom: 25px;">
+			
+				<div
+					style="padding-top: 0.7rem; margin-bottom: 1rem; margin-left: 2.5rem; font-weight: 600;">
+					최근정의가 추가된 단어</div>
+				<c:forEach items="${MainDefineList}" var="a" end="5">
+					<div class="wordShortCut">
+						<!-- 단어표시 -->
+						<div class="myDIV">
+							<a href="#" style="text-decoration: none; font-weight: 600;"
+								onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
+						</div>
+						<!-- 날짜표시 -->
+						<div
+							style="margin-left: 5px; font-size: 0.8rem; float: right; display: inline-block;">${a.currenttime}</div>
 					</div>
-					<!-- 날짜표시 -->
-					<div
-						style="margin-left: 5px; font-size: 0.8rem; float: right; display: inline-block;">${a.currenttime}</div>
-				</div>
-			</c:forEach>
+				</c:forEach>
+			</div>
+			
+			<div style="background-color: white; box-shadow:1px 1px 1px 1px gray; padding: 10px;">
+				<div
+					style="padding-top: 0.7rem; margin-bottom: 1rem; margin-left: 3rem; font-weight: 600;">
+				    단어를 정의한 회원랭킹</div>
+				
+				<c:forEach items="${memberRanking}" var="a" end="5" varStatus="status">
+					<div class="wordShortCut">
+						<!-- 단어표시 -->
+						<div style="color:#F54708;">
+							${status.count}. ${a.id} 
+							<div style="float:right; color:black; font-size: 15px;">${a.count} 개</div>
+						</div>
+						
+					</div>
+				</c:forEach>
+			</div>
 		</div>
 
 		<!-- 웹사이트설명창 -->

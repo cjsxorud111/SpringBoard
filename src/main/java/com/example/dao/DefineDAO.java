@@ -8,6 +8,7 @@ import com.example.dto.MainDefineContentVO;
 import com.example.dto.NewwordVO;
 import com.example.dto.RecommendVO;
 import com.example.dto.ReturnRecommendVO;
+import com.example.dto.memberRankingVO;
 
 public interface DefineDAO {
 	public void newwordWriting(NewwordVO vo) throws Exception;
@@ -42,5 +43,6 @@ public interface DefineDAO {
 
 	public List<MainDefineContentVO> selectRecommendMainDefCon()throws Exception;
 
+	public List<memberRankingVO> memberRanking()throws Exception;
 
 }

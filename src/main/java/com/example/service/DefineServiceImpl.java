@@ -6,9 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.controller.DefineController;
 import com.example.dao.DefineDAO;
 import com.example.dao.DefineDAOImpl;
 import com.example.dto.DefineSubVO;
@@ -17,6 +20,7 @@ import com.example.dto.MainDefineContentVO;
 import com.example.dto.NewwordVO;
 import com.example.dto.RecommendVO;
 import com.example.dto.ReturnRecommendVO;
+import com.example.dto.memberRankingVO;
 import com.example.otherclass.HangulDivide;
 
 @Service
@@ -24,6 +28,8 @@ public class DefineServiceImpl implements DefineService {
 
 	@Autowired
 	private DefineDAO dao;
+	
+	final static Logger logger = LoggerFactory.getLogger(DefineController.class);
 	
 	@Override
 	public void newwordWriting(HttpServletRequest request) throws Exception {
@@ -53,6 +59,12 @@ public class DefineServiceImpl implements DefineService {
 		List<MainDefineContentVO> MainDefineList = dao.selectMainDefCon();
 		
 		return MainDefineList;
+	}
+	
+	@Override
+	public List<memberRankingVO> memberRanking() throws Exception {
+		List<memberRankingVO> memberRanking = dao.memberRanking();
+		return memberRanking;
 	}
 	
 	@Override

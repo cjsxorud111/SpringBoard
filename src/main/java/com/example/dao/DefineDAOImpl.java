@@ -9,12 +9,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.example.controller.DefineController;
 import com.example.dto.DefineSubVO;
 import com.example.dto.GetModifyContentVO;
 import com.example.dto.MainDefineContentVO;
 import com.example.dto.NewwordVO;
 import com.example.dto.RecommendVO;
 import com.example.dto.ReturnRecommendVO;
+import com.example.dto.memberRankingVO;
 
 @Repository
 public class DefineDAOImpl implements DefineDAO {
@@ -22,7 +24,8 @@ public class DefineDAOImpl implements DefineDAO {
 	@Inject
 	private SqlSession sqlSession;
 	private static final String Namespace = "com.example.mapper.defineMapper";
-	
+	final static Logger logger = LoggerFactory.getLogger(DefineDAOImpl.class);
+
 	@Override
 	public void newwordWriting(NewwordVO vo) {
 		sqlSession.insert(Namespace + ".newwordWriting", vo);
@@ -33,6 +36,14 @@ public class DefineDAOImpl implements DefineDAO {
 		List<MainDefineContentVO> MainDefineList = sqlSession.selectList(Namespace + ".mainDefineList");
 		return MainDefineList;
 	}    
+	
+	@Override
+	public List<memberRankingVO> memberRanking() throws Exception {
+		
+		List<memberRankingVO> memberRanking = sqlSession.selectList(Namespace + ".memberRanking");
+		logger.error("sql","sql에러발생");
+		return memberRanking;
+	}
 	
 	@Override
 	public List<MainDefineContentVO> selectRecommendMainDefCon() {
@@ -115,4 +126,5 @@ public class DefineDAOImpl implements DefineDAO {
 		sqlSession.delete(Namespace + ".deleteDefineAllConSub", conNum);
 		sqlSession.delete(Namespace + ".deleteDefineRecommend", conNum);
 	}
+
 }

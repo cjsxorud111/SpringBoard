@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.example.dto.memberRankingVO;
 import com.example.dto.DefineSubVO;
 import com.example.dto.GetModifyContentVO;
 import com.example.dto.MainDefineContentVO;
@@ -35,5 +36,7 @@ public interface DefineService {
 	public GetModifyContentVO defineContentModify(HttpServletRequest request)throws Exception;
 
 	public void modifyWriting(HttpServletRequest request)throws Exception;
+
+	public List<memberRankingVO> memberRanking()throws Exception;
 
 }

@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.dto.DefineSubVO;
 import com.example.dto.GetModifyContentVO;
 import com.example.dto.MainDefineContentVO;
+import com.example.dto.memberRankingVO;
 import com.example.dto.textStatusVO;
 import com.example.service.DefineService;
 
@@ -184,12 +185,16 @@ public class DefineController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	// Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
 	public String define(Locale locale, HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
+		
 		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
+		List<memberRankingVO> memberRanking = service.memberRanking();
 		
 		model.addAttribute("totalPageNum", pageCount(MainDefineList.size()));
 		
 		Logger logger = LoggerFactory.getLogger(this.getClass());
 		model.addAttribute("MainDefineList", MainDefineList);
+		model.addAttribute("memberRanking", memberRanking);
+		
 		logger.debug("testloggergger");
 		
 		logger.info("Welcome home! The client locale is {}.", locale);
