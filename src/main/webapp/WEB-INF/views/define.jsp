@@ -328,7 +328,7 @@
 										} else {
 											alert("작성하신글만 삭제할수있습니다.")
 										}
-									}
+									}    
 								}
 								
 								function defineContentDelete(conNum, textStatus) {
