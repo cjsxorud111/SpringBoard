@@ -140,7 +140,7 @@
 	//오른쪽창 스크롤 따라이동 함수
 	function scroll_follow(id){
 		//스크롤이 움직일때마다 이벤트 발생
-		$(window).scroll(function() {
+		$(window).scroll(function() {   
 			 var scrollBottom = $(window).scrollTop() + $(window).height();
 		     var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
 		     $("#scroll").css('top',position ); //해당 오브젝트 위치값 재설정
