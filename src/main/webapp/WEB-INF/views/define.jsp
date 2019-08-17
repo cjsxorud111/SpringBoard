@@ -95,9 +95,9 @@
 	    substring = "?";
 	    
 	    var divcon = "<div style='text-align:center; background-color:white; padding:1.5rem; width:39rem; margin-bottom:1.3rem;'>"; 
-	    divcon += "<div style='color:#F54708; margin-bottom: 1rem; font-family: cursive; font-size:30px;'>HelloWord!에 오신것을 환영합니다.</div>"; 
-	    divcon += "<div style='font-size: 18px;'>HelloWord!는 여러분이 직접 정의하는 사전입니다.</div>" ; 
-	    divcon += "<div style='font-size: 18px;'>원하는 단어를 무엇이든 자유롭게 정의하고 다른사람의 정의를 추천해주세요!</div>";
+	    divcon += "<div style='color:#F54708; margin-bottom: 1rem; font-size:30px;'>신조어사전 HelloWord!에 오신것을 환영합니다.</div>"; 
+	    divcon += "<div style='font-size: 18px;'>신조어사전HelloWord! 는 여러분이 직접 정의하는 사전입니다.</div>" ; 
+	    divcon += "<div style='font-size: 18px;'>원하는 신조어를 무엇이든 자유롭게 정의하고 다른사람의 정의를 추천해주세요!</div>";
 	    divcon += "</div>";
 	    
 	    
@@ -140,9 +140,14 @@
 	//오른쪽창 스크롤 따라이동 함수
 	function scroll_follow(id){
 		//스크롤이 움직일때마다 이벤트 발생
-		$(window).scroll(function() { 
+		$(window).scroll(function() {
+			 var scrollBottom = $(window).scrollTop() + $(window).height();
 		     var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
-		     $("#scroll").css('top',  position ); //해당 오브젝트 위치값 재설정
+		     $("#scroll").css('top',position ); //해당 오브젝트 위치값 재설정
+		     if($(this).scrollTop() >= scrollBottom + 400){
+		     	 alert("dd");
+		     	 $("#scroll").css('top', position - 100);
+		     }
 		});
 	}
 	scroll_follow("#scroll");

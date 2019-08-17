@@ -25,7 +25,6 @@ public class DefineServiceImpl implements DefineService {
 	@Autowired
 	private DefineDAO dao;
 	
-	
 	@Override
 	public void newwordWriting(HttpServletRequest request) throws Exception {
 		NewwordVO vo = new NewwordVO();
@@ -49,12 +48,10 @@ public class DefineServiceImpl implements DefineService {
 		dao.modifyWriting(vo);
 	}
 
-	
 	@Override
 	public List<MainDefineContentVO> selectMainDefCon() throws Exception {
 		List<MainDefineContentVO> MainDefineList = dao.selectMainDefCon();
 		
-
 		return MainDefineList;
 	}
 	
