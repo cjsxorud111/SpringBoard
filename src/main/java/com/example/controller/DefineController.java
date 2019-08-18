@@ -149,6 +149,17 @@ public class DefineController {
 		model.addAttribute("getDefinSubList", getDefinSubList);
 		//어떤페이지인지구분
 		String linkWord = request.getParameter("linkWord");
+		List<memberRankingVO> memberRanking = null;
+		try {
+			memberRanking = service.memberRanking();
+		} catch (Exception e) {
+			// TODO: handle exception'
+			System.out.println(e);
+			logger.error("test","에러발생");
+			return "error";
+		}
+		model.addAttribute("memberRanking", memberRanking);
+		model.addAttribute("totalPageNum", pageCount(linkCon.size()));
 		textStatusVO textStatusVO = new textStatusVO();
 		textStatusVO.setTextStatus(linkWord);
 		response.setAttribute("textStatusVO", textStatusVO);
@@ -159,7 +170,7 @@ public class DefineController {
 		return "define";
 	}
 	
-	@RequestMapping(value = "/newwordwrited", method = RequestMethod.GET)
+	@RequestMapping(value = "/newwordwrite", method = RequestMethod.GET)
 	public String newword_write(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
 		return "newwordwrite";
 	}
@@ -184,7 +195,7 @@ public class DefineController {
 	//define메인페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	// Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
-	public String define(Locale locale, HttpServletRequest request, HttpServletRequest response, Model model) {
+	public String define(Locale locale, HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
 		
 		List<MainDefineContentVO> MainDefineList = null;
 		try {
@@ -204,15 +215,14 @@ public class DefineController {
 			return "error";
 		}
 		
+		logger.debug("testloggergger");
 		//List<memberRankingVO> memberRanking = service.memberRanking();
-		
 		model.addAttribute("totalPageNum", pageCount(MainDefineList.size()));
 		
 		//Logger logger = LoggerFactory.getLogger(this.getClass());
 		model.addAttribute("MainDefineList", MainDefineList);
 		model.addAttribute("memberRanking", memberRanking);
 		
-		logger.debug("testloggergger");
 		
 		logger.info("Welcome home! The client locale is {}.", locale);
 		logger.error("test","에러발생");

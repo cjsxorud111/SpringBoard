@@ -57,22 +57,12 @@ public class DefineServiceImpl implements DefineService {
 	@Override
 	public List<MainDefineContentVO> selectMainDefCon() throws Exception {
 		List<MainDefineContentVO> MainDefineList = dao.selectMainDefCon();
-		
 		return MainDefineList;
 	}
 	
 	@Override
 	public List<memberRankingVO> memberRanking() throws Exception {
 		List<memberRankingVO> memberRanking = dao.memberRanking();
-		
-		try {
-			int []aa = {1, 2, 3, 4};
-			System.out.println(aa[5]);
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e + "defineServiceimpl");
-		}
 		
 		return memberRanking;
 	}

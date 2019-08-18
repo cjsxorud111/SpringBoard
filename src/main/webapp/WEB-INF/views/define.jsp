@@ -137,29 +137,49 @@
 		});
 	}
 	
-	//오른쪽창 스크롤 따라이동 함수
+	//오른쪽창 스크롤 따라이동 함수    
 	function scroll_follow(id){
 		//스크롤이 움직일때마다 이벤트 발생
 		$(window).scroll(function() {   
 			 var scrollBottom = $(window).scrollTop() + $(window).height();
 		     var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
 		     $("#scroll").css('top',position ); //해당 오브젝트 위치값 재설정
-		     if($(this).scrollTop() >= scrollBottom + 400){
-		     	 alert("dd");    
-		     	 $("#scroll").css('top', position - 100);
-		     }
+		     
+		});
+	}
+	
+	function scroll_stop(id){
+		//스크롤이 움직일때마다 이벤트 발생
+		$(window).scroll(function() {   
+			 var scrollBottom = $(window).scrollTop() + $(window).height();
+		     var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+		     $("#scroll").css('top',2000 ); //해당 오브젝트 위치값 재설정
+		     
 		});
 	}
 	scroll_follow("#scroll");
-	
-	/* $(window).scroll(function(){
+	/* $(window).scroll(function() {
 		var scrollTop = $(document).scrollTop();
-		if (scrollTop < 180) {
-		    scrollTop = 180;
-		}
-		$("#scroll").stop();
-		$("#scroll").animate({ "top" : scrollTop });
-	}); */
+		var scrollBottom = $(window).scrollTop() + 10;
+	    
+				
+		//alert($(window).scrollTop() + " " + scrollBottom);
+	
+		if (scrollBottom < 2000) {
+			scroll_follow("#scroll");
+		} else {
+			//event.stopImmediatePropagation();
+			$("#scroll").css('top',2000 );
+			//alert("hhe");
+		} 
+		
+		 if (scrollTop > 1000) {
+			scroll_follow("#scroll");
+		} else {
+			 
+		} 
+
+	});  */
 	
 </script>
 <style>
@@ -239,7 +259,7 @@
 				<div
 					style="padding-top: 0.7rem; margin-bottom: 1rem; margin-left: 2.5rem; font-weight: 600;">
 					최근정의가 추가된 단어</div>
-				<c:forEach items="${MainDefineList}" var="a" end="5">
+				<c:forEach items="${MainDefineList}" var="a" end="4">
 					<div class="wordShortCut">
 						<!-- 단어표시 -->
 						<div class="myDIV">
@@ -258,7 +278,7 @@
 					style="padding-top: 0.7rem; margin-bottom: 1rem; margin-left: 3rem; font-weight: 600;">
 				    단어를 정의한 회원랭킹</div>
 				
-				<c:forEach items="${memberRanking}" var="a" end="5" varStatus="status">
+				<c:forEach items="${memberRanking}" var="a" end="4" varStatus="status">
 					<div class="wordShortCut">
 						<!-- 단어표시 -->
 						<div style="color:#F54708;">
@@ -639,30 +659,8 @@
 			<a href="?page=1">[처음]</a>
 			
 			<%
-				//controller에서 model.addAttribute 로 보낸걸 request로 받음
-				/* Object contentNum = request.getAttribute("Cnum");
-			
-				int number = Integer.parseInt(contentNum.toString());
-			 */
-				//총 몇 페이지인지 계산
-				/* double num = (double)number / 10;
-				double temp = num - (int)num; */
-				//총 페이지수
-				/* int pagenum;
-			
-				if (temp == 0) {
-					pagenum = (int)num;
-				} else {
-					pagenum = (int)num + 1;
-				} */
-			
-				
-			%>
-			
-			<%
 				Object totalPageNum01 = request.getAttribute("totalPageNum");
 				int totalPageNum02 =  Integer.parseInt(totalPageNum01.toString());
-
 				for (int i = 1; i <= totalPageNum02; i++) {
 			%>
 			<a href="?page=<%=i%>"><%=i%></a>&nbsp
