@@ -159,7 +159,7 @@ public class DefineController {
 		return "define";
 	}
 	
-	@RequestMapping(value = "/newwordwrite", method = RequestMethod.GET)
+	@RequestMapping(value = "/newwordwrited", method = RequestMethod.GET)
 	public String newword_write(HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
 		return "newwordwrite";
 	}
@@ -184,14 +184,31 @@ public class DefineController {
 	//define메인페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	// Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
-	public String define(Locale locale, HttpServletRequest request, HttpServletRequest response, Model model) throws Exception {
+	public String define(Locale locale, HttpServletRequest request, HttpServletRequest response, Model model) {
 		
-		List<MainDefineContentVO> MainDefineList = service.selectMainDefCon();
-		List<memberRankingVO> memberRanking = service.memberRanking();
+		List<MainDefineContentVO> MainDefineList = null;
+		try {
+			MainDefineList = service.selectMainDefCon();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
+		
+		List<memberRankingVO> memberRanking = null;
+		try {
+			memberRanking = service.memberRanking();
+		} catch (Exception e) {
+			// TODO: handle exception'
+			System.out.println(e);
+			logger.error("test","에러발생");
+			return "error";
+		}
+		
+		//List<memberRankingVO> memberRanking = service.memberRanking();
 		
 		model.addAttribute("totalPageNum", pageCount(MainDefineList.size()));
 		
-		Logger logger = LoggerFactory.getLogger(this.getClass());
+		//Logger logger = LoggerFactory.getLogger(this.getClass());
 		model.addAttribute("MainDefineList", MainDefineList);
 		model.addAttribute("memberRanking", memberRanking);
 		
@@ -199,7 +216,16 @@ public class DefineController {
 		
 		logger.info("Welcome home! The client locale is {}.", locale);
 		logger.error("test","에러발생");
-		List<DefineSubVO> getDefinSubList = service.getDefinSubList();
+		
+		List<DefineSubVO> getDefinSubList = null; 
+		
+		try {
+			getDefinSubList = service.getDefinSubList();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
+		
 		model.addAttribute("getDefinSubList", getDefinSubList);	
 		//어떤페이지인지구분
 		textStatusVO textStatusVO = new textStatusVO();

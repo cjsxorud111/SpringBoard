@@ -39,9 +39,16 @@ public class DefineDAOImpl implements DefineDAO {
 	
 	@Override
 	public List<memberRankingVO> memberRanking() throws Exception {
-		
+//		List<memberRankingVO> memberRanking = null;
+//		
+//		try {
+//			memberRanking = sqlSession.selectList(Namespace + ".memberRanking");
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		} finally {
+//			logger.error("sql","sql에러발생");
+//		}
 		List<memberRankingVO> memberRanking = sqlSession.selectList(Namespace + ".memberRanking");
-		logger.error("sql","sql에러발생");
 		return memberRanking;
 	}
 	
