@@ -295,10 +295,8 @@ public class DefineController {
 			return "error";
 		}
 		
-		//List<memberRankingVO> memberRanking = service.memberRanking();
 		model.addAttribute("totalPageNum", pageCount(MainDefineList.size()));
 		
-		//Logger logger = LoggerFactory.getLogger(this.getClass());
 		model.addAttribute("MainDefineList", MainDefineList);
 		model.addAttribute("memberRanking", memberRanking);
 		
@@ -309,7 +307,7 @@ public class DefineController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		logger.info("Welcome home! The client locale is {}.", locale);
+		
 		model.addAttribute("getDefinSubList", getDefinSubList);	
 		//어떤페이지인지구분
 		textStatusVO textStatusVO = new textStatusVO();

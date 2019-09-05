@@ -28,110 +28,240 @@ public class DefineDAOImpl implements DefineDAO {
 
 	@Override
 	public void newwordWriting(NewwordVO vo) {
-		sqlSession.insert(Namespace + ".newwordWriting", vo);
+		logger.info("");
+		
+		try {
+			sqlSession.insert(Namespace + ".newwordWriting", vo);
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		}
+		
 	}
 	
 	@Override
 	public List<MainDefineContentVO> selectMainDefCon() {
-		List<MainDefineContentVO> MainDefineList = sqlSession.selectList(Namespace + ".mainDefineList");
+		logger.info("");
+		
+		List<MainDefineContentVO> MainDefineList = null; 
+		
+		try {
+			MainDefineList = sqlSession.selectList(Namespace + ".mainDefineList");
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		} 
+		
 		return MainDefineList;
 	}    
 	
 	@Override
-	public List<memberRankingVO> memberRanking() throws Exception {
-//		List<memberRankingVO> memberRanking = null;
-//		
-//		try {
-//			memberRanking = sqlSession.selectList(Namespace + ".memberRanking");
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		} finally {
-//			logger.error("sql","sql에러발생");
-//		}
-		List<memberRankingVO> memberRanking = sqlSession.selectList(Namespace + ".memberRanking");
+	public List<memberRankingVO> memberRanking() {
+		logger.info("");
+		
+		List<memberRankingVO> memberRanking = null;
+		
+		try {
+			memberRanking = sqlSession.selectList(Namespace + ".memberRanking");
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		} 
+		// List<memberRankingVO> memberRanking = sqlSession.selectList(Namespace + ".memberRanking");
+		
 		return memberRanking;
 	}
 	
 	@Override
 	public List<MainDefineContentVO> selectRecommendMainDefCon() {
-		List<MainDefineContentVO> MainDefineList = sqlSession.selectList(Namespace + ".recommendDefineList");
+		logger.info("");
+		
+		List<MainDefineContentVO> MainDefineList = null;
+		
+		try {
+			MainDefineList = sqlSession.selectList(Namespace + ".recommendDefineList");
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		}
+		
 		return MainDefineList;
 	}
 	
 	@Override
-	public List<MainDefineContentVO> linkCon(String linkWord) throws Exception {
-		List<MainDefineContentVO> linkCon = sqlSession.selectList(Namespace + ".linkCon", linkWord);
+	public List<MainDefineContentVO> linkCon(String linkWord) {
+		logger.info("");
+		
+		List<MainDefineContentVO> linkCon = null;
+		
+		try {
+			linkCon = sqlSession.selectList(Namespace + ".linkCon", linkWord);
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		}
+		
 		return linkCon;
 	}
 	
 	//기존 추천,비추천 여부를 확인하기위한 셀렉트
 	@Override
-	public List<ReturnRecommendVO> recommendSelect(String conNum) throws Exception {
-		List<ReturnRecommendVO> recommendSelect = sqlSession.selectList(Namespace + ".recommendSelect", conNum);
+	public List<ReturnRecommendVO> recommendSelect(String conNum) {
+		logger.info("");
+		
+		List<ReturnRecommendVO> recommendSelect = null;
+		
+		try {
+			recommendSelect = sqlSession.selectList(Namespace + ".recommendSelect", conNum);
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		}
+		
 		return recommendSelect;
 	}
 	
 	@Override
-	public void defineWriteSub(DefineSubVO vo) throws Exception {
-		sqlSession.insert(Namespace + ".defineWriteSub", vo);
+	public void defineWriteSub(DefineSubVO vo) {
+		logger.info("");
+		
+		try {
+			sqlSession.insert(Namespace + ".defineWriteSub", vo);
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		}
 	}
 
 	@Override
-	public List<DefineSubVO> getDefinSubList() throws Exception {
-		List<DefineSubVO> getDefinSubList = sqlSession.selectList(Namespace + ".getDefinSubList");
+	public List<DefineSubVO> getDefinSubList() {
+		logger.info("");
+		
+		List<DefineSubVO> getDefinSubList = null; 
+		
+		try {
+			getDefinSubList = sqlSession.selectList(Namespace + ".getDefinSubList");
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		}
 		return getDefinSubList;
 	}
 
 	@Override
 	public void DeleteAllSub() {
-		sqlSession.delete(Namespace + ".deleteAllSub");
+		logger.info("");
+		
+		try {
+			sqlSession.delete(Namespace + ".deleteAllSub");
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		}
 	}
 
 	//댓글삭제를 위한 셀렉트
 	@Override
-	public DefineSubVO getDefinSub(int num) throws Exception {
-		return sqlSession.selectOne(Namespace + ".getDefineSub", num);
+	public DefineSubVO getDefinSub(int num) {
+		logger.info("");
+
+		DefineSubVO defineSub = null;
+		
+		try {
+			 defineSub = sqlSession.selectOne(Namespace + ".getDefineSub", num);
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		}
+		
+		return defineSub;
 	}
 	
 	@Override
-	public GetModifyContentVO defineContentModify(String conNum) throws Exception {
-		return sqlSession.selectOne(Namespace + ".getDefineModifyCon", conNum);
+	public GetModifyContentVO defineContentModify(String conNum) {
+		logger.info("");
+		
+		GetModifyContentVO modifyContent = null;
+		
+		try {
+			modifyContent = sqlSession.selectOne(Namespace + ".getDefineModifyCon", conNum);
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		}
+		
+		return modifyContent;
 	}
 	
 	//댓글삭제
 	@Override
-	public void deleteDefineSub(int num) throws Exception {
-		sqlSession.delete(Namespace + ".deleteDefineSub", num);
+	public void deleteDefineSub(int num) {
+		logger.info("");
+		
+		try {
+			sqlSession.delete(Namespace + ".deleteDefineSub", num);
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		}
 	}
 	
 	//추천+1
 	@Override
-	public void recommendUp(String upNumber, String conNum) throws Exception {
-		sqlSession.update(Namespace + ".recommendUp", conNum);
+	public void recommendUp(String upNumber, String conNum) {
+		logger.info("");
+		
+		try {
+			sqlSession.update(Namespace + ".recommendUp", conNum);
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		}
 	}
 	
 	//추천-1
 	@Override
-	public void recommendDown(String downNumber, String conNum) throws Exception {
-		sqlSession.update(Namespace + ".recommendDown", conNum);
+	public void recommendDown(String downNumber, String conNum) {
+		logger.info("");
+		
+		try {
+			sqlSession.update(Namespace + ".recommendDown", conNum);
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		}
 	}
 	
 	@Override
-	public void modifyWriting(GetModifyContentVO vo) throws Exception {
-		sqlSession.update(Namespace + ".modifyWriting", vo);
+	public void modifyWriting(GetModifyContentVO vo) {
+		logger.info("");
+		
+		try {
+			sqlSession.update(Namespace + ".modifyWriting", vo);
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		}
 	}
 
 	@Override
-	public void recommendWrite(RecommendVO recommendVO) throws Exception {
-		sqlSession.insert(Namespace + ".recommendWriting", recommendVO);
+	public void recommendWrite(RecommendVO recommendVO) {
+		logger.info("");
+		
+		try {
+			sqlSession.insert(Namespace + ".recommendWriting", recommendVO);
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		}
 	} 
 
 	@Override
-	public void deleteDefineContent(String conNum) throws Exception {
+	public void deleteDefineContent(String conNum) {
+		logger.info("");
+		
 		//글,글에연관된댓글,추천삭제
-		sqlSession.delete(Namespace + ".deleteDefineContent", conNum);
-		sqlSession.delete(Namespace + ".deleteDefineAllConSub", conNum);
-		sqlSession.delete(Namespace + ".deleteDefineRecommend", conNum);
+		try {
+			sqlSession.delete(Namespace + ".deleteDefineContent", conNum);
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		}
+		
+		try {
+			sqlSession.delete(Namespace + ".deleteDefineAllConSub", conNum);
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		}
+
+		try {
+			sqlSession.delete(Namespace + ".deleteDefineRecommend", conNum);
+		} catch (Exception e) {
+			logger.error("sqlError : ",e);
+		}
 	}
 
 }
