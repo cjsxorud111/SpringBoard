@@ -9,7 +9,8 @@
 <%@ include file="nav.jsp"%>
 <html>
 <head>
-<title>신조어사전 헬로워드!</title>
+<title>신조어사전 헬로워드!!</title>
+<link rel="shorcut icon" href="resource/img/logoImage2.ico" /> 
 <meta name="naver-site-verification"
 	content="b8b1382411790af26ef1553f419ce247d8465d24" />
 <meta name="google-site-verification"
@@ -24,14 +25,9 @@
 <script src="<c:url value="resources/js/defineJavaScript.js" />"></script>
 <script async
 	src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-7915256697883097",
-    enable_page_level_ads: true
-  });
-</script>
+
 <script type="text/javascript">
-	// 댓글이나대댓글시 로그인검사 위한 변수
+
 	var session = '<%=sessionId%>';
 	var isSession = false;
 	if (session != "null") {
@@ -48,14 +44,14 @@
 	}
 	
 	function getQuerystring(paramName){ 
-		var _tempUrl = window.location.search.substring(1); //url에서 처음부터 '?'까지 삭제 
-		var _tempArray = _tempUrl.split('&'); // '&'을 기준으로 분리하기 
-		for(var i = 0; _tempArray.length; i++) { 
+		var tempUrl = window.location.search.substring(1); //url에서 처음부터 '?'까지 삭제 
+		var tempArray = tempUrl.split('&'); //'&'을 기준으로 분리하기 
+		
+		for(var i = 0; tempArray.length; i++) { 
+			var keyValuePair = tempArray[i].split('='); // '=' 을 기준으로 분리하기 
 			
-			var _keyValuePair = _tempArray[i].split('='); // '=' 을 기준으로 분리하기 
-			
-			if(_keyValuePair[0] == paramName){ // _keyValuePair[0] : 파라미터 명 // _keyValuePair[1] : 파라미터 값 
-				return _keyValuePair[1]; 
+			if(keyValuePair[0] == paramName){ // _keyValuePair[0] : 파라미터 명 // _keyValuePair[1] : 파라미터 값 
+				return keyValuePair[1]; 
 			} 
 		} 
 	}
@@ -63,20 +59,20 @@
 </script>
 <%
 	//페이지 블록 계산 
-	int herePage = 0;
+	int thisPage = 0;
 	int begin = 0;
 	int end = 0;
 	
 	String pages = request.getParameter("page");
 	
 	if (pages == null) {
-		herePage = 1;
+		thisPage = 1;
 	} else {
-		herePage = Integer.parseInt(pages);
+		thisPage = Integer.parseInt(pages);
 	}
 	
-	begin = herePage * 10 - 10;
-	end = herePage * 10 - 1;
+	begin = thisPage * 10 - 10;
+	end = thisPage * 10 - 1;
 %>
 
 <script>
@@ -94,12 +90,12 @@
 		var stringVal = window.location.href;
 	    substring = "?";
 	    
-	    var divcon = "<div style='text-align:center; background-color:white; padding:1.5rem; width:39rem; margin-bottom:1.3rem;'>"; 
-	    divcon += "<div style='color:#F54708; margin-bottom: 1rem; font-size:30px;'>신조어사전 HelloWord!에 오신것을 환영합니다.</div>"; 
+	    var divcon = "<span style='box-shadow:4px 4px 1px 1px gray;'>"; 
+	    divcon += "<div style='text-align:center; background-color:white; padding:1.5rem; width:39rem; margin-bottom:1.3rem;'>"; 
+	    divcon += "<div style='color:#F54708; margin-bottom: 1rem; font-size:30px; font-weight:10rem;'>신조어사전 HelloWord!에 오신것을 환영합니다.</div>"; 
 	    divcon += "<div style='font-size: 18px;'>신조어사전HelloWord! 는 여러분이 직접 정의하는 사전입니다.</div>" ; 
 	    divcon += "<div style='font-size: 18px;'>원하는 신조어를 무엇이든 자유롭게 정의하고 다른사람의 정의를 추천해주세요!</div>";
-	    divcon += "</div>";
-	    
+	    divcon += "</div></span>";
 	    
 		if(stringVal.indexOf(substring) == -1){
 			document.getElementById("explane").innerHTML = divcon;
@@ -124,8 +120,7 @@
 		$.ajax({
 			type : "GET", // 전송방식을 지정한다 (POST,GET)
 			url : "logout",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-			dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
-			// 있다.
+			dataType : "text",// 호출한 페이지의 형식xml,json,html,text
 			data : {
 			},
 			error : function() {
@@ -197,15 +192,14 @@
 </style>
 </head>
 <!-- 네브바 -->
-<div style="background-color: #2B2B2E; height: 3.8rem;">
+<div style="background-color: #33353C; height: 3.8rem;">
 	<div style="width: 1000px; width: 56rem; padding-top: 10px; margin: auto;">
 		<!-- 로고 -->
 		<div style="float: left;">
 			<a href="http://www.helloword.kr/" id="title"
 				style="color: white; margin-left: 0.1rem; margin-bottom: 1rem; position: relative; bottom: 10px; font-weight: 200;">
-
 				<div id="logo"
-					style="position: relative; z-index: 100;">HelloWord!</div>
+					style="position: relative; z-index: 100; ">HelloWord!</div>
 				<div
 					style="width: 176px; height: 1px; position: absolute; bottom: 17.5px; background-color: #FFCC00;"></div>
 				<div
@@ -254,16 +248,16 @@
 		<div id="scroll"
 			style="background-color: #FCB900; position: relative; left: 0; top: 0; padding-bottom: 15px; width: 250px; float: right;">
 			
-			<div style="background-color: white; box-shadow:1px 1px 1px 1px gray; padding: 10px; margin-bottom: 25px;">
+			<div style="background-color: white; box-shadow:4px 4px 1px 1px gray; padding: 10px; margin-bottom: 25px;">
 			
 				<div
-					style="padding-top: 0.7rem; margin-bottom: 1rem; margin-left: 2.5rem; font-weight: 600;">
+					style="padding-top: 0.7rem; margin-bottom: 1rem; margin-left: 2.5rem; font-weight: 700;">
 					최근정의가 추가된 단어</div>
 				<c:forEach items="${MainDefineList}" var="a" end="4">
 					<div class="wordShortCut">
 						<!-- 단어표시 -->
 						<div class="myDIV">
-							<a href="#" style="text-decoration: none; font-weight: 600;"
+							<a href="#" style="text-decoration: none; font-weight: 800;"
 								onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
 						</div>
 						<!-- 날짜표시 -->
@@ -273,26 +267,23 @@
 				</c:forEach>
 			</div>
 			
-			<div style="background-color: white; box-shadow:1px 1px 1px 1px gray; padding: 10px;">
-				<div
-					style="padding-top: 0.7rem; margin-bottom: 1rem; margin-left: 3rem; font-weight: 600;">
-				    단어를 정의한 회원랭킹</div>
+			<div style="background-color: white; box-shadow:4px 4px 1px 1px gray; padding: 10px;">
+				<div style="padding-top: 0.7rem; margin-bottom: 1rem; margin-left: 3rem; font-weight: 700;">단어를 정의한 회원랭킹</div>
 				
 				<c:forEach items="${memberRanking}" var="a" end="4" varStatus="status">
 					<div class="wordShortCut">
 						<!-- 단어표시 -->
-						<div style="color:#F54708;">
+						<div style="color:#F54708; font-weight: 700">
 							${status.count}. ${a.id} 
-							<div style="float:right; color:black; font-size: 15px;">${a.count} 개</div>
+							<div style="float:right; color:black; font-size: 15px; font-weight: 800">${a.count} 개</div>
 						</div>
-						
 					</div>
 				</c:forEach>
 			</div>
 		</div>
 
 		<!-- 웹사이트설명창 -->
-		<div id="explane"></div>
+		<div id="explane" style="font-weight: 500;"></div>
 
 		<!-- 왼쪽창 -->
 		<c:forEach items="${MainDefineList}" var="a" begin="<%=begin%>"
@@ -300,7 +291,7 @@
 			<div id="container03" style="">
 				<!-- 왼쪽창에서 실제컨텐츠 표시부분 -->
 				<div id="container04"
-					style="width: 39rem; padding-left: 1.5rem; box-shadow:1px 1px 1px 1px gray; padding-right: 1.5rem; padding-top: 0.1rem; margin-bottom: 1.25rem; background-color: #FFFFFF;">
+					style="width: 39rem; padding-left: 1.5rem; box-shadow:4px 4px 1px 1px gray; padding-right: 1.5rem; padding-top: 0.1rem; margin-bottom: 1.25rem; background-color: #FFFFFF;">
 					&nbsp;&nbsp;
 					<!-- 단어제목으로검색링크 -->
 					<div>
@@ -767,8 +758,7 @@ function deleteSub(num, userInput) {
 	$.ajax({
 		type : "POST", // 전송방식을 지정한다 (POST,GET)
 		url : "deleteDefineSub",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-		dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
-		// 있다.
+		dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용 가능
 		data : {
 			pw : userInput,
 			num : num
