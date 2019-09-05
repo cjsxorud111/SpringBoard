@@ -1,6 +1,7 @@
 package com.example.service;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,9 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.controller.DefineController;
 import com.example.dao.DefineDAO;
-import com.example.dao.DefineDAOImpl;
 import com.example.dto.DefineSubVO;
 import com.example.dto.GetModifyContentVO;
 import com.example.dto.MainDefineContentVO;
@@ -29,10 +28,12 @@ public class DefineServiceImpl implements DefineService {
 	@Autowired
 	private DefineDAO dao;
 	
-	final static Logger logger = LoggerFactory.getLogger(DefineController.class);
+	final static Logger logger = LoggerFactory.getLogger(DefineServiceImpl.class);
 	
 	@Override
 	public void newwordWriting(HttpServletRequest request) throws Exception {
+		logger.info("");
+		
 		NewwordVO vo = new NewwordVO();
 		HangulDivide hanguldivide = new HangulDivide();
 		vo.setWord(request.getParameter("WORD"));
@@ -42,11 +43,12 @@ public class DefineServiceImpl implements DefineService {
 		String divideCharacter = hanguldivide.toKoJasoAtom(request.getParameter("WORD"));
 		vo.setSplitWord(divideCharacter);
 		dao.newwordWriting(vo);
-		
 	}
 
 	@Override
 	public void modifyWriting(HttpServletRequest request) throws Exception {
+		logger.info("");
+		
 		GetModifyContentVO vo = new GetModifyContentVO();
 		vo.setWord(request.getParameter("WORD"));
 		vo.setNum(request.getParameter("conNum"));
@@ -55,28 +57,34 @@ public class DefineServiceImpl implements DefineService {
 	}
 
 	@Override
-	public List<MainDefineContentVO> selectMainDefCon() throws Exception {
+	public List<MainDefineContentVO> selectMainDefCon(Locale locale) throws Exception {
+		logger.info("");
+		
 		List<MainDefineContentVO> MainDefineList = dao.selectMainDefCon();
 		return MainDefineList;
 	}
 	
 	@Override
 	public List<memberRankingVO> memberRanking() throws Exception {
-		List<memberRankingVO> memberRanking = dao.memberRanking();
+		logger.info("");
 		
+		List<memberRankingVO> memberRanking = dao.memberRanking();
 		return memberRanking;
 	}
 	
 	@Override
 	public List<MainDefineContentVO> linkCon(HttpServletRequest request) throws Exception {
+		logger.info("");
+		
 		String linkWord = request.getParameter("linkWord");
 		List<MainDefineContentVO> linkCon = dao.linkCon(linkWord);
-		
 		return linkCon;
 	}
 	      
 	@Override
 	public void defineWriteSub(HttpServletRequest request) throws Exception {
+		logger.info("");
+		
 		DefineSubVO vo = new DefineSubVO();
 		vo.setContent(request.getParameter("subcon"));
 		vo.setId(request.getParameter("id"));
@@ -90,17 +98,19 @@ public class DefineServiceImpl implements DefineService {
 
 	@Override
 	public List<DefineSubVO> getDefinSubList() throws Exception {
-
+		logger.info("");
+		
 		return dao.getDefinSubList();
 	}
 
 	@Override
 	public void defineSecondSub(HttpServletRequest request) throws Exception {
+		logger.info("");
+		
 		DefineSubVO vo = new DefineSubVO();
 		vo.setContent("to" + " " + request.getParameter("answerId") + " "+ request.getParameter("textVal"));
 		vo.setConnum(request.getParameter("num"));
 		vo.setSpace(request.getParameter("space"));
-		//vo.setNum(request.getParameter("subnum"));
 		vo.setId(request.getParameter("id"));
 		vo.setPw(request.getParameter("pw"));
 		vo.setGroupnum(Integer.parseInt(request.getParameter("groupNum")));
@@ -110,6 +120,8 @@ public class DefineServiceImpl implements DefineService {
 	// 댓글삭제
 	@Override
 	public String deleteDefineSub(String pw, String num) throws Exception {
+		logger.info("");
+		
 		int numb = Integer.parseInt(num);
 		DefineSubVO defineSub = dao.getDefinSub(numb);
 		String isDelete = "no";
@@ -122,6 +134,8 @@ public class DefineServiceImpl implements DefineService {
 
 	@Override
 	public String recommendUp(HttpServletRequest request, String upNumber, String conNum) throws Exception {
+		logger.info("");
+		
 		HttpSession session = request.getSession();
 		String sessionId = (String) session.getAttribute("ID");
 		List<ReturnRecommendVO> recommendList = dao.recommendSelect(conNum);
@@ -147,6 +161,8 @@ public class DefineServiceImpl implements DefineService {
 
 	@Override
 	public String recommendDown(HttpServletRequest request, String downNumber, String conNum) throws Exception {
+		logger.info("");
+		
 		HttpSession session = request.getSession();
 		String sessionId = (String) session.getAttribute("ID");
 		List<ReturnRecommendVO> recommendList = dao.recommendSelect(conNum);
@@ -170,12 +186,16 @@ public class DefineServiceImpl implements DefineService {
 	
 	@Override
 	public void deleteDefineContent(HttpServletRequest request) throws Exception {
+		logger.info("");
+		
 		String conNum = request.getParameter("conNum");
 		dao.deleteDefineContent(conNum);
 	}
 
 	@Override
 	public String searchWord(HttpServletRequest request) throws Exception {
+		logger.info("");
+
 		HangulDivide handiv = new HangulDivide();
 		
 		List<MainDefineContentVO> MainDefineList = dao.selectRecommendMainDefCon();
@@ -207,6 +227,8 @@ public class DefineServiceImpl implements DefineService {
 	}
 	@Override
 	public GetModifyContentVO defineContentModify(HttpServletRequest request) throws Exception {
+		logger.info("");
+		
 		String conNum = request.getParameter("conNum");
 		return dao.defineContentModify(conNum);
 	}
