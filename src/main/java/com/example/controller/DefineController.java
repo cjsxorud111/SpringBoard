@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +36,7 @@ import com.example.service.DefineService;
 @Controller
 public class DefineController {
 	int refreshNum = 0;
-	// 의존관계 자동연결
+	// 의존관계 자동연결testgit
 	@Inject
 	private DefineService service;	
 	
@@ -281,6 +283,7 @@ public class DefineController {
 	public String define(Locale locale, HttpServletRequest request, HttpServletRequest response, Model model) {
 		logger.info("");
 		
+
 		List<MainDefineContentVO> MainDefineList = null;
 		try {
 			MainDefineList = service.selectMainDefCon(locale);
