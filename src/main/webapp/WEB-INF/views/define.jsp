@@ -27,7 +27,7 @@
 	src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 <script type="text/javascript">
-
+	
 	var session = '<%=sessionId%>';
 	var isSession = false;
 	if (session != "null") {
@@ -91,14 +91,21 @@
 	    substring = "?";
 	    
 	    var divcon = "<span style='box-shadow:4px 4px 1px 1px gray;'>"; 
-	    divcon += "<div style='text-align:center; background-color:white; padding:1.5rem; width:39rem; margin-bottom:1.3rem;'>"; 
+	    divcon += "<div style='text-align:center; background-color:white; padding:1.5rem; width:39rem; margin-bottom:0.6rem;'>"; 
 	    divcon += "<div style='color:#F54708; margin-bottom: 1rem; font-size:30px; font-weight:10rem;'>신조어사전 HelloWord!에 오신것을 환영합니다.</div>"; 
 	    divcon += "<div style='font-size: 18px;'>신조어사전HelloWord! 는 여러분이 직접 정의하는 사전입니다.</div>" ; 
-	    divcon += "<div style='font-size: 18px;'>원하는 신조어를 무엇이든 자유롭게 정의하고 다른사람의 정의를 추천해주세요!</div>";
-	    divcon += "</div></span>";
+	    divcon += "<div style='font-size: 18px;'>원하는 신조어를 무엇이든 자유롭게 정의하고 다른사람의 정의를 추천해주세요!";
+	    divcon += "</div><form action='select'><select name='sort' style='margin-top:10px;'>";
+	    divcon += "<option value=''>글 순서정렬</option>";
+	    divcon += "<option value='최근 정의된 순서'>최근 정의된 순서</option>";
+	    divcon += "<option value='댓글 많은순서'>댓글 많은순서</option>";
+	    divcon += "<option value='추천수 순서'>추천수 순서</option>";
+	    divcon += "<option value='정의 많은순서'>정의 많은순서</option>";
+	    divcon += "</select><input type='submit' style='height:23px; margin-left:10px; position: relative; top:3px;' value='정렬'></form></div>";
+	    divcon += "</span>";
 	    
 		if(stringVal.indexOf(substring) == -1){
-			document.getElementById("explane").innerHTML = divcon;
+			document.getElementById("explain").innerHTML = divcon;
 		}
 		
 		var aboveCommentSection = document
@@ -153,28 +160,6 @@
 		});
 	}
 	scroll_follow("#scroll");
-	/* $(window).scroll(function() {
-		var scrollTop = $(document).scrollTop();
-		var scrollBottom = $(window).scrollTop() + 10;
-	    
-				
-		//alert($(window).scrollTop() + " " + scrollBottom);
-	
-		if (scrollBottom < 2000) {
-			scroll_follow("#scroll");
-		} else {
-			//event.stopImmediatePropagation();
-			$("#scroll").css('top',2000 );
-			//alert("hhe");
-		} 
-		
-		 if (scrollTop > 1000) {
-			scroll_follow("#scroll");
-		} else {
-			 
-		} 
-
-	});  */
 	
 </script>
 <style>
@@ -215,8 +200,8 @@
 				<div>
 					<input type='text' name=linkWord autocomplete="off" id='inputText'
 						class='input_text' style="width: 310px; border: none;"
-						onfocusout="loseFocus()" /> <span id="searchRecommendSection"
-						style="position: absolute; width: 240px; top: 51px; z-index: 100;"></span>
+						onfocusout="loseFocus()" /> <div id="searchRecommendSection"
+						style="position: absolute; width: 240px; top: 51px; z-index: 100;"></div>
 				</div>
 
 				<!-- 돋보기 -->
@@ -283,8 +268,8 @@
 		</div>
 
 		<!-- 웹사이트설명창 -->
-		<div id="explane" style="font-weight: 500;"></div>
-
+		<div id="explain" style="font-weight: 500;"></div>
+		
 		<!-- 왼쪽창 -->
 		<c:forEach items="${MainDefineList}" var="a" begin="<%=begin%>"
 			end="<%=end%>">
@@ -671,9 +656,7 @@
 
 <script>
 //검색창에서 키보드 눌렀을때 동작
-/* $('.recommendSection').hover(function() {
-  $(this).css("color", "red");
-};  */
+
 var number = 0;
 var keynumber = 0;
 function mover(num){
@@ -722,18 +705,15 @@ $('#inputText').keyup(function(event) {
 		$('#' + id).css("background-color", "#E0E0E0");
 		$('#' + up).css("background-color", "white");
 	}
-
+	
 	if (keySet.indexOf(event.key) != -1) {
 		num = 0;
 		var inputText = $("#inputText").val();
 
 		$.ajax({
-			type : "POST", // 전송방식을 지정한다 (POST,GET)
-			url : "searchWord",// 호출 URL을 설정한다. GET방식일경우 뒤에
-								// 파라티터를 붙여서 사용해도된다.
-			dataType : "json",// 호출한 페이지의 형식이다.
-								// xml,json,html,text등의 여러 방식을
-								// 사용할 수 있다.
+			type : "POST", 
+			url : "searchWord",
+			dataType : "json",
 			data : {
 				inputText : inputText
 			},
@@ -748,6 +728,7 @@ $('#inputText').keyup(function(event) {
 		});
 	}
 });
+
 //삭제시 비밀번호체크
 function deleteClick(num) {
 	var userInput = prompt("비밀번호를 입력해주세요" + "");

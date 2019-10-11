@@ -35,7 +35,6 @@ public class DefineDAOImpl implements DefineDAO {
 		} catch (Exception e) {
 			logger.error("sqlError : ",e);
 		}
-		
 	}
 	
 	@Override
@@ -178,7 +177,6 @@ public class DefineDAOImpl implements DefineDAO {
 		} catch (Exception e) {
 			logger.error("sqlError : ",e);
 		}
-		
 		return modifyContent;
 	}
 	
