@@ -36,7 +36,7 @@ import com.example.service.DefineService;
 @Controller
 public class DefineController {
 	int refreshNum = 0;
-	// 의존관계 자동연결testgit002
+	// 의존관계 자동연결te
 	@Inject
 	private DefineService service;	
 	
