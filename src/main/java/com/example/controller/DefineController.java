@@ -34,7 +34,7 @@ import com.example.service.DefineService;
 @Controller
 public class DefineController {
 	int refreshNum = 0;
-	// 의존관계 자동연결
+	// 의존관계 자동연결 13inch feature
 	@Inject
 	private DefineService service;	
 	
