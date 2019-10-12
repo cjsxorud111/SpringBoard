@@ -37,6 +37,7 @@ import com.example.service.DefineService;
 public class DefineController {
 	int refreshNum = 0;
 	// 의존관계 자동연결 13inch master
+	// git test
 	@Inject
 	private DefineService service;	
 	
