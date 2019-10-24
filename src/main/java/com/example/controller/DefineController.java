@@ -35,7 +35,9 @@ import com.example.service.DefineService;
 
 @Controller
 public class DefineController {
+	
 	int refreshNum = 0;
+	
 	@Inject
 	private DefineService service;	
 	final static Logger logger = LoggerFactory.getLogger(DefineController.class);
@@ -195,21 +197,25 @@ public class DefineController {
 		model.addAttribute("MainDefineList", linkCon);
 		model.addAttribute("Cnum", linkCon.size());
 		List<DefineSubVO> getDefinSubList = null;
+		
 		try {
 			getDefinSubList = service.getDefinSubList();
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		model.addAttribute("getDefinSubList", getDefinSubList);
+		
 		//어떤페이지인지구분
 		String linkWord = request.getParameter("linkWord");
 		List<memberRankingVO> memberRanking = null;
+		
 		try {
 			memberRanking = service.memberRanking();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "error";
 		}
+		
 		model.addAttribute("memberRanking", memberRanking);
 		model.addAttribute("totalPageNum", pageCount(linkCon.size()));
 		textStatusVO textStatusVO = new textStatusVO();

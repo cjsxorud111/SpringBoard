@@ -276,7 +276,7 @@
 			<div id="container03" style="">
 				<!-- 왼쪽창에서 실제컨텐츠 표시부분 -->
 				<div id="container04"
-					style="width: 39rem; padding-left: 1.5rem; box-shadow:4px 4px 1px 1px gray; padding-right: 1.5rem; padding-top: 0.1rem; margin-bottom: 1.25rem; background-color: #FFFFFF;">
+					style="width: 39rem; padding-left: 1.5rem; box-shadow:4px 4px 1px 1px gray; padding-right: 1.5rem; padding-top: 1.5rem; margin-top:1.25rem; margin-bottom: 1.25rem; background-color: #FFFFFF;">
 					&nbsp;&nbsp;
 					<!-- 단어제목으로검색링크 -->
 					<div>
