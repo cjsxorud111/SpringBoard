@@ -36,18 +36,13 @@ import com.example.service.DefineService;
 @Controller
 public class DefineController {
 	int refreshNum = 0;
-	// 의존관계 자동연결 13inch f01
-	// git testt
 	@Inject
 	private DefineService service;	
-	
 	final static Logger logger = LoggerFactory.getLogger(DefineController.class);
 	
 	@RequestMapping(value = "/searchWord", produces = "application/text; charset=utf8", method = RequestMethod.POST)
 	@ResponseBody
 	public String searchWord(HttpServletRequest request, Model model) {
-		logger.info("");
-		
 		String result = null;
 		try {
 			result = service.searchWord(request);
@@ -60,7 +55,6 @@ public class DefineController {
 	@RequestMapping(value = "/modifyWriting", method = RequestMethod.POST)
 	@ResponseBody
 	public String modifyWriting(HttpServletRequest request, Model model) {
-		logger.info("");
 		
 		try {
 			service.modifyWriting(request);
@@ -73,7 +67,6 @@ public class DefineController {
 	// 글삭제하기
 	@RequestMapping(value = "/deleteDefineContent", method = RequestMethod.POST)
 	public String deleteDefineContent(HttpServletRequest request,HttpServletRequest response, Model model) {
-		logger.info("");
 		
 		try {
 			service.deleteDefineContent(request);
@@ -90,7 +83,6 @@ public class DefineController {
 	// 글수정
 	@RequestMapping(value = "/defineContentModify", method = RequestMethod.POST)
 	public String defineContentModify(HttpServletRequest request,HttpServletRequest response, Model model) {
-		logger.info("");
 		
 		GetModifyContentVO modifyContentVO = null;
 		try {
@@ -113,7 +105,6 @@ public class DefineController {
 	
 	@RequestMapping(value = "/inform", method = RequestMethod.GET)
 	public String inform(HttpServletRequest request,HttpServletRequest response, Model model) {
-		logger.info("");
 		
 		return "inform";
 	}
@@ -122,7 +113,6 @@ public class DefineController {
 	@RequestMapping(value = "/recommendUp", method = RequestMethod.POST)
 	@ResponseBody
 	public String recommendUp(HttpServletRequest request, Model model) {
-		logger.info("");
 		
 		String upNumber = request.getParameter("upNumber");
 		String conNum = request.getParameter("conNum");
@@ -139,7 +129,6 @@ public class DefineController {
 	@RequestMapping(value = "/recommendDown", method = RequestMethod.POST)
 	@ResponseBody
 	public String recommendDown(HttpServletRequest request, Model model) {
-		logger.info("");
 		
 		String downNumber = request.getParameter("downNumber");
 		String conNum = request.getParameter("conNum");
@@ -156,7 +145,6 @@ public class DefineController {
 	@RequestMapping(value = "/deleteDefineSub", method = RequestMethod.POST)
 	@ResponseBody
 	public String deleteDefineSub(HttpServletRequest request, Model model) {
-		logger.info("");
 		
 		String pw = request.getParameter("pw");
 		String num = request.getParameter("num");
@@ -165,7 +153,7 @@ public class DefineController {
 			result = service.deleteDefineSub(pw, num);
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		
 		return result;
@@ -174,7 +162,6 @@ public class DefineController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	@ResponseBody
 	public void logout(HttpServletRequest request, Model model) {
-		logger.info("");
 		
 		try {
 			HttpSession session = request.getSession();
@@ -187,7 +174,6 @@ public class DefineController {
 	@RequestMapping(value = "/defineWriteSub", method = RequestMethod.POST)
 	@ResponseBody
 	public String defineWriteSub(HttpServletRequest request, Model model) {
-		logger.info("");
 		
 		try {
 			service.defineWriteSub(request);
@@ -269,7 +255,6 @@ public class DefineController {
 		
 		//총 페이지 개수
 		int totalPageNum;
-
 		if (isDecimal == 0) {
 			totalPageNum = (int)pNum;
 		} else {
