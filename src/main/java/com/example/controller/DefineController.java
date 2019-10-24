@@ -55,7 +55,6 @@ public class DefineController {
 	@RequestMapping(value = "/modifyWriting", method = RequestMethod.POST)
 	@ResponseBody
 	public String modifyWriting(HttpServletRequest request, Model model) {
-		
 		try {
 			service.modifyWriting(request);
 		} catch (Exception e) {
@@ -67,7 +66,6 @@ public class DefineController {
 	// 글삭제하기
 	@RequestMapping(value = "/deleteDefineContent", method = RequestMethod.POST)
 	public String deleteDefineContent(HttpServletRequest request,HttpServletRequest response, Model model) {
-		
 		try {
 			service.deleteDefineContent(request);
 		} catch (Exception e) {
@@ -83,18 +81,15 @@ public class DefineController {
 	// 글수정
 	@RequestMapping(value = "/defineContentModify", method = RequestMethod.POST)
 	public String defineContentModify(HttpServletRequest request,HttpServletRequest response, Model model) {
-		
 		GetModifyContentVO modifyContentVO = null;
 		try {
 			modifyContentVO = service.defineContentModify(request);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
 		String textStatus = request.getParameter("textStatus");
 		textStatusVO textStatusVO = new textStatusVO();
-
+		
 		String returnUrl = "redirect:define_modify?textStatus="+textStatus;
 		response.setAttribute("modifyContentVO", modifyContentVO);
 		textStatusVO.setTextStatus(textStatus);
@@ -105,7 +100,6 @@ public class DefineController {
 	
 	@RequestMapping(value = "/inform", method = RequestMethod.GET)
 	public String inform(HttpServletRequest request,HttpServletRequest response, Model model) {
-		
 		return "inform";
 	}
 	
@@ -113,7 +107,6 @@ public class DefineController {
 	@RequestMapping(value = "/recommendUp", method = RequestMethod.POST)
 	@ResponseBody
 	public String recommendUp(HttpServletRequest request, Model model) {
-		
 		String upNumber = request.getParameter("upNumber");
 		String conNum = request.getParameter("conNum");
 		String result = null;
@@ -129,7 +122,6 @@ public class DefineController {
 	@RequestMapping(value = "/recommendDown", method = RequestMethod.POST)
 	@ResponseBody
 	public String recommendDown(HttpServletRequest request, Model model) {
-		
 		String downNumber = request.getParameter("downNumber");
 		String conNum = request.getParameter("conNum");
 		String result = null;
@@ -145,7 +137,6 @@ public class DefineController {
 	@RequestMapping(value = "/deleteDefineSub", method = RequestMethod.POST)
 	@ResponseBody
 	public String deleteDefineSub(HttpServletRequest request, Model model) {
-		
 		String pw = request.getParameter("pw");
 		String num = request.getParameter("num");
 		String result = null;
@@ -162,7 +153,6 @@ public class DefineController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	@ResponseBody
 	public void logout(HttpServletRequest request, Model model) {
-		
 		try {
 			HttpSession session = request.getSession();
 			session.removeAttribute("ID");
@@ -174,7 +164,6 @@ public class DefineController {
 	@RequestMapping(value = "/defineWriteSub", method = RequestMethod.POST)
 	@ResponseBody
 	public String defineWriteSub(HttpServletRequest request, Model model) {
-		
 		try {
 			service.defineWriteSub(request);
 		} catch (Exception e) {
@@ -187,7 +176,6 @@ public class DefineController {
 	@ResponseBody
 	public String defineSecondSub(HttpServletRequest request, HttpServletRequest response, Model model) {
 		logger.info("");
-		
 		try {
 			service.defineSecondSub(request); 
 		} catch (Exception e) {
@@ -200,7 +188,6 @@ public class DefineController {
 	@RequestMapping(value = "/linkWord", method = RequestMethod.GET)
 	public String linkWord(HttpServletRequest request, HttpServletRequest response, Model model) {
 		logger.info("");
-
 		List<MainDefineContentVO> linkCon = null;
 		try {
 			linkCon = service.linkCon(request);
@@ -243,7 +230,6 @@ public class DefineController {
 	@RequestMapping(value = "/newwordwrite", method = RequestMethod.GET)
 	public String newword_write(HttpServletRequest request, HttpServletRequest response, Model model) {
 		logger.info("");
-		
 		return "newwordwrite";
 	}
 	
@@ -268,8 +254,6 @@ public class DefineController {
 	// Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
 	public String define(Locale locale, HttpServletRequest request, HttpServletRequest response, Model model) {
 		logger.info("");
-		
-
 		List<MainDefineContentVO> MainDefineList = null;
 		try {
 			MainDefineList = service.selectMainDefCon(locale);
@@ -283,9 +267,7 @@ public class DefineController {
 			e.printStackTrace();
 			return "error";
 		}
-		
 		model.addAttribute("totalPageNum", pageCount(MainDefineList.size()));
-		
 		model.addAttribute("MainDefineList", MainDefineList);
 		model.addAttribute("memberRanking", memberRanking);
 		
@@ -312,28 +294,24 @@ public class DefineController {
 	@RequestMapping(value = "/define_write", method = RequestMethod.GET)
 	public String define_write(Model model) {
 		logger.info("");
-		
 		return "define_write";
 	}
 
 	@RequestMapping(value = "/thiswordwrite", method = RequestMethod.GET)
 	public String thisword_write(Model model) {
 		logger.info("");
-		
 		return "thiswordwrite";
 	}
 
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test(Model model) {
 		logger.info("");
-	
 		return "test";
 	}
 	
 	@RequestMapping(value = "/newwordWriting", method = RequestMethod.POST)
 	public String newwordWriting(HttpServletRequest request, Model model) {
 		logger.info("");
-		
 		try {
 			service.newwordWriting(request);
 		} catch (Exception e) {
@@ -346,7 +324,6 @@ public class DefineController {
 	public void communityImageUpload1(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam MultipartFile upload) {
 		logger.info("");
-
 		OutputStream out = null;
 		PrintWriter printWriter = null;
 		response.setCharacterEncoding("utf-8");
