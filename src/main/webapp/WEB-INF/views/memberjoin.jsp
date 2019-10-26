@@ -36,9 +36,7 @@
 			section2.style.display = "block";
 		}
 	}
-</script>
 
-<script>
 	function getParameterByName(name, url) {
 		if (!url)
 			url = window.location.href;
@@ -54,9 +52,7 @@
 			$("#engg").html("아이디와 이름은 영문으로 입력해주세요");
 		}
 	}
-</script>
 
-<script>
 	function check() {
 		 var docId = document.memberJoin;  
 		 if(docId.id.value == "") {
@@ -92,22 +88,22 @@
 		<form action="memberjoining" name="memberJoin" onsubmit="return check()" method="get">
 			<div style="margin-bottom:0.8rem;">
 				<input type="text" id="id" class="form-control" name="ID" size="30"
-					placeholder="ID">
+					placeholder="ID" style="width: 20rem;">
 			</div>
 			
 			<div style="margin-bottom:0.8rem;">
 				<input type="text" id="pw" class="form-control" name="PW" size="30"
-					placeholder="PASSWORD">
+					placeholder="PASSWORD" style="width: 20rem;">
 			</div>
 			
 			<div style="margin-bottom:0.8rem;">
 				<input type="text" id="name" class="form-control" name="NAME" size="30"
-					placeholder="이름">
+					placeholder="이름" style="width: 20rem;">
 			</div>
 			
 			<div style="margin-bottom:0.8rem;">
 				<input type="text" id="email" class="form-control" name="EMAIL" size="30"
-					placeholder="E-MAIL">
+					placeholder="E-MAIL" style="width: 20rem;">
 			</div>
 			
 			<div id="signUpButton" style="margin-bottom:0.8rem;">
