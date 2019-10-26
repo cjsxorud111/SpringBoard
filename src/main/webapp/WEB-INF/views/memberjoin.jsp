@@ -35,7 +35,6 @@
 		} else {
 			section2.style.display = "block";
 		}
-
 	}
 </script>
 
@@ -51,7 +50,6 @@
 
 	window.onload = function() {
 		var a = getParameterByName('han');
-
 		if (a == 'true') {
 			$("#engg").html("아이디와 이름은 영문으로 입력해주세요");
 		}
@@ -60,24 +58,24 @@
 
 <script>
 	function check() {
-	  var docId = document.memberJoin;  
-	  if(docId.id.value == "") {
-	    id.focus();
-	    return false;
-	  }
-	  if(docId.pw.value == "") {
-	    id.focus();
-	    return false;
-	  }
-	  if(docId.name.value == "") {
-	    id.focus();
-	    return false;
-	  }
-	  if(docId.email.value == "") {
-	    id.focus();
-	    return false;
-	  }
-	  else return true;
+		 var docId = document.memberJoin;  
+		 if(docId.id.value == "") {
+		   id.focus();
+		   return false;
+		 }
+		 if(docId.pw.value == "") {
+		   id.focus();
+		   return false;
+		 }
+		 if(docId.name.value == "") {
+		   id.focus();
+		   return false;
+		 }
+		 if(docId.email.value == "") {
+		   id.focus();
+		   return false;
+		 }
+		 else return true;
 	}
 </script>
 
@@ -119,9 +117,7 @@
 			<div id="deleteButton">
 				<a href="http://www.helloword.kr/" style="width:20rem;" class="btn btn-primary">취소</a>
 			</div>
-
 		</form>
-
 	</div>
 </body>
 </html>
