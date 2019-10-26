@@ -57,34 +57,58 @@
 		}
 	}
 </script>
+
+<script>
+	function check() {
+	  var docId = document.memberJoin;  
+	  if(docId.id.value == "") {
+	    id.focus();
+	    return false;
+	  }
+	  if(docId.pw.value == "") {
+	    id.focus();
+	    return false;
+	  }
+	  if(docId.name.value == "") {
+	    id.focus();
+	    return false;
+	  }
+	  if(docId.email.value == "") {
+	    id.focus();
+	    return false;
+	  }
+	  else return true;
+	}
+</script>
+
 <link href="resources/css/defineStyle.css?after" rel="stylesheet"
 	type="text/css">
 </head>
 <body id="memberJoin">
-	<div id="signUp">
+	<div id="signUp" style="color-background: grey;">
 		<div id="notMember">${notMember}</div>
 
 		<!-- 아이디영문요청 태그-->
 		<div id="engg"></div>
 		<div style="text-align:center;"><h1>Sign up</h1></div>
-		<form action="memberjoining" method="get">
+		<form action="memberjoining" name="memberJoin" onsubmit="return check()" method="get">
 			<div style="margin-bottom:0.8rem;">
-				<input type="text" class="form-control" name="ID" size="30"
+				<input type="text" id="id" class="form-control" name="ID" size="30"
 					placeholder="ID">
 			</div>
 			
 			<div style="margin-bottom:0.8rem;">
-				<input type="text" class="form-control" name="PW" size="30"
+				<input type="text" id="pw" class="form-control" name="PW" size="30"
 					placeholder="PASSWORD">
 			</div>
 			
 			<div style="margin-bottom:0.8rem;">
-				<input type="text" class="form-control" name="NAME" size="30"
+				<input type="text" id="name" class="form-control" name="NAME" size="30"
 					placeholder="이름">
 			</div>
 			
 			<div style="margin-bottom:0.8rem;">
-				<input type="text" class="form-control" name="EMAIL" size="30"
+				<input type="text" id="email" class="form-control" name="EMAIL" size="30"
 					placeholder="E-MAIL">
 			</div>
 			
