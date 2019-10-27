@@ -98,7 +98,7 @@
 			
 			<div style="margin-bottom:0.8rem;">
 				<input type="text" id="name" class="form-control" name="NAME" size="30"
-					placeholder="이름" style="width: 20rem;">
+					placeholder="NAME" style="width: 20rem;">
 			</div>
 			
 			<div style="margin-bottom:0.8rem;">
