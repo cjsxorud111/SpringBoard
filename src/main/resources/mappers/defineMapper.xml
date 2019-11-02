@@ -25,8 +25,17 @@
 		SELECT ID, COUNT(*) AS COUNT FROM DEFINE group by ID ORDER BY COUNT(*) DESC limit 5;
 	</select>
 	
-	<select id="recommendDefineList" resultType="com.example.dto.MainDefineContentVO" >
+	<!-- <select id="recommendDefineList" resultType="com.example.dto.MainDefineContentVO" >
 		SELECT DISTINCT NUM, ID, PW, WORD, INFO, UP, DOWN, SPLITWORD, CURRENTTIME FROM DEFINE GROUP BY WORD ORDER BY NUM DESC
+	</select> -->
+	
+	<select id="recommendDefineList" parameterType="String" resultType="com.example.dto.MainDefineContentVO" >
+		SELECT 
+			NUM, ID, PW, WORD, INFO, UP, DOWN, SPLITWORD, CURRENTTIME 
+		FROM 
+			DEFINE 
+		WHERE 
+			SPLITWORD LIKE CONCAT(#{inputText, jdbcType=VARCHAR},'%')	
 	</select>
 	
 	<select id="linkCon" resultType="com.example.dto.MainDefineContentVO" parameterType="String">
