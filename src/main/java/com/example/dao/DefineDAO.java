@@ -41,7 +41,7 @@ public interface DefineDAO {
 
 	public void modifyWriting(GetModifyContentVO vo);
 
-	public List<MainDefineContentVO> selectRecommendMainDefCon();
+	public List<MainDefineContentVO> selectRecommendMainDefCon(String inputText);
 
 	public List<memberRankingVO> memberRanking();
 }

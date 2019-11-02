@@ -75,8 +75,7 @@
 	}
 </script>
 
-<link href="resources/css/defineStyle.css?after" rel="stylesheet"
-	type="text/css">
+<link href="resources/css/defineStyle.css?after" rel="stylesheet" type="text/css">
 </head>
 <body id="memberJoin">
 	<div id="signUp" style="color-background: grey;">

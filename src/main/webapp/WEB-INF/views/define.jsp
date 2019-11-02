@@ -117,12 +117,14 @@
 		for (var i = 0; i < deleteTag.length; i++) {
 			deleteTag.item(i).style.display = "none";
 		}
+		
 		if(session == 'null'){
 			document.getElementById("log").innerHTML = "<a href='login?word=${textStatusVO.textStatus}' style='color: white; text-decoration: none;'>Login</a>";
 		}else{
 			document.getElementById("log").innerHTML = "<a href='javascript:logout();' id='logout' style='color: white; text-decoration: none;'>Logout</a>";
 		}
 	}
+	
 	function logout(){
 		$.ajax({
 			type : "GET", // 전송방식을 지정한다 (POST,GET)
@@ -156,7 +158,6 @@
 			 var scrollBottom = $(window).scrollTop() + $(window).height();
 		     var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
 		     $("#scroll").css('top',2000 ); //해당 오브젝트 위치값 재설정
-		     
 		});
 	}
 	scroll_follow("#scroll");
@@ -688,7 +689,6 @@ $('#inputText').keyup(function(event) {
 		$("#inputText").val($('#' + id).text());
 		$('#' + id).css("background-color", "#E0E0E0");
 		$('#' + bottom).css("background-color", "white");
-
 	} else if (event.keyCode == 40) { // 아래방향키눌렀을때
 		number++;
 		keynumber = number;
@@ -709,7 +709,6 @@ $('#inputText').keyup(function(event) {
 	if (keySet.indexOf(event.key) != -1) {
 		num = 0;
 		var inputText = $("#inputText").val();
-
 		$.ajax({
 			type : "POST", 
 			url : "searchWord",

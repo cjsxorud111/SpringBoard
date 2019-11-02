@@ -46,6 +46,7 @@ public class DefineController {
 	@ResponseBody
 	public String searchWord(HttpServletRequest request) {
 		String result = null;
+		logger.info("searchWord,{}", "1");
 		try {
 			result = service.searchWord(request);
 		} catch (Exception e) {
