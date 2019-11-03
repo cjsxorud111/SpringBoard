@@ -191,6 +191,5 @@
 		WHERE 
 			NUM = #{num}
 	</update> 
-	 
 </mapper>
 
