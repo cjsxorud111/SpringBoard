@@ -34,7 +34,7 @@
 		isSession = true;
 	}
 	
-	function writeLoginCheck() {
+	function write`Check() {
 		if(isSession == true) {
 			window.location.href='newwordwrite';
 		} else {
@@ -148,7 +148,6 @@
 			 var scrollBottom = $(window).scrollTop() + $(window).height();
 		     var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환
 		     $("#scroll").css('top',position ); //해당 오브젝트 위치값 재설정
-		     
 		});
 	}
 	
@@ -411,17 +410,22 @@
 					<!-- 추천, 비추천 버튼 -->
 					<div id="rate" style="float: right;">
 						<div>
-							<button onclick="recommendUp(${a.up}, ${a.num});"
-								id="recommendUp${a.num}" onmouseover="recommendUpOver(${a.num})"
-								onmouseout="recommendUpOut(${a.num})" class="upVote">추천:
+							<button 
+								onclick="recommendUp(${a.up}, ${a.num});"
+								id="recommendUp${a.num}" 
+								onmouseover="recommendUpOver(${a.num})"
+								onmouseout="recommendUpOut(${a.num})" 
+								class="upVote">추천:
 								${a.up}
 							</button>
 						</div>
 						<div>
-							<button onclick="recommendDown(${a.down}, ${a.num});"
+							<button 
+								onclick="recommendDown(${a.down}, ${a.num});"
 								id="recommendDown${a.num}"
 								onmouseover="recommendDownOver(${a.num})"
-								onmouseout="recommendDownOut(${a.num})" class="downVote">비추천:
+								onmouseout="recommendDownOut(${a.num})" 
+								class="downVote">비추천:
 								${a.down}
 							</button>
 						</div>
@@ -459,47 +463,66 @@
 						</tr>
 					</table>
 					<script>
-				function aboveComment(num, groupnum) {
-					if(isSession == false) {
-						alert("먼저로그인을 해주세요");
-					} else{
-						var sec = 'button' + num;
-						var textA = 'textArea' + num;
-						var arrowhtml = "<textarea id='"+textA+"' name='subcon' rows='2' cols='52' style='position: relative; top:0.5rem; right:1.7rem; margin-left: 2rem; margin-bottom: 1.7rem; width: 29rem; height: 55px; table-layout: fixed;'></textarea>";
-						var innerhtml = "<div style='position: relative; top:0.5rem; right:1.7rem; font-size: 80%; float: right;'><div><input type='submit' style='height:1.7rem;' onclick=\"writeSub('"+textA+"','"+num +"', '0', '"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='댓글달기'/></div>";
-						var temp = "<div><input type='submit' style='height: 1.73rem;' onclick=\"cancelSecondSub('"+sec+"');\" value='댓글취소'/></div></div>"
-						var innerarrowhtml = arrowhtml + innerhtml + temp;
-						$('#'+sec).html(innerarrowhtml); 
-					}
-				}
-				
-				function writeSub(textA, num, space, groupNum, pw, id) {
-					var textValue = $('#'+textA).val();
-					if(textValue == ""){
-						alert("1글자이상 입력해주세요")
-					}else{
-						$.ajax({
-							type : "POST", 
-							url : "defineWriteSub",
-							dataType : "text",
-							data : {
-								textValue : textValue,
-								num : num,
-								space : space,
-								groupNum : groupNum,
-								pw : pw,
-								id : id
-							},
-							error : function() {
-								alert("error");
-							},
-							success : function(success) {
-								location.reload();
+						function aboveComment(num, groupnum) {
+							if(isSession == false) {
+								alert("먼저로그인을 해주세요");
+							} else{
+								var sec = 'button' + num;
+								var textA = 'textArea' + num;
+								var arrowhtml = "<textarea id='"+textA+"' name='subcon' rows='2' cols='52' style='position: relative; top:0.5rem; right:1.7rem; margin-left: 2rem; margin-bottom: 1.7rem; width: 29rem; height: 55px; table-layout: fixed;'></textarea>";
+								var innerhtml = "<div style='position: relative; top:0.5rem; right:1.7rem; font-size: 80%; float: right;'><div><input type='submit' style='height:1.7rem;' onclick=\"writeSub('"+textA+"','"+num +"', '0', '"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='댓글달기'/></div>";
+								var temp = "<div><input type='submit' style='height: 1.73rem;' onclick=\"cancelSecondSub('"+sec+"');\" value='댓글취소'/></div></div>"
+								var innerarrowhtml = arrowhtml + innerhtml + temp;
+								$('#'+sec).html(innerarrowhtml); 
 							}
-						});
-					}
-				}
-				</script>
+						}
+						
+						function writeSub(textA, num, space, groupNum, pw, id) {
+							var textValue = $('#'+textA).val();
+							if(textValue == ""){
+								alert("1글자이상 입력해주세요")
+							}else{
+								$.ajax({
+									type : "POST", 
+									url : "defineWriteSub",
+									dataType : "text",
+									data : {
+										textValue : textValue,
+										num : num,
+										space : space,
+										groupNum : groupNum,
+										pw : pw,
+										id : id
+									},
+									error : function() {
+										alert("error");
+									},
+									success : function(success) {
+										location.reload();
+									}
+								});
+							}
+						}
+						
+						function recommendUp(up, num) {
+							$.ajax({
+								type : "POST", 
+								url : "recommendUp",
+								dataType : "text",
+								data : {
+									upNumber : up,
+									conNum : num,
+								},
+								error : function() {
+									alert("error");
+								},
+								success : function(success) {
+									alert("추천완료되었습니다."+up + " "+ num);
+								}
+							});
+						}
+					</script>
+					
 					<!-- 댓글표시 -->
 					<c:set var="num" value="${a.num}" />
 					<div style="margin-top: 10px;"></div>
