@@ -184,7 +184,7 @@
 			<a href="http://www.helloword.kr/" id="title"
 				style="color: white; margin-left: 0.1rem; margin-bottom: 1rem; position: relative; bottom: 10px; font-weight: 200;">
 				<div id="logo"
-					style="position: relative; z-index: 100; ">HelloWord!</div>
+					style="position: relative; z-index: 100;">HelloWord!</div>
 				<div
 					style="width: 176px; height: 1px; position: absolute; bottom: 17.5px; background-color: #FFCC00;"></div>
 				<div
