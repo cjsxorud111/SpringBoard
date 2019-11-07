@@ -34,7 +34,6 @@ public class DefineServiceImpl implements DefineService {
 	
 	@Override
 	public void newwordWriting(HttpServletRequest request) throws Exception {
-		logger.info("");
 		
 		NewwordVO vo = new NewwordVO();
 		HangulDivide hanguldivide = new HangulDivide();
@@ -60,7 +59,6 @@ public class DefineServiceImpl implements DefineService {
 
 	@Override
 	public List<MainDefineContentVO> selectMainDefCon(Locale locale) throws Exception {
-		logger.info("");
 		
 		List<MainDefineContentVO> MainDefineList = dao.selectMainDefCon();
 		return MainDefineList;
@@ -68,7 +66,6 @@ public class DefineServiceImpl implements DefineService {
 	
 	@Override
 	public List<memberRankingVO> memberRanking() throws Exception {
-		logger.info("");
 		
 		List<memberRankingVO> memberRanking = dao.memberRanking();
 		return memberRanking;
@@ -126,7 +123,6 @@ public class DefineServiceImpl implements DefineService {
 
 	@Override
 	public String recommendUp(HttpServletRequest request, String upNumber, String conNum) throws Exception {
-		System.out.println(conNum+"추천테스트3");
 		HttpSession session = request.getSession();
 		String sessionId = (String) session.getAttribute("ID");
 		List<ReturnRecommendVO> recommendList = dao.recommendSelect(conNum);
@@ -139,7 +135,6 @@ public class DefineServiceImpl implements DefineService {
 				isId = "yes";
 			}
 		}
-		System.out.println(conNum+"추천테스트4");
 
 		//db에추천이저장된적없다면추천+1
 		if (isId.equals("no")) {
@@ -164,10 +159,8 @@ public class DefineServiceImpl implements DefineService {
 			}
 		}
 		if (isId.equals("no")) {
-
 			dao.recommendDown(downNumber, conNum);
 			RecommendVO recommendVO = new RecommendVO();
-
 			recommendVO.setConNum(Integer.parseInt(conNum));
 			recommendVO.setSessionId((String) session.getAttribute("ID"));
 			dao.recommendWrite(recommendVO);
