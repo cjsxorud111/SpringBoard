@@ -13,3 +13,7 @@ SpringMVC
 나머지 정의 또한 신뢰도 순으로 볼 수 있다는 점에서 다른 사전과 차이가 있습니다.
 사용자가 신조어를 자유롭게 정의하고 추천을 많이 받은 단어가 상위에 노출되어 사용자에게 신뢰도 높은 단어로 보여지게 됩니다. 
 Spring framework를 사용하여 MVC 모델2 패턴으로 개발했습니다.
+## 개발 계획
+1. 기능 > REST API로 변경 개발
+2. Eclipse > IntelliJ
+3. SpringMVC > Spring Boot
