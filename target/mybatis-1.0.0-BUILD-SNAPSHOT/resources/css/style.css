@@ -1,0 +1,126 @@
+@charset "EUC-KR";
+
+
+#write {
+	margin-left: 7rem;
+}
+
+.container01 {
+	margin-left: 33rem;
+	margin-right: 33rem;
+	background-color: #FFFFFF;
+}
+#newword {
+	border: 1px solid blue; 
+	margin-left: 7rem;
+}
+#test {
+	border: 1px solid blue; 
+	length: 5rem;
+}
+
+/* 댓글표시화살표 */
+#diagram{
+	width:3px;height:8px; background-color:#FF9900;
+}
+.cont-box-pseudo{width:7px;height:3px; background-color:#FF9900;}
+.cont-box-pseudo:before{
+content:"";display:block; 
+border-right:6.5px solid #FF9900;border-bottom:6.5px solid transparent;
+position: relative;
+left: 10px;
+bottom: 10px;
+transform:rotate(22deg) translateY(14px);
+-ms-transform:rotate(25deg) translateY(14px);
+-webkit-transform:rotate(44deg) translateY(11px);
+-moz-transform:rotate(25deg) translateY(14px);
+-o-transform:rotate(22deg) translateY(14px);
+} 
+/* 검색어추천창 */
+#searchRecommendSection{
+	position: relative; 
+	top: 2px; 
+	width: 22rem; 
+	z-index: 5; 
+	background-color: white;
+}
+/* 전배경회색 */
+.backGround{
+	background-color: #BBBBBB;
+}
+/* 댓글표시창 */
+.subViewSection{
+	float: left; 
+}
+
+/* 댓글기록표시창 */
+.textSection{
+	float: left; 
+}
+.deleteTag{
+	float: right;
+}
+.deleteShowTag{
+	float: right;
+}
+.temp{
+	float: right;
+}
+#deleteShowButton{
+	font-size: 80%;
+}
+#subPw{
+	width:4.5rem;
+}
+#deleteButton{
+	width:4.5rem;
+}
+#subView{
+	padding-right: 10rem;
+}
+#content {
+	/* border: 1px solid red; */  
+	width: 18rem;
+	margin-left: 21rem;
+	margin-top: 4rem;
+}
+
+.row {
+	margin: 10px;
+}
+
+#login {
+	width: 22rem;
+}
+
+#pw {
+	width: 22rem;
+}
+
+#naverIdLogin {
+	width: 22rem;
+	heigh: 1rem;
+}
+
+#join {
+	/* border: 1px solid red; */
+	width: 28rem;
+	margin-left: 5rem;
+	margin-top: 2rem;
+}
+#cont {
+	width: 23rem;
+}
+#LoginCheck {
+	/* border: 1px solid red; */
+	float: right;
+}
+
+#container-fluid{
+ 	width: 20rem;
+	text-align: center;
+	position: absolute;
+	top: 40%;
+	left: 30%;
+	margin: -50px 0 0 -50px;
+}

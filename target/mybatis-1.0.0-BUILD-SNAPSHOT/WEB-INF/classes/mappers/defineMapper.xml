@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.defineMapper">
+	  
+	<insert id="newwordWriting" parameterType="com.example.dto.NewwordVO" >
+		INSERT INTO DEFINE (WORD, ID, PW, INFO, SPLITWORD, CURRENTTIME) VALUES (#{word}, #{id}, #{pw}, #{editor1}, #{splitWord}, now())
+	</insert>
+	
+	<insert id="defineWriteSub" parameterType="com.example.dto.DefineSubVO" >
+		INSERT INTO DEFINESUB (CONNUM, SPACE, CONTENT, ID, PW, GROUPNUM) VALUES (#{connum}, #{space}, #{content}, #{id}, #{pw}, #{groupnum})
+	</insert>
+	
+	<insert id="recommendWriting" parameterType="com.example.dto.RecommendVO" >
+		INSERT INTO RECOMMENDATION (NUM, ID) VALUES (#{conNum}, #{sessionId})
+	</insert>
+	
+	<select id="mainDefineList" resultType="com.example.dto.MainDefineContentVO" >
+		SELECT NUM, ID, PW, WORD, INFO, UP, DOWN, SPLITWORD, CURRENTTIME FROM DEFINE ORDER BY NUM DESC
+	</select>
+	
+	<select id="memberRanking" resultType="com.example.dto.memberRankingVO" >
+		SELECT ID, COUNT(*) AS COUNT FROM DEFINE group by ID ORDER BY COUNT(*) DESC limit 5;
+	</select>
+	
+	<select id="recommendDefineList" resultType="com.example.dto.MainDefineContentVO" >
+		SELECT DISTINCT NUM, ID, PW, WORD, INFO, UP, DOWN, SPLITWORD, CURRENTTIME FROM DEFINE GROUP BY WORD ORDER BY NUM DESC
+	</select>
+	
+	<select id="linkCon" resultType="com.example.dto.MainDefineContentVO" parameterType="String">
+		SELECT NUM, ID, PW, WORD, INFO, UP, DOWN, SPLITWORD, CURRENTTIME FROM DEFINE WHERE WORD = #{linkWord} ORDER BY UP DESC
+	</select> 
+	
+	<select id="recommendSelect" parameterType="String" resultType="com.example.dto.ReturnRecommendVO" >
+		SELECT NUM, ID FROM RECOMMENDATION WHERE NUM = #{conNum};
+	</select>
+	
+	<select id="getDefinSubList" resultType="com.example.dto.DefineSubVO" >
+		SELECT NUM, GROUPNUM, CONNUM, SPACE, CONTENT, ID FROM DEFINESUB ORDER BY GROUPNUM ASC;
+	</select>
+	
+	<select id="getDefineSub" parameterType="Integer" resultType="com.example.dto.DefineSubVO" >
+		SELECT NUM, CONNUM, SPACE, CONTENT, PW FROM DEFINESUB WHERE NUM = #{numb};
+	</select>
+	
+	<select id="getDefineModifyCon" parameterType="String" resultType="com.example.dto.GetModifyContentVO" >
+		SELECT NUM, WORD, INFO FROM DEFINE WHERE NUM = #{conNum};
+	</select>
+	
+	<delete id="deleteAllSub" > 
+		Truncate DEFINESUB
+	</delete> 
+		
+	<delete id="deleteDefineContent" parameterType="String"> 
+		DELETE FROM DEFINE WHERE NUM = #{conNum};
+	</delete> 
+	
+	<delete id="deleteDefineAllConSub" parameterType="String"> 
+		DELETE FROM DEFINESUB WHERE CONNUM = #{conNum};
+	</delete> 
+	
+	<delete id="deleteDefineSub" parameterType="Integer"> 
+		DELETE FROM DEFINESUB WHERE NUM = #{num};
+	</delete> 
+	
+	<delete id="deleteDefineRecommend" parameterType="String"> 
+		DELETE FROM RECOMMENDATION WHERE NUM = #{conNum};
+	</delete> 
+	
+	<update id="recommendUp" parameterType="String">
+		UPDATE DEFINE SET UP = UP + 1 WHERE NUM = #{conNum}
+	</update>  
+	
+	<update id="recommendDown" parameterType="String">
+		UPDATE DEFINE SET DOWN = DOWN + 1 WHERE NUM = #{conNum}
+	</update>  
+	
+	<!-- 여기수정 -->
+	<update id="modifyWriting" parameterType="com.example.dto.GetModifyContentVO">
+		UPDATE DEFINE SET WORD = #{word}, INFO = #{info} WHERE NUM = #{num}
+	</update> 
+	 
+</mapper>
+

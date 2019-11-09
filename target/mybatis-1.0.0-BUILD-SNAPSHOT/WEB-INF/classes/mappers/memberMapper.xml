@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.memberMapper">
+	
+	<select id="selectpw" resultType="String" parameterType="String">
+		SELECT pw FROM MEMBER WHERE id = #{a}
+	</select>
+
+	<select id="getsub3" resultType="com.example.dto.SubVO" parameterType="com.example.dto.SubVO">
+		SELECT  num, subnum, connum, space, content, uid, uuid FROM SUB WHERE connum = #{connum} 
+	</select>
+	
+	<select id="getsub2" resultType="com.example.dto.SubVO">
+		SELECT num FROM SUB WHERE num=(SELECT MAX(num) FROM SUB)
+	</select>
+	
+	<insert id="memberjoining" parameterType="com.example.dto.MemberjoinVO" >
+		INSERT INTO MEMBER (id, pw, user_name, email) VALUES (#{id}, #{pw}, #{name}, #{email})
+	</insert>
+	
+   
+</mapper>

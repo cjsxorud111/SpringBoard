@@ -1,0 +1,393 @@
+@charset "EUC-KR";
+
+
+/* 오른쪽창 */
+#scroll {
+	background-color: white;
+	/*width: 19rem;
+	height: 40rem;
+	margin-top: 6rem;
+	margin-left: 67rem;
+	padding: 2rem; */
+}
+/* 오른쪽단어들 */
+.wordShortCut {
+	border-bottom: 1px solid grey;
+	font-size: 1.1rem;
+	margin-bottom: 12px;
+}
+
+/* 검색창 */
+.green_window {
+	/* display: inline-block; */
+	/* position: relative;
+	top: 8px; */
+}
+.table{
+	border-right:hidden;
+	border-left:hidden;
+	border-top:hidden;
+	border-bottom:hidden;
+}
+/* 검색창 */
+.input_text {
+	border-radius: 3px 3px 3px 3px;
+	width: 330px;
+	height: 40px;
+	padding-left: 0.5rem;
+	/* position: relative; */
+	/* bottom: 2px; */
+	/* margin: 6px 0 0 9px; */
+	/* border: 0; */
+	/* line-height: 21px; */
+	font-weight: bold;
+	font-size: 20px;
+	outline: none;
+	/* position: relative */
+}
+/* 돋보기아이콘 */
+.demoSpan1 {
+	height: 27px;
+	width: 20px;
+	display: block;
+	position: relative;
+}
+
+.demoSpan1:before, .demoSpan1:after {
+	content: '';
+	height: 20px;
+	display: block;
+	position: absolute;
+	/* 돋보기동그라미부분위치 */
+	top: 3px;
+	right: 1px;
+}
+
+.demoSpan1:before {
+	width: 25px;
+	height: 25px;
+	border: 2px white solid;
+	border-radius: 100%;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+}
+
+.demoSpan1:after {
+	/* 돋보기막대굵기 */
+	width: 2px;
+	height: 18px;
+	background: white;
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	/* 돋보기막대위치 */
+	top: 21px;
+	right: -1px;
+}
+
+/* 로딩시페이지 */
+#loading {
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	position: fixed;
+	display: block;
+	opacity: 0.7;
+	background-color: #fff;
+	z-index: 99;
+	text-align: center;
+}
+
+#loading-image {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 100;
+}
+
+/* 검색버튼 */
+.sch_smit {
+	cursor: pointer;
+	border: 0;
+	outline: 0;
+	background-color: #ffffff;
+	background-color: rgba(255, 255, 255, 0);
+}
+
+/* 반응형위한미디어쿼리 현재임시로 반응형으로 창비율조절하지만 칸으로 수정필요*/
+@media ( max-width :1600px) {
+	/* 왼쪽창*/
+	#container01 {
+		/* margin-left: 20rem; */
+	}
+	/* 오른쪽창 */
+	#scroll {
+		/* margin-left: 59rem; */
+	}
+	.input_text {
+		/* width: 330px; */
+	}
+}
+
+#leftword:hover {
+	border-bottom: 2px solid #FCB900;
+}
+
+#log:hover {
+	border-bottom: 2px solid #FCB900;
+}
+
+/* 추천검색어창 */
+#searchRecommendSection {
+	/* margin-top: 10px; */
+}
+
+.recommendSection {
+	color: #117CE8;
+	width: 200px;
+	background-color: white;
+	height: 2.7rem;
+	font-size: 20px;
+}
+/*  .recommendSection:hover {
+	background-color: #E0E0E0;
+	color: #117CE8;
+	width: 359px;
+	height: 2.7rem;
+	font-size: 20px;
+} */  
+.defineDeleteButton{
+	position: relative;
+	left: 4.5px;
+	font-size:12px;
+	cursor: pointer;
+	outline: 0;
+	border: 0;
+	background-color: #ffffff;
+	background-color: rgba(255, 255, 255, 0);
+}
+.defineDeleteButton:hover{
+	color: skyblue;
+}
+.modifyButton{
+	position: relative;
+	left: 14px;
+	font-size:12px;
+	cursor: pointer;
+	outline: 0;
+	border: 0;
+	background-color: #ffffff;
+	background-color: rgba(255, 255, 255, 0);
+}
+.modifyButton:hover{
+	color: skyblue;
+}
+/* BUTTON 5 */
+.upVote {
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	color: #000;
+	border: 1px solid #000;
+	cursor: pointer;
+	width: 100px;
+	margin-bottom: 3px;
+}
+.myDIV {
+	display: inline-block; 
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	width:90px;
+	overflow:hidden;
+}
+.downVote {
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	color: #000;
+	border: 1px solid #000;
+	cursor: pointer;
+	width: 100px;
+}
+
+/* 네브바 링크 */
+
+#navbarResponsive {
+	margin-top: 8px;
+	font-size: 15.5px;
+}
+
+#title {
+	/* padding-bottom: 5px;
+	position: relative;
+	bottom: 2.5px;*/
+	font-size: 40px; 
+}
+
+#title:link {
+	text-decoration: none;
+}
+
+/* 댓글표시화살표 */
+#diagram {
+	width: 3px;
+	height: 8px;
+	background-color: #FF9900;
+}
+
+.cont-box-pseudo {
+	width: 7px;
+	height: 3px;
+	background-color: #FF9900;
+}
+
+.cont-box-pseudo:before {
+	content: "";
+	display: block;
+	border-right: 6.5px solid #FF9900;
+	border-bottom: 6.5px solid transparent;
+	position: relative;
+	left: 10px;
+	bottom: 10px;
+	transform: rotate(22deg) translateY(14px);
+	-ms-transform: rotate(25deg) translateY(14px);
+	-webkit-transform: rotate(44deg) translateY(11px);
+	-moz-transform: rotate(25deg) translateY(14px);
+	-o-transform: rotate(22deg) translateY(14px);
+}
+
+/* 댓글표시창 */
+.subViewSection {
+	/* float: left; */
+}
+
+/* 댓글기록표시창 */
+.textSection {
+	/* float: left; */
+}
+
+.deleteTag {
+	/* float: right; */
+}
+
+.deleteShowTag {
+	/* float: right; */
+}
+
+.temp {
+	/* float: right; */
+}
+
+#deleteShowButton {
+	float: right;
+	font-size: 80%;
+}
+
+#subView {
+	
+	word-wrap: break-word;
+}
+
+#loginBody {
+	background-color: yellow;
+}
+
+/* login.jsp */
+/**/#loginInputSection {
+	 width: 20rem;
+	text-align: center;
+	position: absolute;
+	top: 40%;
+	left: 40%;
+	margin: -50px 0 0 -50px;
+}
+ 
+/* memberjoin.jsp */
+#memberJoin {
+	background-color: #FFCC00;
+}
+
+#signUp {
+	width: 20rem;
+	text-align: center;
+	position: absolute;
+	top: 28%;
+	left: 40%;
+	margin: -50px 0 0 -50px;
+}
+
+#notMember {
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+#signUpButton {
+	width: 4rem;
+}
+
+#deleteButton {
+	width: 4rem;
+}
+/* newword_write */
+#cont {
+	position: relative;
+	top: 5%;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 30rem;
+	padding: 10rem;
+}
+
+.wid {
+	width: 40rem;
+	height: 3.5rem;
+	font-size: 2rem;
+}
+
+.editor1 {
+	width: 40rem;
+	height: 20rem;
+}
+
+#in{
+	color: white;
+	text-align: center; 
+	vertical-align: middle;
+	text-decoration: none;
+	padding-top: 0.5rem;
+	font-size: 2.1rem;
+	background-color: #0080ff;
+	width: 19.5rem;
+	height: 3.3rem;
+	margin-right: 1.0rem; 
+	line-height: 38px; 
+}
+
+.container-fluid{
+	background: no-repeat center center fixed; 
+	  -webkit-background-size: cover;
+	  -moz-background-size: cover;
+	  -o-background-size: cover;
+	  background-size: cover;
+}
+
+#inde {
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	padding-top: 0.6rem;
+	font-size: 2.1rem;
+	color: #000;
+	background-color: #0080ff;
+	width: 19.5rem;
+	height: 3.3rem;
+	line-height: 38px;
+}
