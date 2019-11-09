@@ -2,23 +2,23 @@
 # 사용자가 정의하는 단어사전 HelloWord!
 
 ## 개발환경
-  1. 개발언어
+  1. 개발언어 
     · JAVA
-  2. 개발 IDE
+  2. 개발 IDE 
     · Eclipse기반의 STS
-  3. 코드 형상관리
+  3. 코드 형상관리 
     · Git
-  4. 코드 빌드
+  4. 코드 빌드 
     · Maven
-  5. Database
+  5. Database 
     · MySQL
 
 ## 프레임워크 
-  1. 웹 어플리케이션 
+  1. 웹 어플리케이션  
     · SpringMVC
-  2. Database
+  2. Database 
     · MyBatis
-  3. WAS
+  3. WAS 
     · Tomcat
  
 ## 프로젝트 소개
