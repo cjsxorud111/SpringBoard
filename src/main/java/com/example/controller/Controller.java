@@ -1,12 +1,12 @@
 package com.example.controller;
 
 import com.example.service.DefineService;
-import com.sun.tools.internal.xjc.Language;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @RestController
 public class Controller {
