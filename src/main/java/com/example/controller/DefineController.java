@@ -1,23 +1,9 @@
 package com.example.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.util.List;
-import java.util.Locale;
-import java.util.UUID;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import com.example.dto.*;
+import com.example.service.DefineService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,12 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.dto.DefineSubVO;
-import com.example.dto.GetModifyContentVO;
-import com.example.dto.MainDefineContentVO;
-import com.example.dto.memberRankingVO;
-import com.example.dto.textStatusVO;
-import com.example.service.DefineService;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.*;
+import java.util.List;
+import java.util.Locale;
+import java.util.UUID;
 
 @Controller
 public class DefineController {
@@ -55,7 +43,7 @@ public class DefineController {
 		return result;
 	}*/
 
-	@RequestMapping(value = "/modifyWriting", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/modifyWriting", method = RequestMethod.POST)
 	@ResponseBody
 	public String modifyWriting(HttpServletRequest request) {
 		try {
@@ -64,7 +52,7 @@ public class DefineController {
 			e.printStackTrace();
 		}
 		return "redirect:/";
-	}
+	}*/
 	
 	// 글삭제하기
 	@RequestMapping(value = "/deleteDefineContent", method = RequestMethod.POST)

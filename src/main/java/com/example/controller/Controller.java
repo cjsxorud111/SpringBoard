@@ -29,4 +29,15 @@ public class Controller {
         }
         return result;
     }
+
+    @RequestMapping(value = "/modifyWriting", method = RequestMethod.POST)
+	public String modifyWriting(HttpServletRequest request) {
+		try {
+			service.modifyWriting(request);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/";
+	}
+
 }
