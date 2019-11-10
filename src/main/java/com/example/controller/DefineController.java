@@ -29,30 +29,6 @@ public class DefineController {
 	@Inject
 	private DefineService service;
 	final static Logger logger = LoggerFactory.getLogger(DefineController.class);
-
-	/*@RequestMapping(value = "/searchWord", produces = "application/text; charset=utf8", method = RequestMethod.POST)
-	@ResponseBody
-	public String searchWord(HttpServletRequest request) {
-		String result = null;
-		logger.info("searchWord,{}", "1");
-		try {
-			result = service.searchWord(request);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}*/
-
-	/*@RequestMapping(value = "/modifyWriting", method = RequestMethod.POST)
-	@ResponseBody
-	public String modifyWriting(HttpServletRequest request) {
-		try {
-			service.modifyWriting(request);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "redirect:/";
-	}*/
 	
 	// 글삭제하기
 	@RequestMapping(value = "/deleteDefineContent", method = RequestMethod.POST)

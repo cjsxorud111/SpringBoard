@@ -34,7 +34,7 @@
 		isSession = true;
 	}
 	
-	function write`Check() {
+	function writeCheck() {
 		if(isSession == true) {
 			window.location.href='newwordwrite';
 		} else {
