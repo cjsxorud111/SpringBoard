@@ -52,12 +52,12 @@
 	</insert>
 	
 	<select id="mainDefineList" resultType="com.example.dto.MainDefineContentVO" >
-		SELECT 
-			NUM, ID, PW, WORD, INFO, UP, DOWN, SPLITWORD, CURRENTTIME 
-		FROM 
-			DEFINE 
-		ORDER BY 
-			NUM 
+		SELECT
+			NUM, ID, PW, WORD, INFO, UP, DOWN, SPLITWORD, CURRENTTIME
+		FROM
+			DEFINE
+		ORDER BY
+			NUM
 		DESC
 	</select>
 	

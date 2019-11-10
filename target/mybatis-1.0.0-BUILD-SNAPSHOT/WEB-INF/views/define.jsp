@@ -34,7 +34,7 @@
 		isSession = true;
 	}
 	
-	function writeLoginCheck() {
+	function write`Check() {
 		if(isSession == true) {
 			window.location.href='newwordwrite';
 		} else {
@@ -117,17 +117,19 @@
 		for (var i = 0; i < deleteTag.length; i++) {
 			deleteTag.item(i).style.display = "none";
 		}
+		
 		if(session == 'null'){
 			document.getElementById("log").innerHTML = "<a href='login?word=${textStatusVO.textStatus}' style='color: white; text-decoration: none;'>Login</a>";
 		}else{
 			document.getElementById("log").innerHTML = "<a href='javascript:logout();' id='logout' style='color: white; text-decoration: none;'>Logout</a>";
 		}
 	}
+	
 	function logout(){
 		$.ajax({
-			type : "GET", // 전송방식을 지정한다 (POST,GET)
-			url : "logout",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-			dataType : "text",// 호출한 페이지의 형식xml,json,html,text
+			type : "GET", 
+			url : "logout",
+			dataType : "text",
 			data : {
 			},
 			error : function() {
@@ -144,9 +146,8 @@
 		//스크롤이 움직일때마다 이벤트 발생
 		$(window).scroll(function() {   
 			 var scrollBottom = $(window).scrollTop() + $(window).height();
-		     var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
+		     var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환
 		     $("#scroll").css('top',position ); //해당 오브젝트 위치값 재설정
-		     
 		});
 	}
 	
@@ -156,7 +157,6 @@
 			 var scrollBottom = $(window).scrollTop() + $(window).height();
 		     var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
 		     $("#scroll").css('top',2000 ); //해당 오브젝트 위치값 재설정
-		     
 		});
 	}
 	scroll_follow("#scroll");
@@ -184,7 +184,7 @@
 			<a href="http://www.helloword.kr/" id="title"
 				style="color: white; margin-left: 0.1rem; margin-bottom: 1rem; position: relative; bottom: 10px; font-weight: 200;">
 				<div id="logo"
-					style="position: relative; z-index: 100; ">HelloWord!</div>
+					style="position: relative; z-index: 100;">HelloWord!</div>
 				<div
 					style="width: 176px; height: 1px; position: absolute; bottom: 17.5px; background-color: #FFCC00;"></div>
 				<div
@@ -211,8 +211,8 @@
 				</button>
 			</form>
 		</div>
-		<!-- 검색창오른쪽링크 -->
 		
+		<!-- 검색창오른쪽링크 -->
 		<div id="navLink" style="float: left; margin-left: 19px;">
 			<a href="#" id="leftword" onclick="writeLoginCheck()"
 				style="position: relative; left: 45px; top: 6px; color: white; margin-left: 0.1rem; font-size: 1.2rem; text-decoration: none; font-weight: 350;">새단어정의하기</a>
@@ -225,6 +225,7 @@
 <!-- 전체배경 -->
 <div class="container-fluid"
 	style='position: relative; background: #FCB900;'>
+	
 	<!-- 내부배경 -->
 	<div id='innerSection'
 		style="width: 896px; padding-bottom: 0.3rem; padding-top: 17px; margin: auto;">
@@ -233,18 +234,22 @@
 		<div id="scroll"
 			style="background-color: #FCB900; position: relative; left: 0; top: 0; padding-bottom: 15px; width: 250px; float: right;">
 			
-			<div style="background-color: white; box-shadow:4px 4px 1px 1px gray; padding: 10px; margin-bottom: 25px;">
+			<div 
+				style="background-color: white; box-shadow:4px 4px 1px 1px gray; padding: 10px; margin-bottom: 25px;">
 			
-				<div
+				<div 
 					style="padding-top: 0.7rem; margin-bottom: 1rem; margin-left: 2.5rem; font-weight: 700;">
-					최근정의가 추가된 단어</div>
+					최근정의가 추가된 단어
+				</div>
 				<c:forEach items="${MainDefineList}" var="a" end="4">
 					<div class="wordShortCut">
+					
 						<!-- 단어표시 -->
 						<div class="myDIV">
 							<a href="#" style="text-decoration: none; font-weight: 800;"
 								onclick="document.getElementById('frm${a.num}').submit();">${a.word}</a>
 						</div>
+						
 						<!-- 날짜표시 -->
 						<div
 							style="margin-left: 5px; font-size: 0.8rem; float: right; display: inline-block;">${a.currenttime}</div>
@@ -257,6 +262,7 @@
 				
 				<c:forEach items="${memberRanking}" var="a" end="4" varStatus="status">
 					<div class="wordShortCut">
+					
 						<!-- 단어표시 -->
 						<div style="color:#F54708; font-weight: 700">
 							${status.count}. ${a.id} 
@@ -274,10 +280,12 @@
 		<c:forEach items="${MainDefineList}" var="a" begin="<%=begin%>"
 			end="<%=end%>">
 			<div id="container03" style="">
+			
 				<!-- 왼쪽창에서 실제컨텐츠 표시부분 -->
 				<div id="container04"
-					style="width: 39rem; padding-left: 1.5rem; box-shadow:4px 4px 1px 1px gray; padding-right: 1.5rem; padding-top: 0.1rem; margin-bottom: 1.25rem; background-color: #FFFFFF;">
-					&nbsp;&nbsp;
+					style="width: 39rem; padding-left: 1.5rem; box-shadow:4px 4px 1px 1px gray; padding-right: 1.5rem; 
+					padding-top: 1.5rem; margin-top:1.25rem; margin-bottom: 1.25rem; background-color: #FFFFFF;">
+					
 					<!-- 단어제목으로검색링크 -->
 					<div>
 						<div style="float: right;">
@@ -323,6 +331,7 @@
 										}
 									}
 								}
+								
 								function delConCheck(num, id, textStatus){
 									if (isSession == false) {
 										alert("먼저로그인을 해주세요");
@@ -359,17 +368,14 @@
 								
 								function defineContentDelete(conNum, textStatus) {
 									$.ajax({
-										type : "POST", // 전송방식을 지정한다 (POST,GET)
-										url : "deleteDefineContent",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서
-																	// 사용해도된다.
-										dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
-															// 있다.
+										type : "POST",
+										url : "deleteDefineContent",
+										dataType : "text",
 										data : {
 											conNum : conNum,
 											textStatus : textStatus
 										},
 										error : function() {
-										/* 	alert("error"); */
 											if(textStatus == "main(*)"){
 												window.location.href='/';
 											}else{
@@ -404,17 +410,24 @@
 					<!-- 추천, 비추천 버튼 -->
 					<div id="rate" style="float: right;">
 						<div>
-							<button onclick="recommendUp(${a.up}, ${a.num});"
-								id="recommendUp${a.num}" onmouseover="recommendUpOver(${a.num})"
-								onmouseout="recommendUpOut(${a.num})" class="upVote">추천:
-								${a.up}</button>
+							<button 
+								onclick="recommendUp(${a.up}, ${a.num});"
+								id="recommendUp${a.num}" 
+								onmouseover="recommendUpOver(${a.num})"
+								onmouseout="recommendUpOut(${a.num})" 
+								class="upVote">추천:
+								${a.up}
+							</button>
 						</div>
 						<div>
-							<button onclick="recommendDown(${a.down}, ${a.num});"
+							<button 
+								onclick="recommendDown(${a.down}, ${a.num});"
 								id="recommendDown${a.num}"
 								onmouseover="recommendDownOver(${a.num})"
-								onmouseout="recommendDownOut(${a.num})" class="downVote">비추천:
-								${a.down}</button>
+								onmouseout="recommendDownOut(${a.num})" 
+								class="downVote">비추천:
+								${a.down}
+							</button>
 						</div>
 					</div>
 
@@ -440,61 +453,76 @@
 					<div>글쓴이: ${a.id}</div>
 					<br>
 					<div>
-						<a
-							href="javascript:aboveComment(${a.num}, ${lastGroupNum.groupnum});"
+						<a href="javascript:aboveComment(${a.num}, ${lastGroupNum.groupnum});"
 							style="margin-top: 1rem; font-weight: 600; text-decoration: none;">댓글달기</a>
 					</div>
 					<table frame=void>
 						<tr>
 							<!-- 기본댓글달기 -->
-
 							<td id="button${a.num}" class="aboveCommentSection"></td>
 						</tr>
 					</table>
 					<script>
-				function aboveComment(num, groupnum) {
-					
-					if(isSession == false) {
-						alert("먼저로그인을 해주세요");
-					} else{
-						var sec = 'button' + num;
-						var textA = 'textArea' + num;
-						var arrowhtml = "<textarea id='"+textA+"' name='subcon' rows='2' cols='52' style='position: relative; top:0.5rem; right:1.7rem; margin-left: 2rem; margin-bottom: 1.7rem; width: 29rem; height: 55px; table-layout: fixed;'></textarea>";
-						var innerhtml = "<div style='position: relative; top:0.5rem; right:1.7rem; font-size: 80%; float: right;'><div><input type='submit' style='height:1.7rem;' onclick=\"writeSub('"+textA+"','"+num +"', '0', '"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='댓글달기'/></div>";
-						var temp = "<div><input type='submit' style='height: 1.73rem;' onclick=\"cancelSecondSub('"+sec+"');\" value='댓글취소'/></div></div>"
-						var innerarrowhtml = arrowhtml + innerhtml + temp;
-						$('#'+sec).html(innerarrowhtml); 
-					}
-				}
-				
-				function writeSub(textA, num, space, groupNum, pw, id) {
-					var textValue = $('#'+textA).val();
-					if(textValue == ""){
-						alert("1글자이상 입력해주세요")
-					}else{
-						$.ajax({
-							type : "POST", // 전송방식을 지정한다 (POST,GET)
-							url : "defineWriteSub",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-							dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
-							// 있다.
-							data : {
-								textValue : textValue,
-								num : num,
-								space : space,
-								groupNum : groupNum,
-								pw : pw,
-								id : id
-							},
-							error : function() {
-								alert("error");
-							},
-							success : function(success) {
-								location.reload();
+						function aboveComment(num, groupnum) {
+							if(isSession == false) {
+								alert("먼저로그인을 해주세요");
+							} else{
+								var sec = 'button' + num;
+								var textA = 'textArea' + num;
+								var arrowhtml = "<textarea id='"+textA+"' name='subcon' rows='2' cols='52' style='position: relative; top:0.5rem; right:1.7rem; margin-left: 2rem; margin-bottom: 1.7rem; width: 29rem; height: 55px; table-layout: fixed;'></textarea>";
+								var innerhtml = "<div style='position: relative; top:0.5rem; right:1.7rem; font-size: 80%; float: right;'><div><input type='submit' style='height:1.7rem;' onclick=\"writeSub('"+textA+"','"+num +"', '0', '"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='댓글달기'/></div>";
+								var temp = "<div><input type='submit' style='height: 1.73rem;' onclick=\"cancelSecondSub('"+sec+"');\" value='댓글취소'/></div></div>"
+								var innerarrowhtml = arrowhtml + innerhtml + temp;
+								$('#'+sec).html(innerarrowhtml); 
 							}
-						});
-					}
-				}
-				</script>
+						}
+						
+						function writeSub(textA, num, space, groupNum, pw, id) {
+							var textValue = $('#'+textA).val();
+							if(textValue == ""){
+								alert("1글자이상 입력해주세요")
+							}else{
+								$.ajax({
+									type : "POST", 
+									url : "defineWriteSub",
+									dataType : "text",
+									data : {
+										textValue : textValue,
+										num : num,
+										space : space,
+										groupNum : groupNum,
+										pw : pw,
+										id : id
+									},
+									error : function() {
+										alert("error");
+									},
+									success : function(success) {
+										location.reload();
+									}
+								});
+							}
+						}
+						
+						function recommendUp(up, num) {
+							$.ajax({
+								type : "POST", 
+								url : "recommendUp",
+								dataType : "text",
+								data : {
+									upNumber : up,
+									conNum : num,
+								},
+								error : function() {
+									alert("error");
+								},
+								success : function(success) {
+									alert("추천완료되었습니다."+up + " "+ num);
+								}
+							});
+						}
+					</script>
+					
 					<!-- 댓글표시 -->
 					<c:set var="num" value="${a.num}" />
 					<div style="margin-top: 10px;"></div>
@@ -566,57 +594,56 @@
 
 									</div>
 									<script>
-								function ansCommentSec(num, connum, space, id, groupnum){
-									if(isSession == false) {
-										alert("먼저로그인을 해주세요");
-									} else{
-										var sec = 'ansSec' + num;
-										var spacenum = space + 1;
-										var textA = 'textAreaSecond' + num;
-										var arrowhtml = "<div class='textSection' style='margin-left:0.5rem; margin-bottom:5rem; position: relative; top: 0.8rem; left: 1.4rem;'><div id='diagram'/><div class='cont-box-pseudo'/></div>";
-										var innerhtml = "<span style=''><textarea id='"+textA+"' name='subcon' rows='2' cols='55' style='position: relative; left: 2.2rem; margin-bottom: 1rem; margin-top: 0.3rem; height: 55px; table-layout: fixed; float: left;'></textarea></span>"; 
-										var writebutton = "<span style='position: relative; bottom:0.8rem; left:2.1rem; bottom:1.2rem; margin-right:0.5rem; font-size: 80%; float: left;'><div><input type='submit' style='height:1.7rem;' onclick=\"writeSecondSub('"+num+"','"+connum+"','"+spacenum+"','"+id+"','"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='답글달기'/></div>";
-										var calcelbutton = "<div><input type='submit' style='height:1.7rem;' onclick=\"cancelSecondSub('"+sec+"');\" value='답글취소'/></div></span>";
-										var innerarrowhtml = arrowhtml + innerhtml + writebutton + calcelbutton;
-										$('#'+sec).html(innerarrowhtml); 
+									function ansCommentSec(num, connum, space, id, groupnum){
+										if(isSession == false) {
+											alert("먼저로그인을 해주세요");
+										} else{
+											var sec = 'ansSec' + num;
+											var spacenum = space + 1;
+											var textA = 'textAreaSecond' + num;
+											var arrowhtml = "<div class='textSection' style='margin-left:0.5rem; margin-bottom:5rem; position: relative; top: 0.8rem; left: 1.4rem;'><div id='diagram'/><div class='cont-box-pseudo'/></div>";
+											var innerhtml = "<span style=''><textarea id='"+textA+"' name='subcon' rows='2' cols='55' style='position: relative; left: 2.2rem; margin-bottom: 1rem; margin-top: 0.3rem; height: 55px; table-layout: fixed; float: left;'></textarea></span>"; 
+											var writebutton = "<span style='position: relative; bottom:0.8rem; left:2.1rem; bottom:1.2rem; margin-right:0.5rem; font-size: 80%; float: left;'><div><input type='submit' style='height:1.7rem;' onclick=\"writeSecondSub('"+num+"','"+connum+"','"+spacenum+"','"+id+"','"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='답글달기'/></div>";
+											var calcelbutton = "<div><input type='submit' style='height:1.7rem;' onclick=\"cancelSecondSub('"+sec+"');\" value='답글취소'/></div></span>";
+											var innerarrowhtml = arrowhtml + innerhtml + writebutton + calcelbutton;
+											$('#'+sec).html(innerarrowhtml); 
+										}
 									}
-								}
-								
-								function cancelSecondSub(sec){
-									$('#'+sec).html(""); 
-								}
-								
-								function writeSecondSub(num, connum, space, answerId, groupNum, pw, id) {
 									
-									var textId = 'textAreaSecond' + num;
-									var textValue = $('#' + textId).val();
-									if(textValue == ""){
-										alert("1글자이상 입력해주세요");
-									}else{
-										$.ajax({
-											type : "POST", // 전송방식을 지정한다 (POST,GET)
-											url : "defineSecondSub",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-											dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
-											// 있다.
-											data : {
-												textVal : textValue,
-												num : connum,
-												answerId : answerId,
-												space : space,
-												groupNum : groupNum,
-												pw : pw,
-												id : id
-											},
-											error : function() {
-												alert("error");
-											},
-											success : function(success) {
-												location.reload();
-											}
-										});
+									function cancelSecondSub(sec){
+										$('#'+sec).html(""); 
 									}
-								}
-								</script>
+									
+									function writeSecondSub(num, connum, space, answerId, groupNum, pw, id) {
+										var textId = 'textAreaSecond' + num;
+										var textValue = $('#' + textId).val();
+										if(textValue == ""){
+											alert("1글자이상 입력해주세요");
+										}else{
+											$.ajax({
+												type : "POST", // 전송방식을 지정한다 (POST,GET)
+												url : "defineSecondSub",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+												dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
+												// 있다.
+												data : {
+													textVal : textValue,
+													num : connum,
+													answerId : answerId,
+													space : space,
+													groupNum : groupNum,
+													pw : pw,
+													id : id
+												},
+												error : function() {
+													alert("error");
+												},
+												success : function(success) {
+													location.reload();
+												}
+											});
+										}
+									}
+									</script>
 
 								</tr>
 
@@ -688,7 +715,6 @@ $('#inputText').keyup(function(event) {
 		$("#inputText").val($('#' + id).text());
 		$('#' + id).css("background-color", "#E0E0E0");
 		$('#' + bottom).css("background-color", "white");
-
 	} else if (event.keyCode == 40) { // 아래방향키눌렀을때
 		number++;
 		keynumber = number;
@@ -709,7 +735,6 @@ $('#inputText').keyup(function(event) {
 	if (keySet.indexOf(event.key) != -1) {
 		num = 0;
 		var inputText = $("#inputText").val();
-
 		$.ajax({
 			type : "POST", 
 			url : "searchWord",

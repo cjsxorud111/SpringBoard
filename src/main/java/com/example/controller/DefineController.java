@@ -35,14 +35,14 @@ import com.example.service.DefineService;
 
 @Controller
 public class DefineController {
-	//git test01
+
 	int refreshNum = 0;
 	
 	@Inject
-	private DefineService service;	
+	private DefineService service;
 	final static Logger logger = LoggerFactory.getLogger(DefineController.class);
-	
-	@RequestMapping(value = "/searchWord", produces = "application/text; charset=utf8", method = RequestMethod.POST)
+
+	/*@RequestMapping(value = "/searchWord", produces = "application/text; charset=utf8", method = RequestMethod.POST)
 	@ResponseBody
 	public String searchWord(HttpServletRequest request) {
 		String result = null;
@@ -53,8 +53,8 @@ public class DefineController {
 			e.printStackTrace();
 		}
 		return result;
-	}
-	
+	}*/
+
 	@RequestMapping(value = "/modifyWriting", method = RequestMethod.POST)
 	@ResponseBody
 	public String modifyWriting(HttpServletRequest request) {
