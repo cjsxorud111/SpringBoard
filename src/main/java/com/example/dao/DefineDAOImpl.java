@@ -54,7 +54,6 @@ public class DefineDAOImpl implements DefineDAO {
 	
 	@Override
 	public List<memberRankingVO> memberRanking() {
-		logger.info("");
 		
 		List<memberRankingVO> memberRanking = null;
 		
@@ -63,19 +62,17 @@ public class DefineDAOImpl implements DefineDAO {
 		} catch (Exception e) {
 			logger.error("sqlError : ",e);
 		} 
-		// List<memberRankingVO> memberRanking = sqlSession.selectList(Namespace + ".memberRanking");
 		
 		return memberRanking;
 	}
 	
 	@Override
-	public List<MainDefineContentVO> selectRecommendMainDefCon() {
-		logger.info("");
+	public List<MainDefineContentVO> selectRecommendMainDefCon(String inputText) {
 		
 		List<MainDefineContentVO> MainDefineList = null;
 		
 		try {
-			MainDefineList = sqlSession.selectList(Namespace + ".recommendDefineList");
+			MainDefineList = sqlSession.selectList(Namespace + ".recommendDefineList", inputText);
 		} catch (Exception e) {
 			logger.error("sqlError : ",e);
 		}
