@@ -35,7 +35,7 @@ import com.example.service.DefineService;
 
 @Controller
 public class DefineController {
-
+	//git test
 	int refreshNum = 0;
 	
 	@Inject
