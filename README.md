@@ -30,3 +30,4 @@
   1. 기능 > REST API로 변경 
   2. Eclipse > IntelliJ
   3. SpringMVC > Spring Boot
+  4. Mybatis > JPA 
