@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class Controller {
 
+    int refreshNum = 0;
+
     private DefineService service;
 
     @Autowired
@@ -39,5 +41,4 @@ public class Controller {
 		}
 		return "redirect:/";
 	}
-
 }
