@@ -22,7 +22,6 @@
 	type="text/css">
 <script src="//cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="<c:url value="resources/js/defineJavaScript.js" />"></script>
 <script async
 	src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -77,11 +76,12 @@
 
 <script>
 	window.onload = function() {
+
 		var num = 0;
 		<c:forEach items="${MainDefineList}" var="a" begin="<%=begin%>" end="<%=end%>">
 			num++;
 		</c:forEach>
-		
+
 		if(num == 1){
 			$('#innerSection').css('height','85%');
 		}

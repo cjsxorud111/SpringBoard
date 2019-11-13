@@ -74,9 +74,7 @@ public class DefineController {
 	@RequestMapping(value = "/recommendUp", method = RequestMethod.POST)
 	@ResponseBody
 	public String recommendUp(HttpServletRequest request) {
-		System.out.println("추천테스트11");
 
-		
 		String upNumber = request.getParameter("upNumber");
 		String conNum = request.getParameter("conNum");
 		System.out.println(conNum+"추천테스트1");
