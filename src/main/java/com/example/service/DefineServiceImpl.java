@@ -1,28 +1,19 @@
 package com.example.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import com.example.dao.DefineDAO;
+import com.example.dto.*;
+import com.example.otherclass.HangulDivide;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.controller.DefineController;
-import com.example.dao.DefineDAO;
-import com.example.dto.DefineSubVO;
-import com.example.dto.GetModifyContentVO;
-import com.example.dto.MainDefineContentVO;
-import com.example.dto.NewwordVO;
-import com.example.dto.RecommendVO;
-import com.example.dto.ReturnRecommendVO;
-import com.example.dto.memberRankingVO;
-import com.example.otherclass.HangulDivide;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 @Service
 public class DefineServiceImpl implements DefineService {
@@ -48,8 +39,7 @@ public class DefineServiceImpl implements DefineService {
 
 	@Override
 	public void modifyWriting(HttpServletRequest request) throws Exception {
-		logger.info("");
-		
+
 		GetModifyContentVO vo = new GetModifyContentVO();
 		vo.setWord(request.getParameter("WORD"));
 		vo.setNum(request.getParameter("conNum"));

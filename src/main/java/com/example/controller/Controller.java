@@ -1,6 +1,9 @@
 package com.example.controller;
 
 import com.example.service.DefineService;
+import com.example.service.DefineServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class Controller {
+
+    final static Logger logger = LoggerFactory.getLogger(DefineServiceImpl.class);
 
     int refreshNum = 0;
 
