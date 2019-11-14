@@ -1,16 +1,15 @@
 package com.example.controller;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import com.example.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.service.MemberService;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
@@ -25,16 +24,16 @@ public class LoginController {
 
 	@RequestMapping(value = "/logining", method = RequestMethod.GET)
 	@ResponseBody
-	public String logining(HttpServletRequest request,HttpServletRequest response, Model model) throws Exception {
-		String aa = service.logining(request);
-		if (aa.equals("true")) {
+	public String logining(HttpServletRequest request) throws Exception {
+		String idCheck = service.logining(request);
+		if (idCheck.equals("true")) {
 			String a = request.getParameter("ID");
 			String pw = request.getParameter("PW");
 			HttpSession session = request.getSession();
 			session.setAttribute("ID", a);
 			session.setAttribute("PW", pw);
 			return "success";
-		} else if(aa.equals("noId")){
+		} else if(idCheck.equals("noId")){
 			return "noId";
 		} else {
 			return "notPw";

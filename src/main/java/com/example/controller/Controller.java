@@ -27,7 +27,6 @@ public class Controller {
 
     @RequestMapping(value = "/searchWord", produces = "application/text; charset=utf8", method = RequestMethod.POST)
     public String searchWord(HttpServletRequest request) {
-
         String result = null;
         try {
             result = service.searchWord(request);
