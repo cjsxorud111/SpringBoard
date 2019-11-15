@@ -95,13 +95,6 @@
 	    divcon += "<div style='color: #F54708; margin-bottom: 1rem; font-size: 30px; font-weight: 10rem;'>신조어사전 HelloWord!에 오신것을 환영합니다.</div>";
 	    divcon += "<div style='font-size: 18px;'>신조어사전HelloWord! 는 여러분이 직접 정의하는 사전입니다.</div>" ; 
 	    divcon += "<div style='font-size: 18px;'>원하는 신조어를 무엇이든 자유롭게 정의하고 다른사람의 정의를 추천해주세요!";
-	    divcon += "</div><form action='select'><select name='sort' style='margin-top: 10px;'>";
-	    divcon += "<option value=''>글 순서정렬</option>";
-	    divcon += "<option value='최근 정의된 순서'>최근 정의된 순서</option>";
-	    divcon += "<option value='댓글 많은순서'>댓글 많은순서</option>";
-	    divcon += "<option value='추천수 순서'>추천수 순서</option>";
-	    divcon += "<option value='정의 많은순서'>정의 많은순서</option>";
-	    divcon += "</select><input type='submit' style='height: 23px; margin-left: 10px; position: relative; top: 3px;' value='정렬'></form></div>";
 	    divcon += "</span>";
 	    
 		if(stringVal.indexOf(substring) == -1){
