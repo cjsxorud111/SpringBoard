@@ -24,7 +24,6 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script async
 	src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
 <script type="text/javascript">
 	
 	var session = '<%=sessionId%>';
@@ -404,7 +403,7 @@
 					<div id="rate" style="float: right;">
 						<div>
 							<button 
-								onclick="recommendUp(${a.up}, ${a.num});"
+								onclick="recommendUpCheck(${a.up}, ${a.num});"
 								id="recommendUp${a.num}" 
 								onmouseover="recommendUpOver(${a.num})"
 								onmouseout="recommendUpOut(${a.num})" 
@@ -496,7 +495,15 @@
 								});
 							}
 						}
-						
+
+						function recommendUpCheck(up, num) {
+							if(isSession == true) {
+								recommendUp(up, num);
+							} else {
+								alert("먼저 로그인을 해주세요");
+							}
+						}
+
 						function recommendUp(up, num) {
 							$.ajax({
 								type : "POST", 
