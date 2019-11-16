@@ -73,8 +73,8 @@
 				},
 				success : function(Parse_data) {
 
-					if (Parse_data == 'yes') {
-						alert("추,비추천은 한번만 가능합니다.");
+					if (Parse_data == "true") {
+						alert("추, 비추천은 한번만 가능합니다.");
 					} else {
 						alert("추천 되었습니다.");
 						var id = 'recommendUp' + conNum;

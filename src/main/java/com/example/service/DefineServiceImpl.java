@@ -112,21 +112,24 @@ public class DefineServiceImpl implements DefineService {
 	}
 
 	@Override
-	public String recommendUp(HttpServletRequest request, String upNumber, String conNum) throws Exception {
+	public boolean recommendUp(HttpServletRequest request, String upNumber, String conNum) throws Exception {
 		HttpSession session = request.getSession();
-		String sessionId = (String) session.getAttribute("ID");
+		String sessionId = (String)session.getAttribute("ID");
 		List<ReturnRecommendVO> recommendList = dao.recommendSelect(conNum);
-		String isId = "no";
-		//db에서이미추천한적있는지검사
-		for (int i = 0; i < recommendList.size(); i++) {
-			ReturnRecommendVO recom = recommendList.get(i);
-			if (recommendList.get(i).getId().equals(sessionId)) {
-				isId = "yes";
+		boolean isId = false;
+
+		if (recommendList != null) {
+			//db에서이미추천한적있는지검사
+			for (int i = 0; i < recommendList.size(); i++) {
+				ReturnRecommendVO recom = recommendList.get(i);
+				if (recommendList.get(i).getId().equals(sessionId)) {
+					isId = true;
+				}
 			}
 		}
 
 		//db에추천이저장된적없다면추천+1
-		if (isId.equals("no")) {
+		if (isId == false) {
 			dao.recommendUp(upNumber, conNum);
 			RecommendVO recommendVO = new RecommendVO();
 			recommendVO.setConNum(Integer.parseInt(conNum));

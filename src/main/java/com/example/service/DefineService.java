@@ -1,14 +1,13 @@
 package com.example.service;
 
-import java.util.List;
-import java.util.Locale;
-
-import javax.servlet.http.HttpServletRequest;
-
-import com.example.dto.memberRankingVO;
 import com.example.dto.DefineSubVO;
 import com.example.dto.GetModifyContentVO;
 import com.example.dto.MainDefineContentVO;
+import com.example.dto.memberRankingVO;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Locale;
 
 public interface DefineService {
 	
@@ -26,7 +25,7 @@ public interface DefineService {
 
 	public String deleteDefineSub(String pw, String num)throws Exception;
 
-	public String recommendUp(HttpServletRequest request, String upNumber, String conNum)throws Exception;
+	public boolean recommendUp(HttpServletRequest request, String upNumber, String conNum)throws Exception;
 
 	public String recommendDown(HttpServletRequest request, String downNumber, String conNum)throws Exception;
 

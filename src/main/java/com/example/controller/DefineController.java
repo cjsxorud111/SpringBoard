@@ -77,13 +77,16 @@ public class DefineController {
 
 		String upNumber = request.getParameter("upNumber");
 		String conNum = request.getParameter("conNum");
-		String result = null;
+		String recommendUpResult = "false";
 		try {
-			result = service.recommendUp(request, upNumber, conNum);
+			boolean result = service.recommendUp(request, upNumber, conNum);
+			if (result == true) {
+				recommendUpResult = "true";
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return result;
+		return recommendUpResult;
 	}
 
 	// 추천수감소
