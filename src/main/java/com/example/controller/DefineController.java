@@ -77,10 +77,8 @@ public class DefineController {
 
 		String upNumber = request.getParameter("upNumber");
 		String conNum = request.getParameter("conNum");
-		System.out.println(conNum+"추천테스트1");
 		String result = null;
 		try {
-			System.out.println(conNum+"추천테스트2");
 			result = service.recommendUp(request, upNumber, conNum);
 		} catch (Exception e) {
 			e.printStackTrace();

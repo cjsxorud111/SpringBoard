@@ -121,7 +121,6 @@ public class DefineServiceImpl implements DefineService {
 		for (int i = 0; i < recommendList.size(); i++) {
 			ReturnRecommendVO recom = recommendList.get(i);
 			if (recommendList.get(i).getId().equals(sessionId)) {
-				 
 				isId = "yes";
 			}
 		}
