@@ -64,11 +64,11 @@
                 return false;
             }
             if (docId.name.value == "") {
-                id.focus();
+                name.focus();
                 return false;
             }
             if (docId.email.value == "") {
-                id.focus();
+                email.focus();
                 return false;
             } else return true;
         }
