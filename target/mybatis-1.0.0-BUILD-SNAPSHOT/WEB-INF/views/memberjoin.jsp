@@ -53,11 +53,31 @@
             }
         }
 
+        function idValidationCheck(str) {
+            var pattern_num = /[0-9]/; // 숫자
+            var pattern_eng_upper = /[A-Z]/; // 문자
+            var pattern_eng_lower = /[a-z]/; // 소문자
+            var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
+            var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글
+            if ((pattern_num.test(str)) && (pattern_eng_lower.test(str)) && !(pattern_eng_upper.test(str)) && !(pattern_spc.test(str)) && !(pattern_kor.test(str))) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         function check() {
             var docId = document.memberJoin;
             if (docId.id.value == "") {
                 id.focus();
                 return false;
+                var inputText = docId.id.value;
+                var result = idValidationCheck(inputText);
+                if (result == false) {
+					alert("ID는 영문 소문와 숫자만 가능합니다.");
+					id.focus();
+					docId.id.value = "";
+                }
             }
             if (docId.pw.value == "") {
                 pw.focus();
