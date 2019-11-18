@@ -2,7 +2,6 @@ package com.example.controller;
 
 import com.example.service.MemberService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,14 +20,7 @@ public class MemberjoinController {
     }
 
     @RequestMapping(value = "/memberjoining", method = RequestMethod.GET)
-    public String memberjoining(HttpServletRequest request, Model model) throws Exception {
-        String str = request.getParameter("ID");
-
-        for (int i = 0; i < str.length(); i++) {
-            if (Character.getType(str.charAt(i)) == 5) {
-                return "redirect:memberjoin?han=true";
-            }
-        }
+    public String memberjoining(HttpServletRequest request) throws Exception {
         service.memberjoining(request);
         return "redirect:/";
     }
