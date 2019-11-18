@@ -24,18 +24,7 @@
             src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
     <script
             src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script type="">
-        window.onload = function () {
-            var section2 = document.getElementById("LoginCheck");
-            $("#engg").html("eeeee");
-            var sessionValue = $("#LoginCheck").html();
-
-            if (sessionValue === 'null님 환영합니다!') {
-                section2.style.display = "none";
-            } else {
-                section2.style.display = "block";
-            }
-        }
+    <script type="text/javascript">
 
         function getParameterByName(name, url) {
             if (!url)

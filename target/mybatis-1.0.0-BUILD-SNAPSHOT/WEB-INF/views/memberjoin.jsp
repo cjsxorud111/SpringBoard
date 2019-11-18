@@ -24,18 +24,7 @@
             src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
     <script
             src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-        window.onload = function () {
-            var section2 = document.getElementById("LoginCheck");
-            $("#engg").html("eeeee");
-            var sessionValue = $("#LoginCheck").html();
-
-            if (sessionValue == 'null님 환영합니다!') {
-                section2.style.display = "none";
-            } else {
-                section2.style.display = "block";
-            }
-        }
+    <script type="text/javascript">
 
         function getParameterByName(name, url) {
             if (!url)
@@ -48,10 +37,10 @@
 
         window.onload = function () {
             var a = getParameterByName('han');
-            if (a == 'true') {
+            if (a === 'true') {
                 $("#engg").html("아이디와 이름은 영문으로 입력해주세요");
             }
-        }
+        };
 
         function idValidationCheck(str) {
             var pattern_num = /[0-9]/; // 숫자
@@ -59,35 +48,31 @@
             var pattern_eng_lower = /[a-z]/; // 소문자
             var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
             var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글
-            if ((pattern_num.test(str)) && (pattern_eng_lower.test(str)) && !(pattern_eng_upper.test(str)) && !(pattern_spc.test(str)) && !(pattern_kor.test(str))) {
-                return true;
-            } else {
-                return false;
-            }
+            return (pattern_num.test(str)) && (pattern_eng_lower.test(str)) && !(pattern_eng_upper.test(str)) && !(pattern_spc.test(str)) && !(pattern_kor.test(str));
         }
 
         function check() {
             var docId = document.memberJoin;
-            if (docId.id.value == "") {
+            if (docId.id.value === "") {
                 id.focus();
                 return false;
                 var inputText = docId.id.value;
                 var result = idValidationCheck(inputText);
-                if (result == false) {
+                if (result === false) {
 					alert("ID는 영문 소문와 숫자만 가능합니다.");
 					id.focus();
 					docId.id.value = "";
                 }
             }
-            if (docId.pw.value == "") {
+            if (docId.pw.value === "") {
                 pw.focus();
                 return false;
             }
-            if (docId.name.value == "") {
+            if (docId.name.value === "") {
                 name.focus();
                 return false;
             }
-            if (docId.email.value == "") {
+            if (docId.email.value === "") {
                 email.focus();
                 return false;
             } else return true;
