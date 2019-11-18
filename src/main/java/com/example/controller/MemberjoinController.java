@@ -1,14 +1,13 @@
 package com.example.controller;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-
+import com.example.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.service.MemberService;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class MemberjoinController {
@@ -17,7 +16,7 @@ public class MemberjoinController {
 	private MemberService service;
 
 	@RequestMapping(value = "/memberjoin", method = RequestMethod.GET)
-	public String memberjoin(Model model) throws Exception {
+	public String memberjoin() throws Exception {
 		return "memberjoin";
 	}
 
