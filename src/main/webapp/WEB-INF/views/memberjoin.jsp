@@ -56,13 +56,6 @@
             if (docId.id.value === "") {
                 id.focus();
                 return false;
-                var inputText = docId.id.value;
-                var result = idValidationCheck(inputText);
-                if (result === false) {
-					alert("ID는 영문 소문와 숫자만 가능합니다.");
-					id.focus();
-					docId.id.value = "";
-                }
             }
             if (docId.pw.value === "") {
                 pw.focus();
@@ -77,6 +70,16 @@
                 return false;
             } else return true;
         }
+
+        function idValidCheck() {
+            var inputText = document.getElementById("id");
+            var result = idValidationCheck(inputText);
+            if (result === false) {
+                alert("ID는 영문 소문와 숫자만 가능합니다.");
+                id.focus();
+                inputText.value = "";
+            }
+        };
     </script>
 
     <link href="resources/css/defineStyle.css?after" rel="stylesheet" type="text/css">
@@ -88,9 +91,10 @@
     <!-- 아이디영문요청 태그-->
     <div id="engg"></div>
     <div style="text-align:center;"><h1>Sign up</h1></div>
+
     <form action="memberjoining" name="memberJoin" onsubmit="return check()" method="get">
         <div style="margin-bottom:0.8rem;">
-            <input type="text" id="id" class="form-control" name="ID" size="30"
+            <input type="text" onfocusout="idValidCheck()" id="id" class="form-control" name="ID" size="30"
                    placeholder="ID" style="width: 20rem;">
         </div>
 
