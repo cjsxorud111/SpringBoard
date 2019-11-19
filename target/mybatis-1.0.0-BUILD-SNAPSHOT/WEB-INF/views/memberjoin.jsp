@@ -44,42 +44,44 @@
 
         function check() {
             var docId = document.memberJoin;
-            if (docId.id.value === "") {
+            if (docId.id.value === '') {
                 id.focus();
                 return false;
             }
-            if (docId.pw.value === "") {
+            if (docId.pw.value === '') {
                 pw.focus();
                 return false;
             }
-            if (docId.name.value === "") {
+            if (docId.name.value === '') {
                 name.focus();
                 return false;
             }
-            if (docId.email.value === "") {
+            if (docId.email.value === '') {
                 email.focus();
                 return false;
             } else return true;
         }
 
-        function idValidCheck() {
+        function idValidationCheck() {
             var inputText = document.getElementById("id");
-            var result = idValidationCheck(inputText);
-            if (result === false) {
+            var pattern_num = /[0-9]/; // 숫자
+            var pattern_eng_lower = /[a-z]/; // 소문자
+            if (pattern_num.test(inputText.value) || pattern_eng_lower.test(inputText.value) || inputText.value === "") {
                 alert("ID는 영문 소문와 숫자만 가능합니다.");
                 id.focus();
                 inputText.value = "";
             }
         }
 
-        function idValidationCheck(str) {
+        function pwValidationCheck() {
+            var inputText = document.getElementById("pw");
             var pattern_num = /[0-9]/; // 숫자
-            var pattern_eng_upper = /[A-Z]/; // 문자
             var pattern_eng_lower = /[a-z]/; // 소문자
-            var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
-            var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글
-            var pattern_temp = ""; // 숫자
-            return pattern_num.test(str.value) || pattern_eng_lower.test(str.value) || str.value === "";
+            if (pattern_num.test(inputText.value) || pattern_eng_lower.test(inputText.value) || inputText.value === "") {
+                alert("ID는 영문 소문와 숫자만 가능합니다.");
+                id.focus();
+                inputText.value = "";
+            }
         }
     </script>
 
@@ -89,7 +91,7 @@
 <div id="signUp" style="color-background: grey;">
     <div id="notMember">${notMember}</div>
 
-    <!-- 아이디영문요청 태그-->
+    <!--아이디영문요청 태그-->
     <div id="engg"></div>
     <div style="text-align:center;"><h1>Sign up</h1></div>
 

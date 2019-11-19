@@ -44,37 +44,45 @@
 
         function check() {
             var docId = document.memberJoin;
-            if (docId.id.value === "") {
+            if (docId.id.value === '') {
                 id.focus();
                 return false;
             }
-            if (docId.pw.value === "") {
+            if (docId.pw.value === '') {
                 pw.focus();
                 return false;
             }
-            if (docId.name.value === "") {
+            if (docId.name.value === '') {
                 name.focus();
                 return false;
             }
-            if (docId.email.value === "") {
+            if (docId.email.value === '') {
                 email.focus();
                 return false;
             } else return true;
         }
 
         function idValidationCheck() {
-            var inputText = document.getElementById("id");
+            var inputText = document.getElementById('id');
             var pattern_num = /[0-9]/; // 숫자
             var pattern_eng_lower = /[a-z]/; // 소문자
-            if (pattern_num.test(inputText.value) || pattern_eng_lower.test(inputText.value) || inputText.value === "") {
-                alert("ID는 영문 소문와 숫자만 가능합니다.");
+            if (pattern_num.test(inputText.value) || pattern_eng_lower.test(inputText.value) || inputText.value === '') {
+                alert('ID는 영문 소문와 숫자만 가능합니다.');
                 id.focus();
-                inputText.value = "";
+                inputText.value = '';
             }
         }
 
-
-       
+        function pwValidationCheck() {
+            var inputText = document.getElementById('pw');
+            var pattern_num = /[0-9]/; // 숫자
+            var pattern_eng_lower = /[a-z]/; // 소문자
+            if (pattern_num.test(inputText.value) || pattern_eng_lower.test(inputText.value) || inputText.value === '') {
+                alert('ID는 영문 소문와 숫자만 가능합니다.');
+                id.focus();
+                inputText.value = '';
+            }
+        }
     </script>
 
     <link href="resources/css/defineStyle.css?after" rel="stylesheet" type="text/css">
