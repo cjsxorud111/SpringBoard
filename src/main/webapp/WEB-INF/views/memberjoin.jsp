@@ -75,10 +75,10 @@
 
         function pwValidationCheck() {
             var inputText = document.getElementById('pw');
-            var pattern_num = /[0-9]/; // 숫자
-            var pattern_eng_lower = /[a-z]/; // 소문자
-            var pattern_eng_upper = /[A-Z]/; // 대문자
-            if (!(pattern_num.test(inputText.value) || pattern_eng_lower.test(inputText.value) || pattern_eng_upper.test(inputText.value) || inputText.value === '')) {
+            var patternNum = /[0-9]/; // 숫자
+            var patternEngLower = /[a-z]/; // 소문자
+            var patternEngUpper = /[A-Z]/; // 대문자
+            if (!(patternNum.test(inputText.value) || patternEngLower.test(inputText.value) || patternEngUpper.test(inputText.value) || inputText.value === '')) {
                 alert('PW는 영문과 숫자만 가능합니다.');
                 id.focus();
                 inputText.value = '';
@@ -87,10 +87,10 @@
 
         function nameValidationCheck() {
             var inputText = document.getElementById('name');
-            var pattern_eng_lower = /[a-z]/; // 소문자
-            var pattern_eng_upper = /[A-Z]/; // 대문자
-            var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; //한글
-            if (!(pattern_kor.test(inputText.value) || pattern_eng_lower.test(inputText.value) || pattern_eng_upper.test(inputText.value) || inputText.value === '')) {
+            var patternEngLower = /[a-z]/; // 소문자
+            var patternEngUpper = /[A-Z]/; // 대문자
+            var patternKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; //한글
+            if (!(patternKor.test(inputText.value) || patternEngLower.test(inputText.value) || patternEngUpper.test(inputText.value) || inputText.value === '')) {
                 alert('이름은 영문과 한만 가능합니다.');
                 name.focus();
                 inputText.value = '';
