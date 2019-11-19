@@ -84,6 +84,18 @@
                 inputText.value = '';
             }
         }
+
+        function nameValidationCheck() {
+            var inputText = document.getElementById('name');
+            var pattern_eng_lower = /[a-z]/; // 소문자
+            var pattern_eng_upper = /[A-Z]/; // 대문
+            var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+            if (!(pattern_kor.test(inputText.value) || pattern_eng_lower.test(inputText.value) || pattern_eng_upper.test(inputText.value) || inputText.value === '')) {
+                alert('이 영문과 한만 가능합니다.');
+                name.focus();
+                inputText.value = '';
+            }
+        }
     </script>
 
     <link href="resources/css/defineStyle.css?after" rel="stylesheet" type="text/css">
@@ -108,7 +120,7 @@
         </div>
 
         <div style="margin-bottom:0.8rem;">
-            <input type="text" id="name" class="form-control" name="NAME" size="30"
+            <input type="text" onfocusout="nameValidationCheck()" id="name" class="form-control" name="NAME" size="30"
                    placeholder="NAME" style="width: 20rem;">
         </div>
 
