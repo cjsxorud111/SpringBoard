@@ -91,7 +91,7 @@
             var pattern_eng_upper = /[A-Z]/; // 대문
             var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
             if (!(pattern_kor.test(inputText.value) || pattern_eng_lower.test(inputText.value) || pattern_eng_upper.test(inputText.value) || inputText.value === '')) {
-                alert('이 영문과 한만 가능합니다.');
+                alert('이름은 영문과 한만 가능합니다.');
                 name.focus();
                 inputText.value = '';
             }
