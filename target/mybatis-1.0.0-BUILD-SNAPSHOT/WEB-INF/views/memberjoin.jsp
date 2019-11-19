@@ -42,15 +42,6 @@
             }
         };
 
-        function idValidationCheck(str) {
-            var pattern_num = /[0-9]/; // 숫자
-            var pattern_eng_upper = /[A-Z]/; // 문자
-            var pattern_eng_lower = /[a-z]/; // 소문자
-            var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
-            var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글
-            return (pattern_num.test(str)) && (pattern_eng_lower.test(str)) && !(pattern_eng_upper.test(str)) && !(pattern_spc.test(str)) && !(pattern_kor.test(str));
-        }
-
         function check() {
             var docId = document.memberJoin;
             if (docId.id.value === "") {
@@ -79,7 +70,17 @@
                 id.focus();
                 inputText.value = "";
             }
-        };
+        }
+
+        function idValidationCheck(str) {
+            var pattern_num = /[0-9]/; // 숫자
+            var pattern_eng_upper = /[A-Z]/; // 문자
+            var pattern_eng_lower = /[a-z]/; // 소문자
+            var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
+            var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글
+            var pattern_temp = ""; // 숫자
+            return pattern_num.test(str.value) || pattern_eng_lower.test(str.value) || str.value === "";
+        }
     </script>
 
     <link href="resources/css/defineStyle.css?after" rel="stylesheet" type="text/css">
