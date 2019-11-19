@@ -66,7 +66,7 @@
             var inputText = document.getElementById('id');
             var pattern_num = /[0-9]/; // 숫자
             var pattern_eng_lower = /[a-z]/; // 소문자
-            if (pattern_num.test(inputText.value) || pattern_eng_lower.test(inputText.value) || inputText.value === '') {
+            if (!(pattern_num.test(inputText.value) || pattern_eng_lower.test(inputText.value) || inputText.value === '')) {
                 alert('ID는 영문 소문와 숫자만 가능합니다.');
                 id.focus();
                 inputText.value = '';
@@ -77,8 +77,9 @@
             var inputText = document.getElementById('pw');
             var pattern_num = /[0-9]/; // 숫자
             var pattern_eng_lower = /[a-z]/; // 소문자
-            if (pattern_num.test(inputText.value) || pattern_eng_lower.test(inputText.value) || inputText.value === '') {
-                alert('ID는 영문 소문와 숫자만 가능합니다.');
+            var pattern_eng_upper = /[A-Z]/; // 소문자
+            if (!(pattern_num.test(inputText.value) || pattern_eng_lower.test(inputText.value) || pattern_eng_upper.test(inputText.value) || inputText.value === '')) {
+                alert('PW는 영문과 숫자만 가능합니다.');
                 id.focus();
                 inputText.value = '';
             }
@@ -97,12 +98,12 @@
 
     <form action="memberjoining" name="memberJoin" onsubmit="return check()" method="get">
         <div style="margin-bottom:0.8rem;">
-            <input type="text" onfocusout="idValidCheck()" id="id" class="form-control" name="ID" size="30"
+            <input type="text" onfocusout="idValidationCheck()" id="id" class="form-control" name="ID" size="30"
                    placeholder="ID" style="width: 20rem;">
         </div>
 
         <div style="margin-bottom:0.8rem;">
-            <input type="text" id="pw" class="form-control" name="PW" size="30"
+            <input type="text" onfocusout="pwValidationCheck()" id="pw" class="form-control" name="PW" size="30"
                    placeholder="PASSWORD" style="width: 20rem;">
         </div>
 
