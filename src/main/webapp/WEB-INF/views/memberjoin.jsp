@@ -62,25 +62,19 @@
             } else return true;
         }
 
-        function idValidCheck() {
+        function idValidationCheck() {
             var inputText = document.getElementById("id");
-            var result = idValidationCheck(inputText);
-            if (result === false) {
+            var pattern_num = /[0-9]/; // 숫자
+            var pattern_eng_lower = /[a-z]/; // 소문자
+            if (pattern_num.test(inputText.value) || pattern_eng_lower.test(inputText.value) || inputText.value === "") {
                 alert("ID는 영문 소문와 숫자만 가능합니다.");
                 id.focus();
                 inputText.value = "";
             }
         }
 
-        function idValidationCheck(str) {
-            var pattern_num = /[0-9]/; // 숫자
-            var pattern_eng_upper = /[A-Z]/; // 문자
-            var pattern_eng_lower = /[a-z]/; // 소문자
-            var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
-            var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글
-            var pattern_temp = ""; // 숫자
-            return pattern_num.test(str.value) || pattern_eng_lower.test(str.value) || str.value === "";
-        }
+
+       
     </script>
 
     <link href="resources/css/defineStyle.css?after" rel="stylesheet" type="text/css">
@@ -89,7 +83,7 @@
 <div id="signUp" style="color-background: grey;">
     <div id="notMember">${notMember}</div>
 
-    <!-- 아이디영문요청 태그-->
+    <!--아이디영문요청 태그-->
     <div id="engg"></div>
     <div style="text-align:center;"><h1>Sign up</h1></div>
 
