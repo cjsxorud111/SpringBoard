@@ -88,8 +88,8 @@
         function nameValidationCheck() {
             var inputText = document.getElementById('name');
             var pattern_eng_lower = /[a-z]/; // 소문자
-            var pattern_eng_upper = /[A-Z]/; // 대문
-            var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+            var pattern_eng_upper = /[A-Z]/; // 대문자
+            var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; //한글
             if (!(pattern_kor.test(inputText.value) || pattern_eng_lower.test(inputText.value) || pattern_eng_upper.test(inputText.value) || inputText.value === '')) {
                 alert('이름은 영문과 한만 가능합니다.');
                 name.focus();
