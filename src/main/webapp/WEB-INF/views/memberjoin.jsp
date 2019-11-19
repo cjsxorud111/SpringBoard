@@ -71,6 +71,7 @@
                 id.focus();
                 inputText.value = '';
             }
+            // TODO ajax이메일 중복검사 추가 RESTAPI로 만들
         }
 
         function pwValidationCheck() {
