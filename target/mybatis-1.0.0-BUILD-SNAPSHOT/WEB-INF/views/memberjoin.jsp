@@ -69,7 +69,7 @@
             if (!(pattern_num.test(inputText.value) || pattern_eng_lower.test(inputText.value) || inputText.value === '')) {
                 alert('ID는 영문 소문와 숫자만 가능합니다.');
                 id.focus();
-                inputText.value = "";
+                inputText.value = '';
             }
         }
 
