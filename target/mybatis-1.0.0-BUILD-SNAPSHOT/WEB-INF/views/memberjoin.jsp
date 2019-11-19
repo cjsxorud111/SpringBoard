@@ -71,16 +71,29 @@
                 id.focus();
                 inputText.value = '';
             }
+            // TODO ajax이메일 중복검사 추가 RESTAPI로 만들
         }
 
         function pwValidationCheck() {
             var inputText = document.getElementById('pw');
             var pattern_num = /[0-9]/; // 숫자
             var pattern_eng_lower = /[a-z]/; // 소문자
-            var pattern_eng_upper = /[A-Z]/; // 소문자
+            var pattern_eng_upper = /[A-Z]/; // 대문
             if (!(pattern_num.test(inputText.value) || pattern_eng_lower.test(inputText.value) || pattern_eng_upper.test(inputText.value) || inputText.value === '')) {
                 alert('PW는 영문과 숫자만 가능합니다.');
                 id.focus();
+                inputText.value = '';
+            }
+        }
+
+        function nameValidationCheck() {
+            var inputText = document.getElementById('name');
+            var pattern_eng_lower = /[a-z]/; // 소문자
+            var pattern_eng_upper = /[A-Z]/; // 대문
+            var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+            if (!(pattern_kor.test(inputText.value) || pattern_eng_lower.test(inputText.value) || pattern_eng_upper.test(inputText.value) || inputText.value === '')) {
+                alert('이 영문과 한만 가능합니다.');
+                name.focus();
                 inputText.value = '';
             }
         }
@@ -108,7 +121,7 @@
         </div>
 
         <div style="margin-bottom:0.8rem;">
-            <input type="text" id="name" class="form-control" name="NAME" size="30"
+            <input type="text" onfocusout="nameValidationCheck()" id="name" class="form-control" name="NAME" size="30"
                    placeholder="NAME" style="width: 20rem;">
         </div>
 
