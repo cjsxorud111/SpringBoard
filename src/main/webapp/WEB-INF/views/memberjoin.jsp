@@ -104,7 +104,7 @@
             var patternEngUpper = /[A-Z]/; // 대문자는
             var patternAt = /[@]/; // @
             if (!(patternAt.test(inputText.value) || patternEngLower.test(inputText.value) || patternEngUpper.test(inputText.value) || inputText.value === '')) {
-                alert('비밀번호는 영문과 한만 가능합니다.');
+                alert('이메일은 영문만 가능합니다.');
                 email.focus();
                 inputText.value = '';
             }
