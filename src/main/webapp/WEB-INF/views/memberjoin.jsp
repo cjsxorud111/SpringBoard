@@ -71,7 +71,25 @@
                 id.focus();
                 inputText.value = '';
             }
-            // TODO ajax이메일 중복검사 추가 RESTAPI로 만들
+            // TODO ajax아이디 중복검사 추가 RESTAPI로 만들기
+            $.ajax({
+                type : "POST",
+                url : "validIdCheck",
+                dataType : "text",
+                data : {
+                    id : id
+                },
+                error : function() {
+                    alert("error");
+                },
+                success : function(success) {
+                    if (success === true){
+                        alert('유효한 ID입니다.')
+                    } else {
+                        alert('이미 존재하는 ID입니다.')
+                    }
+                }
+            });
         }
 
         function pwValidationCheck() {
