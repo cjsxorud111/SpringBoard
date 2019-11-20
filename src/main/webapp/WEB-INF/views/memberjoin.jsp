@@ -97,6 +97,19 @@
                 inputText.value = '';
             }
         }
+
+        function emailValidationCheck() {
+            var inputText = document.getElementById('email');
+            var patternEngLower = /[a-z]/; // 소문자
+            var patternEngUpper = /[A-Z]/; // 대문자는
+            var patternAt = /[@]/; // @
+            if (!(patternAt.test(inputText.value) || patternEngLower.test(inputText.value) || patternEngUpper.test(inputText.value) || inputText.value === '')) {
+                alert('비밀번호는 영문과 한만 가능합니다.');
+                email.focus();
+                inputText.value = '';
+            }
+            // TODO 이메일 중복검사
+        }
     </script>
 
     <link href="resources/css/defineStyle.css?after" rel="stylesheet" type="text/css">
