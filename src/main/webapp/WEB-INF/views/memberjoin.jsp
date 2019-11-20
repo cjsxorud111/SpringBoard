@@ -70,6 +70,24 @@
                 alert('ID는 영문 소문와 숫자만 가능합니다.');
                 id.focus();
                 inputText.value = '';
+            } else {
+                // TODO ajax아이디 중복검사 추가 RESTAPI로 만들기
+                $.ajax({
+                    type : "POST",
+                    url : "idValidCheck",
+                    dataType : "text",
+                    data : {
+                        id : inputText
+                    },
+                    error : function() {
+                        alert("error");
+                    },
+                    success : function(success) {
+                        if (success === false) {
+                            alert('이미 존재하는 ID입니다.');
+                        }
+                    }
+                });
             }
             // TODO ajax아이디 중복검사 추가 RESTAPI로 만들기
             $.ajax({
