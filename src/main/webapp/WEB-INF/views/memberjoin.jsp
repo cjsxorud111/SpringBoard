@@ -92,7 +92,7 @@
             var patternEngUpper = /[A-Z]/; // 대문자
             var patternKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; //한글
             if (!(patternKor.test(inputText.value) || patternEngLower.test(inputText.value) || patternEngUpper.test(inputText.value) || inputText.value === '')) {
-                alert('이름은 영문과 한만 가능합니다.');
+                alert('이름은 영문과 한글만 가능합니다.');
                 name.focus();
                 inputText.value = '';
             }
