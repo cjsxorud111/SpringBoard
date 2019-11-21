@@ -175,7 +175,8 @@
         </div>
 
         <div style="margin-bottom:0.8rem;">
-            <input type="text" id="email" class="form-control" name="EMAIL" size="30"
+            <input type="text" onfocusout="emailValidationCheck()" id="email" class="form-control" name="EMAIL"
+                   size="30"
                    placeholder="E-MAIL" style="width: 20rem;">
         </div>
 
