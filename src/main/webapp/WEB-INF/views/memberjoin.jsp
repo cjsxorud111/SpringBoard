@@ -24,6 +24,7 @@
             src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
     <script
             src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script type="text/javascript">
 
         function getParameterByName(name, url) {
@@ -66,49 +67,38 @@
             var inputText = document.getElementById('id');
             var patternNum = /[0-9]/; // 숫자
             var patternEngLower = /[a-z]/; // 소문자
-            if (!(patternNum.test(inputText.value) || patternEngLower.test(inputText.value) || inputText.value === '')) {
+            if (patternNum.test(inputText.value) || patternEngLower.test(inputText.value) || inputText.value === '') {
+                // TODO ajax아이디 중복검사 추가 RESTAPI로 만들기
+                alert('test');
+                ajax(inputText)
+            } else {
                 alert('ID는 영문 소문와 숫자만 가능합니다.');
                 id.focus();
                 inputText.value = '';
-            } else {
-                // TODO ajax아이디 중복검사 추가 RESTAPI로 만들기
-                $.ajax({
-                    type : "POST",
-                    url : "idValidCheck",
-                    dataType : "text",
-                    data : {
-                        id : inputText
-                    },
-                    error : function() {
-                        alert("error");
-                    },
-                    success : function(success) {
-                        if (success === false) {
-                            alert('이미 존재하는 ID입니다.');
-                        }
-                    }
-                });
             }
-            // TODO ajax아이디 중복검사 추가 RESTAPI로 만들기
+        }
+
+        function ajax(inputText) {
             $.ajax({
-                type : "POST",
-                url : "validIdCheck",
-                dataType : "text",
-                data : {
-                    id : id
+                type: "POST",
+                url: "searchWord",
+                dataType: "json",
+                data: {
+                    id: inputText
                 },
-                error : function() {
+                error: function () {
                     alert("error");
                 },
-                success : function(success) {
-                    if (success === true){
-                        alert('유효한 ID입니다.')
-                    } else {
-                        alert('이미 존재하는 ID입니다.')
+                success: function (success) {
+                    alert('이미 존재하는 ID입니다.');
+
+                    if (success === false) {
+                        alert('이미 존재하는 ID입니다.');
                     }
                 }
             });
         }
+
 
         function pwValidationCheck() {
             var inputText = document.getElementById('pw');
