@@ -67,11 +67,9 @@
             var inputText = document.getElementById('id');
             var patternNum = /[0-9]/; // 숫자
             var patternEngLower = /[a-z]/; // 소문자
-            if (patternNum.test(inputText.value) || patternEngLower.test(inputText.value) || inputText.value === '') {
-                // TODO ajax아이디 중복검사 추가 RESTAPI로 만들기
-                alert('test');
-                ajax(inputText)
-            } else {
+            if (patternNum.test(inputText.value) || patternEngLower.test(inputText.value)) {
+                ajax(inputText.value);
+            } else if (inputText.value !== '') {
                 alert('ID는 영문 소문와 숫자만 가능합니다.');
                 id.focus();
                 inputText.value = '';
