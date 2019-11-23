@@ -79,8 +79,8 @@
         function callIdValidCheckApi(inputText) {
             $.ajax({
                 type: "POST",
-                url: "searchWord",
-                dataType: "json",
+                url: "idValidCheck",
+                dataType: "text",
                 data: {
                     id: inputText
                 },
@@ -88,9 +88,7 @@
                     alert("error");
                 },
                 success: function (success) {
-                    alert('이미 존재하는 ID입니다.');
-
-                    if (success === false) {
+                    if (success === 'false') {
                         alert('이미 존재하는 ID입니다.');
                     }
                 }
