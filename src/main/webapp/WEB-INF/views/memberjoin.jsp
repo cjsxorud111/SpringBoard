@@ -68,7 +68,7 @@
             var patternNum = /[0-9]/; // 숫자
             var patternEngLower = /[a-z]/; // 소문자
             if (patternNum.test(inputText.value) || patternEngLower.test(inputText.value)) {
-                ajax(inputText.value);
+                callIdValidCheckApi(inputText.value);
             } else if (inputText.value !== '') {
                 alert('ID는 영문 소문와 숫자만 가능합니다.');
                 id.focus();
@@ -76,7 +76,7 @@
             }
         }
 
-        function ajax(inputText) {
+        function callIdValidCheckApi(inputText) {
             $.ajax({
                 type: "POST",
                 url: "searchWord",
