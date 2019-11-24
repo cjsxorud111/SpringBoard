@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import com.example.service.DefineService;
-import com.example.service.DefineServiceImpl;
+import com.example.service.MemberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
