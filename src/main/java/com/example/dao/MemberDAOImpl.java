@@ -1,13 +1,12 @@
 package com.example.dao;
 
-import javax.inject.Inject;
-
+import com.example.dto.MemberjoinVO;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.example.dto.MemberjoinVO;
+import javax.inject.Inject;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
@@ -16,7 +15,18 @@ public class MemberDAOImpl implements MemberDAO {
 	private SqlSession sqlSession;
 	private static final String Namespace = "com.example.mapper.memberMapper";
 	final static Logger logger = LoggerFactory.getLogger(MemberDAOImpl.class);
-	
+
+	@Override
+	public String idValidCheck(String inputId) {
+		String test = null;
+		try {
+			test = sqlSession.selectOne(Namespace + ".idValidCheck", inputId);
+		} catch (Exception e){
+			logger.error("error: {}", e);
+		}
+		return test;
+	}
+
 	@Override
 	public void memberjoining(MemberjoinVO vo) {
 		logger.info("");
