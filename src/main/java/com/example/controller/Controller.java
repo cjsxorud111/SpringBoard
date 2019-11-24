@@ -16,13 +16,13 @@ public class Controller {
 
     final static Logger logger = LoggerFactory.getLogger(DefineServiceImpl.class);
 
-    int refreshNum = 0;
+    private DefineService defineService;
 
-    private DefineService service;
+    private MemberService memberService;
 
     @Autowired
-    public void service(DefineService service) {
-        this.service = service;
+    public void service(DefineService defineService) {
+        this.defineService = defineService;
     }
 
     @Autowired
@@ -43,7 +43,7 @@ public class Controller {
     public String searchWord(HttpServletRequest request) {
         String result = null;
         try {
-            result = service.searchWord(request);
+            result = defineService.searchWord(request);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,7 +53,7 @@ public class Controller {
     @RequestMapping(value = "/modifyWriting", method = RequestMethod.POST)
 	public String modifyWriting(HttpServletRequest request) {
 		try {
-			service.modifyWriting(request);
+            defineService.modifyWriting(request);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
