@@ -18,8 +18,15 @@ import javax.servlet.http.HttpServletRequest;
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
-	private MemberDAO dao;
-	
+	public void memberDAO(MemberDAO memberDAO) {
+		this.memberDAO = memberDAO;
+	}
+
+	@Override
+	public String idValidCheck(String inputId) throws Exception {
+		return memberDAO.idValidCheck(inputId);
+	}
+
 	@Override
 	public String logining(HttpServletRequest request) throws Exception {
 		String a = request.getParameter("ID");
