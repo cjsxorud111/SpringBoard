@@ -25,6 +25,20 @@ public class Controller {
         this.service = service;
     }
 
+    @Autowired
+    public void memberService(MemberService memberService) { this.memberService = memberService; }
+
+    @RequestMapping(value = "/idValidCheck", produces = "application/text; charset=utf8", method = RequestMethod.POST)
+    public String idValidCheck(HttpServletRequest request) throws Exception {
+        String inputId = request.getParameter("id");
+        String result = memberService.idValidCheck(inputId);
+        if (result == null) {
+            return "possibleId";
+        } else {
+            return "duplicateId";
+        }
+    }
+
     @RequestMapping(value = "/searchWord", produces = "application/text; charset=utf8", method = RequestMethod.POST)
     public String searchWord(HttpServletRequest request) {
         String result = null;
