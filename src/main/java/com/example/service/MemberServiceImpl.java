@@ -1,10 +1,5 @@
 package com.example.service;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.example.dao.MemberDAO;
 import com.example.dto.MemberjoinVO;
 import org.slf4j.Logger;
@@ -31,7 +26,7 @@ public class MemberServiceImpl implements MemberService {
 	public String logining(HttpServletRequest request) throws Exception {
 		String a = request.getParameter("ID");
 		String b = request.getParameter("PW");
-		String c = dao.selectpw(a);
+		String c = memberDAO.selectpw(a);
 		if (c == null) {
 			return "noId";
 		}
@@ -42,7 +37,6 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 	
-	
 	@Override
 	public void memberjoining(HttpServletRequest request) throws Exception {
 		MemberjoinVO vo = new MemberjoinVO();
@@ -50,7 +44,7 @@ public class MemberServiceImpl implements MemberService {
 		vo.setPw(request.getParameter("PW"));
 		vo.setName(request.getParameter("NAME"));
 		vo.setEmail(request.getParameter("EMAIL"));
-		dao.memberjoining(vo);
+		memberDAO.memberjoining(vo);
 	}
 	
 }
