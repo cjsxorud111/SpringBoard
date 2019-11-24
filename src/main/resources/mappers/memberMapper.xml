@@ -5,8 +5,8 @@
 
 <mapper namespace="com.example.mapper.memberMapper">
 	
-	<select id="selectpw" resultType="String" parameterType="String">
-		SELECT pw FROM MEMBER WHERE id = #{a}
+	<select id="idValidCheck" resultType="String" parameterType="String">
+		SELECT id FROM MEMBER WHERE id = #{inputId}
 	</select>
 
 	<select id="getsub3" resultType="com.example.dto.SubVO" parameterType="com.example.dto.SubVO">
@@ -20,6 +20,5 @@
 	<insert id="memberjoining" parameterType="com.example.dto.MemberjoinVO" >
 		INSERT INTO MEMBER (id, pw, user_name, email) VALUES (#{id}, #{pw}, #{name}, #{email})
 	</insert>
-	
-   
+
 </mapper>
