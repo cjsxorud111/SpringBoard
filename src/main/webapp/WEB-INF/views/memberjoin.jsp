@@ -65,14 +65,14 @@
 
         function idValidationCheck() {
             var inputText = document.getElementById('id');
-            var patternNum = /[0-9]/; // 숫자
-            var patternEngLower = /[a-z]/; // 소문자
-            if (patternNum.test(inputText.value) || patternEngLower.test(inputText.value)) {
-                callIdValidCheckApi(inputText.value);
-            } else if (inputText.value !== '') {
-                alert('ID는 영문 소문와 숫자만 가능합니다.');
+            var patternKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; //한글
+
+            if (patternKor.test(inputText.value) || inputText.value.search(/\s/) !== -1 || inputText.value.length >= 20) {
+                alert('ID는 영문, 숫자, 특수문자만 가능합니다.');
                 id.focus();
                 inputText.value = '';
+            } else {
+                callIdValidCheckApi(inputText.value);
             }
         }
 
