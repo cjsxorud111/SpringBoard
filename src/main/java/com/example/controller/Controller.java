@@ -31,7 +31,12 @@ public class Controller {
     @RequestMapping(value = "/idValidCheck", produces = "application/text; charset=utf8", method = RequestMethod.POST)
     public String idValidCheck(HttpServletRequest request) throws Exception {
         String inputId = request.getParameter("id");
-        String result = memberService.idValidCheck(inputId);
+        String result = null;
+        try {
+            result = memberService.idValidCheck(inputId);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
         if (result == null) {
             return "possibleId";
         } else {
