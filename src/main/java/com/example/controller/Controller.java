@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class Controller {
 
-    final static Logger logger = LoggerFactory.getLogger(DefineServiceImpl.class);
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private DefineService defineService;
 
