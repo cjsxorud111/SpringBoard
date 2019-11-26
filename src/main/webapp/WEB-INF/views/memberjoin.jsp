@@ -67,8 +67,8 @@
             var inputText = document.getElementById('id');
             var patternKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; //한글
 
-            if (patternKor.test(inputText.value) || inputText.value.search(/\s/) !== -1 || inputText.value.length >= 20) {
-                alert('ID는 영문, 숫자, 특수문자만 가능합니다.');
+            if (patternKor.test(inputText.value) || inputText.value.search(/\s/) !== -1 || inputText.value.length >= 15) {
+                alert('ID는 15자 이하의 영문, 숫자, 특수문자만 가능합니다.');
                 id.focus();
                 inputText.value = '';
             } else {

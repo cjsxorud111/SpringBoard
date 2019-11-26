@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <link href="resources/css/style.css" rel="stylesheet" type="text/css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <title>memberjoin</title>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
     <link href="resources/css/style.css?after" rel="stylesheet"
           type="text/css">
@@ -19,28 +20,12 @@
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.css">
     <!-- Bootstrap core JavaScript -->
-    <script src="//code.jquery.com/jquery.min.js"></script>
     <script
             src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
-    <script
-            src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
     <script type="text/javascript">
-
-        function getParameterByName(name, url) {
-            if (!url)
-                url = window.location.href;
-            name = name.replace(/[\[\]]/g, "\\$&");
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex
-                .exec(url);
-            return results[2];
-        }
-
-        window.onload = function () {
-            var a = getParameterByName('han');
-            if (a === 'true') {
-                $("#engg").html("아이디와 이름은 영문으로 입력해주세요");
-            }
-        };
 
         function check() {
             var docId = document.memberJoin;
@@ -64,22 +49,42 @@
 
         function idValidationCheck() {
             var inputText = document.getElementById('id');
-            var pattern_num = /[0-9]/; // 숫자
-            var pattern_eng_lower = /[a-z]/; // 소문자
-            if (!(pattern_num.test(inputText.value) || pattern_eng_lower.test(inputText.value) || inputText.value === '')) {
-                alert('ID는 영문 소문와 숫자만 가능합니다.');
+            var patternKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; //한글
+
+            if (patternKor.test(inputText.value) || inputText.value.search(/\s/) !== -1 || inputText.value.length >= 20) {
+                alert('ID는 영문, 숫자, 특수문자만 가능합니다.');
                 id.focus();
                 inputText.value = '';
+            } else {
+                callIdValidCheckApi(inputText.value);
             }
-            // TODO ajax이메일 중복검사 추가 RESTAPI로 만들
+        }
+
+        function callIdValidCheckApi(inputText) {
+            $.ajax({
+                type: "POST",
+                url: "idValidCheck",
+                dataType: "text",
+                data: {
+                    id: inputText
+                },
+                error: function () {
+                    alert("error");
+                },
+                success: function (success) {
+                    if (success === 'duplicateId') {
+                        alert('이미 존재하는 ID입니다.');
+                    }
+                }
+            });
         }
 
         function pwValidationCheck() {
             var inputText = document.getElementById('pw');
-            var pattern_num = /[0-9]/; // 숫자
-            var pattern_eng_lower = /[a-z]/; // 소문자
-            var pattern_eng_upper = /[A-Z]/; // 대문
-            if (!(pattern_num.test(inputText.value) || pattern_eng_lower.test(inputText.value) || pattern_eng_upper.test(inputText.value) || inputText.value === '')) {
+            var patternNum = /[0-9]/; // 숫자
+            var patternEngLower = /[a-z]/; // 소문자
+            var patternEngUpper = /[A-Z]/; // 대문자
+            if (!(patternNum.test(inputText.value) || patternEngLower.test(inputText.value) || patternEngUpper.test(inputText.value) || inputText.value === '')) {
                 alert('PW는 영문과 숫자만 가능합니다.');
                 id.focus();
                 inputText.value = '';
@@ -88,14 +93,27 @@
 
         function nameValidationCheck() {
             var inputText = document.getElementById('name');
-            var pattern_eng_lower = /[a-z]/; // 소문자
-            var pattern_eng_upper = /[A-Z]/; // 대문
-            var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-            if (!(pattern_kor.test(inputText.value) || pattern_eng_lower.test(inputText.value) || pattern_eng_upper.test(inputText.value) || inputText.value === '')) {
-                alert('이 영문과 한만 가능합니다.');
+            var patternEngLower = /[a-z]/; // 소문자
+            var patternEngUpper = /[A-Z]/; // 대문자
+            var patternKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; //한글
+            if (!(patternKor.test(inputText.value) || patternEngLower.test(inputText.value) || patternEngUpper.test(inputText.value) || inputText.value === '')) {
+                alert('이름은 영문과 한글만 가능합니다.');
                 name.focus();
                 inputText.value = '';
             }
+        }
+
+        function emailValidationCheck() {
+            var inputText = document.getElementById('email');
+            var patternEngLower = /[a-z]/; // 소문자
+            var patternEngUpper = /[A-Z]/; // 대문자는
+            var patternAt = /[@]/; // @
+            if (!(patternAt.test(inputText.value) || patternEngLower.test(inputText.value) || patternEngUpper.test(inputText.value) || inputText.value === '')) {
+                alert('이메일은 영문만 가능합니다.');
+                email.focus();
+                inputText.value = '';
+            }
+            // TODO 이메일 중복검사
         }
     </script>
 
@@ -126,7 +144,8 @@
         </div>
 
         <div style="margin-bottom:0.8rem;">
-            <input type="text" id="email" class="form-control" name="EMAIL" size="30"
+            <input type="text" onfocusout="emailValidationCheck()" id="email" class="form-control" name="EMAIL"
+                   size="30"
                    placeholder="E-MAIL" style="width: 20rem;">
         </div>
 
