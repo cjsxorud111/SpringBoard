@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <link href="resources/css/style.css" rel="stylesheet" type="text/css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <title>memberjoin</title>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
     <link href="resources/css/style.css?after" rel="stylesheet"
           type="text/css">
@@ -19,29 +20,12 @@
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.css">
     <!-- Bootstrap core JavaScript -->
-    <script src="//code.jquery.com/jquery.min.js"></script>
     <script
             src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
-    <script
-            src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
     <script type="text/javascript">
-
-        function getParameterByName(name, url) {
-            if (!url)
-                url = window.location.href;
-            name = name.replace(/[\[\]]/g, "\\$&");
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex
-                .exec(url);
-            return results[2];
-        }
-
-        window.onload = function () {
-            var a = getParameterByName('han');
-            if (a === 'true') {
-                $("#engg").html("아이디와 이름은 영문으로 입력해주세요");
-            }
-        };
 
         function check() {
             var docId = document.memberJoin;
@@ -88,13 +72,12 @@
                     alert("error");
                 },
                 success: function (success) {
-                    if (success === 'false') {
+                    if (success === 'duplicateId') {
                         alert('이미 존재하는 ID입니다.');
                     }
                 }
             });
         }
-
 
         function pwValidationCheck() {
             var inputText = document.getElementById('pw');
