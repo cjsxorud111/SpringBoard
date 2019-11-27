@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class Controller {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(Controller.class);
 
     private DefineService defineService;
 
@@ -29,7 +29,7 @@ public class Controller {
     public void memberService(MemberService memberService) { this.memberService = memberService; }
 
     @RequestMapping(value = "/idValidCheck", produces = "application/text; charset=utf8", method = RequestMethod.POST)
-    public String idValidCheck(HttpServletRequest request) throws Exception {
+    public String idValidCheck(HttpServletRequest request) {
         String inputId = request.getParameter("id");
         String result = null;
         try {
@@ -37,6 +37,7 @@ public class Controller {
         } catch (Exception e){
             e.printStackTrace();
         }
+
         if (result == null) {
             return "possibleId";
         } else {
