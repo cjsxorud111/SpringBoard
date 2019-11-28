@@ -9,6 +9,10 @@
 		SELECT id FROM MEMBER WHERE id = #{inputId}
 	</select>
 
+	<select id="selectpw" resultType="String" parameterType="String">
+		SELECT pw FROM MEMBER WHERE id = #{a}
+	</select>
+
 	<select id="getsub3" resultType="com.example.dto.SubVO" parameterType="com.example.dto.SubVO">
 		SELECT  num, subnum, connum, space, content, uid, uuid FROM SUB WHERE connum = #{connum} 
 	</select>
