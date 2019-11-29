@@ -45,6 +45,22 @@ public class Controller {
         return recommendUpResult;
     }
 
+    // 추천수감소
+    @RequestMapping(value = "/recommendDown", method = RequestMethod.POST)
+    public String recommendDown(HttpServletRequest request) {
+        String downNumber = request.getParameter("downNumber");
+        String conNum = request.getParameter("conNum");
+        String result = null;
+        try {
+            result = defineService.recommendDown(request, downNumber, conNum);
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    // 아이디 유효성검사
     @RequestMapping(value = "/idValidCheck", produces = "application/text; charset=utf8", method = RequestMethod.POST)
     public String idValidCheck(HttpServletRequest request) {
         String inputId = request.getParameter("id");
