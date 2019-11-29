@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 @Service
 public class MemberServiceImpl implements MemberService {
 
+    final static Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
+
+	private MemberDAO memberDAO;
+
 	@Autowired
 	public void memberDAO(MemberDAO memberDAO) {
 		this.memberDAO = memberDAO;
