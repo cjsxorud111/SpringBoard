@@ -28,6 +28,23 @@ public class Controller {
     @Autowired
     public void memberService(MemberService memberService) { this.memberService = memberService; }
 
+    // 추천수증가
+    @RequestMapping(value = "/recommendUp", method = RequestMethod.POST)
+    public String recommendUp(HttpServletRequest request) {
+        String upNumber = request.getParameter("upNumber");
+        String conNum = request.getParameter("conNum");
+        String recommendUpResult = "false";
+        try {
+            boolean result = defineService.recommendUp(request, upNumber, conNum);
+            if (result) {
+                recommendUpResult = "true";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return recommendUpResult;
+    }
+
     @RequestMapping(value = "/idValidCheck", produces = "application/text; charset=utf8", method = RequestMethod.POST)
     public String idValidCheck(HttpServletRequest request) {
         String inputId = request.getParameter("id");
