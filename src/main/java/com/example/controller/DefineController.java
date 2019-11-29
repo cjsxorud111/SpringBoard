@@ -66,43 +66,8 @@ public class DefineController {
 	}
 	
 	@RequestMapping(value = "/inform", method = RequestMethod.GET)
-	public String inform(HttpServletRequest request,HttpServletRequest response, Model model) {
+	public String inform() {
 		return "inform";
-	}
-	
-	// 추천수증가
-	@RequestMapping(value = "/recommendUp", method = RequestMethod.POST)
-	@ResponseBody
-	public String recommendUp(HttpServletRequest request) {
-
-		String upNumber = request.getParameter("upNumber");
-		String conNum = request.getParameter("conNum");
-		String recommendUpResult = "false";
-		try {
-			boolean result = service.recommendUp(request, upNumber, conNum);
-			if (result == true) {
-				recommendUpResult = "true";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return recommendUpResult;
-	}
-
-	// 추천수감소
-	@RequestMapping(value = "/recommendDown", method = RequestMethod.POST)
-	@ResponseBody
-	public String recommendDown(HttpServletRequest request) {
-		String downNumber = request.getParameter("downNumber");
-		String conNum = request.getParameter("conNum");
-		String result = null;
-		try {
-			result = service.recommendDown(request, downNumber, conNum);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		return result;
 	}
 
 	@RequestMapping(value = "/deleteDefineSub", method = RequestMethod.POST)
