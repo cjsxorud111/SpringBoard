@@ -47,6 +47,7 @@
             } else return true;
         }
 
+        //TODO 모든 validation 공백체크 추가, email은 중복검사추가
         function idValidationCheck() {
             var inputText = document.getElementById('id');
             var patternKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; //한글
@@ -84,8 +85,8 @@
             var patternNum = /[0-9]/; // 숫자
             var patternEngLower = /[a-z]/; // 소문자
             var patternEngUpper = /[A-Z]/; // 대문자
-            if (!(patternNum.test(inputText.value) || patternEngLower.test(inputText.value) || patternEngUpper.test(inputText.value) || inputText.value === '')) {
-                alert('PW는 영문과 숫자만 가능합니다.');
+            if (!(patternNum.test(inputText.value) || patternEngLower.test(inputText.value) || patternEngUpper.test(inputText.value) || inputText.value === '' || inputText.value.length >= 15)) {
+                alert('PW는 8~15 자리의 영문과 숫자만 가능합니다.');
                 id.focus();
                 inputText.value = '';
             }
