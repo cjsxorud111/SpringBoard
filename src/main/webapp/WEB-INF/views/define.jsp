@@ -27,16 +27,16 @@
 	<script type="text/javascript">
 	var session = '<%=sessionId%>';
 	var isSession = false;
-	if (session != "null") {
+	if (session !== 'null') {
 		isSession = true;
 	}
 	
-	function writeCheck() {
-		if(isSession == true) {
-			window.location.href='newwordwrite';
+	function writeLoginCheck() {
+		if(isSession === true) {
+			window.location.href = 'newwordwrite';
 		} else {
-			alert("로그인이 필요합니다.");
-			window.location.href='login?word=write(*)';
+			alert('로그인이 필요합니다.');
+			window.location.href = 'login?word=write(*)';
 		}
 	}
 	
@@ -54,32 +54,30 @@
 	}
 
 	function recommendUp(upNumber, conNum) {
-		$("#te").text("test");
+		$('#te').text('test');
 
-		if (isSession == false) {
-			alert("먼저로그인을 해주세요");
+		if (isSession === false) {
+			alert('먼저로그인을 해주세요');
 		} else {
 			$.ajax({
-				type : "POST", // 전송방식을 지정한다 (POST,GET)
-				url : "recommendUp",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-				dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을
-				// 사용할 수 있다.
+				type : 'POST',
+				url : 'recommendUp',
+				dataType : 'text',
 				data : {
 					upNumber : upNumber,
 					conNum : conNum
 				},
 				error : function() {
-					alert("error");
+					alert('error');
 				},
 				success : function(Parse_data) {
-
-					if (Parse_data == "true") {
-						alert("추, 비추천은 한번만 가능합니다.");
+					if (Parse_data === 'true') {
+						alert('추, 비추천은 한번만 가능합니다.');
 					} else {
-						alert("추천 되었습니다.");
+						alert('추천 되었습니다.');
 						var id = 'recommendUp' + conNum;
 						var num = upNumber + 1;
-						document.getElementById(id).innerHTML = "추천: " + num;
+						document.getElementById(id).innerHTML = '추천:  '+ num;
 					}
 				}
 			});
@@ -91,11 +89,9 @@
 			alert("먼저로그인을 해주세요");
 		} else {
 			$.ajax({
-				type : "POST", // 전송방식을 지정한다 (POST,GET)
-				url : "recommendDown",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서
-				// 사용해도된다.
-				dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을
-				// 사용할 수 있다.
+				type : 'POST',
+				url : 'recommendDown',
+				dataType : 'text',
 				data : {
 					downNumber : downNumber,
 					conNum : conNum
@@ -104,16 +100,15 @@
 					alert("error");
 				},
 				success : function(Parse_data) {
-					if (Parse_data == 'yes') {
-						alert("추,비추천은 한번만 가능합니다.");
+					if (Parse_data === 'yes') {
+						alert('추,비추천은 한번만 가능합니다.');
 					} else {
-						alert("비추천 되었습니다.");
+						alert('비추천 되었습니다.');
 						var id = 'recommendDown' + conNum;
 						var num = downNumber + 1;
-						document.getElementById(id).innerHTML = "추천: " + num;
+						document.getElementById(id).innerHTML = '추천:  '+ num;
 					}
 				}
-
 			});
 		}
 	}
@@ -122,10 +117,10 @@
 		var commentSection = 'button' + num;
 		var con = document.getElementById(commentSection);
 
-		if (isSession == false) {
-			alert("먼저로그인을 해주세요");
+		if (isSession === false) {
+			alert('먼저로그인을 해주세요');
 		} else {
-			if (con.style.display == "none") {
+			if (con.style.display === 'none') {
 				con.style.display = 'block';
 			} else {
 				con.style.display = 'none';
@@ -137,10 +132,10 @@
 		var commentSection = 'commentClickButton' + num;
 		var con = document.getElementById(commentSection);
 
-		if (isSession == false) {
-			alert("먼저로그인을 해주세요");
+		if (isSession === false) {
+			alert('먼저로그인을 해주세요');
 		} else {
-			if (con.style.display == "none") {
+			if (con.style.display === 'none') {
 				con.style.display = 'block';
 			} else {
 				con.style.display = 'none';
@@ -188,7 +183,6 @@
 
 <script>
 	window.onload = function() {
-
 		var num = 0;
 		<c:forEach items="${MainDefineList}" var="a" begin="<%=begin%>" end="<%=end%>">
 			num++;
@@ -265,7 +259,7 @@
 		});
 	}
 	scroll_follow("#scroll");
-	
+
 </script>
 <style>
 .foot {
