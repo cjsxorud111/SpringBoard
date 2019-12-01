@@ -71,7 +71,7 @@
 		ORDER BY 
 			COUNT(*) 
 		DESC 
-			limit 5;
+			limit 7;
 	</select>
 	
 	<select id="recommendDefineList" parameterType="String" resultType="com.example.dto.MainDefineContentVO" >
