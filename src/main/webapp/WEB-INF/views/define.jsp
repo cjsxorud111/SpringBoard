@@ -10,7 +10,9 @@
 <html>
 <head>
 <title>신조어사전 헬로워드!!</title>
-<link rel="shorcut icon" href="resource/img/logoImage2.ico" /> 
+    <%--TODO 각 api에 대한 테스트코드 작성--%>
+    <%--TODO RESTapi로 리팩토링--%>
+<link rel="shorcut icon" href="resource/img/logoImage2.ico" />
 <meta name="naver-site-verification"
 	content="b8b1382411790af26ef1553f419ce247d8465d24" />
 <meta name="google-site-verification"
@@ -70,14 +72,14 @@
 				error : function() {
 					alert('error');
 				},
-				success : function(Parse_data) {
-					if (Parse_data === 'true') {
+				success : function(parseData) {
+					if (parseData === 'true') {
 						alert('추, 비추천은 한번만 가능합니다.');
 					} else {
 						alert('추천 되었습니다.');
 						var id = 'recommendUp' + conNum;
 						var num = upNumber + 1;
-						document.getElementById(id).innerHTML = '추천:  '+ num;
+						document.getElementById(id).innerHTML = '추천: '+ num;
 					}
 				}
 			});
@@ -85,7 +87,7 @@
 	}
 
 	function recommendDown(downNumber, conNum) {
-		if (isSession == false) {
+		if (isSession === false) {
 			alert("먼저로그인을 해주세요");
 		} else {
 			$.ajax({
@@ -97,10 +99,10 @@
 					conNum : conNum
 				},
 				error : function() {
-					alert("error");
+					alert('error');
 				},
-				success : function(Parse_data) {
-					if (Parse_data === 'yes') {
+				success : function(parseData) {
+					if (parseData === 'yes') {
 						alert('추,비추천은 한번만 가능합니다.');
 					} else {
 						alert('비추천 되었습니다.');
@@ -188,7 +190,7 @@
 			num++;
 		</c:forEach>
 
-		if(num == 1){
+		if(num === 1){
 			$('#innerSection').css('height','85%');
 		}
 		$('#loading').hide();
@@ -239,9 +241,10 @@
 			}
 		});
 	}
-	
+
+	//TODO 스크롤따라 이동 부드럽게 수정, 축소시 창밖으로 오류 해결후 적용
 	//오른쪽창 스크롤 따라이동 함수    
-	function scroll_follow(id){
+	/*function scroll_follow(id){
 		//스크롤이 움직일때마다 이벤트 발생
 		$(window).scroll(function() {   
 			 var scrollBottom = $(window).scrollTop() + $(window).height();
@@ -258,7 +261,7 @@
 		     $("#scroll").css('top',2000 ); //해당 오브젝트 위치값 재설정
 		});
 	}
-	scroll_follow("#scroll");
+	scroll_follow("#scroll");*/
 
 </script>
 <style>
@@ -340,7 +343,7 @@
 					style="padding-top: 0.7rem; margin-bottom: 1rem; margin-left: 2.5rem; font-weight: 700;">
 					최근정의가 추가된 단어
 				</div>
-				<c:forEach items="${MainDefineList}" var="a" end="4">
+				<c:forEach items="${MainDefineList}" var="a" end="6">
 					<div class="wordShortCut">
 					
 						<!-- 단어표시 -->
@@ -359,7 +362,7 @@
 			<div style="background-color: white; box-shadow:4px 4px 1px 1px gray; padding: 10px;">
 				<div style="padding-top: 0.7rem; margin-bottom: 1rem; margin-left: 3rem; font-weight: 700;">단어를 정의한 회원랭킹</div>
 				
-				<c:forEach items="${memberRanking}" var="a" end="4" varStatus="status">
+				<c:forEach items="${memberRanking}" var="a" end="6" varStatus="status">
 					<div class="wordShortCut">
 					
 						<!-- 단어표시 -->
@@ -481,7 +484,7 @@
 												window.location.href='linkWord?linkWord='+textStatus;
 											}
 										},
-										success : function(Parse_data) {
+										success : function(parseData) {
 												alert("gheelo");
 											if(textStatus == "main(*)"){
 												window.location.href='/';
@@ -879,9 +882,9 @@ function deleteSub(num, userInput) {
 		error : function() {
 			alert("error");
 		},
-		success : function(Parse_data) {
+		success : function(parseData) {
 
-			if (Parse_data == 'yes') {
+			if (parseData == 'yes') {
 				location.reload();
 			} else {
 				alert("비밀번호가 다릅니다.");
