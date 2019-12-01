@@ -416,13 +416,13 @@
 							</div>
 
 							<script>
-								function modifyCheck(num, id, textStatus){
-									if (isSession == false) {
+								function modifyCheck(num, id){
+									if (isSession === false) {
 										alert("먼저로그인을 해주세요");
 										return false;
 									} else {
 										/* 세션id와 글id대조하여 일치시삭제 */
-										if (session == id) {
+										if (session === id) {
 											var really = confirm("수정하시겠습니까?");
 											if (really) {
 												return true;
@@ -434,13 +434,13 @@
 									}
 								}
 								
-								function delConCheck(num, id, textStatus){
-									if (isSession == false) {
+								function delConCheck(num, id){
+									if (isSession === false) {
 										alert("먼저로그인을 해주세요");
 										return false;
 									} else {
 										/* 세션id와 글id대조하여 일치시삭제 */
-										if (session == id) {
+										if (session === id) {
 											var really = confirm("삭제하시겠습니까?");
 											if (really) {
 												return true;
@@ -453,11 +453,11 @@
 								}
 								
 								function deleteCheck(conNum, id, textStatus) {
-									if (isSession == false) {
+									if (isSession === false) {
 										alert("먼저로그인을 해주세요");
 									} else {
 										/* 세션id와 글id대조하여 일치시삭제 */
-										if (session == id) {
+										if (session === id) {
 											var really = confirm("삭제하시겠습니까?");
 											if (really) {
 												defineContentDelete(conNum, textStatus);
