@@ -25,7 +25,7 @@ import java.util.UUID;
 public class DefineController {
 
 	int refreshNum = 0;
-	
+	//TODO Controller로 API들 리팩토링하여 수정
 	@Inject
 	private DefineService service;
 	final static Logger logger = LoggerFactory.getLogger(DefineController.class);
@@ -38,9 +38,6 @@ public class DefineController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		String textStatus = request.getParameter("textStatus");
-		String returnUrl = "redirect:linkWord?linkWord="+textStatus;
 		
 		return "success";
 	}
@@ -57,7 +54,6 @@ public class DefineController {
 		String textStatus = request.getParameter("textStatus");
 		textStatusVO textStatusVO = new textStatusVO();
 		
-		String returnUrl = "redirect:define_modify?textStatus="+textStatus;
 		response.setAttribute("modifyContentVO", modifyContentVO);
 		textStatusVO.setTextStatus(textStatus);
 		response.setAttribute("textStatusVO", textStatusVO );
@@ -86,7 +82,7 @@ public class DefineController {
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	@ResponseBody
-	public void logout(HttpServletRequest request, Model model) {
+	public void logout(HttpServletRequest request) {
 		try {
 			HttpSession session = request.getSession();
 			session.removeAttribute("ID");
@@ -97,7 +93,7 @@ public class DefineController {
 	
 	@RequestMapping(value = "/defineWriteSub", method = RequestMethod.POST)
 	@ResponseBody
-	public String defineWriteSub(HttpServletRequest request, Model model) {
+	public String defineWriteSub(HttpServletRequest request) {
 		try {
 			service.defineWriteSub(request);
 		} catch (Exception e) {
@@ -108,7 +104,7 @@ public class DefineController {
 	
 	@RequestMapping(value = "/defineSecondSub", method = RequestMethod.POST)
 	@ResponseBody
-	public String defineSecondSub(HttpServletRequest request, HttpServletRequest response, Model model) {
+	public String defineSecondSub(HttpServletRequest request) {
 		try {
 			service.defineSecondSub(request); 
 		} catch (Exception e) {
@@ -149,7 +145,7 @@ public class DefineController {
 			e.printStackTrace();
 			return "error";
 		}
-		
+
 		model.addAttribute("memberRanking", memberRanking);
 		model.addAttribute("totalPageNum", pageCount(linkCon.size()));
 		textStatusVO textStatusVO = new textStatusVO();
@@ -188,18 +184,22 @@ public class DefineController {
 	// Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
 	public String define(Locale locale, HttpServletRequest request, HttpServletRequest response, Model model) {
 		List<MainDefineContentVO> MainDefineList = null;
+
 		try {
 			MainDefineList = service.selectMainDefCon(locale);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		List<memberRankingVO> memberRanking = null;
+
 		try {
 			memberRanking = service.memberRanking();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "error";
 		}
+
 		model.addAttribute("totalPageNum", pageCount(MainDefineList.size()));
 		model.addAttribute("MainDefineList", MainDefineList);
 		model.addAttribute("memberRanking", memberRanking);
@@ -225,22 +225,22 @@ public class DefineController {
 	}
 
 	@RequestMapping(value = "/define_write", method = RequestMethod.GET)
-	public String define_write(Model model) {
+	public String define_write() {
 		return "define_write";
 	}
 
 	@RequestMapping(value = "/thiswordwrite", method = RequestMethod.GET)
-	public String thisword_write(Model model) {
+	public String thisword_write() {
 		return "thiswordwrite";
 	}
 
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String test(Model model) {
+	public String test() {
 		return "test";
 	}
 	
 	@RequestMapping(value = "/newwordWriting", method = RequestMethod.POST)
-	public String newwordWriting(HttpServletRequest request, Model model) {
+	public String newwordWriting(HttpServletRequest request) {
 		try {
 			service.newwordWriting(request);
 		} catch (Exception e) {
