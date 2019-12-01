@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-
+//TODO DefineController의 메소드 하나씩 RESTAPI로 수정
 @RestController
-public class Controller {
+public class DefineRestController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Controller.class);
+    private static final Logger logger = LoggerFactory.getLogger(DefineRestController.class);
 
     private DefineService defineService;
 
@@ -27,6 +27,16 @@ public class Controller {
 
     @Autowired
     public void memberService(MemberService memberService) { this.memberService = memberService; }
+
+    // 글삭제하기
+    @RequestMapping(value = "/deleteDefineContent", method = RequestMethod.POST)
+    public void deleteDefineContent(HttpServletRequest request) {
+        try {
+            defineService.deleteDefineContent(request);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     // 추천수증가
     @RequestMapping(value = "/recommendUp", method = RequestMethod.POST)
@@ -78,6 +88,7 @@ public class Controller {
         }
     }
 
+    //메인검색
     @RequestMapping(value = "/searchWord", produces = "application/text; charset=utf8", method = RequestMethod.POST)
     public String searchWord(HttpServletRequest request) {
         String result = null;

@@ -29,16 +29,6 @@ public class DefineController {
 	@Inject
 	private DefineService service;
 	final static Logger logger = LoggerFactory.getLogger(DefineController.class);
-	
-	// 글삭제하기
-	@RequestMapping(value = "/deleteDefineContent", method = RequestMethod.POST)
-	public void deleteDefineContent(HttpServletRequest request) {
-		try {
-			service.deleteDefineContent(request);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	// 글수정
 	@RequestMapping(value = "/defineContentModify", method = RequestMethod.POST)
