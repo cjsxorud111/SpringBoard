@@ -470,23 +470,22 @@
 								
 								function defineContentDelete(conNum, textStatus) {
 									$.ajax({
-										type : "POST",
-										url : "deleteDefineContent",
-										dataType : "text",
+										type : 'POST',
+										url : 'deleteDefineContent',
+										dataType : 'text',
 										data : {
 											conNum : conNum,
 											textStatus : textStatus
 										},
 										error : function() {
-											if(textStatus == "main(*)"){
+											if(textStatus === 'main(*)'){
 												window.location.href='/';
 											}else{
 												window.location.href='linkWord?linkWord='+textStatus;
 											}
 										},
-										success : function(parseData) {
-												alert("gheelo");
-											if(textStatus == "main(*)"){
+										success : function() {
+											if(textStatus === 'main(*)'){
 												window.location.href='/';
 											}else{
 												window.location.href='linkWord?linkWord='+textStatus;
