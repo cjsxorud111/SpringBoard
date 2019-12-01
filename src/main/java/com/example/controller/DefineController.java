@@ -32,16 +32,14 @@ public class DefineController {
 	
 	// 글삭제하기
 	@RequestMapping(value = "/deleteDefineContent", method = RequestMethod.POST)
-	public String deleteDefineContent(HttpServletRequest request) {
+	public void deleteDefineContent(HttpServletRequest request) {
 		try {
 			service.deleteDefineContent(request);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return "success";
 	}
-	
+
 	// 글수정
 	@RequestMapping(value = "/defineContentModify", method = RequestMethod.POST)
 	public String defineContentModify(HttpServletRequest request,HttpServletRequest response) {
