@@ -209,12 +209,6 @@
 			document.getElementById("explain").innerHTML = divcon;
 		}
 		
-		var aboveCommentSection = document
-				.getElementsByClassName("aboveCommentSection");
-		var belowCommentSection = document
-				.getElementsByClassName("belowCommentSection");
-		var deleteTag = document.getElementsByClassName("deleteTag");
-		
 		for (var i = 0; i < deleteTag.length; i++) {
 			deleteTag.item(i).style.display = "none";
 		}
@@ -604,32 +598,6 @@
 								});
 							}
 						}
-
-						/*function recommendUpCheck(up, num) {
-							if(isSession == true) {
-								recommendUp(up, num);
-							} else {
-								alert("먼저 로그인을 해주세요");
-							}
-						}
-
-						function recommendUp(up, num) {
-							$.ajax({
-								type : "POST",
-								url : "recommendUp",
-								dataType : "text",
-								data : {
-									upNumber : up,
-									conNum : num,
-								},
-								error : function() {
-									alert("error");
-								},
-								success : function(success) {
-									alert("추천완료되었습니다."+up + " "+ num);
-								}
-							});
-						}*/
 					</script>
 					
 					<!-- 댓글표시 -->
@@ -637,11 +605,8 @@
 					<div style="margin-top: 10px;"></div>
 					<table class="table">
 						<c:forEach items="${getDefinSubList}" var="b">
-
 							<c:set var="connum" value="${b.connum}" />
-
 							<c:if test="${num eq connum}">
-
 								<tr>
 									<div class="subViewSection"
 										style="line-height: 110%; margin-top: -2%;">
@@ -676,17 +641,9 @@
 									<div class="deleteShowTag"
 										style="position: relative; bottom: 2rem;">
 
-										<%-- <a href="javascript:belowCommentClick(${b.num});"> <input
-										type="submit" value="답글" style="font-size: 80%" />
-									</a>  --%>
-										<!-- <a href="#" >  -->
-
 										<input type="submit"
 											onclick="ansCommentSec('${b.num}', '${a.num}', '${b.space}', '${b.id}', '${b.groupnum}');"
 											value="답글" style="font-size: 80%" />
-										<!-- 	</a>  -->
-
-										<%-- (${b.num}, ${a.num}, ${b.space}, ${b.id}, ${b.groupnum} --%>
 
 										<a href="javascript:deleteClick(${b.num});"> <input
 											type="submit" id="deleteShowButton" value="삭제" />
@@ -752,15 +709,10 @@
 										}
 									}
 									</script>
-
 								</tr>
-
 							</c:if>
-
 						</c:forEach>
-
 					</table>
-
 				</div>
 			</div>
 		</c:forEach>
@@ -864,7 +816,7 @@ $('#inputText').keyup(function(event) {
 
 //삭제시 비밀번호체크
 function deleteClick(num) {
-	var userInput = prompt("비밀번호를 입력해주세요" + "");
+	var userInput = prompt('비밀번호를 입력해주세요' + '');
 	deleteSub(num, userInput);
 }
 
@@ -878,10 +830,9 @@ function deleteSub(num, userInput) {
 			num : num
 		},
 		error : function() {
-			alert("error");
+			alert('error');
 		},
 		success : function(parseData) {
-
 			if (parseData === 'yes') {
 				location.reload();
 			} else {
