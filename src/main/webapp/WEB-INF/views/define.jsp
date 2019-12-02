@@ -580,7 +580,7 @@
 						
 						function writeSub(textA, num, space, groupNum, pw, id) {
 							var textValue = $('#'+textA).val();
-							if(textValue == ""){
+							if(textValue === ""){
 								alert("1글자이상 입력해주세요")
 							}else{
 								$.ajax({
@@ -704,18 +704,18 @@
 									</div>
 									<script>
 									function ansCommentSec(num, connum, space, id, groupnum){
-										if(isSession == false) {
-											alert("먼저로그인을 해주세요");
+										if(isSession === false) {
+											alert('먼저로그인을 해주세요');
 										} else{
 											var sec = 'ansSec' + num;
 											var spacenum = space + 1;
 											var textA = 'textAreaSecond' + num;
 											var arrowhtml = "<div class='textSection' style='margin-left:0.5rem; margin-bottom:5rem; position: relative; top: 0.8rem; left: 1.4rem;'><div id='diagram'/><div class='cont-box-pseudo'/></div>";
-											var innerhtml = "<span style=''><textarea id='"+textA+"' name='subcon' rows='2' cols='55' style='position: relative; left: 2.2rem; margin-bottom: 1rem; margin-top: 0.3rem; height: 55px; table-layout: fixed; float: left;'></textarea></span>"; 
+											var innerhtml = "<span style=''><textarea id='"+textA+"' name='subcon' rows='2' cols='55' style='position: relative; left: 2.2rem; margin-bottom: 1rem; margin-top: 0.3rem; height: 55px; table-layout: fixed; float: left;'></textarea></span>";
 											var writebutton = "<span style='position: relative; bottom:0.8rem; left:2.1rem; bottom:1.2rem; margin-right:0.5rem; font-size: 80%; float: left;'><div><input type='submit' style='height:1.7rem;' onclick=\"writeSecondSub('"+num+"','"+connum+"','"+spacenum+"','"+id+"','"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='답글달기'/></div>";
 											var calcelbutton = "<div><input type='submit' style='height:1.7rem;' onclick=\"cancelSecondSub('"+sec+"');\" value='답글취소'/></div></span>";
 											var innerarrowhtml = arrowhtml + innerhtml + writebutton + calcelbutton;
-											$('#'+sec).html(innerarrowhtml); 
+											$('#'+sec).html(innerarrowhtml);
 										}
 									}
 									
@@ -727,13 +727,12 @@
 										var textId = 'textAreaSecond' + num;
 										var textValue = $('#' + textId).val();
 										if(textValue == ""){
-											alert("1글자이상 입력해주세요");
+											alert('1글자이상 입력해주세요');
 										}else{
 											$.ajax({
-												type : "POST", // 전송방식을 지정한다 (POST,GET)
-												url : "defineSecondSub",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-												dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수
-												// 있다.
+												type : "POST",
+												url : "defineSecondSub",
+												dataType : "text",
 												data : {
 													textVal : textValue,
 													num : connum,
@@ -744,9 +743,9 @@
 													id : id
 												},
 												error : function() {
-													alert("error");
+													alert('error');
 												},
-												success : function(success) {
+												success : function() {
 													location.reload();
 												}
 											});
