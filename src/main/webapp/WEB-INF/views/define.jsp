@@ -565,8 +565,8 @@
 					</table>
 					<script>
 						function aboveComment(num, groupnum) {
-							if(isSession == false) {
-								alert("먼저로그인을 해주세요");
+							if(isSession === false) {
+								alert('먼저로그인을 해주세요');
 							} else{
 								var sec = 'button' + num;
 								var textA = 'textArea' + num;
@@ -580,8 +580,8 @@
 						
 						function writeSub(textA, num, space, groupNum, pw, id) {
 							var textValue = $('#'+textA).val();
-							if(textValue === ""){
-								alert("1글자이상 입력해주세요")
+							if(textValue === ''){
+								alert('1글자이상 입력해주세요');
 							}else{
 								$.ajax({
 									type : "POST", 
@@ -596,9 +596,9 @@
 										id : id
 									},
 									error : function() {
-										alert("error");
+										alert('error');
 									},
-									success : function(success) {
+									success : function() {
 										location.reload();
 									}
 								});
@@ -726,7 +726,7 @@
 									function writeSecondSub(num, connum, space, answerId, groupNum, pw, id) {
 										var textId = 'textAreaSecond' + num;
 										var textValue = $('#' + textId).val();
-										if(textValue == ""){
+										if(textValue === ''){
 											alert('1글자이상 입력해주세요');
 										}else{
 											$.ajax({
@@ -791,7 +791,6 @@
 
 <script>
 //검색창에서 키보드 눌렀을때 동작
-
 var number = 0;
 var keynumber = 0;
 
@@ -822,7 +821,6 @@ $('#inputText').keyup(function(event) {
 		}
 		var id = 'num' + number;
 		var bottom = 'num' + Number(number + 1);
-		var text = document.getElementById(id).value;
 		$("#inputText").val($('#' + id).text());
 		$('#' + id).css("background-color", "#E0E0E0");
 		$('#' + bottom).css("background-color", "white");
