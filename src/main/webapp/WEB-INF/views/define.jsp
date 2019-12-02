@@ -795,6 +795,7 @@
 
 var number = 0;
 var keynumber = 0;
+
 function mover(num){
 	var keyid = "num" + keynumber;
 	$('#' + keyid).css("background-color", "white");
@@ -802,45 +803,47 @@ function mover(num){
 	var id = "num"+number;
 	$('#' + id).css("background-color", "#E0E0E0");
 }
+
 function mout(num){
 	number = num;
 	var id = "num"+number;
 	$('#' + id).css("background-color", "white");
 }
+
 /* 추천검색어 */
 $('#inputText').keyup(function(event) {
-	var keySet = "ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㄲㄸㅃㅆㅏㅑㅓㅕㅗㅛㅜㅠㅡㅣㅐㅒㅔㅖ1234567890,.?/<>:;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	if (event.keyCode == 38) { // 위방향키눌렀을때
+	var keySet = 'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㄲㄸㅃㅆㅏㅑㅓㅕㅗㅛㅜㅠㅡㅣㅐㅒㅔㅖ1234567890,.?/<>:;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	if (event.keyCode === 38) { // 위방향키눌렀을때
 		number--;
 		keynumber = number;
 		if (number <= 0) {
 			number = endNum;
-			var divId = "num" + 1;
+			var divId = 'num' + 1;
 			$('#' + divId).css("background-color", "white");
 		}
-		var id = "num" + number;
-		var bottom = "num" + Number(number + 1);
+		var id = 'num' + number;
+		var bottom = 'num' + Number(number + 1);
 		var text = document.getElementById(id).value;
 		$("#inputText").val($('#' + id).text());
 		$('#' + id).css("background-color", "#E0E0E0");
 		$('#' + bottom).css("background-color", "white");
-	} else if (event.keyCode == 40) { // 아래방향키눌렀을때
-		number++;
-		keynumber = number;
-		if (number > endNum) {
-			number = 1;
-			var divId = "num" + endNum;
-			$('#' + divId).css("background-color", "white");
-		}
-		var id = "num" + number;
-		var up = "num" + Number(number - 1);
+	} else if (event.keyCode === 40) { // 아래방향키눌렀을때
+        number++;
+        keynumber = number;
+        if (number > endNum) {
+            number = 1;
+            var divId = 'num' + endNum;
+            $('#' + divId).css("background-color", "white");
+        }
+        var id = 'num' + number;
+        var up = 'num' + Number(number - 1);
 
-		$("#inputText").val($('#' + id).text());
-		$('#' + id).css("background-color", "#E0E0E0");
-		$('#' + up).css("background-color", "white");
-	}
+        $("#inputText").val($('#' + id).text());
+        $('#' + id).css("background-color", "#E0E0E0");
+        $('#' + up).css("background-color", "white");
+    }
 	
-	if (keySet.indexOf(event.key) != -1) {
+	if (keySet.indexOf(event.key) !== -1) {
 		num = 0;
 		var inputText = $("#inputText").val();
 		$.ajax({
@@ -851,7 +854,7 @@ $('#inputText').keyup(function(event) {
 				inputText : inputText
 			},
 			error : function() {
-				alert("error");
+				alert('error');
 			},
 			success : function(parseData) {
 				$("#searchRecommendSection").html(
@@ -882,7 +885,7 @@ function deleteSub(num, userInput) {
 		},
 		success : function(parseData) {
 
-			if (parseData == 'yes') {
+			if (parseData === 'yes') {
 				location.reload();
 			} else {
 				alert("비밀번호가 다릅니다.");
