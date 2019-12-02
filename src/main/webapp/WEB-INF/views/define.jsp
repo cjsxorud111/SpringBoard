@@ -423,12 +423,12 @@
 									} else {
 										/* 세션id와 글id대조하여 일치시삭제 */
 										if (session === id) {
-											var really = confirm("수정하시겠습니까?");
+											var really = confirm('수정하시겠습니까?');
 											if (really) {
 												return true;
 											}
 										} else {
-											alert("작성하신글만 수정할수있습니다.")
+											alert('작성하신글만 수정할수있습니다.');
 											return false;
 										}
 									}
@@ -436,17 +436,17 @@
 								
 								function delConCheck(num, id){
 									if (isSession === false) {
-										alert("먼저로그인을 해주세요");
+										alert('먼저로그인을 해주세요');
 										return false;
 									} else {
 										/* 세션id와 글id대조하여 일치시삭제 */
 										if (session === id) {
-											var really = confirm("삭제하시겠습니까?");
+											var really = confirm('삭제하시겠습니까?');
 											if (really) {
 												return true;
 											}
 										} else {
-											alert("작성하신글만 삭제할수있습니다.")
+											alert('작성하신글만 삭제할수있습니다.');
 											return false;
 										}
 									}
@@ -454,16 +454,16 @@
 								
 								function deleteCheck(conNum, id, textStatus) {
 									if (isSession === false) {
-										alert("먼저로그인을 해주세요");
+										alert('먼저로그인을 해주세요');
 									} else {
 										/* 세션id와 글id대조하여 일치시삭제 */
 										if (session === id) {
-											var really = confirm("삭제하시겠습니까?");
+											var really = confirm('삭제하시겠습니까?');
 											if (really) {
 												defineContentDelete(conNum, textStatus);
 											}
 										} else {
-											alert("작성하신글만 삭제할수있습니다.")
+											alert('작성하신글만 삭제할수있습니다.');
 										}
 									}    
 								}
@@ -835,7 +835,6 @@ $('#inputText').keyup(function(event) {
 		var id = "num" + number;
 		var up = "num" + Number(number - 1);
 
-		var text = document.getElementById(id).value;
 		$("#inputText").val($('#' + id).text());
 		$('#' + id).css("background-color", "#E0E0E0");
 		$('#' + up).css("background-color", "white");
