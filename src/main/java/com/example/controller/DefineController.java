@@ -25,9 +25,11 @@ import java.util.UUID;
 public class DefineController {
 
 	int refreshNum = 0;
+
 	//TODO Controller로 API들 리팩토링하여 수정
 	@Inject
 	private DefineService service;
+
 	final static Logger logger = LoggerFactory.getLogger(DefineController.class);
 
 	// 글수정
@@ -166,8 +168,7 @@ public class DefineController {
 		}
 		return totalPageNum;
 	}
-	
-	//define메인페이지
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	// Model 객체를 파라미터로 받아서 데이터를 뷰로 넘김 컨트롤러에서 뷰에 데이터를 전달하기 위해 사용하는 객체
 	public String define(Locale locale, HttpServletRequest request, HttpServletRequest response, Model model) {
@@ -179,7 +180,7 @@ public class DefineController {
 			e.printStackTrace();
 		}
 
-		List<memberRankingVO> memberRanking = null;
+		List<memberRankingVO> memberRanking;
 
 		try {
 			memberRanking = service.memberRanking();
