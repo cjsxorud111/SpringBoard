@@ -55,20 +55,6 @@ public class DefineController {
 	public String inform() {
 		return "inform";
 	}
-
-	@RequestMapping(value = "/deleteDefineSub", method = RequestMethod.POST)
-	@ResponseBody
-	public String deleteDefineSub(HttpServletRequest request) {
-		String pw = request.getParameter("pw");
-		String num = request.getParameter("num");
-		String result = null;
-		try {
-			result = service.deleteDefineSub(pw, num);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	@ResponseBody
@@ -237,7 +223,7 @@ public class DefineController {
 		}
 		return "redirect:/";
 	}
-	//추후 img업로드 추가개발에 사용 
+	//TODO 추후 img업로드 추가개발에 사용
 	@RequestMapping(value = "img1", method = RequestMethod.POST)
 	public void communityImageUpload1(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam MultipartFile upload) {

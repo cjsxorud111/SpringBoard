@@ -28,6 +28,20 @@ public class DefineRestController {
     @Autowired
     public void memberService(MemberService memberService) { this.memberService = memberService; }
 
+    // 댓글 삭제하기
+    @RequestMapping(value = "/deleteDefineSub", method = RequestMethod.POST)
+    public String deleteDefineSub(HttpServletRequest request) {
+        String pw = request.getParameter("pw");
+        String num = request.getParameter("num");
+        String result = null;
+        try {
+            result = defineService.deleteDefineSub(pw, num);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     // 글삭제하기
     @RequestMapping(value = "/deleteDefineContent", method = RequestMethod.POST)
     public void deleteDefineContent(HttpServletRequest request) {
