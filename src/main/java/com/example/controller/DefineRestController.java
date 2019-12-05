@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 //TODO DefineController의 메소드 하나씩 RESTAPI로 수정
 @RestController
 public class DefineRestController {
@@ -27,6 +29,17 @@ public class DefineRestController {
 
     @Autowired
     public void memberService(MemberService memberService) { this.memberService = memberService; }
+
+    // 로그아웃
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public void logout(HttpServletRequest request) {
+        try {
+            HttpSession session = request.getSession();
+            session.removeAttribute("ID");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     // 댓글 삭제하기
     @RequestMapping(value = "/deleteDefineSub", method = RequestMethod.POST)

@@ -56,17 +56,6 @@ public class DefineController {
 		return "inform";
 	}
 	
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	@ResponseBody
-	public void logout(HttpServletRequest request) {
-		try {
-			HttpSession session = request.getSession();
-			session.removeAttribute("ID");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
 	@RequestMapping(value = "/defineWriteSub", method = RequestMethod.POST)
 	@ResponseBody
 	public String defineWriteSub(HttpServletRequest request) {

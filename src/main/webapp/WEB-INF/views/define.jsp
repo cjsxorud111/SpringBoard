@@ -47,8 +47,7 @@
 		var tempArray = tempUrl.split('&'); //'&'을 기준으로 분리하기 
 		
 		for(var i = 0; tempArray.length; i++) { 
-			var keyValuePair = tempArray[i].split('='); // '=' 을 기준으로 분리하기 
-			
+			var keyValuePair = tempArray[i].split('='); // '=' 을 기준으로 분리하기
 			if(keyValuePair[0] == paramName){ // _keyValuePair[0] : 파라미터 명 // _keyValuePair[1] : 파라미터 값 
 				return keyValuePair[1]; 
 			} 
@@ -222,7 +221,7 @@
 	
 	function logout(){
 		$.ajax({
-			type : "GET", 
+			type : "POST",
 			url : "logout",
 			dataType : "text",
 			data : {
