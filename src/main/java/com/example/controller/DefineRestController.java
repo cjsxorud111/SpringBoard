@@ -30,6 +30,16 @@ public class DefineRestController {
     @Autowired
     public void memberService(MemberService memberService) { this.memberService = memberService; }
 
+    @RequestMapping(value = "/defineWriteSub", method = RequestMethod.POST)
+    public String defineWriteSub(HttpServletRequest request) {
+        try {
+            defineService.defineWriteSub(request);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "success";
+    }
+
     // 로그아웃
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public void logout(HttpServletRequest request) {

@@ -56,17 +56,6 @@ public class DefineController {
 		return "inform";
 	}
 	
-	@RequestMapping(value = "/defineWriteSub", method = RequestMethod.POST)
-	@ResponseBody
-	public String defineWriteSub(HttpServletRequest request) {
-		try {
-			service.defineWriteSub(request);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "success";
-	}
-	
 	@RequestMapping(value = "/defineSecondSub", method = RequestMethod.POST)
 	@ResponseBody
 	public String defineSecondSub(HttpServletRequest request) {
