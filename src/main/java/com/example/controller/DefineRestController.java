@@ -30,6 +30,18 @@ public class DefineRestController {
     @Autowired
     public void memberService(MemberService memberService) { this.memberService = memberService; }
 
+    // 댓글의 댓글 달기
+    @RequestMapping(value = "/defineSecondSub", method = RequestMethod.POST)
+    public String defineSecondSub(HttpServletRequest request) {
+        try {
+            defineService.defineSecondSub(request);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "success";
+    }
+
+    // 댓글달기
     @RequestMapping(value = "/defineWriteSub", method = RequestMethod.POST)
     public String defineWriteSub(HttpServletRequest request) {
         try {
