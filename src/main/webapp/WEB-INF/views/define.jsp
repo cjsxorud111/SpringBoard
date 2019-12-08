@@ -195,7 +195,7 @@
 		$('#loading').hide();
 		
 		var stringVal = window.location.href;
-	    substring = "?";
+	    var substring = '?';
 	    
 	    var divcon = "<span style='box-shadow: 4px 4px 1px 1px gray;'>";
 	    divcon += "<div style='text-align: center; background-color: white; padding: 1.5rem; width: 39rem; margin-bottom: 0.6rem;'>";
@@ -204,7 +204,7 @@
 	    divcon += "<div style='font-size: 18px;'>원하는 신조어를 무엇이든 자유롭게 정의하고 다른사람의 정의를 추천해주세요!";
 	    divcon += "</span>";
 	    
-		if(stringVal.indexOf(substring) == -1){
+		if(stringVal.indexOf(substring) === -1){
 			document.getElementById("explain").innerHTML = divcon;
 		}
 		
@@ -212,12 +212,12 @@
 			deleteTag.item(i).style.display = "none";
 		}
 		
-		if(session == 'null'){
+		if(session === 'null'){
 			document.getElementById("log").innerHTML = "<a href='login?word=${textStatusVO.textStatus}' style='color: white; text-decoration: none;'>Login</a>";
 		}else{
 			document.getElementById("log").innerHTML = "<a href='javascript:logout();' id='logout' style='color: white; text-decoration: none;'>Logout</a>";
 		}
-	}
+	};
 	
 	function logout(){
 		$.ajax({
