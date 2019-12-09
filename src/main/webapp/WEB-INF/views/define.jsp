@@ -12,11 +12,6 @@
 <title>신조어사전 헬로워드!!</title>
     <%--TODO 각 api에 대한 테스트코드 작성--%>
     <%--TODO RESTapi로 리팩토링--%>
-<link rel="shorcut icon" href="resource/img/logoImage2.ico" />
-<meta name="naver-site-verification"
-	content="b8b1382411790af26ef1553f419ce247d8465d24" />
-<meta name="google-site-verification"
-	content="SQWRkLaGa_ZfTcO7MTunO6zcad_-7bFPg_bdazI4Zk8" />
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
 	rel="stylesheet" />
@@ -151,6 +146,7 @@
 			textOut();
 		}, 150);
 	}
+
 	// 포커스잃었을때추천창끔
 	function textOut() {
 		var searchRecommendSection = document
