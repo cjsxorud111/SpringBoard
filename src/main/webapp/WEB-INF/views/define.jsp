@@ -231,7 +231,7 @@
 			error : function() {
 				alert("error");
 			},
-			success : function(success) {
+			success : function() {
 				location.reload();
 			}
 		});
