@@ -218,7 +218,6 @@
 		for (var i = 0; i < deleteTag.length; i++) {
 			deleteTag.item(i).style.display = "none";
 		}
-
 	};
 	
 	function logout(){
@@ -226,8 +225,7 @@
 			type : "POST",
 			url : "logout",
 			dataType : "text",
-			data : {
-			},
+			data : {},
 			error : function() {
 				alert("error");
 			},
@@ -236,27 +234,6 @@
 			}
 		});
 	}
-
-	//TODO 스크롤따라 이동 부드럽게 수정, 축소시 창밖으로 오류 해결후 적용
-	//오른쪽창 스크롤 따라이동 함수    
-	/*function scroll_follow(id){
-		//스크롤이 움직일때마다 이벤트 발생
-		$(window).scroll(function() {   
-			 var scrollBottom = $(window).scrollTop() + $(window).height();
-		     var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환
-		     $("#scroll").css('top',position ); //해당 오브젝트 위치값 재설정
-		});
-	}
-	
-	function scroll_stop(id){
-		//스크롤이 움직일때마다 이벤트 발생
-		$(window).scroll(function() {   
-			 var scrollBottom = $(window).scrollTop() + $(window).height();
-		     var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
-		     $("#scroll").css('top',2000 ); //해당 오브젝트 위치값 재설정
-		});
-	}
-	scroll_follow("#scroll");*/
 
 </script>
 <style>
