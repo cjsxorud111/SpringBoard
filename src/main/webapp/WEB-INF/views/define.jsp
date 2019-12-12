@@ -77,7 +77,7 @@
 
 	function recommendDown(downNumber, conNum) {
 		if (isSession === false) {
-			alert("먼저로그인을 해주세요");
+			alert('먼저로그인을 해주세요');
 		} else {
 			$.ajax({
 				type : 'POST',
@@ -97,7 +97,7 @@
 						alert('비추천 되었습니다.');
 						var id = 'recommendDown' + conNum;
 						var num = downNumber + 1;
-						document.getElementById(id).innerHTML = '추천:  '+ num;
+						document.getElementById(id).innerHTML = '추천: '+ num;
 					}
 				}
 			});
@@ -801,8 +801,8 @@ function deleteClick(num) {
 function deleteSub(num, userInput) {
 	$.ajax({
 		type : "POST", // 전송방식을 지정한다 (POST,GET)
-		url : "deleteDefineSub",// 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-		dataType : "text",// 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용 가능
+		url : "deleteDefineSub", // 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+		dataType : "text", // 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용 가능
 		data : {
 			pw : userInput,
 			num : num
