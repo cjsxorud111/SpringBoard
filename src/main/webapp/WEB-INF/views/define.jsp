@@ -155,6 +155,204 @@
 	}
 
 	</script>
+
+	<script>
+		function aboveComment(num, groupnum) {
+			if(isSession === false) {
+				alert('먼저로그인을 해주세요');
+			} else{
+				var sec = 'button' + num;
+				var textA = 'textArea' + num;
+				var arrowhtml = "<textarea id='"+textA+"' name='subcon' rows='2' cols='52' style='position: relative; top:0.5rem; right:1.7rem; margin-left: 2rem; margin-bottom: 1.7rem; width: 29rem; height: 55px; table-layout: fixed;'></textarea>";
+				var innerhtml = "<div style='position: relative; top:0.5rem; right:1.7rem; font-size: 80%; float: right;'><div><input type='submit' style='height:1.7rem;' onclick=\"writeSub('"+textA+"','"+num +"', '0', '"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='댓글달기'/></div>";
+				var temp = "<div><input type='submit' style='height: 1.73rem;' onclick=\"cancelSecondSub('"+sec+"');\" value='댓글취소'/></div></div>"
+				var innerarrowhtml = arrowhtml + innerhtml + temp;
+				$('#'+sec).html(innerarrowhtml);
+			}
+		}
+
+		function writeSub(textA, num, space, groupNum, pw, id) {
+			var textValue = $('#'+textA).val();
+			if(textValue === ''){
+				alert('1글자이상 입력해주세요');
+			}else{
+				$.ajax({
+					type : "POST",
+					url : "defineWriteSub",
+					dataType : "text",
+					data : {
+						textValue : textValue,
+						num : num,
+						space : space,
+						groupNum : groupNum,
+						pw : pw,
+						id : id
+					},
+					error : function() {
+						alert('error');
+					},
+					success : function() {
+						location.reload();
+					}
+				});
+			}
+		}
+	</script>
+
+	<script>
+		function ansCommentSec(num, connum, space, id, groupnum){
+			if(isSession === false) {
+				alert('먼저로그인을 해주세요');
+			} else{
+				var sec = 'ansSec' + num;
+				var spacenum = space + 1;
+				var textA = 'textAreaSecond' + num;
+				var arrowhtml = "<div class='textSection' style='margin-left:0.5rem; margin-bottom:5rem; position: relative; top: 0.8rem; left: 1.4rem;'><div id='diagram'/><div class='cont-box-pseudo'/></div>";
+				var innerhtml = "<span style=''><textarea id='"+textA+"' name='subcon' rows='2' cols='55' style='position: relative; left: 2.2rem; margin-bottom: 1rem; margin-top: 0.3rem; height: 55px; table-layout: fixed; float: left;'></textarea></span>";
+				var writebutton = "<span style='position: relative; bottom:0.8rem; left:2.1rem; bottom:1.2rem; margin-right:0.5rem; font-size: 80%; float: left;'><div><input type='submit' style='height:1.7rem;' onclick=\"writeSecondSub('"+num+"','"+connum+"','"+spacenum+"','"+id+"','"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='답글달기'/></div>";
+				var calcelbutton = "<div><input type='submit' style='height:1.7rem;' onclick=\"cancelSecondSub('"+sec+"');\" value='답글취소'/></div></span>";
+				var innerarrowhtml = arrowhtml + innerhtml + writebutton + calcelbutton;
+				$('#'+sec).html(innerarrowhtml);
+			}
+		}
+
+		function cancelSecondSub(sec){
+			$('#'+sec).html("");
+		}
+
+		function writeSecondSub(num, connum, space, answerId, groupNum, pw, id) {
+			var textId = 'textAreaSecond' + num;
+			var textValue = $('#' + textId).val();
+			if(textValue === ''){
+				alert('1글자이상 입력해주세요');
+			}else{
+				$.ajax({
+					type : "POST",
+					url : "defineSecondSub",
+					dataType : "text",
+					data : {
+						textVal : textValue,
+						num : connum,
+						answerId : answerId,
+						space : space,
+						groupNum : groupNum,
+						pw : pw,
+						id : id
+					},
+					error : function() {
+						alert('error');
+					},
+					success : function() {
+						location.reload();
+					}
+				});
+			}
+		}
+	</script>
+
+	<script>
+		//검색창에서 키보드 눌렀을때 동작
+		var number = 0;
+		var keynumber = 0;
+
+		function mover(num){
+			var keyid = "num" + keynumber;
+			$('#' + keyid).css("background-color", "white");
+			number = num;
+			var id = "num"+number;
+			$('#' + id).css("background-color", "#E0E0E0");
+		}
+
+		function mout(num){
+			number = num;
+			var id = "num"+number;
+			$('#' + id).css("background-color", "white");
+		}
+
+		/* 추천검색어 */
+		$('#inputText').keyup(function(event) {
+			var keySet = 'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㄲㄸㅃㅆㅏㅑㅓㅕㅗㅛㅜㅠㅡㅣㅐㅒㅔㅖ1234567890,.?/<>:;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			if (event.keyCode === 38) { // 위방향키눌렀을때
+				number--;
+				keynumber = number;
+				if (number <= 0) {
+					number = endNum;
+					var divId = 'num' + 1;
+					$('#' + divId).css("background-color", "white");
+				}
+				var id = 'num' + number;
+				var bottom = 'num' + Number(number + 1);
+				$("#inputText").val($('#' + id).text());
+				$('#' + id).css("background-color", "#E0E0E0");
+				$('#' + bottom).css("background-color", "white");
+			} else if (event.keyCode === 40) { // 아래방향키눌렀을때
+				number++;
+				keynumber = number;
+				if (number > endNum) {
+					number = 1;
+					var divId = 'num' + endNum;
+					$('#' + divId).css("background-color", "white");
+				}
+				var id = 'num' + number;
+				var up = 'num' + Number(number - 1);
+
+				$("#inputText").val($('#' + id).text());
+				$('#' + id).css("background-color", "#E0E0E0");
+				$('#' + up).css("background-color", "white");
+			}
+
+			if (keySet.indexOf(event.key) !== -1) {
+				num = 0;
+				var inputText = $("#inputText").val();
+				$.ajax({
+					type : "POST",
+					url : "searchWord",
+					dataType : "json",
+					data : {
+						inputText : inputText
+					},
+					error : function() {
+						alert('error');
+					},
+					success : function(parseData) {
+						$("#searchRecommendSection").html(
+								parseData.show);
+						endNum = parseData.num;
+					}
+				});
+			}
+		});
+
+		//삭제시 비밀번호체크
+		function deleteClick(num) {
+			var userInput = prompt('비밀번호를 입력해주세요' + '');
+			deleteSub(num, userInput);
+		}
+
+		function deleteSub(num, userInput) {
+			$.ajax({
+				type : "POST", // 전송방식을 지정한다 (POST,GET)
+				url : "deleteDefineSub", // 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+				dataType : "text", // 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용 가능
+				data : {
+					pw : userInput,
+					num : num
+				},
+				error : function() {
+					alert('error');
+				},
+				success : function(parseData) {
+					if (parseData === 'yes') {
+						location.reload();
+					} else {
+						alert("비밀번호가 다릅니다.");
+					}
+				}
+			});
+		}
+
+	</script>
+
 <%
 	//페이지 블록 계산 
 	int thisPage = 0;
@@ -535,49 +733,7 @@
 							<td id="button${a.num}" class="aboveCommentSection"></td>
 						</tr>
 					</table>
-					<script>
-						function aboveComment(num, groupnum) {
-							if(isSession === false) {
-								alert('먼저로그인을 해주세요');
-							} else{
-								var sec = 'button' + num;
-								var textA = 'textArea' + num;
-								var arrowhtml = "<textarea id='"+textA+"' name='subcon' rows='2' cols='52' style='position: relative; top:0.5rem; right:1.7rem; margin-left: 2rem; margin-bottom: 1.7rem; width: 29rem; height: 55px; table-layout: fixed;'></textarea>";
-								var innerhtml = "<div style='position: relative; top:0.5rem; right:1.7rem; font-size: 80%; float: right;'><div><input type='submit' style='height:1.7rem;' onclick=\"writeSub('"+textA+"','"+num +"', '0', '"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='댓글달기'/></div>";
-								var temp = "<div><input type='submit' style='height: 1.73rem;' onclick=\"cancelSecondSub('"+sec+"');\" value='댓글취소'/></div></div>"
-								var innerarrowhtml = arrowhtml + innerhtml + temp;
-								$('#'+sec).html(innerarrowhtml); 
-							}
-						}
-						
-						function writeSub(textA, num, space, groupNum, pw, id) {
-							var textValue = $('#'+textA).val();
-							if(textValue === ''){
-								alert('1글자이상 입력해주세요');
-							}else{
-								$.ajax({
-									type : "POST", 
-									url : "defineWriteSub",
-									dataType : "text",
-									data : {
-										textValue : textValue,
-										num : num,
-										space : space,
-										groupNum : groupNum,
-										pw : pw,
-										id : id
-									},
-									error : function() {
-										alert('error');
-									},
-									success : function() {
-										location.reload();
-									}
-								});
-							}
-						}
-					</script>
-					
+
 					<!-- 댓글표시 -->
 					<c:set var="num" value="${a.num}" />
 					<div style="margin-top: 10px;"></div>
@@ -637,56 +793,6 @@
 										<div id="ansSec${b.num}"></div>
 
 									</div>
-									<script>
-									function ansCommentSec(num, connum, space, id, groupnum){
-										if(isSession === false) {
-											alert('먼저로그인을 해주세요');
-										} else{
-											var sec = 'ansSec' + num;
-											var spacenum = space + 1;
-											var textA = 'textAreaSecond' + num;
-											var arrowhtml = "<div class='textSection' style='margin-left:0.5rem; margin-bottom:5rem; position: relative; top: 0.8rem; left: 1.4rem;'><div id='diagram'/><div class='cont-box-pseudo'/></div>";
-											var innerhtml = "<span style=''><textarea id='"+textA+"' name='subcon' rows='2' cols='55' style='position: relative; left: 2.2rem; margin-bottom: 1rem; margin-top: 0.3rem; height: 55px; table-layout: fixed; float: left;'></textarea></span>";
-											var writebutton = "<span style='position: relative; bottom:0.8rem; left:2.1rem; bottom:1.2rem; margin-right:0.5rem; font-size: 80%; float: left;'><div><input type='submit' style='height:1.7rem;' onclick=\"writeSecondSub('"+num+"','"+connum+"','"+spacenum+"','"+id+"','"+groupnum+"','<%=sessionPw%>', '<%=sessionId%>');\" value='답글달기'/></div>";
-											var calcelbutton = "<div><input type='submit' style='height:1.7rem;' onclick=\"cancelSecondSub('"+sec+"');\" value='답글취소'/></div></span>";
-											var innerarrowhtml = arrowhtml + innerhtml + writebutton + calcelbutton;
-											$('#'+sec).html(innerarrowhtml);
-										}
-									}
-									
-									function cancelSecondSub(sec){
-										$('#'+sec).html(""); 
-									}
-									
-									function writeSecondSub(num, connum, space, answerId, groupNum, pw, id) {
-										var textId = 'textAreaSecond' + num;
-										var textValue = $('#' + textId).val();
-										if(textValue === ''){
-											alert('1글자이상 입력해주세요');
-										}else{
-											$.ajax({
-												type : "POST",
-												url : "defineSecondSub",
-												dataType : "text",
-												data : {
-													textVal : textValue,
-													num : connum,
-													answerId : answerId,
-													space : space,
-													groupNum : groupNum,
-													pw : pw,
-													id : id
-												},
-												error : function() {
-													alert('error');
-												},
-												success : function() {
-													location.reload();
-												}
-											});
-										}
-									}
-									</script>
 								</tr>
 							</c:if>
 						</c:forEach>
@@ -718,107 +824,4 @@
 	<div style="color: white;">Copyright 2019. Tae kyoung. all rights
 		reserved.</div>
 </div>
-
-<script>
-//검색창에서 키보드 눌렀을때 동작
-var number = 0;
-var keynumber = 0;
-
-function mover(num){
-	var keyid = "num" + keynumber;
-	$('#' + keyid).css("background-color", "white");
-	number = num;
-	var id = "num"+number;
-	$('#' + id).css("background-color", "#E0E0E0");
-}
-
-function mout(num){
-	number = num;
-	var id = "num"+number;
-	$('#' + id).css("background-color", "white");
-}
-
-/* 추천검색어 */
-$('#inputText').keyup(function(event) {
-	var keySet = 'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎㄲㄸㅃㅆㅏㅑㅓㅕㅗㅛㅜㅠㅡㅣㅐㅒㅔㅖ1234567890,.?/<>:;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	if (event.keyCode === 38) { // 위방향키눌렀을때
-		number--;
-		keynumber = number;
-		if (number <= 0) {
-			number = endNum;
-			var divId = 'num' + 1;
-			$('#' + divId).css("background-color", "white");
-		}
-		var id = 'num' + number;
-		var bottom = 'num' + Number(number + 1);
-		$("#inputText").val($('#' + id).text());
-		$('#' + id).css("background-color", "#E0E0E0");
-		$('#' + bottom).css("background-color", "white");
-	} else if (event.keyCode === 40) { // 아래방향키눌렀을때
-        number++;
-        keynumber = number;
-        if (number > endNum) {
-            number = 1;
-            var divId = 'num' + endNum;
-            $('#' + divId).css("background-color", "white");
-        }
-        var id = 'num' + number;
-        var up = 'num' + Number(number - 1);
-
-        $("#inputText").val($('#' + id).text());
-        $('#' + id).css("background-color", "#E0E0E0");
-        $('#' + up).css("background-color", "white");
-    }
-	
-	if (keySet.indexOf(event.key) !== -1) {
-		num = 0;
-		var inputText = $("#inputText").val();
-		$.ajax({
-			type : "POST", 
-			url : "searchWord",
-			dataType : "json",
-			data : {
-				inputText : inputText
-			},
-			error : function() {
-				alert('error');
-			},
-			success : function(parseData) {
-				$("#searchRecommendSection").html(
-						parseData.show);
-				endNum = parseData.num;
-			}
-		});
-	}
-});
-
-//삭제시 비밀번호체크
-function deleteClick(num) {
-	var userInput = prompt('비밀번호를 입력해주세요' + '');
-	deleteSub(num, userInput);
-}
-
-function deleteSub(num, userInput) {
-	$.ajax({
-		type : "POST", // 전송방식을 지정한다 (POST,GET)
-		url : "deleteDefineSub", // 호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
-		dataType : "text", // 호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용 가능
-		data : {
-			pw : userInput,
-			num : num
-		},
-		error : function() {
-			alert('error');
-		},
-		success : function(parseData) {
-			if (parseData === 'yes') {
-				location.reload();
-			} else {
-				alert("비밀번호가 다릅니다.");
-			}
-		}
-	});
-}
-
-</script>
 </html>
