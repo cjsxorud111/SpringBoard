@@ -21,6 +21,70 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script async
 	src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+		window.onload = function() {
+			var session = '<%=sessionId%>';
+			var isSession = false;
+			if (session === 'null') {
+				alert('test');
+			}
+
+			if (session !== 'null') {
+				isSession = true;
+			}
+
+			if (session === 'null') {
+				document.getElementById('log').innerHTML = "<a href='login?word=${textStatusVO.textStatus};' style='color: white; text-decoration: none;'>Login</a>";
+			} else {
+				document.getElementById('log').innerHTML = "<a href='javascript:logout();' id='logout' style='color: white; text-decoration: none;'>Logout</a>";
+			}
+
+			var num = 0;
+			<c:forEach items="${MainDefineList}" var="a" begin="<%=begin%>" end="<%=end%>">
+			num++;
+			</c:forEach>
+
+			if (num === 1) {
+				$('#innerSection').css('height','85%');
+			}
+			$('#loading').hide();
+
+			var stringVal = window.location.href;
+			var substring = '?';
+
+			var divcon = "<span style='box-shadow: 4px 4px 1px 1px gray;'>";
+			divcon += "<div style='text-align: center; background-color: white; padding: 1.5rem; width: 39rem; margin-bottom: 0.6rem;'>";
+			divcon += "<div style='color: #F54708; margin-bottom: 1rem; font-size: 30px; font-weight: 10rem;'>신조어사전 HelloWord!에 오신것을 환영합니다.</div>";
+			divcon += "<div style='font-size: 18px;'>신조어사전HelloWord! 는 여러분이 직접 정의하는 사전입니다.</div>" ;
+			divcon += "<div style='font-size: 18px;'>원하는 신조어를 무엇이든 자유롭게 정의하고 다른사람의 정의를 추천해주세요!";
+			divcon += "</span>";
+
+			if (stringVal.indexOf(substring) === -1) {
+				document.getElementById("explain").innerHTML = divcon;
+			}
+
+			for (var i = 0; i < deleteTag.length; i++) {
+				deleteTag.item(i).style.display = "none";
+			}
+		};
+
+		function logout(){
+			$.ajax({
+				type : "POST",
+				url : "logout",
+				dataType : "text",
+				data : {},
+				error : function() {
+					alert("error");
+				},
+				success : function() {
+					location.reload();
+				}
+			});
+		}
+
+	</script>
+
 	<script type="text/javascript">
 	
 	function writeLoginCheck() {
@@ -371,69 +435,7 @@
 	end = thisPage * 10 - 1;
 %>
 
-<script>
-	window.onload = function() {
-        var session = '<%=sessionId%>';
-        var isSession = false;
-        if (session === 'null') {
-            alert('test');
-        }
 
-        if (session !== 'null') {
-            isSession = true;
-        }
-
-		if (session === 'null') {
-			document.getElementById('log').innerHTML = "<a href='login?word=${textStatusVO.textStatus};' style='color: white; text-decoration: none;'>Login</a>";
-		} else {
-			document.getElementById('log').innerHTML = "<a href='javascript:logout();' id='logout' style='color: white; text-decoration: none;'>Logout</a>";
-		}
-
-		var num = 0;
-		<c:forEach items="${MainDefineList}" var="a" begin="<%=begin%>" end="<%=end%>">
-			num++;
-		</c:forEach>
-
-		if (num === 1) {
-			$('#innerSection').css('height','85%');
-		}
-		$('#loading').hide();
-
-		var stringVal = window.location.href;
-	    var substring = '?';
-
-	    var divcon = "<span style='box-shadow: 4px 4px 1px 1px gray;'>";
-	    divcon += "<div style='text-align: center; background-color: white; padding: 1.5rem; width: 39rem; margin-bottom: 0.6rem;'>";
-	    divcon += "<div style='color: #F54708; margin-bottom: 1rem; font-size: 30px; font-weight: 10rem;'>신조어사전 HelloWord!에 오신것을 환영합니다.</div>";
-	    divcon += "<div style='font-size: 18px;'>신조어사전HelloWord! 는 여러분이 직접 정의하는 사전입니다.</div>" ;
-	    divcon += "<div style='font-size: 18px;'>원하는 신조어를 무엇이든 자유롭게 정의하고 다른사람의 정의를 추천해주세요!";
-	    divcon += "</span>";
-
-		if (stringVal.indexOf(substring) === -1) {
-			document.getElementById("explain").innerHTML = divcon;
-		}
-
-		for (var i = 0; i < deleteTag.length; i++) {
-			deleteTag.item(i).style.display = "none";
-		}
-	};
-	
-	function logout(){
-		$.ajax({
-			type : "POST",
-			url : "logout",
-			dataType : "text",
-			data : {},
-			error : function() {
-				alert("error");
-			},
-			success : function() {
-				location.reload();
-			}
-		});
-	}
-
-</script>
 <style>
 .foot {
 	padding: 15px;
