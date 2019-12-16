@@ -9,6 +9,19 @@
 <%@ include file="nav.jsp" %>
 <html>
 <head>
+    <style>
+        .foot {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container-fluid {
+            padding-right: 50px;
+            padding-left: 50px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+    </style>
     <title>신조어사전 헬로워드!!</title>
     <%--TODO 각 api에 대한 테스트코드 작성--%>
     <%--TODO RESTapi로 리팩토링--%>
@@ -424,20 +437,6 @@
         end = thisPage * 10 - 1;
     %>
 
-
-    <style>
-        .foot {
-            padding: 15px;
-            text-align: center;
-        }
-
-        .container-fluid {
-            padding-right: 50px;
-            padding-left: 50px;
-            margin-right: auto;
-            margin-left: auto;
-        }
-    </style>
 </head>
 <!-- 네브바 -->
 <div style="background-color: #33353C; height: 3.8rem;">
