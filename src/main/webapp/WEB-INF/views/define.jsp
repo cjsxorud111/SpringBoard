@@ -417,6 +417,83 @@
             });
         }
 
+        function modifyCheck(num, id) {
+            if (isSession === false) {
+                alert("먼저로그인을 해주세요");
+                return false;
+            } else {
+                /* 세션id와 글id대조하여 일치시삭제 */
+                if (session === id) {
+                    var really = confirm('수정하시겠습니까?');
+                    if (really) {
+                        return true;
+                    }
+                } else {
+                    alert('작성하신글만 수정할수있습니다.');
+                    return false;
+                }
+            }
+        }
+
+        function delConCheck(num, id) {
+            if (isSession === false) {
+                alert('먼저로그인을 해주세요');
+                return false;
+            } else {
+                /* 세션id와 글id대조하여 일치시삭제 */
+                if (session === id) {
+                    var really = confirm('삭제하시겠습니까?');
+                    if (really) {
+                        return true;
+                    }
+                } else {
+                    alert('작성하신글만 삭제할수있습니다.');
+                    return false;
+                }
+            }
+        }
+
+        function deleteCheck(conNum, id, textStatus) {
+            if (isSession === false) {
+                alert('먼저로그인을 해주세요');
+            } else {
+                /* 세션id와 글id대조하여 일치시삭제 */
+                if (session === id) {
+                    var really = confirm('삭제하시겠습니까?');
+                    if (really) {
+                        defineContentDelete(conNum, textStatus);
+                    }
+                } else {
+                    alert('작성하신글만 삭제할수있습니다.');
+                }
+            }
+        }
+
+        function defineContentDelete(conNum, textStatus) {
+            $.ajax({
+                type: 'POST',
+                url: 'deleteDefineContent',
+                dataType: 'text',
+                data: {
+                    conNum: conNum,
+                    textStatus: textStatus
+                },
+                error: function () {
+                    if (textStatus === 'main(*)') {
+                        window.location.href = '/';
+                    } else {
+                        window.location.href = 'linkWord?linkWord=' + textStatus;
+                    }
+                },
+                success: function () {
+                    if (textStatus === 'main(*)') {
+                        window.location.href = '/';
+                    } else {
+                        window.location.href = 'linkWord?linkWord=' + textStatus;
+                    }
+                }
+            });
+        }
     </script>
 
     <%
@@ -579,86 +656,6 @@
                                     </form>
                                 </div>
                             </div>
-
-                            <script>
-                                function modifyCheck(num, id) {
-                                    if (isSession === false) {
-                                        alert("먼저로그인을 해주세요");
-                                        return false;
-                                    } else {
-                                        /* 세션id와 글id대조하여 일치시삭제 */
-                                        if (session === id) {
-                                            var really = confirm('수정하시겠습니까?');
-                                            if (really) {
-                                                return true;
-                                            }
-                                        } else {
-                                            alert('작성하신글만 수정할수있습니다.');
-                                            return false;
-                                        }
-                                    }
-                                }
-
-                                function delConCheck(num, id) {
-                                    if (isSession === false) {
-                                        alert('먼저로그인을 해주세요');
-                                        return false;
-                                    } else {
-                                        /* 세션id와 글id대조하여 일치시삭제 */
-                                        if (session === id) {
-                                            var really = confirm('삭제하시겠습니까?');
-                                            if (really) {
-                                                return true;
-                                            }
-                                        } else {
-                                            alert('작성하신글만 삭제할수있습니다.');
-                                            return false;
-                                        }
-                                    }
-                                }
-
-                                function deleteCheck(conNum, id, textStatus) {
-                                    if (isSession === false) {
-                                        alert('먼저로그인을 해주세요');
-                                    } else {
-                                        /* 세션id와 글id대조하여 일치시삭제 */
-                                        if (session === id) {
-                                            var really = confirm('삭제하시겠습니까?');
-                                            if (really) {
-                                                defineContentDelete(conNum, textStatus);
-                                            }
-                                        } else {
-                                            alert('작성하신글만 삭제할수있습니다.');
-                                        }
-                                    }
-                                }
-
-                                function defineContentDelete(conNum, textStatus) {
-                                    $.ajax({
-                                        type: 'POST',
-                                        url: 'deleteDefineContent',
-                                        dataType: 'text',
-                                        data: {
-                                            conNum: conNum,
-                                            textStatus: textStatus
-                                        },
-                                        error: function () {
-                                            if (textStatus === 'main(*)') {
-                                                window.location.href = '/';
-                                            } else {
-                                                window.location.href = 'linkWord?linkWord=' + textStatus;
-                                            }
-                                        },
-                                        success: function () {
-                                            if (textStatus === 'main(*)') {
-                                                window.location.href = '/';
-                                            } else {
-                                                window.location.href = 'linkWord?linkWord=' + textStatus;
-                                            }
-                                        }
-                                    });
-                                }
-                            </script>
                         </div>
                         <!-- 오른쪽단어제목 -->
                         <h1>
