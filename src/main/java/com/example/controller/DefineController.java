@@ -25,7 +25,6 @@ public class DefineController {
 
 	int refreshNum = 0;
 
-	//TODO Controller로 API들 리팩토링하여 수정
 	@Autowired
 	private DefineService service;
 
@@ -69,18 +68,18 @@ public class DefineController {
 		model.addAttribute("MainDefineList", linkCon);
 		model.addAttribute("Cnum", linkCon.size());
 		List<DefineSubVO> getDefinSubList = null;
-		
+
 		try {
 			getDefinSubList = service.getDefinSubList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		model.addAttribute("getDefinSubList", getDefinSubList);
-		
+
 		//어떤페이지인지구분
 		String linkWord = request.getParameter("linkWord");
 		List<memberRankingVO> memberRanking = null;
-		
+
 		try {
 			memberRanking = service.memberRanking();
 		} catch (Exception e) {
@@ -99,18 +98,18 @@ public class DefineController {
 		session.setAttribute("refreshNum", refreshNum);
 		return "define";
 	}
-	
+
 	@RequestMapping(value = "/newwordwrite", method = RequestMethod.GET)
 	public String newword_write() {
 		return "newwordwrite";
 	}
-	
+
 	static public int pageCount(int cNum) {
 		//총 페이지수 소수로계산
 		double pNum = (double)cNum / 10;
-		//나머지 페이지가 있는지 확인 
+		//나머지 페이지가 있는지 확인
 		double isDecimal = pNum - (int)pNum;
-		
+
 		//총 페이지 개수
 		int totalPageNum;
 		if (isDecimal == 0) {
@@ -144,16 +143,16 @@ public class DefineController {
 		model.addAttribute("totalPageNum", pageCount(MainDefineList.size()));
 		model.addAttribute("MainDefineList", MainDefineList);
 		model.addAttribute("memberRanking", memberRanking);
-		
-		List<DefineSubVO> getDefinSubList = null; 
-		
+
+		List<DefineSubVO> getDefinSubList = null;
+
 		try {
 			getDefinSubList = service.getDefinSubList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		model.addAttribute("getDefinSubList", getDefinSubList);	
+
+		model.addAttribute("getDefinSubList", getDefinSubList);
 		//어떤페이지인지구분
 		textStatusVO textStatusVO = new textStatusVO();
 		textStatusVO.setTextStatus("main(*)");
