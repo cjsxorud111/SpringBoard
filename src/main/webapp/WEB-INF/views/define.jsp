@@ -495,7 +495,27 @@
             });
         }
     </script>
+    <script>
+        function recommendUpOver(num) {
+            var id = "recommendUp" + num;
+            $('#' + id).css("background-color", "#5BB93F");
+        }
 
+        function recommendDownOver(num) {
+            var id = "recommendDown" + num;
+            $('#' + id).css("background-color", "tomato");
+        }
+
+        function recommendUpOut(num) {
+            var id = "recommendUp" + num;
+            $('#' + id).css("background-color", "white");
+        }
+
+        function recommendDownOut(num) {
+            var id = "recommendDown" + num;
+            $('#' + id).css("background-color", "white");
+        }
+    </script>
     <%
         //페이지 블록 계산
         int thisPage = 0;
@@ -693,29 +713,6 @@
                             </button>
                         </div>
                     </div>
-
-                    <script>
-                        function recommendUpOver(num) {
-                            var id = "recommendUp" + num;
-                            $('#' + id).css("background-color", "#5BB93F");
-                        }
-
-                        function recommendDownOver(num) {
-                            var id = "recommendDown" + num;
-                            $('#' + id).css("background-color", "tomato");
-                        }
-
-                        function recommendUpOut(num) {
-                            var id = "recommendUp" + num;
-                            $('#' + id).css("background-color", "white");
-                        }
-
-                        function recommendDownOut(num) {
-                            var id = "recommendDown" + num;
-                            $('#' + id).css("background-color", "white");
-                        }
-                    </script>
-
                     <div>글쓴이: ${a.id}</div>
                     <br>
                     <div>
@@ -728,7 +725,6 @@
                             <td id="button${a.num}" class="aboveCommentSection"></td>
                         </tr>
                     </table>
-
                     <!-- 댓글표시 -->
                     <c:set var="num" value="${a.num}"/>
                     <div style="margin-top: 10px;"></div>
@@ -753,7 +749,6 @@
                                                     <!-- 댓글버튼 -->
                                                 </div>
                                             </c:when>
-
                                             <c:otherwise>
                                                 <div>&nbsp; &nbsp;</div>
                                                 <div style="position: relative; left: 13px; bottom: 10px;">${b.id}</div>
@@ -761,32 +756,25 @@
                                                         ${b.content}
                                                     <!-- 댓글버튼 -->
                                                 </div>
-
                                             </c:otherwise>
-
                                         </c:choose>
                                     </div>
                                     <!-- 답글삭제버튼 -->
                                     <div class="deleteShowTag"
                                          style="position: relative; bottom: 2rem;">
-
                                         <input type="submit"
                                                onclick="ansCommentSec('${b.num}', '${a.num}', '${b.space}', '${b.id}', '${b.groupnum}');"
                                                value="답글" style="font-size: 80%"/>
-
                                         <a href="javascript:deleteClick(${b.num});"> <input
                                                 type="submit" id="deleteShowButton" value="삭제"/>
                                         </a>
                                     </div>
-
                                 </tr>
                                 <tr>
                                     <!-- 답글 -->
                                     <div id="commentClickButton${b.num}"
                                          class="belowCommentSection">
-
                                         <div id="ansSec${b.num}"></div>
-
                                     </div>
                                 </tr>
                             </c:if>
@@ -795,11 +783,9 @@
                 </div>
             </div>
         </c:forEach>
-
         <div id="paging"
              style="text-align: center; background-color: white; margin-bottom: 1rem;">
             <a href="?page=1">[처음]</a>
-
             <%
                 Object totalPageNum01 = request.getAttribute("totalPageNum");
                 int totalPageNum02 = Integer.parseInt(totalPageNum01.toString());
@@ -813,7 +799,6 @@
             <a href="?page=<%=totalPageNum02%>">[끝]</a>
         </div>
     </div>
-
 </div>
 
 <div class="foot" style="background-color: #2B2B2E;">
