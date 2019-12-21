@@ -494,8 +494,7 @@
                 }
             });
         }
-    </script>
-    <script>
+
         function recommendUpOver(num) {
             var id = "recommendUp" + num;
             $('#' + id).css("background-color", "#5BB93F");
