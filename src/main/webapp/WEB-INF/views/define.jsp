@@ -496,23 +496,23 @@
         }
 
         function recommendUpOver(num) {
-            var id = "recommendUp" + num;
-            $('#' + id).css("background-color", "#5BB93F");
+            var id = 'recommendUp' + num;
+            $('#' + id).css('background-color', '#5BB93F');
         }
 
         function recommendDownOver(num) {
-            var id = "recommendDown" + num;
-            $('#' + id).css("background-color", "tomato");
+            var id = 'recommendDown' + num;
+            $('#' + id).css('background-color', 'tomato');
         }
 
         function recommendUpOut(num) {
-            var id = "recommendUp" + num;
-            $('#' + id).css("background-color", "white");
+            var id = 'recommendUp' + num;
+            $('#' + id).css('background-color', 'white');
         }
 
         function recommendDownOut(num) {
-            var id = "recommendDown" + num;
-            $('#' + id).css("background-color", "white");
+            var id = 'recommendDown' + num;
+            $('#' + id).css('background-color', 'white');
         }
     </script>
     <%
